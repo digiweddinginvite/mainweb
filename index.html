@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Digital Wedding Invitations | Digi Wedding Invite</title>
+<meta name="description" content="Create beautiful animated digital wedding invitations with music, RSVP, Google Maps, gallery, and WhatsApp sharing.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ============================================
+   TOKENS
+   ============================================ */
+:root {
+  --bg: #FFFFFF;
+  --primary: #800020;
+  --primary-dark: #4A0012;
+  --accent: #D4AF37;
+  --accent-soft: #E8CD7A;
+  --bg-secondary: #FDFBF7;
+  --text-dark: #111111;
+  --text-soft: #444444;
+  --light-gray: #EFEFEF;
+  --white: #FFFFFF;
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 12px;
+  --shadow-soft: 0 10px 40px rgba(128,0,32,0.14);
+  --shadow-card: 0 6px 24px rgba(17,17,17,0.08);
+  --ease: cubic-bezier(.22,1,.36,1);
+  --font-head: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; border: none; cursor: pointer; background: none; }
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+section { position: relative; }
+
+::selection { background: var(--accent-soft); color: var(--text-dark); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+.eyebrow::before {
+  content: '';
+  width: 26px; height: 1px;
+  background: var(--accent);
+}
+
+.section-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(28px, 5vw, 44px);
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+.section-sub {
+  color: var(--text-soft);
+  font-size: 16px;
+  max-width: 560px;
+  margin-top: 14px;
+}
+.section-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-head .section-sub { margin-left: auto; margin-right: auto; }
+
+/* Reveal on scroll */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.left { transform: translateX(-32px); }
+.reveal.right { transform: translateX(32px); }
+.reveal.scale { transform: scale(.92); }
+.reveal.in { opacity: 1; transform: translate(0,0) scale(1); }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(128,0,32,0.35);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(128,0,32,0.45); }
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(37,211,102,0.35);
+}
+.btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(37,211,102,0.45); }
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--text-dark);
+  color: var(--text-dark);
+}
+.btn-outline:hover { background: var(--text-dark); color: #fff; }
+.btn-gold {
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #3a2f10;
+  box-shadow: 0 12px 30px rgba(212,175,55,0.35);
+}
+.btn-gold:hover { transform: translateY(-3px); }
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%;
+  z-index: 1000;
+  padding: 18px 0;
+  transition: background .4s var(--ease), box-shadow .4s var(--ease), padding .4s var(--ease), backdrop-filter .4s var(--ease);
+}
+.navbar.scrolled {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow: 0 6px 30px rgba(17,17,17,0.06);
+  padding: 12px 0;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.logo {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text-dark);
+  letter-spacing: .5px;
+  display: flex; align-items: center; gap: 8px;
+}
+.logo span { color: var(--primary); }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a {
+  font-size: 14.5px; font-weight: 500; color: var(--text-dark);
+  position: relative; padding: 4px 0;
+  transition: color .3s;
+}
+.nav-links a:not(.nav-cta)::after {
+  content: '';
+  position: absolute; left: 0; bottom: -2px;
+  width: 0; height: 1.5px; background: var(--primary);
+  transition: width .3s var(--ease);
+}
+.nav-links a:not(.nav-cta):hover::after { width: 100%; }
+.nav-links a:not(.nav-cta):hover { color: var(--primary); }
+.nav-links .nav-cta {
+  background: var(--primary);
+  color: #fff !important;
+
+  /* WhatsApp button padding */
+  padding: 9px 18px;
+
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.2;
+
+  box-shadow: 0 6px 18px rgba(128, 0, 32, 0.28);
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.nav-links .nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(128, 0, 32, 0.38);
+}
+.menu-toggle { display: none; font-size: 22px; color: var(--text-dark); background: none; }
+
+@media (max-width: 900px) {
+  .nav-links {
+    position: fixed; top: 0; right: 0; height: 100vh; width: 78%; max-width: 340px;
+    background: #fff; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 40px; gap: 26px; 
+    transform: translateX(100%);
+    transition: transform .45s var(--ease);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.08);
+  }
+  .nav-links.open { transform: translateX(0); }
+  .menu-toggle { display: block; z-index: 1100; }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 0 60px;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(212,175,55,0.15), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(128,0,32,0.10), transparent 45%),
+    linear-gradient(180deg, #FFFDFB 0%, #FFFFFF 60%);
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr; gap: 56px; align-items: center;
+}
+@media (min-width: 960px) {
+  .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 40px; }
+}
+.hero-text h1 {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 58px);
+  line-height: 1.15;
+  color: var(--text-dark);
+  margin-bottom: 20px;
+}
+.hero-text h1 em {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.hero-text p {
+  font-size: 17px; color: var(--text-soft); max-width: 480px; margin-bottom: 34px;
+}
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 36px; }
+.hero-trust { display: flex; align-items: center; gap: 14px; font-size: 13.5px; color: var(--text-soft); }
+.hero-trust .stars { color: var(--accent); letter-spacing: 2px; }
+.hero-trust strong { color: var(--text-dark); }
+
+.hero-visual { position: relative; display: flex; justify-content: center; }
+.floral-deco { position: absolute; opacity: .8; pointer-events: none; }
+.floral-1 { top: -40px; left: -30px; width: 120px; }
+.floral-2 { bottom: -30px; right: -10px; width: 140px; transform: scaleX(-1); }
+
+.phone-mock {
+  position: relative;
+  width: 280px; height: 576px;
+  animation: floatPhone 6s ease-in-out infinite;
+  filter: drop-shadow(0 30px 60px rgba(128,0,32,0.30));
+}
+@keyframes floatPhone {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-18px) rotate(1deg); }
+}
+.phone-frame {
+  width: 100%; height: 100%;
+  background: #111;
+  border-radius: 44px;
+  padding: 12px;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.06) inset;
+}
+.phone-notch {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  width: 110px; height: 22px; background: #111; border-radius: 0 0 16px 16px; z-index: 5;
+}
+.phone-screen {
+  width: 100%; height: 100%;
+  background: linear-gradient(160deg, #FDFBF7 0%, #F5F0E6 55%, #EFEBE0 100%);
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding: 38px 22px 20px;
+}
+.invite-ornament { font-size: 26px; color: var(--accent); margin-bottom: 10px; }
+.invite-names { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--primary-dark); line-height: 1.3; }
+.invite-amp { display: block; font-style: italic; font-size: 16px; color: var(--accent); margin: 2px 0; }
+.invite-date { margin-top: 14px; font-size: 12px; letter-spacing: 2px; color: var(--text-soft); text-transform: uppercase; }
+.invite-venue { margin-top: 6px; font-size: 11.5px; color: var(--text-soft); }
+.invite-btn {
+  margin-top: 22px; padding: 9px 20px; border-radius: 100px;
+  background: var(--primary); color: #fff; font-size: 11px; font-weight: 600; letter-spacing: .5px;
+}
+.invite-grid { display: flex; gap: 8px; margin-top: 24px; }
+.invite-grid span { width: 34px; height: 44px; border-radius: 8px; background: rgba(128,0,32,0.15); }
+.invite-grid span:nth-child(2) { background: rgba(212,175,55,0.20); }
+
+/* ============================================
+   DEMO MODAL (Mobile Preview)
+   ============================================ */
+.demo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.demo-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.demo-modal-content {
+  position: relative;
+  width: 375px; 
+  max-width: 95%;
+  height: 812px; 
+  max-height: 90vh;
+  background: #fff;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  border: 10px solid #111; 
+  transform: translateY(30px) scale(0.95);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.demo-modal.active .demo-modal-content {
+  transform: translateY(0) scale(1);
+}
+.demo-modal iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.demo-modal-close {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background 0.3s;
+}
+.demo-modal-close:hover {
+  background: rgba(255,255,255,0.3);
+}
+.demo-modal-notch {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 140px; height: 28px;
+  background: #111;
+  border-radius: 0 0 18px 18px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ============================================
+   EXTERNAL LINKS DEMO SECTION
+   ============================================ */
+.demo-section { padding: 110px 0; background: var(--bg-secondary); }
+.demo-tier-title {
+  font-family: var(--font-head);
+  font-size: 28px;
+  color: var(--primary-dark);
+  text-align: center;
+  margin: 60px 0 24px;
+}
+.demo-tier-title:first-of-type {
+  margin-top: 20px;
+}
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+  margin-top: 10px;
+}
+@media (min-width: 640px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 960px) { .demo-grid { grid-template-columns: repeat(3, 1fr); } }
+.demo-card {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 0 0 30px 0;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(17,17,17,0.06);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
+}
+.demo-card:hover { transform: translateY(-8px); box-shadow: 0 24px 50px rgba(128,0,32,0.12); }
+
+/* Added Thumbnail Styles */
+.demo-thumb-wrap {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(17,17,17,0.06);
+}
+.demo-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform .5s var(--ease);
+}
+.demo-card:hover .demo-thumb {
+  transform: scale(1.08);
+}
+.demo-card-content {
+  padding: 24px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.demo-card h3 { font-family: var(--font-head); font-size: 22px; color: var(--primary-dark); margin-bottom: 4px; }
+.demo-card p { font-size: 14px; color: var(--text-soft); }
+
+/* Template Price and Actions */
+.template-price {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 10px 0 16px;
+}
+.template-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.template-actions .btn {
+  padding: 10px 16px;
+  font-size: 13px;
+  flex: 1;
+  min-width: 120px;
+}
+
+/* ============================================
+   WHY DIGITAL — CARDS
+   ============================================ */
+.why-section { padding: 110px 0; }
+.why-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+@media (min-width: 640px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1024px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+.why-card {
+  background: #fff;
+  border: 1px solid rgba(17,17,17,0.06);
+  border-radius: var(--radius-lg);
+  padding: 36px 26px;
+  box-shadow: var(--shadow-card);
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease), border-color .45s;
+}
+.why-card:hover { transform: translateY(-10px); box-shadow: 0 24px 50px rgba(128,0,32,0.18); border-color: transparent; }
+.why-icon {
+  width: 60px; height: 60px; border-radius: 18px;
+  background: linear-gradient(135deg, rgba(128,0,32,0.12), rgba(212,175,55,0.14));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: var(--primary); margin-bottom: 22px;
+  transition: transform .45s var(--ease);
+}
+.why-card:hover .why-icon { transform: rotate(-8deg) scale(1.08); }
+.why-card h3 { font-family: var(--font-head); font-size: 19px; margin-bottom: 10px; }
+.why-card p { font-size: 14px; color: var(--text-soft); }
+
+/* ============================================
+   COMPARISON TABLE - OPTIMIZED FOR MOBILE
+   ============================================ */
+.compare-section { padding: 110px 0; background: var(--bg-secondary); }
+.compare-scroll { 
+  border-radius: var(--radius-lg); 
+  box-shadow: var(--shadow-card); 
+  background: #fff; 
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Ensures smooth swiping on iOS */
+}
+table.compare { 
+  width: 100%; 
+  border-collapse: collapse; 
+  /* min-width removed to allow proper mobile scaling */
+}
+table.compare thead th {
+  padding: 22px 18px; font-family: var(--font-head); font-size: 17px; text-align: center;
+  background: var(--text-dark); color: #fff;
+  word-wrap: break-word;
+}
+table.compare thead th:first-child { text-align: left; background: transparent; color: var(--text-dark); }
+table.compare thead th.digital-col { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); position: relative; }
+table.compare tbody td { padding: 16px 18px; text-align: center; font-size: 14px; border-bottom: 1px solid var(--light-gray); }
+table.compare tbody td:first-child { text-align: left; font-weight: 500; color: var(--text-dark); }
+table.compare tbody tr:last-child td { border-bottom: none; }
+table.compare tbody tr:hover { background: rgba(253,251,247,0.6); }
+.check { color: #2FAE60; font-size: 16px; }
+.cross { color: #B5AFAC; font-size: 15px; }
+.compare-note {
+  margin-top: 34px; text-align: center;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 14px;
+}
+.compare-note span {
+  padding: 12px 24px; border-radius: 100px;
+  background: #fff; box-shadow: var(--shadow-card);
+  font-size: 14px; font-weight: 600; color: var(--primary-dark);
+  display: flex; align-items: center; gap: 8px;
+}
+.compare-note i { color: var(--accent); }
+
+/* Mobile optimization for the comparison table */
+@media (max-width: 640px) {
+  table.compare thead th {
+    padding: 14px 8px;
+    font-size: 13px;
+  }
+  table.compare tbody td {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+  .compare-note span {
+    padding: 10px 18px;
+    font-size: 12.5px;
+  }
+}
+
+/* ============================================
+   FEATURES GRID
+   ============================================ */
+.features-section { padding: 110px 0; }
+.features-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+}
+@media (min-width: 640px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(4, 1fr); } }
+.feature-item {
+  background: #fff; border: 1px solid rgba(17,17,17,0.06);
+  border-radius: var(--radius-md); padding: 22px 18px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform .35s var(--ease), border-color .35s, box-shadow .35s;
+}
+.feature-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-card); border-color: transparent; }
+.feature-item i { color: var(--primary); font-size: 19px; }
+.feature-item span { font-size: 13.5px; font-weight: 500; }
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.how-section { padding: 110px 0; background: var(--bg-secondary); }
+.how-track {
+  display: grid; grid-template-columns: 1fr; gap: 0;
+  position: relative;
+}
+@media (min-width: 900px) {
+  .how-track { grid-template-columns: repeat(4, 1fr); }
+  .how-track::before {
+    content: ''; position: absolute; top: 38px; left: 12%; right: 12%; height: 1.5px;
+    background: repeating-linear-gradient(90deg, var(--accent) 0 8px, transparent 8px 16px);
+    z-index: 0;
+  }
+}
+.how-step {
+  position: relative; z-index: 1; text-align: center; padding: 20px 16px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.how-circle {
+  width: 76px; height: 76px; border-radius: 50%;
+  background: #fff; box-shadow: var(--shadow-card);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-size: 26px; font-weight: 700; color: var(--primary);
+  border: 2px solid var(--accent-soft);
+  margin-bottom: 20px;
+  transition: transform .4s var(--ease);
+}
+.how-step:hover .how-circle { transform: scale(1.08); border-color: var(--primary); }
+.how-step h4 { font-family: var(--font-head); font-size: 18px; margin-bottom: 8px; }
+.how-step p { font-size: 13.5px; color: var(--text-soft); max-width: 220px; }
+.how-arrow-mobile { color: var(--accent); font-size: 18px; margin: 6px 0; }
+@media (min-width: 900px) { .how-arrow-mobile { display: none; } }
+
+/* ============================================
+   WHY CHOOSE US
+   ============================================ */
+.choose-section { padding: 110px 0; }
+.choose-grid { display: grid; grid-template-columns: 1fr; gap: 50px; align-items: center; }
+@media (min-width: 900px) { .choose-grid { grid-template-columns: 1fr 1fr; } }
+.choose-illustration {
+  aspect-ratio: 1/1; border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(212,175,55,0.18), transparent 55%),
+    linear-gradient(150deg, #F3EAE1, #E8DFD5);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.choose-illustration i { font-size: 96px; color: var(--primary); opacity: .85; }
+.choose-list { display: flex; flex-direction: column; gap: 18px; }
+.choose-item { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: var(--radius-sm); transition: background .3s; }
+.choose-item:hover { background: var(--bg-secondary); }
+.choose-item .ico {
+  width: 40px; height: 40px; border-radius: 12px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px;
+}
+.choose-item span { font-size: 15.5px; font-weight: 500; }
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testi-section { padding: 110px 0; overflow: hidden; }
+.testi-track-wrap { position: relative; max-width: 720px; margin: 0 auto; }
+.testi-track { display: flex; transition: transform .6s var(--ease); }
+.testi-card {
+  min-width: 100%; background: #fff; border-radius: var(--radius-lg);
+  padding: 44px 36px; text-align: center; box-shadow: var(--shadow-card);
+  border: 1px solid rgba(17,17,17,0.06);
+}
+.testi-avatar {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 700; font-size: 20px; color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+.testi-stars { color: var(--accent); font-size: 14px; margin-bottom: 14px; letter-spacing: 2px; }
+.testi-card p { font-size: 16px; color: var(--text-dark); font-style: italic; line-height: 1.7; margin-bottom: 18px; }
+.testi-name { font-weight: 600; font-size: 14.5px; }
+.testi-loc { font-size: 12.5px; color: var(--text-soft); }
+.testi-dots { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+.testi-dots button { width: 9px; height: 9px; border-radius: 50%; background: var(--light-gray); transition: all .3s; }
+.testi-dots button.active { background: var(--primary); width: 26px; border-radius: 6px; }
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  padding: 120px 0;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary) 55%, var(--accent));
+  text-align: center; color: #fff; position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.14), transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.10), transparent 50%);
+}
+.final-cta .container { position: relative; }
+.final-cta h2 { font-family: var(--font-head); font-size: clamp(30px, 5vw, 48px); font-weight: 700; margin-bottom: 18px; }
+.final-cta p { opacity: .9; max-width: 480px; margin: 0 auto 36px; font-size: 16px; }
+.final-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.final-cta .btn-outline { border-color: #fff; color: #fff; }
+.final-cta .btn-outline:hover { background: #fff; color: var(--primary-dark); }
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 50px; }
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
+.footer-logo { font-family: var(--font-head); font-size: 24px; font-weight: 700; margin-bottom: 14px; }
+.footer-logo span { color: var(--accent-soft); }
+.footer-about { font-size: 14px; color: #c9b8ba; max-width: 320px; }
+.footer-col h5 { font-size: 14px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 20px; color: var(--accent-soft); }
+.footer-col a { display: block; font-size: 14px; color: #d9cbcc; margin-bottom: 12px; transition: color .3s; }
+.footer-col a:hover { color: #fff; }
+.footer-social { display: flex; gap: 14px; margin-top: 8px; }
+.footer-social a {
+  width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.footer-social a:hover { background: var(--primary); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+  font-size: 13px; color: #a99799;
+}
+
+/* ============================================
+   FLOATING WHATSAPP BUTTON
+   ============================================ */
+.wa-float {
+  position: fixed; bottom: 26px; right: 26px; z-index: 1200;
+  width: 62px; height: 62px; border-radius: 50%;
+  background: #25D366; color: #fff; font-size: 28px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 30px rgba(37,211,102,0.45);
+  animation: waPulse 3.2s ease-in-out infinite;
+}
+@keyframes waPulse {
+  0%, 80%, 100% { transform: scale(1); }
+  86% { transform: scale(1.12); }
+  92% { transform: scale(0.98); }
+}
+.wa-float::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(37,211,102,0.55);
+  animation: waRing 3.2s ease-out infinite;
+}
+@keyframes waRing {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+  70% { box-shadow: 0 0 0 18px rgba(37,211,102,0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+}
+
+/* Utility */
+.text-center { text-align: center; }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVBAR
+     ============================================ -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="logo">Digi <span>Wedding</span> Invite</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#demo">Demo</a>
+      <a href="#features">Features</a>
+      <a href="#comparison">Comparison</a>
+      <a href="#contact">Contact</a>
+      <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="nav-cta" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+      </a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<!-- ============================================
+     HERO
+     ============================================ -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="hero-text reveal left">
+      <p class="eyebrow">Digital Wedding Invitations</p>
+      <h1>Beautiful <em>Digital</em><br>Wedding Invitations</h1>
+      <p>Create elegant, animated wedding invitations that guests can open instantly on any mobile phone &mdash; no printing, no waiting, no hassle.</p>
+      <div class="hero-ctas">
+        <a href="#demo" class="btn btn-primary"><i class="fa-solid fa-play"></i> View Live Demo</a>
+        <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="btn btn-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+        <span><strong>500+</strong> couples invited beautifully</span>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal right">
+      <svg class="floral-deco floral-1" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 10 C 60 30, 80 30, 90 50 C 80 70, 60 70, 50 90 C 40 70, 20 70, 10 50 C 20 30, 40 30, 50 10 Z" stroke="#D4AF37" stroke-width="1"/>
+      </svg>
+      <svg class="floral-deco floral-2" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="30" stroke="#800020" stroke-width="1"/>
+        <circle cx="50" cy="50" r="42" stroke="#D4AF37" stroke-width="0.7"/>
+      </svg>
+      <div class="phone-mock">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="invite-ornament">✦</div>
+            <div class="invite-names">Ananya <span class="invite-amp">&amp;</span> Rohan</div>
+            <div class="invite-date">14 · December · 2026</div>
+            <div class="invite-venue">Taj Falaknuma Palace, Hyderabad</div>
+            <div class="invite-btn">RSVP Now</div>
+            <div class="invite-grid">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     LIVE EXTERNAL DEMOS
+     ============================================ -->
+<section class="demo-section" id="demo">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Live Previews</p>
+      <h2 class="section-title">Explore Our Templates</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">Click below to experience our premium designs exactly as your guests will.</p>
+    </div>
+    
+   <!-- Tier 1: 1,499 -->
+    <h3 class="demo-tier-title reveal">Standard Templates</h3>
+    <div class="demo-grid reveal scale">
+      <!-- Demo 1 -->
+      <div class="demo-card">
+        <div class="demo-thumb-wrap">
+          <img src="images/template1.webp.jpeg" alt="Template 1 Preview" class="demo-thumb" loading="lazy">
+        </div>
+        <div class="demo-card-content">
+          <h3>Template 1</h3>
+          <p>Elegant floral design with a classic touch.</p>
+          <div class="template-price">₹1,499</div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/wed3/')">View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%201%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Demo 2 -->
+      <div class="demo-card">
+        <div class="demo-thumb-wrap">
+          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/premiumwed1/" alt="Template 2 Preview" class="demo-thumb" loading="lazy">
+        </div>
+        <div class="demo-card-content">
+          <h3>Template 2</h3>
+          <p>Modern minimalist layout with soft animations.</p>
+          <div class="template-price">₹1,499</div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/premiumwed1/')">View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%202%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 2: 1,999 -->
+    <h3 class="demo-tier-title reveal">Premium Templates</h3>
+    <div class="demo-grid reveal scale">
+      <!-- Demo 5 (Template 3 - MOVED HERE) -->
+      <div class="demo-card">
+        <div class="demo-thumb-wrap">
+          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/test1.0/" alt="Template 5 Preview" class="demo-thumb" loading="lazy">
+        </div>
+        <div class="demo-card-content">
+          <h3>Template 3</h3>
+          <p>Contemporary chic for modern destination weddings.</p>
+          <div class="template-price">₹1,999</div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/test1.0/')">View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%203%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Demo 3 -->
+      <div class="demo-card">
+        <div class="demo-thumb-wrap">
+          <img src="images/template3.webp.jpeg" alt="Template 3 Preview" class="demo-thumb" loading="lazy">
+        </div>
+        <div class="demo-card-content">
+          <h3>Template 4</h3>
+          <p>Royal heritage theme with gold accents.</p>
+          <div class="template-price">₹1,999</div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/luxurywed/')">View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%204%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+      <!-- Demo 6 -->
+      <div class="demo-card">
+        <div class="demo-thumb-wrap">
+          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/cutewed1/" alt="Template 6 Preview" class="demo-thumb" loading="lazy">
+        </div>
+        <div class="demo-card-content">
+          <h3>Template 5</h3>
+          <p>Vibrant & traditional for a classic celebration.</p>
+          <div class="template-price">₹1,999</div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/cutewed1/')">View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%205%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier 3: 2,999 -->
+    <h3 class="demo-tier-title reveal">Luxury Templates</h3>
+    <div class="demo-grid reveal scale">
+      <!-- Demo 4 -->
+      <div class="demo-card" style="max-width: 400px; margin: 0 auto; grid-column: 1 / -1;">
+        <div class="demo-thumb-wrap">
+          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/hinduwedding/" alt="Template 4 Preview" class="demo-thumb" loading="lazy">
+        </div>
+        <div class="demo-card-content">
+          <h3>Template 6</h3>
+          <p>Rustic charm with warm, earthy color tones.</p>
+          <div class="template-price">₹2,999</div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/hinduwedding/')">View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%204%20for%20₹2999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================
+     WHY DIGITAL INVITATIONS
+     ============================================ -->
+<section class="why-section" id="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Advantage</p>
+      <h2 class="section-title">Why Couples Are Going Digital</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+        <h3>Mobile Friendly</h3>
+        <p>Opens beautifully on any phone, no app required, in under two seconds.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <h3>Instant WhatsApp Sharing</h3>
+        <p>Share your invite to hundreds of guests with a single tap.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-music"></i></div>
+        <h3>Music &amp; Animation</h3>
+        <p>Elegant motion and a soft musical welcome for every guest.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Affordable &amp; Eco Friendly</h3>
+        <p>Zero printing, zero waste, and a fraction of the cost of paper cards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     PAPER VS DIGITAL
+     ============================================ -->
+<section class="compare-section" id="comparison">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Comparison</p>
+      <h2 class="section-title">Paper vs. Digital</h2>
+    </div>
+
+    <div class="compare-scroll reveal">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>What you get</th>
+            <th>Paper Invitation</th>
+            <th class="digital-col">Digital Invitation</th>
+          </tr>
+        </thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+
+    <div class="compare-note reveal">
+      <span><i class="fa-solid fa-coins"></i> Save Money</span>
+      <span><i class="fa-solid fa-clock"></i> Save Time</span>
+      <span><i class="fa-solid fa-seedling"></i> Save Trees</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FEATURES
+     ============================================ -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Everything Included</p>
+      <h2 class="section-title">Features Built For Every Wedding</h2>
+    </div>
+    <div class="features-grid" id="featuresGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     HOW IT WORKS
+     ============================================ -->
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">The Process</p>
+      <h2 class="section-title">How It Works</h2>
+    </div>
+    <div class="how-track">
+      <div class="how-step reveal">
+        <div class="how-circle">1</div>
+        <h4>Choose Design</h4>
+        <p>Pick a template that matches your wedding's style.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-circle">2</div>
+        <h4>Share Wedding Details</h4>
+        <p>Send us your names, dates, venue and photos.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-circle">3</div>
+        <h4>We Design It</h4>
+        <p>Our team crafts your animated invitation with care.</p>
+      </div>
+      <div class="how-step reveal">
+        <div class="how-circle">4</div>
+        <h4>Share With Everyone</h4>
+        <p>Send the link to every guest on WhatsApp instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WHY CHOOSE US
+     ============================================ -->
+<section class="choose-section" id="choose">
+  <div class="container choose-grid">
+    <div class="choose-illustration reveal left">
+      <i class="fa-solid fa-heart-circle-check"></i>
+    </div>
+    <div class="reveal right">
+      <p class="eyebrow">Why Choose Us</p>
+      <h2 class="section-title" style="margin-bottom:28px;">Crafted With Care, Delivered With Ease</h2>
+      <div class="choose-list">
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-gem"></i></div><span>Premium UI</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-bolt"></i></div><span>Lightning Fast</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-share-nodes"></i></div><span>Unlimited Sharing</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-mobile-screen-button"></i></div><span>Works on Android &amp; iPhone</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-wand-magic-sparkles"></i></div><span>Elegant Animations</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-ban"></i></div><span>No App Installation</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-tag"></i></div><span>Affordable</span></div>
+        <div class="choose-item"><div class="ico"><i class="fa-solid fa-paper-plane"></i></div><span>Instant Delivery</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TESTIMONIALS
+     ============================================ -->
+<section class="testi-section" id="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Kind Words</p>
+      <h2 class="section-title">Loved By Couples Everywhere</h2>
+    </div>
+    <div class="testi-track-wrap reveal">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="testi-avatar">SN</div>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Our guests kept messaging us just to say how beautiful the invitation looked. Worth every rupee."</p>
+          <div class="testi-name">Sneha &amp; Nikhil</div>
+          <div class="testi-loc">Hyderabad</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar">PK</div>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"So easy to share on our family WhatsApp groups. Everyone RSVP'd within a day."</p>
+          <div class="testi-name">Priya &amp; Karthik</div>
+          <div class="testi-loc">Bengaluru</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-avatar">RA</div>
+          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"The music and animation made it feel like opening a real wedding card, just on the phone."</p>
+          <div class="testi-name">Ritu &amp; Arjun</div>
+          <div class="testi-loc">Vijayawada</div>
+        </div>
+      </div>
+      <div class="testi-dots" id="testiDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FINAL CTA
+     ============================================ -->
+<section class="final-cta" id="contact">
+  <div class="container reveal scale">
+    <h2>Let's Create Your Dream Wedding Invitation</h2>
+    <p>Tell us about your big day and we'll bring it to life &mdash; beautifully, digitally, instantly.</p>
+    <div class="final-ctas">
+      <a href="#demo" class="btn btn-outline">View Demo</a>
+      <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="btn" style="background:#fff; color:var(--primary-dark);" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Contact on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Digi <span>Wedding</span> Invite</div>
+        <p class="footer-about">Handcrafted digital wedding invitations with elegant animation, music and instant WhatsApp sharing for couples across India.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/digi_wedding_invite?igsh=YWE3ZmJqY2w5M3ky" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://wa.me/916300553617" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="mailto:hello@digiweddinginvite.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <a href="#home">Home</a>
+        <a href="#demo">Demo</a>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Digi Wedding Invite. All rights reserved.</span>
+      <span>Made with love for your special day.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================
+     FLOATING WHATSAPP BUTTON
+     ============================================ -->
+<a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ============================================
+     MOBILE DEMO MODAL HTML
+     ============================================ -->
+<div class="demo-modal" id="demoModal">
+  <button class="demo-modal-close" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+  <div class="demo-modal-content">
+    <div class="demo-modal-notch"></div>
+    <iframe id="demoIframe" src="" title="Live Demo Preview"></iframe>
+  </div>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Navbar scroll blur ---------- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+}, {passive:true});
+
+/* ---------- Mobile menu ---------- */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+  const icon = menuToggle.querySelector('i');
+  icon.classList.toggle('fa-bars');
+  icon.classList.toggle('fa-xmark');
+});
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  const icon = menuToggle.querySelector('i');
+  icon.classList.add('fa-bars');
+  icon.classList.remove('fa-xmark');
+}));
+
+/* ---------- Scroll reveal ---------- */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      io.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el => io.observe(el));
+
+/* ---------- Comparison table data ---------- */
+const compareRows = [
+  ['Printing Cost', false, true],
+  ['Delivery Time', false, true],
+  ['Animation', false, true],
+  ['Background Music', false, true],
+  ['Google Maps', false, true],
+  ['Unlimited Sharing', false, true],
+  ['Eco Friendly', false, true],
+  ['WhatsApp Sharing', false, true],
+  ['Video Support', false, true],
+  ['Gallery', false, true],
+  ['Save The Date', false, true],
+  ['Guest Count', false, true],
+];
+const compareBody = document.getElementById('compareBody');
+compareRows.forEach(([label]) => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${label}</td><td><i class="fa-solid fa-xmark cross"></i></td><td><i class="fa-solid fa-check check"></i></td>`;
+  compareBody.appendChild(tr);
+});
+
+/* ---------- Features grid data ---------- */
+const features = [
+  ['wand-magic-sparkles','Animated Intro'],
+  ['music','Background Music'],
+  ['images','Photo Gallery'],
+  ['book-open','Wedding Story'],
+  ['hourglass-half','Countdown Timer'],
+  ['location-dot','Google Maps'],
+  ['phone','One-click Calling'],
+  ['timeline','Events Timeline'],
+  ['people-roof','Family Details'],
+  ['user-group','Bride & Groom Profiles'],
+  ['film','Pre-Wedding Video'],
+  ['globe','Custom Domain'],
+  ['bolt','Fast Loading'],
+  ['mobile-screen','Responsive Design'],
+  ['star','Premium Animations'],
+];
+const featuresGrid = document.getElementById('featuresGrid');
+features.forEach(([icon,label]) => {
+  const isBrand = icon.includes(':brand');
+  const cleanIcon = icon.replace(':brand','');
+  const iconClass = isBrand ? `fa-brands fa-${cleanIcon}` : `fa-solid fa-${cleanIcon}`;
+  const div = document.createElement('div');
+  div.className = 'feature-item';
+  div.innerHTML = `<i class="${iconClass}"></i><span>${label}</span>`;
+  featuresGrid.appendChild(div);
+});
+
+/* ---------- Testimonial slider ---------- */
+const testiTrack = document.getElementById('testiTrack');
+const testiCards = testiTrack.querySelectorAll('.testi-card');
+const testiDots = document.getElementById('testiDots');
+testiCards.forEach((_, i) => {
+  const dot = document.createElement('button');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  testiDots.appendChild(dot);
+});
+let testiIndex = 0;
+function goToSlide(i) {
+  testiIndex = i;
+  testiTrack.style.transform = `translateX(-${i * 100}%)`;
+  testiDots.querySelectorAll('button').forEach((d, idx) => d.classList.toggle('active', idx === i));
+}
+setInterval(() => { goToSlide((testiIndex + 1) % testiCards.length); }, 5000);
+
+/* ---------- Demo Modal Logic ---------- */
+const demoModal = document.getElementById('demoModal');
+const demoIframe = document.getElementById('demoIframe');
+const closeModalBtn = document.getElementById('closeModal');
+
+function openDemo(url) {
+  demoIframe.src = url;
+  demoModal.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevents background scrolling
+}
+
+function closeDemo() {
+  demoModal.classList.remove('active');
+  document.body.style.overflow = '';
+  // Small timeout to wait for fade-out animation before clearing src
+  setTimeout(() => { demoIframe.src = ''; }, 300);
+}
+
+closeModalBtn.addEventListener('click', closeDemo);
+demoModal.addEventListener('click', (e) => {
+  // If the user clicks the dark background outside the phone, close the modal
+  if (e.target === demoModal) {
+    closeDemo();
+  }
+});
+</script>
+</body>
+</html>
