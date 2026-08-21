@@ -839,7 +839,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 1 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="images/template1.webp.jpeg" alt="Template 1 Preview" class="demo-thumb" loading="lazy">
+          <img src="images/template1.webp.jpeg" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 1</h3>
@@ -854,7 +854,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 2 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/premiumwed1/" alt="Template 2 Preview" class="demo-thumb" loading="lazy">
+          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/premiumwed1/" alt="Template 2 Preview" class="demo-thumb" loading="eager" fetchpriority="high" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 2</h3>
@@ -874,7 +874,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 5 (Template 3 - MOVED HERE) -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/test1.0/" alt="Template 5 Preview" class="demo-thumb" loading="lazy">
+          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/test1.0/" alt="Template 5 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 3</h3>
@@ -889,7 +889,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 3 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="images/template3.webp.jpeg" alt="Template 3 Preview" class="demo-thumb" loading="lazy">
+          <img src="images/template3.webp.jpeg" alt="Template 3 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 4</h3>
@@ -904,7 +904,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 6 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/cutewed1/" alt="Template 6 Preview" class="demo-thumb" loading="lazy">
+          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/cutewed1/" alt="Template 6 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 5</h3>
@@ -924,7 +924,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 4 (Template 6) -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/hinduwedding/" alt="Template 6 Preview" class="demo-thumb" loading="lazy">
+          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/hinduwedding/" alt="Template 6 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 6</h3>
@@ -939,7 +939,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 7 (New Template 7) -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/600/crop/800/wait/4/https://manikantaande24-bot.github.io/hinduwed2/" alt="Template 7 Preview" class="demo-thumb" loading="lazy">
+          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/hinduwed2/" alt="Template 7 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 7</h3>
@@ -1305,6 +1305,21 @@ function goToSlide(i) {
   testiDots.querySelectorAll('button').forEach((d, idx) => d.classList.toggle('active', idx === i));
 }
 setInterval(() => { goToSlide((testiIndex + 1) % testiCards.length); }, 5000);
+
+
+/* ---------- Fast demo thumbnail fallback ---------- */
+document.querySelectorAll('.demo-thumb').forEach((img) => {
+  img.addEventListener('error', () => {
+    img.style.display = 'none';
+    const wrap = img.closest('.demo-thumb-wrap');
+    if (wrap && !wrap.querySelector('.thumb-fallback')) {
+      const fallback = document.createElement('div');
+      fallback.className = 'thumb-fallback';
+      fallback.textContent = 'Preview loading…';
+      wrap.appendChild(fallback);
+    }
+  }, { once: true });
+});
 
 /* ---------- Demo Modal Logic ---------- */
 const demoModal = document.getElementById('demoModal');
