@@ -330,6 +330,127 @@ section { position: relative; }
 .invite-grid span:nth-child(2) { background: rgba(212,175,55,0.20); }
 
 /* ============================================
+   TEMPLATE VISIBILITY / PRICING CUES
+   ============================================ */
+.hero-template-hint {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  margin-top: -18px;
+  margin-bottom: 26px;
+  padding: 11px 16px;
+  border: 1px solid rgba(128,0,32,0.12);
+  border-radius: 100px;
+  background: rgba(253,251,247,0.9);
+  color: var(--text-soft);
+  font-size: 12.5px;
+  font-weight: 500;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s;
+}
+.hero-template-hint:hover {
+  transform: translateY(-2px);
+  border-color: rgba(128,0,32,0.25);
+  box-shadow: var(--shadow-card);
+}
+.hero-template-hint span { display: inline-flex; align-items: center; gap: 7px; }
+.hero-template-hint span i { color: var(--primary); }
+.hero-template-hint strong { color: var(--primary); }
+.hero-template-hint > i:last-child {
+  color: var(--accent);
+  animation: templateHintArrow 1.5s ease-in-out infinite;
+}
+@keyframes templateHintArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+.template-price-guide {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  max-width: 760px;
+  margin: -12px auto 18px;
+}
+.price-guide-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px;
+  background: #fff;
+  border: 1px solid rgba(128,0,32,0.10);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+}
+.price-guide-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+.price-guide-item strong {
+  margin-top: 2px;
+  color: var(--primary);
+  font-family: var(--font-head);
+  font-size: 23px;
+}
+.price-guide-item small { font-size: 11px; color: var(--text-soft); }
+
+.template-scroll-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin: 8px auto 20px;
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+.template-scroll-prompt i {
+  color: var(--accent);
+  animation: templateHintArrow 1.5s ease-in-out infinite;
+}
+.demo-tier-title span {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  background: rgba(128,0,32,0.07);
+  border-radius: 100px;
+  padding: 5px 10px;
+  vertical-align: middle;
+}
+@media (max-width: 640px) {
+  .hero-template-hint {
+    margin-top: -14px;
+    border-radius: 16px;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+  .template-price-guide {
+    grid-template-columns: 1fr;
+    max-width: 330px;
+    gap: 9px;
+  }
+  .price-guide-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 10px;
+    padding: 11px 15px;
+    text-align: left;
+  }
+  .price-guide-label { grid-row: span 2; align-self: center; }
+  .price-guide-item strong { margin: 0; text-align: right; }
+  .price-guide-item small { text-align: right; }
+  .demo-tier-title span { font-size: 11px; padding: 4px 8px; }
+}
+
+/* ============================================
    DEMO MODAL (Mobile Preview)
    ============================================ */
 .demo-modal {
@@ -679,6 +800,250 @@ table.compare tbody tr:hover { background: rgba(253,251,247,0.6); }
 .testi-dots button { width: 9px; height: 9px; border-radius: 50%; background: var(--light-gray); transition: all .3s; }
 .testi-dots button.active { background: var(--primary); width: 26px; border-radius: 6px; }
 
+
+/* ============================================
+   FAQ — CONVERSION FRIENDLY ACCORDION
+   ============================================ */
+.faq-section {
+  padding: 110px 0;
+  background: var(--bg-secondary);
+}
+.faq-list {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+.faq-item {
+  background: #fff;
+  border: 1px solid rgba(17,17,17,0.07);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease);
+}
+.faq-item:hover {
+  border-color: rgba(128,0,32,0.18);
+  box-shadow: 0 14px 34px rgba(128,0,32,0.09);
+}
+.faq-item.open {
+  border-color: rgba(128,0,32,0.22);
+}
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 22px 24px;
+  text-align: left;
+  color: var(--text-dark);
+  font-size: 15.5px;
+  font-weight: 600;
+}
+.faq-question span { flex: 1; }
+.faq-question i {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  background: rgba(128,0,32,0.07);
+  transition: transform .35s var(--ease), background .35s var(--ease), color .35s;
+}
+.faq-item.open .faq-question i {
+  transform: rotate(45deg);
+  background: var(--primary);
+  color: #fff;
+}
+.faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .4s var(--ease);
+}
+.faq-answer-inner {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 24px;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.faq-item.open .faq-answer {
+  grid-template-rows: 1fr;
+}
+.faq-item.open .faq-answer-inner {
+  padding-bottom: 22px;
+}
+.faq-cta {
+  margin-top: 34px;
+  text-align: center;
+}
+.faq-cta p {
+  color: var(--text-soft);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+@media (max-width: 640px) {
+  .faq-section { padding: 80px 0; }
+  .faq-question { padding: 18px 17px; font-size: 14px; }
+  .faq-question i { width: 30px; height: 30px; font-size: 12px; }
+  .faq-answer-inner { padding: 0 17px; font-size: 13.5px; }
+  .faq-item.open .faq-answer-inner { padding-bottom: 18px; }
+}
+
+/* ============================================
+   TESTIMONIALS — TRUST / SOCIAL PROOF
+   ============================================ */
+.testi-section {
+  padding: 110px 0;
+  overflow: hidden;
+  background: linear-gradient(180deg, #fff 0%, var(--bg-secondary) 100%);
+}
+.testi-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  margin: -18px auto 38px;
+  flex-wrap: wrap;
+}
+.testi-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.testi-rating .stars {
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+.testi-rating strong {
+  font-family: var(--font-head);
+  font-size: 23px;
+  color: var(--primary-dark);
+}
+.testi-summary-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(17,17,17,0.12);
+}
+.testi-track-wrap { position: relative; max-width: 820px; margin: 0 auto; }
+.testi-track { display: flex; transition: transform .6s var(--ease); }
+.testi-card {
+  min-width: 100%;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: 46px 42px 40px;
+  text-align: center;
+  box-shadow: 0 16px 45px rgba(17,17,17,0.09);
+  border: 1px solid rgba(128,0,32,0.08);
+  position: relative;
+}
+.testi-card::before {
+  content: '“';
+  position: absolute;
+  top: 10px;
+  left: 28px;
+  font-family: Georgia, serif;
+  font-size: 72px;
+  line-height: 1;
+  color: rgba(212,175,55,0.22);
+}
+.testi-avatar {
+  width: 70px; height: 70px; border-radius: 50%;
+  margin: 0 auto 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-head); font-weight: 700; font-size: 20px; color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 10px 24px rgba(128,0,32,0.18);
+}
+.testi-stars {
+  color: var(--accent);
+  font-size: 14px;
+  margin-bottom: 18px;
+  letter-spacing: 2px;
+}
+.testi-card p {
+  font-size: 17px;
+  color: var(--text-dark);
+  font-style: italic;
+  line-height: 1.8;
+  max-width: 650px;
+  margin: 0 auto 22px;
+}
+.testi-name { font-weight: 700; font-size: 15px; color: var(--primary-dark); }
+.testi-loc { font-size: 12.5px; color: var(--text-soft); margin-top: 3px; }
+.testi-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 16px;
+  padding: 7px 12px;
+  border-radius: 100px;
+  background: rgba(128,0,32,0.06);
+  color: var(--primary);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.testi-badge i { color: #2FAE60; }
+.testi-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+.testi-dots button {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--light-gray);
+  transition: all .3s;
+}
+.testi-dots button.active {
+  background: var(--primary);
+  width: 26px;
+  border-radius: 6px;
+}
+.testi-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 18px;
+}
+.testi-nav button {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: #fff;
+  border: 1px solid rgba(17,17,17,0.08);
+  color: var(--primary);
+  box-shadow: var(--shadow-card);
+  transition: transform .25s var(--ease), background .25s, color .25s;
+}
+.testi-nav button:hover {
+  transform: translateY(-2px);
+  background: var(--primary);
+  color: #fff;
+}
+.testi-cta {
+  text-align: center;
+  margin-top: 34px;
+}
+.testi-cta p {
+  color: var(--text-soft);
+  font-size: 13.5px;
+  margin-bottom: 14px;
+}
+@media (max-width: 640px) {
+  .testi-section { padding: 80px 0; }
+  .testi-summary { gap: 14px; margin-bottom: 28px; }
+  .testi-summary-divider { display: none; }
+  .testi-card { padding: 40px 20px 30px; }
+  .testi-card::before { left: 12px; font-size: 58px; }
+  .testi-card p { font-size: 15px; line-height: 1.7; }
+}
+
 /* ============================================
    FINAL CTA
    ============================================ */
@@ -752,6 +1117,104 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
 
 /* Utility */
 .text-center { text-align: center; }
+
+/* ============================================
+   IMPORTANT NOTE — BREAKING NEWS BANNER
+   ============================================ */
+.important-note {
+  width: 100%;
+  background: var(--primary);
+  color: #fff;
+  overflow: hidden;
+  border-top: 1px solid rgba(212,175,55,0.35);
+  border-bottom: 1px solid rgba(212,175,55,0.35);
+  position: relative;
+  z-index: 10;
+}
+.important-note-inner {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+.important-note-label {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 18px;
+  background: var(--primary-dark);
+  color: var(--accent-soft);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  box-shadow: 8px 0 18px rgba(74,0,18,0.18);
+}
+.important-note-label i {
+  animation: notePulse 1.4s ease-in-out infinite;
+}
+.important-note-track {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.important-note-content {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 11px 0;
+  animation: breakingNews 24s linear infinite;
+  will-change: transform;
+}
+.important-note-message {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .15px;
+  padding-right: 60px;
+}
+.important-note-message strong {
+  color: var(--accent-soft);
+  font-weight: 700;
+}
+.important-note-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin: 0 16px;
+  flex: 0 0 auto;
+}
+@keyframes breakingNews {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes notePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .55; transform: scale(.85); }
+}
+@media (max-width: 640px) {
+  .important-note-label {
+    padding: 10px 12px;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .important-note-message {
+    font-size: 12.5px;
+    padding-right: 40px;
+  }
+  .important-note-dot { margin: 0 11px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .important-note-content { animation: none; }
+  .important-note-track { overflow-x: auto; }
+}
+
 </style>
 </head>
 <body>
@@ -764,9 +1227,9 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     <a href="#" class="logo">Digi <span>Wedding</span> Invite</a>
     <nav class="nav-links" id="navLinks">
       <a href="#home">Home</a>
-      <a href="#demo">Demo</a>
+      <a href="#demo">Templates</a>
       <a href="#features">Features</a>
-      <a href="#comparison">Comparison</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
       <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="nav-cta" target="_blank" rel="noopener">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
@@ -786,9 +1249,14 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <h1>Beautiful <em>Digital</em><br>Wedding Invitations</h1>
       <p>Create elegant, animated wedding invitations that guests can open instantly on any mobile phone &mdash; no printing, no waiting, no hassle.</p>
       <div class="hero-ctas">
-        <a href="#demo" class="btn btn-primary"><i class="fa-solid fa-play"></i> View Live Demo</a>
-        <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="btn btn-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a>
+        <a href="#demo" class="btn btn-primary"><i class="fa-solid fa-images"></i> View Templates &amp; Prices</a>
+        <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="btn btn-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat to Order</a>
       </div>
+      <a href="#demo" class="hero-template-hint" aria-label="View all wedding website templates and prices">
+        <span><i class="fa-solid fa-layer-group"></i> 7 Wedding Website Templates</span>
+        <strong>Starting from ₹1,499</strong>
+        <i class="fa-solid fa-arrow-down"></i>
+      </a>
       <div class="hero-trust">
         <span class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
         <span><strong>500+</strong> couples invited beautifully</span>
@@ -821,6 +1289,23 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     </div>
   </div>
 </section>
+<!-- ============================================
+     IMPORTANT NOTE — WEDDING WEBSITE NOTICE
+     ============================================ -->
+<div class="important-note" role="note" aria-label="Important notice">
+  <div class="important-note-inner">
+    <div class="important-note-label">
+      <i class="fa-solid fa-circle-exclamation"></i> Important Note
+    </div>
+    <div class="important-note-track">
+      <div class="important-note-content">
+        <span class="important-note-message"><strong>These are wedding websites, not wedding videos.</strong>&nbsp; Each invitation is a complete interactive website that guests can open through a shareable link.</span>
+        <span class="important-note-dot"></span>
+        <span class="important-note-message"><strong>These are wedding websites, not wedding videos.</strong>&nbsp; Each invitation is a complete interactive website that guests can open through a shareable link.</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============================================
      LIVE EXTERNAL DEMOS
@@ -828,13 +1313,37 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
 <section class="demo-section" id="demo">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Live Previews</p>
-      <h2 class="section-title">Explore Our Templates</h2>
-      <p class="section-sub" style="margin-left:auto;margin-right:auto;">Click below to experience our premium designs exactly as your guests will.</p>
+      <p class="eyebrow">Live Previews &amp; Pricing</p>
+      <h2 class="section-title">Choose Your Wedding Website</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">See every template, price, and live preview below. <strong>Choose a design first, then message us to order.</strong></p>
     </div>
     
-   <!-- Tier 1: 1,499 -->
-    <h3 class="demo-tier-title reveal">Standard Templates</h3>
+   <div class="template-price-guide reveal" aria-label="Wedding website price guide">
+      <div class="price-guide-item">
+        <span class="price-guide-label">Standard</span>
+        <strong>₹1,499</strong>
+        <small>2 templates</small>
+      </div>
+      <div class="price-guide-item">
+        <span class="price-guide-label">Premium</span>
+        <strong>₹1,999</strong>
+        <small>3 templates</small>
+      </div>
+      <div class="price-guide-item">
+        <span class="price-guide-label">Luxury</span>
+        <strong>₹2,499</strong>
+        <small>2 templates</small>
+      </div>
+    </div>
+
+    <div class="template-scroll-prompt" aria-hidden="true">
+      <i class="fa-solid fa-arrow-down"></i>
+      <span>Scroll to see all templates &amp; prices</span>
+      <i class="fa-solid fa-arrow-down"></i>
+    </div>
+
+    <!-- Tier 1: 1,499 -->
+    <h3 class="demo-tier-title reveal">Standard Templates <span>₹1,499</span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 1 -->
       <div class="demo-card">
@@ -869,7 +1378,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     </div>
 
     <!-- Tier 2: 1,999 -->
-    <h3 class="demo-tier-title reveal">Premium Templates</h3>
+    <h3 class="demo-tier-title reveal">Premium Templates <span>₹1,999</span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 5 (Template 3 - MOVED HERE) -->
       <div class="demo-card">
@@ -919,7 +1428,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     </div>
 
     <!-- Tier 3: 2,499 -->
-    <h3 class="demo-tier-title reveal">Luxury Templates</h3>
+    <h3 class="demo-tier-title reveal">Luxury Templates <span>₹2,499</span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 4 (Template 6) -->
       <div class="demo-card">
@@ -1101,34 +1610,189 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
 <section class="testi-section" id="reviews">
   <div class="container">
     <div class="section-head reveal">
-      <p class="eyebrow">Kind Words</p>
+      <p class="eyebrow">Real Couples. Real Experiences.</p>
       <h2 class="section-title">Loved By Couples Everywhere</h2>
+      <p class="section-sub">See why couples choose a beautiful digital invitation for their big day.</p>
     </div>
+
+    <div class="testi-summary reveal">
+      <div class="testi-rating">
+        <span class="stars">★★★★★</span>
+        <strong>5.0</strong>
+        <span>Couple satisfaction</span>
+      </div>
+      <span class="testi-summary-divider"></span>
+      <div class="testi-rating">
+        <i class="fa-solid fa-heart" style="color:var(--primary);"></i>
+        <span>Made for unforgettable moments</span>
+      </div>
+    </div>
+
     <div class="testi-track-wrap reveal">
       <div class="testi-track" id="testiTrack">
-        <div class="testi-card">
+        <article class="testi-card">
           <div class="testi-avatar">SN</div>
-          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="testi-stars">★★★★★</div>
           <p>"Our guests kept messaging us just to say how beautiful the invitation looked. Worth every rupee."</p>
           <div class="testi-name">Sneha &amp; Nikhil</div>
           <div class="testi-loc">Hyderabad</div>
-        </div>
-        <div class="testi-card">
+          <div class="testi-badge"><i class="fa-solid fa-circle-check"></i> Happy Couple</div>
+        </article>
+
+        <article class="testi-card">
           <div class="testi-avatar">PK</div>
-          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"So easy to share on our family WhatsApp groups. Everyone RSVP'd within a day."</p>
+          <div class="testi-stars">★★★★★</div>
+          <p>"So easy to share with our family WhatsApp groups. Everyone could open the invitation instantly and RSVP."</p>
           <div class="testi-name">Priya &amp; Karthik</div>
           <div class="testi-loc">Bengaluru</div>
-        </div>
-        <div class="testi-card">
+          <div class="testi-badge"><i class="fa-solid fa-circle-check"></i> Happy Couple</div>
+        </article>
+
+        <article class="testi-card">
           <div class="testi-avatar">RA</div>
-          <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-          <p>"The music and animation made it feel like opening a real wedding card, just on the phone."</p>
+          <div class="testi-stars">★★★★★</div>
+          <p>"The music and animation made it feel like opening a real wedding card, just on the phone. Beautiful experience."</p>
           <div class="testi-name">Ritu &amp; Arjun</div>
           <div class="testi-loc">Vijayawada</div>
-        </div>
+          <div class="testi-badge"><i class="fa-solid fa-circle-check"></i> Happy Couple</div>
+        </article>
       </div>
-      <div class="testi-dots" id="testiDots"></div>
+
+      <div class="testi-dots" id="testiDots" aria-label="Testimonial slides"></div>
+
+      <div class="testi-nav" aria-label="Testimonial navigation">
+        <button type="button" id="testiPrev" aria-label="Previous testimonial"><i class="fa-solid fa-arrow-left"></i></button>
+        <button type="button" id="testiNext" aria-label="Next testimonial"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+
+    <div class="testi-cta reveal">
+      <p>Ready to create yours?</p>
+      <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="btn btn-primary" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Create My Invitation
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FAQ
+     ============================================ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Got Questions?</p>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know before ordering your digital wedding website.</p>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Is this a wedding video or a wedding website?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          These are interactive digital wedding websites, not wedding videos. Your guests receive a shareable link that opens the complete invitation on their phone.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>How do I order my wedding website?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Choose your favourite template, click Buy Now or WhatsApp, and we'll guide you through the booking process and collect your wedding details.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>How much advance payment is required?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          A ₹500 advance is required to confirm your booking. The remaining amount is paid according to the agreed order terms.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>How quickly will I receive my wedding website?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Your website is delivered within 2 days after we receive all the required wedding details and content.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>What details do I need to provide?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          We'll need your names, wedding date and time, venue, function details, photos and other content required for your selected template. We'll guide you through everything after booking.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Can I add music, photos, Google Maps and RSVP?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Yes. Your website can include supported features such as background music, photo gallery, countdown timer, Google Maps, RSVP, event timeline, family details and more.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Will it work on Android and iPhone?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Yes. The invitation is designed to be mobile responsive and can be opened through a link on modern Android and iPhone devices.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Do my guests need to install an app?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          No. Guests simply open the shareable invitation link in their browser. No separate app installation is required.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Can I share the invitation on WhatsApp?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Yes. Once your website is ready, you can share the link with your guests through WhatsApp and other messaging or social platforms.
+        </div></div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" type="button" aria-expanded="false">
+          <span>Can I see the templates before ordering?</span>
+          <i class="fa-solid fa-plus"></i>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Yes. You can browse the templates and open live demos before choosing the design you want.
+        </div></div>
+      </div>
+    </div>
+
+    <div class="faq-cta reveal">
+      <p>Still have a question? We're happy to help.</p>
+      <a href="https://wa.me/916300553617?text=Hi,%20I%20have%20a%20question%20about%20your%20digital%20wedding%20invitation." class="btn btn-whatsapp" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i> Ask Us on WhatsApp
+      </a>
     </div>
   </div>
 </section>
@@ -1290,21 +1954,87 @@ features.forEach(([icon,label]) => {
 
 /* ---------- Testimonial slider ---------- */
 const testiTrack = document.getElementById('testiTrack');
-const testiCards = testiTrack.querySelectorAll('.testi-card');
+const testiCards = testiTrack ? testiTrack.querySelectorAll('.testi-card') : [];
 const testiDots = document.getElementById('testiDots');
-testiCards.forEach((_, i) => {
-  const dot = document.createElement('button');
-  if (i === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => goToSlide(i));
-  testiDots.appendChild(dot);
-});
+const testiPrev = document.getElementById('testiPrev');
+const testiNext = document.getElementById('testiNext');
 let testiIndex = 0;
+let testiTimer = null;
+let testiPaused = false;
+
 function goToSlide(i) {
-  testiIndex = i;
-  testiTrack.style.transform = `translateX(-${i * 100}%)`;
-  testiDots.querySelectorAll('button').forEach((d, idx) => d.classList.toggle('active', idx === i));
+  if (!testiCards.length || !testiTrack) return;
+  testiIndex = (i + testiCards.length) % testiCards.length;
+  testiTrack.style.transform = `translateX(-${testiIndex * 100}%)`;
+  if (testiDots) {
+    testiDots.querySelectorAll('button').forEach((d, idx) => {
+      d.classList.toggle('active', idx === testiIndex);
+      d.setAttribute('aria-current', idx === testiIndex ? 'true' : 'false');
+    });
+  }
 }
-setInterval(() => { goToSlide((testiIndex + 1) % testiCards.length); }, 5000);
+
+if (testiCards.length && testiDots) {
+  testiCards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+    dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+      goToSlide(i);
+      restartTestiTimer();
+    });
+    testiDots.appendChild(dot);
+  });
+
+  testiPrev?.addEventListener('click', () => {
+    goToSlide(testiIndex - 1);
+    restartTestiTimer();
+  });
+  testiNext?.addEventListener('click', () => {
+    goToSlide(testiIndex + 1);
+    restartTestiTimer();
+  });
+
+  function startTestiTimer() {
+    clearInterval(testiTimer);
+    testiTimer = setInterval(() => {
+      if (!testiPaused) goToSlide(testiIndex + 1);
+    }, 5000);
+  }
+
+  function restartTestiTimer() {
+    startTestiTimer();
+  }
+
+  const testiWrap = document.querySelector('.testi-track-wrap');
+  testiWrap?.addEventListener('mouseenter', () => { testiPaused = true; });
+  testiWrap?.addEventListener('mouseleave', () => { testiPaused = false; });
+  testiWrap?.addEventListener('focusin', () => { testiPaused = true; });
+  testiWrap?.addEventListener('focusout', () => { testiPaused = false; });
+
+  startTestiTimer();
+}
+
+/* ---------- FAQ accordion ---------- */
+document.querySelectorAll('.faq-question').forEach((button) => {
+  button.addEventListener('click', () => {
+    const item = button.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    document.querySelectorAll('.faq-item.open').forEach((openItem) => {
+      if (openItem !== item) {
+        openItem.classList.remove('open');
+        const openButton = openItem.querySelector('.faq-question');
+        openButton?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    item.classList.toggle('open', !isOpen);
+    button.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
 
 
 /* ---------- Fast demo thumbnail fallback ---------- */
