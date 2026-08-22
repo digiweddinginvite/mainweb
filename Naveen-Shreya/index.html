@@ -296,23 +296,20 @@
       .event {
         position: relative;
         width: 100%;
-        max-width: 320px; /* Card width */
-        aspect-ratio: 9 / 16; /* 9:16 Portrait */
-        margin: 0 auto 25px;
-
+        max-width: none;
+        min-height: 72vh;
+        aspect-ratio: auto;
+        margin: 0 0 30px;
         overflow: hidden;
-        border-radius: 22px;
-
+        border-radius: 0;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-
-        padding: 130px 20px;
-
+        padding: 140px 24px 80px;
         color: #fff;
         text-align: center;
-        z-index: 1; /* Establishes a stacking context for pseudo-elements */
+        z-index: 1;
       }
 
       /* Event Image Pseudo-element for smooth zoom animation */
@@ -339,9 +336,10 @@
       .events {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 30px;
-        padding: 0 20px;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        width: 100%;
       }
 
       .haldi::after {
@@ -799,10 +797,12 @@
       }
 
       .reveal-date h2 {
-        font-family: "Great Vibes";
+        font-family: "Cormorant Garamond", serif;
         color: #53836d;
-        font-size: 44px;
-        letter-spacing: 2px;
+        font-size: clamp(30px, 8vw, 44px);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        line-height: 1.05;
       }
 
       .countdown {
@@ -979,7 +979,7 @@
       .countdown-section {
         position: relative;
         overflow: hidden;
-        margin: 30px 0;
+        margin: 30px 16px;
         padding: 38px 20px 30px;
         text-align: center;
         background:
@@ -1069,7 +1069,7 @@
       .venue-section {
         position: relative;
         overflow: hidden;
-        margin: 30px 0;
+        margin: 30px 16px;
         padding: 38px 20px 30px;
         text-align: center;
         background:
@@ -1179,11 +1179,12 @@
       }
 
       @media(max-width:380px) {
-        .countdown-section { padding-left: 12px; padding-right: 12px; }
+        .countdown-section { margin-left: 10px; margin-right: 10px; padding-left: 12px; padding-right: 12px; }
         .countdown-section h3 { font-size: 37px; }
         .countdown-section .cd { padding-left: 4px; padding-right: 4px; }
         .countdown-section .cd b { font-size: 25px; }
         .countdown-section .cd small { font-size: 6px; }
+        .venue-section { margin-left: 10px; margin-right: 10px; }
         .venue-section h3 { font-size: 38px; }
         .venue-name { font-size: 21px; }
         .venue-detail { gap: 5px; }
@@ -1263,7 +1264,7 @@
           <div>
             <h4>Groom's Family</h4>
             <p>
-              Smt. Pathi Savitri<br />❤<br />Sri Pathi Sailu
+              Smt. Pathi Savithri<br />❤<br />Sri Pathi Sailu
             </p>
           </div>
           <div>
@@ -1275,17 +1276,7 @@
         </div>
       </article>
 
-      <h3
-        style="
-          text-align: center;
-          font-family: &quot;Great Vibes&quot;, cursive;
-          font-size: 42px;
-          color: #5a6b4a;
-          margin: 24px 0 14px;
-        "
-      >
-        Wedding Event
-      </h3>
+  
 
       <div class="events">
       
@@ -1400,11 +1391,15 @@
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = "#fff";
-        ctx.font = "bold 22px serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("Scratch Here", canvas.width / 2, canvas.height / 2);
+        ctx.fillStyle = "#fffaf0";
+         ctx.font = '500 20px "Cormorant Garamond", serif';
+         ctx.textAlign = "center";
+         ctx.textBaseline = "middle";
+         ctx.shadowColor = "rgba(60, 45, 20, 0.22)";
+         ctx.shadowBlur = 4;
+         ctx.fillText("Scratch Here", canvas.width / 2, canvas.height / 2);
+         ctx.shadowColor = "transparent";
+         ctx.shadowBlur = 0;
 
         ctx.globalCompositeOperation = "destination-out";
         scratchInitialized = true;
