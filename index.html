@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Digital Wedding Invitations | Digi Wedding Invite</title>
+<title>Digital Wedding Invite &amp; Wedding Invitation Website | Digi Wedding Invite</title>
    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-56XWZ1LD3P"></script>
 <script>
@@ -13,7 +13,7 @@
 
   gtag('config', 'G-56XWZ1LD3P');
 </script>
-<meta name="description" content="Create beautiful animated digital wedding invitations with music, RSVP, Google Maps, gallery, and WhatsApp sharing.">
+<meta name="description" content="Create a beautiful wedding invitation website with elegant templates, music, RSVP, Google Maps, gallery and WhatsApp sharing. Perfect for an online wedding invitation.">
 
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="images/favicon.ico.png">
@@ -681,10 +681,30 @@ section { position: relative; }
 
 /* Template Price and Actions */
 .template-price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0 16px;
+}
+.template-price .offer-price {
   font-size: 24px;
   font-weight: 700;
   color: var(--primary);
-  margin: 10px 0 16px;
+}
+.template-price .original-price {
+  font-size: 15px;
+  font-weight: 500;
+  color: #999;
+  text-decoration: line-through;
+  text-decoration-thickness: 1.5px;
+}
+.demo-tier-title span del {
+  margin-left: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  opacity: .65;
+  text-decoration-thickness: 1.5px;
 }
 .template-actions {
   display: flex;
@@ -1219,11 +1239,13 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   position: relative;
   z-index: 10;
 }
+
 .important-note-inner {
   display: flex;
   align-items: stretch;
   width: 100%;
 }
+
 .important-note-label {
   flex: 0 0 auto;
   display: flex;
@@ -1240,36 +1262,49 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   z-index: 2;
   box-shadow: 8px 0 18px rgba(74,0,18,0.18);
 }
+
 .important-note-label i {
   animation: notePulse 1.4s ease-in-out infinite;
 }
+
 .important-note-track {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   overflow: hidden;
-  display: flex;
-  align-items: center;
+  display: block;
+  position: relative;
+  touch-action: pan-y;
 }
+
 .important-note-content {
-  display: inline-flex;
+  display: flex;
+  width: max-content;
+  min-width: max-content;
   align-items: center;
-  flex-shrink: 0;
   white-space: nowrap;
   padding: 11px 0;
   animation: breakingNews 24s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
+
 .important-note-message {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: .15px;
   padding-right: 60px;
 }
+
 .important-note-message strong {
   color: var(--accent-soft);
   font-weight: 700;
 }
+
 .important-note-dot {
   width: 5px;
   height: 5px;
@@ -1278,29 +1313,48 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   margin: 0 16px;
   flex: 0 0 auto;
 }
+
 @keyframes breakingNews {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
+
 @keyframes notePulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: .55; transform: scale(.85); }
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .55;
+    transform: scale(.85);
+  }
 }
+
 @media (max-width: 640px) {
   .important-note-label {
     padding: 10px 12px;
     font-size: 10px;
     letter-spacing: 1px;
   }
+
   .important-note-message {
     font-size: 12.5px;
     padding-right: 40px;
   }
-  .important-note-dot { margin: 0 11px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .important-note-content { animation: none; }
-  .important-note-track { overflow-x: auto; }
+
+  .important-note-dot {
+    margin: 0 11px;
+  }
+
+  .important-note-content {
+    animation-duration: 20s;
+  }
 }
 
 </style>
@@ -1333,9 +1387,9 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
 <section class="hero" id="home">
   <div class="container hero-grid">
     <div class="hero-text reveal left">
-      <p class="eyebrow">Digital Wedding Invitations</p>
-      <h1>Beautiful <em>Digital</em><br>Wedding Invitations</h1>
-      <p>Create elegant, animated wedding invitations that guests can open instantly on any mobile phone &mdash; no printing, no waiting, no hassle.</p>
+      <p class="eyebrow">Digital Wedding Invite</p>
+      <h1>Beautiful <em>Digital Wedding Invite</em><br>for Your Special Day</h1>
+      <p>Create an elegant wedding invitation website that guests can open instantly on any mobile phone &mdash; no printing, no waiting, no hassle.</p>
       <div class="hero-ctas">
         <a href="#demo" class="btn btn-primary"><i class="fa-solid fa-images"></i> View Templates &amp; Prices</a>
         <a href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20wedding%20invitation." class="btn btn-whatsapp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Chat to Order</a>
@@ -1402,25 +1456,25 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Live Previews &amp; Pricing</p>
-      <h2 class="section-title">Choose Your Wedding Website</h2>
-      <p class="section-sub" style="margin-left:auto;margin-right:auto;">See every template, price, and live preview below. <strong>Choose a design first, then message us to order.</strong></p>
+      <h2 class="section-title">Wedding Invitation Templates &amp; Website Designs</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">Explore our wedding website templates with live previews, pricing, and elegant designs. <strong>Choose your favourite design, then message us to order.</strong></p>
     </div>
     
    <div class="template-price-guide reveal" aria-label="Wedding website price guide">
       <div class="price-guide-item">
         <span class="price-guide-label">Standard</span>
         <strong>₹1,499</strong>
-        <small>2 templates</small>
+        
       </div>
       <div class="price-guide-item">
         <span class="price-guide-label">Premium</span>
         <strong>₹1,999</strong>
-        <small>3 templates</small>
+        
       </div>
       <div class="price-guide-item">
         <span class="price-guide-label">Luxury</span>
         <strong>₹2,499</strong>
-        <small>2 templates</small>
+        
       </div>
     </div>
 
@@ -1431,17 +1485,17 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     </div>
 
     <!-- Tier 1: 1,499 -->
-    <h3 class="demo-tier-title standard-tier reveal">Standard Templates <span>₹1,499</span></h3>
+    <h3 class="demo-tier-title standard-tier reveal">Standard Templates <span>₹1,499 <del>₹1,999</del></span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 1 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="images/template1.webp.jpeg" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
+          <img src="images/template1.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 1</h3>
           <p>Elegant floral design with a classic touch.</p>
-          <div class="template-price">₹1,499</div>
+          <div class="template-price"><span class="offer-price">₹1,499</span><span class="original-price">₹1,999</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/3rdLetter/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%201%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1451,12 +1505,12 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 2 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/premiumwed1/" alt="Template 2 Preview" class="demo-thumb" loading="eager" fetchpriority="high" decoding="async">
+          <img src="images/template2.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 2</h3>
           <p>Modern minimalist layout with soft animations.</p>
-          <div class="template-price">₹1,499</div>
+          <div class="template-price"><span class="offer-price">₹1,499</span><span class="original-price">₹1,999</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/1stRedtheme/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%202%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1466,17 +1520,17 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     </div>
 
     <!-- Tier 2: 1,999 -->
-    <h3 class="demo-tier-title premium-tier reveal">Premium Templates <span>₹1,999</span></h3>
+    <h3 class="demo-tier-title premium-tier reveal">Premium Templates <span>₹1,999 <del>₹2,499</del></span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 5 (Template 3 - MOVED HERE) -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/test1.0/" alt="Template 5 Preview" class="demo-thumb" loading="lazy" decoding="async">
+          <img src="images/template3.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 3</h3>
           <p>Contemporary chic for modern destination weddings.</p>
-          <div class="template-price">₹1,999</div>
+          <div class="template-price"><span class="offer-price">₹1,999</span><span class="original-price">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/test1.0/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%203%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1486,12 +1540,12 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 3 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="images/template3.webp.jpeg" alt="Template 3 Preview" class="demo-thumb" loading="lazy" decoding="async">
+          <img src="images/template4.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 4</h3>
           <p>Royal heritage theme with gold accents.</p>
-          <div class="template-price">₹1,999</div>
+          <div class="template-price"><span class="offer-price">₹1,999</span><span class="original-price">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/2ndRing/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%204%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1501,12 +1555,12 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 6 -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/cutewed1/" alt="Template 6 Preview" class="demo-thumb" loading="lazy" decoding="async">
+          <img src="images/template5.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 5</h3>
           <p>Vibrant & traditional for a classic celebration.</p>
-          <div class="template-price">₹1,999</div>
+          <div class="template-price"><span class="offer-price">₹1,999</span><span class="original-price">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/cutewed1/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%205%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1516,17 +1570,17 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     </div>
 
     <!-- Tier 3: 2,499 -->
-    <h3 class="demo-tier-title luxury-tier reveal">Luxury Templates <span>₹2,499</span></h3>
+    <h3 class="demo-tier-title luxury-tier reveal">Luxury Templates <span>₹2,499 <del>₹3,499</del></span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 4 (Template 6) -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/hinduwedding/" alt="Template 6 Preview" class="demo-thumb" loading="lazy" decoding="async">
+          <img src="images/template6.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 6</h3>
           <p>Rustic charm with warm, earthy color tones.</p>
-          <div class="template-price">₹2,499</div>
+          <div class="template-price"><span class="offer-price">₹2,499</span><span class="original-price">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/hinduwedding/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%206%20for%20₹2499." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1536,12 +1590,12 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
       <!-- Demo 7 (New Template 7) -->
       <div class="demo-card">
         <div class="demo-thumb-wrap">
-          <img src="https://image.thum.io/get/width/480/crop/640/https://manikantaande24-bot.github.io/hinduwed2/" alt="Template 7 Preview" class="demo-thumb" loading="lazy" decoding="async">
+          <img src="images/template7.png" alt="Template 1 Preview" class="demo-thumb" loading="lazy" decoding="async">
         </div>
         <div class="demo-card-content">
           <h3>Template 7</h3>
           <p>Elegant digital design with a premium aesthetic feel.</p>
-          <div class="template-price">₹2,499</div>
+          <div class="template-price"><span class="offer-price">₹2,499</span><span class="original-price">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/hinduwed2/')">View Demo</button>
             <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%207%20for%20₹2499." class="btn btn-primary" target="_blank" rel="noopener">Buy Now</a>
@@ -1597,6 +1651,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     <div class="section-head reveal">
       <p class="eyebrow">The Comparison</p>
       <h2 class="section-title">Paper vs. Digital</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">A modern wedding invite is easy to share, mobile-friendly, and convenient for every guest.</p>
     </div>
 
     <div class="compare-scroll reveal">
@@ -1627,7 +1682,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Everything Included</p>
-      <h2 class="section-title">Features Built For Every Wedding</h2>
+      <h2 class="section-title">Everything You Need for a Digital Wedding Card</h2>
     </div>
     <div class="features-grid" id="featuresGrid"></div>
   </div>
@@ -1640,7 +1695,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">The Process</p>
-      <h2 class="section-title">How It Works</h2>
+      <h2 class="section-title">How Your Wedding E Invitation Works</h2>
     </div>
     <div class="how-track">
       <div class="how-step reveal">
@@ -1771,7 +1826,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     <div class="section-head reveal">
       <p class="eyebrow">Got Questions?</p>
       <h2 class="section-title">Frequently Asked Questions</h2>
-      <p class="section-sub">Everything you need to know before ordering your digital wedding website.</p>
+      <p class="section-sub">Everything you need to know before ordering your digital wedding invitation and website.</p>
     </div>
 
     <div class="faq-list">
@@ -1791,7 +1846,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
           <i class="fa-solid fa-plus"></i>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
-          Choose your favourite template, click Buy Now or WhatsApp, and we'll guide you through the booking process and collect your wedding details.
+          Choose your favourite wedding invite template, click Buy Now or WhatsApp, and we'll guide you through the booking process and collect your wedding details.
         </div></div>
       </div>
 
@@ -1857,7 +1912,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
 
       <div class="faq-item reveal">
         <button class="faq-question" type="button" aria-expanded="false">
-          <span>Can I share the invitation on WhatsApp?</span>
+          <span>Can I share my online wedding invitation on WhatsApp?</span>
           <i class="fa-solid fa-plus"></i>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
@@ -1907,7 +1962,7 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
     <div class="footer-grid">
       <div>
         <div class="footer-logo">Digi <span>Wedding</span> Invite</div>
-        <p class="footer-about">Handcrafted digital wedding invitations with elegant animation, music and instant WhatsApp sharing for couples across India.</p>
+        <p class="footer-about">Digi Wedding Invite creates elegant digital wedding invitations and shareable wedding websites with animation, music and instant WhatsApp sharing for couples across India.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/digi_wedding_invite?igsh=YWE3ZmJqY2w5M3ky" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="https://wa.me/916300553617" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
