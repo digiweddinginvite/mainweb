@@ -1196,7 +1196,7 @@
       <canvas id="particle-canvas"></canvas>
       <div class="hero-content">
         <p class="hero-subtitle">Together With Their Families</p>
-        <h1>Vishnu <span>&</span> Ramya</h1>
+        <h1>Ramya <span>&</span> Vishnu</h1>
         <div class="heart-divider"><i class="fa-solid fa-heart"></i></div>
         <p class="hero-date">5 SEP 2026</p>
         <p class="hero-text">
@@ -1249,6 +1249,27 @@
           <h3>Haldi</h3>
 
           <div class="event-details">
+            <!-- Bride Haldi -->
+            <div class="haldi-person">
+              <h4>Bride Haldi</h4>
+
+              <p>
+                <strong>
+                  <i class="fa-regular fa-calendar"></i>
+                  Sep 3, 2026
+                </strong>
+              </p>
+
+              <p>
+                <i class="fa-regular fa-clock"></i>
+                10:00 AM
+              </p>
+
+              <p>
+                <i class="fa-solid fa-location-dot"></i>
+                At Bride's Residency, Vinijamoor, Andhra Pradesh.
+              </p>
+            </div>
             <!-- Groom Haldi -->
             <div class="haldi-person">
               <h4>Groom Haldi</h4>
@@ -1271,27 +1292,6 @@
               </p>
             </div>
 
-            <!-- Bride Haldi -->
-            <div class="haldi-person">
-              <h4>Bride Haldi</h4>
-
-              <p>
-                <strong>
-                  <i class="fa-regular fa-calendar"></i>
-                  Sep 3, 2026
-                </strong>
-              </p>
-
-              <p>
-                <i class="fa-regular fa-clock"></i>
-                10:00 AM
-              </p>
-
-              <p>
-                <i class="fa-solid fa-location-dot"></i>
-                At Bride's Residency, Vinijamoor
-              </p>
-            </div>
           </div>
         </div>
         <div class="glass-card event-card reveal">
@@ -1308,7 +1308,7 @@
             <p><i class="fa-regular fa-clock"></i> 7:00 PM</p>
             <p>
               <i class="fa-solid fa-location-dot"></i> At Brides's Residency,
-              Vinijamoor
+              Vinijamoor, Andhra Pradesh.
             </p>
           </div>
         </div>
@@ -1358,32 +1358,9 @@
 
               <p>
                 <i class="fa-solid fa-location-dot"></i>
-                At Brides Residency, Vinijamoor
+                At Brides Residency, Vinijamoor, Andhra Pradesh.
               </p>
             </div>
-          </div>
-        </div>
-        <div
-          class="glass-card event-card reveal"
-          style="border: 1px solid var(--primary)"
-        >
-          <div class="event-icon">
-            <img src="assets/wedrings6th.png" alt="Wedding" />
-          </div>
-          <h3>Wedding</h3>
-          <div class="event-details">
-            <p>
-              <strong
-                ><i class="fa-regular fa-calendar"></i> Sep 5, 2026</strong
-              >
-            </p>
-            <p>
-              <i class="fa-regular fa-clock"></i> Muhurtham: 2:50 AM To 3:30 PM
-            </p>
-            <p>
-              <i class="fa-solid fa-location-dot"></i> Avula Ramana Reddy
-              Kalyanamandapam, Kavali Road, Kaligiri
-            </p>
           </div>
         </div>
         <div class="glass-card event-card reveal">
@@ -1404,6 +1381,30 @@
             </p>
           </div>
         </div>
+        <div
+          class="glass-card event-card reveal"
+          style="border: 1px solid var(--primary)"
+        >
+          <div class="event-icon">
+            <img src="assets/wedrings6th.png" alt="Wedding" />
+          </div>
+          <h3>Wedding</h3>
+          <div class="event-details">
+            <p>
+              <strong
+                ><i class="fa-regular fa-calendar"></i> Sep 5, 2026</strong
+              >
+            </p>
+            <p>
+              <i class="fa-regular fa-clock"></i> Muhurtham: 2:00 AM To 3:30 AM
+            </p>
+            <p>
+              <i class="fa-solid fa-location-dot"></i> Avula Ramana Reddy
+              Kalyanamandapam, Kavali Road, Kaligiri
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1458,6 +1459,8 @@
           <div class="carousel-slide"><img src="assets/image6.png" alt="Pre-Wedding Photo 6" /></div>
           <div class="carousel-slide"><img src="assets/image7.png" alt="Pre-Wedding Photo 7" /></div>
           <div class="carousel-slide"><img src="assets/image8.png" alt="Pre-Wedding Photo 8" /></div>
+          <div class="carousel-slide"><img src="assets/image9.png" alt="Pre-Wedding Photo 9" /></div>
+          <div class="carousel-slide"><img src="assets/image10.jpeg" alt="Pre-Wedding Photo 10" /></div>
         </div>
 
         <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">
@@ -1476,6 +1479,8 @@
           <span class="dot" onclick="currentSlide(5)"></span>
           <span class="dot" onclick="currentSlide(6)"></span>
           <span class="dot" onclick="currentSlide(7)"></span>
+          <span class="dot" onclick="currentSlide(8)"></span>
+          <span class="dot" onclick="currentSlide(9)"></span>
         </div>
       </div>
     </section>
@@ -1505,7 +1510,7 @@
     <footer>
       <h2>Thank You</h2>
       <p>We look forward to celebrating with you</p>
-      <div class="names">Vishnu & Ramya</div>
+      <div class="names">Ramya & Vishnu</div>
     </footer>
 
     <script>
@@ -1679,8 +1684,8 @@
         resetAutoSlide();
       }
 
-      /* --- Target Countdown Timer (UPDATED TO 2027) --- */
-      const targetDate = new Date("SEP 5, 2026 2:50:00").getTime();
+      /* --- Target Countdown Timer (UPDATED TO 2026) --- */
+      const targetDate = new Date("SEP 5, 2026 3:30:00").getTime();
 
       function updateCountdown() {
         const now = new Date().getTime();
