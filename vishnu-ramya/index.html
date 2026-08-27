@@ -1172,7 +1172,7 @@
     </style>
   </head>
   <body>
-    <audio id="weddingMusic" loop>
+    <audio id="weddingMusic" loop preload="auto">
       <source src="audio/music1.mp3" type="audio/mpeg" />
     </audio>
 
@@ -1781,6 +1781,18 @@
 
         played = true;
 
+        // Start music immediately inside the user's click event.
+        // Browsers can block playback when play() is called from setTimeout.
+        music.currentTime = 0;
+        music.play().then(() => {
+          if (musicBtn) {
+            musicBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+            musicBtn.style.background = "var(--accent)";
+          }
+        }).catch((error) => {
+          console.log("Music could not start:", error);
+        });
+
         intro.classList.add("touch");
 
         setTimeout(() => {
@@ -1790,8 +1802,6 @@
 
         setTimeout(() => {
           intro.classList.add("hide");
-
-          music.play().catch(() => {});
         }, 2400);
 
         setTimeout(() => {
