@@ -80,16 +80,6 @@ ul { list-style: none; }
 button { font-family: inherit; border: none; cursor: pointer; background: none; }
 .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 section { position: relative; }
-
-::selection {
-  background: rgba(212, 175, 55, 0.22);
-  color: var(--text-dark);
-}
-::-moz-selection {
-  background: rgba(212, 175, 55, 0.22);
-  color: var(--text-dark);
-}
-
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
 }
@@ -1460,6 +1450,64 @@ footer { background: #211619; color: #f2e9e9; padding: 70px 0 26px; }
   .important-note-content {
     animation-duration: 20s;
   }
+}
+
+
+/* Global text-selection highlight removal — desktop, mobile, all breakpoints */
+
+/* =========================================================
+   DISABLE MOBILE TAP / BUTTON TEXT HIGHLIGHT
+   ========================================================= */
+html, body, body * {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+}
+
+html, body, body * {
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+button,
+a,
+.btn,
+.menu-toggle,
+.nav-links a,
+.demo-card,
+.demo-card *,
+.faq-question,
+.testi-nav button,
+.testi-dots button,
+.demo-modal-close,
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-user-select: none !important;
+  user-select: none !important;
+  outline: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+button:focus,
+button:focus-visible,
+a:focus,
+a:focus-visible,
+.btn:focus,
+.btn:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Prevent the browser's selection highlight in every state */
+::selection {
+  background: transparent !important;
+  color: inherit !important;
+}
+::-moz-selection {
+  background: transparent !important;
+  color: inherit !important;
 }
 
 </style>
