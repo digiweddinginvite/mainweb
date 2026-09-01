@@ -10,11 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
 <style>
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
 body {
   margin: 0;
   font-family: 'Cormorant Garamond', serif;
   background: #FFF5E1;
   color: #5a3e1b;
+  overscroll-behavior-y: auto;
 }
 
 h1, h2, h3 {
@@ -947,6 +953,10 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 
 /* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .event-card,
   .event-card .icon img {
     transition: none;
@@ -2909,9 +2919,302 @@ intro.addEventListener("click", () => {
       smoothParallax();
     }, 800);
 
+    // Start the continuous, gentle auto-scroll from the Hero.
+    // The delay lets the Hero animation settle before movement begins.
+    smoothAutoScroll.start(900);
+
   }, 1400);
 
 });
+
+/* =========================================================
+   PREMIUM CONTINUOUS AUTO-SCROLL
+   ========================================================= */
+/* =========================================================
+   PREMIUM CONTINUOUS AUTO-SCROLL
+   Smooth startup + smooth continuous movement
+   Manual scrolling remains smooth
+   ========================================================= */
+
+const smoothAutoScroll = (() => {
+
+  let running = false;
+  let rafId = null;
+  let lastTime = 0;
+  let position = 0;
+  let startTimer = null;
+  let resumeTimer = null;
+
+  /* Auto-scroll speed */
+  const SPEED = 40;
+
+  const root = document.documentElement;
+
+  function maxScroll() {
+    return Math.max(
+      0,
+      document.documentElement.scrollHeight - window.innerHeight
+    );
+  }
+
+  /* -----------------------------------------
+     Restore normal manual smooth scrolling
+     ----------------------------------------- */
+  function restoreSmoothScroll() {
+    root.style.scrollBehavior = "smooth";
+  }
+
+  /* -----------------------------------------
+     Disable CSS smooth behavior while the
+     RAF auto-scroll is running.
+     This prevents the two systems fighting.
+     ----------------------------------------- */
+  function prepareAutoScroll() {
+    root.style.scrollBehavior = "auto";
+  }
+
+  /* -----------------------------------------
+     STOP
+     ----------------------------------------- */
+  function stop() {
+
+    running = false;
+    lastTime = 0;
+
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    if (startTimer !== null) {
+      clearTimeout(startTimer);
+      startTimer = null;
+    }
+
+    if (resumeTimer !== null) {
+      clearTimeout(resumeTimer);
+      resumeTimer = null;
+    }
+
+    restoreSmoothScroll();
+  }
+
+  /* -----------------------------------------
+     AUTO-SCROLL FRAME
+     ----------------------------------------- */
+  function frame(now) {
+
+    if (!running) return;
+
+    if (!lastTime) {
+      lastTime = now;
+    }
+
+    /*
+      Prevent a large jump if the browser
+      temporarily pauses the animation.
+    */
+    const elapsed = Math.min(32, now - lastTime);
+    lastTime = now;
+
+    const bottom = maxScroll();
+
+    if (bottom <= 0) {
+      rafId = requestAnimationFrame(frame);
+      return;
+    }
+
+    /*
+      If user manually moved the page,
+      immediately synchronize our position.
+    */
+    if (Math.abs(window.scrollY - position) > 3) {
+      position = window.scrollY;
+    }
+
+    /*
+      Smooth constant movement.
+    */
+    position += SPEED * elapsed / 1000;
+
+    if (position >= bottom) {
+      window.scrollTo({
+        top: bottom,
+        left: 0,
+        behavior: "auto"
+      });
+
+      stop();
+      return;
+    }
+
+    /*
+      IMPORTANT:
+      behavior:auto + temporary CSS scrollBehavior:auto
+      prevents CSS smooth scrolling from fighting
+      against the requestAnimationFrame movement.
+    */
+    window.scrollTo({
+      top: position,
+      left: 0,
+      behavior: "auto"
+    });
+
+    rafId = requestAnimationFrame(frame);
+  }
+
+  /* -----------------------------------------
+     START
+     ----------------------------------------- */
+  function start(delay = 900) {
+
+    if (startTimer !== null) {
+      clearTimeout(startTimer);
+    }
+
+    if (resumeTimer !== null) {
+      clearTimeout(resumeTimer);
+      resumeTimer = null;
+    }
+
+    startTimer = setTimeout(() => {
+
+      startTimer = null;
+
+      /*
+        Make absolutely sure we start from the
+        current Hero position.
+      */
+      prepareAutoScroll();
+
+      position = window.scrollY;
+      lastTime = 0;
+
+      /*
+        Wait for one browser paint so the Hero,
+        intro fade and layout are fully settled.
+      */
+      requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+          if (maxScroll() <= 0) {
+            /*
+              Page is still calculating its height.
+              Try once again shortly instead of
+              recursively fighting the page.
+            */
+            startTimer = setTimeout(() => {
+              start(0);
+            }, 300);
+
+            return;
+          }
+
+          position = window.scrollY;
+          lastTime = performance.now();
+          running = true;
+
+          if (rafId !== null) {
+            cancelAnimationFrame(rafId);
+          }
+
+          rafId = requestAnimationFrame(frame);
+
+        });
+
+      });
+
+    }, delay);
+  }
+
+  /* -----------------------------------------
+     MANUAL SCROLL PAUSE
+     ----------------------------------------- */
+  function pauseForManualScroll() {
+
+    if (!running) return;
+
+    running = false;
+    lastTime = 0;
+
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+
+    /*
+      Immediately restore normal smooth scrolling
+      for the user's manual movement.
+    */
+    restoreSmoothScroll();
+
+    if (resumeTimer !== null) {
+      clearTimeout(resumeTimer);
+    }
+
+    /*
+      Resume after the user stops manually scrolling.
+    */
+    resumeTimer = setTimeout(() => {
+
+      if (window.scrollY < maxScroll() - 2) {
+
+        prepareAutoScroll();
+
+        position = window.scrollY;
+        lastTime = performance.now();
+        running = true;
+
+        rafId = requestAnimationFrame(frame);
+      }
+
+    }, 3000);
+  }
+
+  /* -----------------------------------------
+     USER INPUT
+     ----------------------------------------- */
+
+  window.addEventListener(
+    "wheel",
+    pauseForManualScroll,
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchstart",
+    pauseForManualScroll,
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "keydown",
+    event => {
+
+      if (
+        [
+          "ArrowDown",
+          "ArrowUp",
+          "PageDown",
+          "PageUp",
+          "Home",
+          "End",
+          " "
+        ].includes(event.key)
+      ) {
+        pauseForManualScroll();
+      }
+
+    }
+  );
+
+  return {
+    start,
+    stop
+  };
+
+})();
 
 /* =========================
    WEDDING COUNTDOWN — MUHURTHAM
