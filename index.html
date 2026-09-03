@@ -825,6 +825,32 @@ section { position: relative; }
 }
 
 /* ============================================
+   UPANAYANAM SECTION
+   ============================================ */
+.upanayanam-section {
+  padding: 110px 0;
+  background: linear-gradient(180deg, #FFFDFB 0%, #FDFBF7 100%);
+}
+.upanayanam-grid {
+  grid-template-columns: minmax(280px, 420px);
+  justify-content: center;
+}
+.upanayanam-card {
+  border: 1px solid rgba(212,175,55,0.28);
+  box-shadow: 0 14px 34px rgba(128,0,32,0.10);
+}
+.upanayanam-card:hover {
+  box-shadow: 0 24px 50px rgba(128,0,32,0.16);
+}
+.upanayanam-card .template-actions .btn {
+  max-width: 220px;
+}
+@media (max-width: 640px) {
+  .upanayanam-section { padding: 80px 0; }
+  .upanayanam-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
    WHY DIGITAL — CARDS
    ============================================ */
 .why-section { padding: 110px 0; }
@@ -1533,6 +1559,7 @@ a:focus-visible,
       <a href="#home">Home</a>
       <a href="#demo">Templates</a>
       <a href="#gruhapravesam">Gruhapravesam</a>
+      <a href="#upanayanam">Upanayanam</a>
       <a href="#features">Features</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -1566,7 +1593,7 @@ a:focus-visible,
       </div>
       <a href="#demo" class="hero-template-hint" aria-label="View all wedding website templates and prices">
         <span><i class="fa-solid fa-layer-group"></i> 8 Wedding Website Templates</span>
-        <strong>Starting from ₹1,499</strong>
+        <strong>Starting from <span class="js-price" data-inr="1499">₹1,499</span></strong>
         <i class="fa-solid fa-arrow-down"></i>
       </a>
       <div class="hero-trust">
@@ -1633,17 +1660,17 @@ a:focus-visible,
    <div class="template-price-guide reveal" aria-label="Wedding website price guide">
       <div class="price-guide-item">
         <span class="price-guide-label">Standard</span>
-        <strong>₹1,499</strong>
+        <strong class="js-price" data-inr="1499">₹1,499</strong>
         
       </div>
       <div class="price-guide-item">
         <span class="price-guide-label">Premium</span>
-        <strong>₹1,999</strong>
+        <strong class="js-price" data-inr="1999">₹1,999</strong>
         
       </div>
       <div class="price-guide-item">
         <span class="price-guide-label">Luxury</span>
-        <strong>₹2,499</strong>
+        <strong class="js-price" data-inr="2499">₹2,499</strong>
         
       </div>
     </div>
@@ -1655,7 +1682,7 @@ a:focus-visible,
     </div>
 
     <!-- Tier 1: 1,499 -->
-    <h3 class="demo-tier-title standard-tier reveal">Standard Templates <span>₹1,499 <del>₹1,999</del></span></h3>
+    <h3 class="demo-tier-title standard-tier reveal">Standard Templates <span><span class="js-price" data-inr="1499">₹1,499</span> <del class="js-price" data-inr="1999">₹1,999</del></span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 1 -->
       <div class="demo-card">
@@ -1665,10 +1692,10 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 1</h3>
           <p>Elegant floral design with a classic touch.</p>
-          <div class="template-price"><span class="offer-price">₹1,499</span><span class="original-price">₹1,999</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1499">₹1,499</span><span class="original-price js-price" data-inr="1999">₹1,999</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/3rdLetter/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%201%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%201%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
@@ -1680,17 +1707,17 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 2</h3>
           <p>Modern minimalist layout with soft animations.</p>
-          <div class="template-price"><span class="offer-price">₹1,499</span><span class="original-price">₹1,999</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1499">₹1,499</span><span class="original-price js-price" data-inr="1999">₹1,999</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/1stRedtheme/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%202%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%202%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Tier 2: 1,999 -->
-    <h3 class="demo-tier-title premium-tier reveal">Premium Templates <span>₹1,999 <del>₹2,499</del></span></h3>
+    <h3 class="demo-tier-title premium-tier reveal">Premium Templates <span><span class="js-price" data-inr="1999">₹1,999</span> <del class="js-price" data-inr="2499">₹2,499</del></span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 5 (Template 3 - MOVED HERE) -->
       <div class="demo-card">
@@ -1700,10 +1727,10 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 3</h3>
           <p>Contemporary chic for modern destination weddings.</p>
-          <div class="template-price"><span class="offer-price">₹1,999</span><span class="original-price">₹2,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/test1.0/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%203%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%203%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
@@ -1715,10 +1742,10 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 4</h3>
           <p>Royal heritage theme with gold accents.</p>
-          <div class="template-price"><span class="offer-price">₹1,999</span><span class="original-price">₹2,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/2ndRing/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%204%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%204%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
@@ -1730,17 +1757,17 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 5</h3>
           <p>Vibrant & traditional for a classic celebration.</p>
-          <div class="template-price"><span class="offer-price">₹1,999</span><span class="original-price">₹2,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/cutewed1/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%205%20for%20₹1999." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%205%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Tier 3: 2,499 -->
-    <h3 class="demo-tier-title luxury-tier reveal">Luxury Templates <span>₹2,499 <del>₹3,499</del></span></h3>
+    <h3 class="demo-tier-title luxury-tier reveal">Luxury Templates <span><span class="js-price" data-inr="2499">₹2,499</span> <del class="js-price" data-inr="3499">₹3,499</del></span></h3>
     <div class="demo-grid reveal scale">
       <!-- Demo 4 (Template 6) -->
       <div class="demo-card">
@@ -1750,10 +1777,10 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 6</h3>
           <p>Rustic charm with warm, earthy color tones.</p>
-          <div class="template-price"><span class="offer-price">₹2,499</span><span class="original-price">₹3,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/hinduwedding/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%206%20for%20₹2499." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%206%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
@@ -1765,10 +1792,10 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 7</h3>
           <p>Elegant digital design with a premium aesthetic feel.</p>
-          <div class="template-price"><span class="offer-price">₹2,499</span><span class="original-price">₹3,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/hinduwed2/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%207%20for%20₹2499." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%207%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
@@ -1781,10 +1808,10 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Template 8</h3>
           <p>Luxury Muslim wedding design with an elegant royal aesthetic.</p>
-          <div class="template-price"><span class="offer-price">₹2,499</span><span class="original-price">₹3,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/muslimwed/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%208%20for%20₹2499." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%208%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
       </div>
@@ -1814,10 +1841,40 @@ a:focus-visible,
         <div class="demo-card-content">
           <h3>Gruhapravesam Invitation</h3>
           <p>Elegant digital invitation for your new home celebration.</p>
-          <div class="template-price"><span class="offer-price">₹1,499</span></div>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1499">₹1,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/gruhatest3/')"><i class="fa-solid fa-eye"></i> View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Gruhapravesam%20Invitation%20for%20₹1499." class="btn btn-primary" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Gruhapravesam%20Invitation%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     UPANAYANAM INVITATION
+     ============================================ -->
+<section class="demo-section upanayanam-section" id="upanayanam">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Upanayanam Invitation</p>
+      <h2 class="section-title">Beautiful Upanayanam Website</h2>
+      <p class="section-sub" style="margin-left:auto;margin-right:auto;">Celebrate this sacred milestone with a beautiful digital Upanayanam invitation that is easy to share with family and friends.</p>
+    </div>
+
+    <div class="demo-grid upanayanam-grid reveal scale">
+      <div class="demo-card upanayanam-card">
+        <div class="demo-thumb-wrap">
+          <img src="images/upanayanam1.png" alt="Upanayanam Invitation Preview" class="demo-thumb" loading="lazy" decoding="async">
+        </div>
+        <div class="demo-card-content">
+          <h3>Upanayanam Invitation</h3>
+          <p>Elegant digital invitation for your child's sacred Upanayanam ceremony.</p>
+          <div class="template-price"><span class="offer-price js-price" data-inr="1499">₹1,499</span></div>
+          <div class="template-actions">
+            <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/upanayanam/')"><i class="fa-solid fa-eye"></i> View Demo</button>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Upanayanam%20Invitation%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Buy Now</a>
           </div>
         </div>
       </div>
@@ -2072,7 +2129,7 @@ a:focus-visible,
           <i class="fa-solid fa-plus"></i>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
-          A ₹500 advance is required to confirm your booking. The remaining amount is paid according to the agreed order terms.
+          A <span class="js-price" data-inr="500">₹500</span> advance is required to confirm your booking. The remaining amount is paid according to the agreed order terms.
         </div></div>
       </div>
 
@@ -2435,6 +2492,137 @@ demoModal.addEventListener('click', (e) => {
     closeDemo();
   }
 });
+
+/* ---------- Country-based pricing ----------
+   India sees the normal INR price.
+   Visitors outside India see a 50% higher price, converted to their local currency.
+*/
+(function initCountryPricing() {
+  const INDIA_COUNTRY = 'IN';
+  const INTERNATIONAL_MULTIPLIER = 1.5;
+
+  const FALLBACK_CURRENCY_BY_COUNTRY = {
+    US:'USD', CA:'CAD', GB:'GBP', AU:'AUD', NZ:'NZD', SG:'SGD', AE:'AED',
+    SA:'SAR', QA:'QAR', KW:'KWD', BH:'BHD', OM:'OMR', MY:'MYR', TH:'THB',
+    PH:'PHP', ID:'IDR', JP:'JPY', CN:'CNY', KR:'KRW', DE:'EUR', FR:'EUR',
+    IT:'EUR', ES:'EUR', NL:'EUR', BE:'EUR', AT:'EUR', IE:'EUR', PT:'EUR',
+    CH:'CHF', SE:'SEK', NO:'NOK', DK:'DKK', FI:'EUR', ZA:'ZAR'
+  };
+
+  const FALLBACK_RATES_FROM_INR = {
+    USD:0.0118, EUR:0.0100, GBP:0.0087, CAD:0.0160, AUD:0.0180,
+    NZD:0.0195, SGD:0.0150, AED:0.0433, SAR:0.0443, QAR:0.0430,
+    KWD:0.00362, BHD:0.00445, OMR:0.00455, MYR:0.0490, THB:0.392,
+    PHP:0.694, IDR:188.0, JPY:1.75, CNY:0.084, KRW:15.9, CHF:0.0095,
+    SEK:0.110, NOK:0.116, DKK:0.0745, ZAR:0.202
+  };
+
+  function countryFromBrowser() {
+    // Timezone is checked FIRST because browser language is often set to
+    // English/UK/US even when the visitor is physically in India.
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const tzCountry = {
+      'Asia/Kolkata':'IN','Asia/Calcutta':'IN','America/New_York':'US','America/Los_Angeles':'US',
+      'America/Chicago':'US','America/Toronto':'CA','Europe/London':'GB','Australia/Sydney':'AU',
+      'Pacific/Auckland':'NZ','Asia/Singapore':'SG','Asia/Dubai':'AE','Asia/Riyadh':'SA',
+      'Asia/Qatar':'QA','Asia/Kuwait':'KW','Asia/Bahrain':'BH','Asia/Muscat':'OM',
+      'Asia/Kuala_Lumpur':'MY','Asia/Bangkok':'TH','Asia/Manila':'PH','Asia/Jakarta':'ID',
+      'Asia/Tokyo':'JP','Asia/Shanghai':'CN','Asia/Seoul':'KR','Europe/Paris':'FR',
+      'Europe/Berlin':'DE','Europe/Rome':'IT','Europe/Madrid':'ES','Europe/Amsterdam':'NL',
+      'Europe/Zurich':'CH','Europe/Stockholm':'SE','Europe/Oslo':'NO','Europe/Copenhagen':'DK',
+      'Africa/Johannesburg':'ZA'
+    };
+    // A timezone is a much better local-country signal for this pricing use case.
+    if (tzCountry[tz]) return tzCountry[tz];
+
+    // Only use the locale country when it explicitly contains a region code.
+    const locale = (navigator.language || '').replace('_','-');
+    const localeParts = locale.split('-');
+    if (localeParts[1] && localeParts[1].length === 2) return localeParts[1].toUpperCase();
+    return '';
+  }
+
+  function currencyForCountry(country) {
+    if (country === INDIA_COUNTRY) return 'INR';
+    return FALLBACK_CURRENCY_BY_COUNTRY[country] || 'USD';
+  }
+
+  function formatMoney(inr, currency, rate) {
+    const value = currency === 'INR' ? inr : inr * INTERNATIONAL_MULTIPLIER * rate;
+    const decimals = ['JPY','KRW','IDR'].includes(currency) ? 0 : 2;
+    return new Intl.NumberFormat(undefined, {
+      style: 'currency', currency,
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    }).format(value);
+  }
+
+  function applyPricing(country, rates) {
+    const isIndia = country === INDIA_COUNTRY;
+    const currency = isIndia ? 'INR' : currencyForCountry(country);
+    const rate = currency === 'INR' ? 1 : (rates[currency] || FALLBACK_RATES_FROM_INR[currency] || FALLBACK_RATES_FROM_INR.USD);
+
+    document.querySelectorAll('.js-price').forEach(el => {
+      const inr = Number(el.dataset.inr);
+      if (!Number.isFinite(inr)) return;
+      el.textContent = formatMoney(inr, currency, rate);
+    });
+
+    // Update Buy Now WhatsApp messages so the quoted amount matches the visitor's price.
+    document.querySelectorAll('.js-buy-link').forEach(link => {
+      try {
+        const url = new URL(link.href);
+        const raw = decodeURIComponent(url.searchParams.get('text') || '');
+        const match = raw.match(/for (?:the )?.*?₹\s?([\d,]+)/i);
+        if (!match) return;
+        const inr = Number(match[1].replace(/,/g,''));
+        if (!Number.isFinite(inr)) return;
+        const displayPrice = formatMoney(inr, currency, rate);
+        const newText = raw.replace(/₹\s?[\d,]+/i, displayPrice);
+        url.searchParams.set('text', newText);
+        link.href = url.toString();
+      } catch (_) {}
+    });
+
+    document.documentElement.dataset.pricingCountry = country || 'unknown';
+    document.documentElement.dataset.pricingCurrency = currency;
+  }
+
+  // Detect the visitor's country without assuming US/UK.
+  // In particular, Asia/Kolkata must always remain India/INR, even if
+  // the browser language is en-GB or en-US.
+  const browserCountry = countryFromBrowser();
+  const initialCountry = browserCountry || '';
+
+  // If the browser timezone identifies the visitor as India, lock pricing
+  // to India. This prevents an IP service/proxy from incorrectly changing
+  // an Indian visitor to GBP/USD.
+  if (initialCountry === INDIA_COUNTRY) {
+    applyPricing(INDIA_COUNTRY, {});
+  } else if (initialCountry) {
+    applyPricing(initialCountry, {});
+  }
+
+  fetch('https://ipapi.co/json/', { cache: 'no-store' })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(data => {
+      const ipCountry = (data.country_code || '').toUpperCase();
+      // Never override a confirmed India timezone with an IP result.
+      const country = initialCountry === INDIA_COUNTRY
+        ? INDIA_COUNTRY
+        : (ipCountry || initialCountry || 'US');
+
+      return fetch('https://open.er-api.com/v6/latest/INR', { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(rateData => applyPricing(country, rateData.rates || {}))
+        .catch(() => applyPricing(country, {}));
+    })
+    .catch(() => {
+      // If country lookup fails, keep the browser-detected price.
+      if (initialCountry) applyPricing(initialCountry, {});
+    });
+})();
+
 </script>
 </body>
 </html>
