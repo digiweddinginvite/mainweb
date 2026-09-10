@@ -1237,6 +1237,122 @@
         }
       }
 
+
+      /* ===== RSVP Mobile Polish ===== */
+      @media (max-width: 639px) {
+        .rsvp-card {
+          width: calc(100% - 24px);
+          margin: 28px auto 22px;
+          padding: 28px 16px 22px;
+          border-radius: 22px;
+          box-shadow: 0 16px 35px rgba(60, 80, 40, 0.10);
+        }
+
+        .rsvp-title {
+          font-size: 46px;
+          line-height: 0.95;
+          margin-bottom: 8px;
+        }
+
+        .rsvp-subtitle {
+          max-width: 250px;
+          margin: 0 auto 22px;
+          font-size: 10px;
+          line-height: 1.55;
+          letter-spacing: 0.10em;
+        }
+
+        .rsvp-form {
+          width: 100%;
+          max-width: none;
+        }
+
+        .rsvp-field {
+          margin-bottom: 14px;
+        }
+
+        .rsvp-field label {
+          margin: 0 0 6px 2px;
+          font-size: 10px;
+          letter-spacing: 0.09em;
+        }
+
+        .rsvp-field input,
+        .rsvp-field select,
+        .rsvp-field textarea {
+          min-height: 48px;
+          padding: 13px 13px;
+          border-radius: 12px;
+          font-size: 13px;
+        }
+
+        .rsvp-field textarea {
+          min-height: 100px;
+          line-height: 1.5;
+        }
+
+        .rsvp-events-title {
+          margin: 22px 2px 11px;
+          font-size: 18px;
+          line-height: 1.25;
+        }
+
+        .rsvp-events {
+          gap: 8px;
+        }
+
+        .rsvp-event-option label {
+          min-height: 48px;
+          padding: 11px 12px;
+          gap: 10px;
+          border-radius: 12px;
+          font-size: 11px;
+          line-height: 1.35;
+        }
+
+        .rsvp-event-option label::before {
+          width: 18px;
+          height: 18px;
+          flex-basis: 18px;
+          border-radius: 5px;
+        }
+
+        .rsvp-submit {
+          min-height: 50px;
+          margin-top: 7px;
+          padding: 14px 18px;
+          border-radius: 14px;
+          font-size: 11px;
+          letter-spacing: 0.15em;
+          box-shadow: 0 8px 18px rgba(90, 107, 74, 0.18);
+        }
+
+        .rsvp-status {
+          margin-top: 12px;
+          font-size: 10px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .rsvp-card {
+          width: calc(100% - 18px);
+          padding-left: 13px;
+          padding-right: 13px;
+        }
+
+        .rsvp-title {
+          font-size: 42px;
+        }
+
+        .rsvp-subtitle {
+          font-size: 9px;
+        }
+
+        .rsvp-event-option label {
+          font-size: 10.5px;
+        }
+      }
+
       .footer {
         padding: 40px 20px;
         background-color: var(--bg-2);
@@ -1588,7 +1704,7 @@
               <input type="checkbox" id="eventWedding" name="events" value="Wedding Ceremony" />
               <label for="eventWedding">Wedding Ceremony</label>
             </div>
-
+          </div>
 
           <div class="rsvp-field" style="margin-top: 18px">
             <label for="rsvpMessage">Message</label>
