@@ -1885,8 +1885,7 @@
          Replace the URL below with your deployed Google Apps Script Web App URL.
          Example: https://script.google.com/macros/s/XXXXXXXXXXXX/exec
       */
-      const RSVP_SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbyntCzk7FjOUnbdaOGQ_U8KsTdEm8ZbScvRWUd4cPlT-uvWXWu4XzWU8Yj2v-Llq476Pw/exec";
+
         
       // Floating petals
       (function () {
@@ -2216,151 +2215,232 @@
 // RSVP SUBMISSION
 // =====================================================
 
-const rsvpForm = document.getElementById("rsvpForm");
-const rsvpSubmit = document.getElementById("rsvpSubmit");
-const rsvpStatus = document.getElementById("rsvpStatus");
+
+
+// =====================================================
+// RSVP SUBMISSION
+// Sesha Pramod & Anusha
+// =====================================================
+
+const RSVP_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbykHMg1m6QP9uFqFM75OfnApNUxNRDoIKtZHugJKcdEuRLj4iv37ilsQ1IsiuO_HNsnEQ/exec";
+
+
+const rsvpForm =
+  document.getElementById("rsvpForm");
+
+const rsvpSubmit =
+  document.getElementById("rsvpSubmit");
+
+const rsvpStatus =
+  document.getElementById("rsvpStatus");
+
 
 if (rsvpForm) {
 
-  rsvpForm.addEventListener("submit", async function (e) {
+  rsvpForm.addEventListener(
+    "submit",
+    async function (e) {
 
-    e.preventDefault();
-
-
-    // -----------------------------------------------
-    // Selected events
-    // -----------------------------------------------
-
-    const selectedEvents = Array.from(
-      rsvpForm.querySelectorAll('input[name="events"]:checked')
-    ).map(input => input.value);
+      e.preventDefault();
 
 
-    if (selectedEvents.length === 0) {
+      // =================================================
+      // GET SELECTED EVENTS
+      // =================================================
+
+      const selectedEvents =
+        Array.from(
+          rsvpForm.querySelectorAll(
+            'input[name="events"]:checked'
+          )
+        ).map(function (input) {
+          return input.value;
+        });
+
+
+      // =================================================
+      // CHECK EVENTS
+      // =================================================
+
+      if (selectedEvents.length === 0) {
+
+        rsvpStatus.textContent =
+          "Please select at least one event.";
+
+        rsvpStatus.className =
+          "rsvp-status error";
+
+        return;
+      }
+
+
+      // =================================================
+      // GET FORM VALUES
+      // =================================================
+
+      const name =
+        document
+          .getElementById("rsvpName")
+          .value
+          .trim();
+
+
+      const email =
+        document
+          .getElementById("rsvpEmail")
+          .value
+          .trim();
+
+
+      const phone =
+        document
+          .getElementById("rsvpPhone")
+          .value
+          .trim();
+
+
+      const guests =
+        document
+          .getElementById("rsvpGuests")
+          .value;
+
+
+      const message =
+        document
+          .getElementById("rsvpMessage")
+          .value
+          .trim();
+
+
+      // =================================================
+      // VALIDATION
+      // =================================================
+
+      if (!name) {
+
+        rsvpStatus.textContent =
+          "Please enter your name.";
+
+        rsvpStatus.className =
+          "rsvp-status error";
+
+        document
+          .getElementById("rsvpName")
+          .focus();
+
+        return;
+      }
+
+
+      if (!email) {
+
+        rsvpStatus.textContent =
+          "Please enter your email.";
+
+        rsvpStatus.className =
+          "rsvp-status error";
+
+        document
+          .getElementById("rsvpEmail")
+          .focus();
+
+        return;
+      }
+
+
+      if (!guests) {
+
+        rsvpStatus.textContent =
+          "Please select the number of guests.";
+
+        rsvpStatus.className =
+          "rsvp-status error";
+
+        document
+          .getElementById("rsvpGuests")
+          .focus();
+
+        return;
+      }
+
+
+      // =================================================
+      // PAYLOAD
+      // =================================================
+
+      const payload = {
+
+        name: name,
+
+        email: email,
+
+        phone: phone,
+
+        guests: guests,
+
+        events: selectedEvents,
+
+        message: message
+
+      };
+
+
+      // =================================================
+      // BUTTON STATE
+      // =================================================
+
+      rsvpSubmit.disabled = true;
+
+      rsvpSubmit.textContent =
+        "Sending...";
+
 
       rsvpStatus.textContent =
-        "Please select at least one event.";
+        "Submitting your RSVP...";
 
       rsvpStatus.className =
-        "rsvp-status error";
-
-      return;
-
-    }
+        "rsvp-status";
 
 
-    // -----------------------------------------------
-    // Get values
-    // -----------------------------------------------
+      // =================================================
+      // SEND TO GOOGLE APPS SCRIPT
+      //
+      // IMPORTANT:
+      // mode: "no-cors" prevents the browser from
+      // blocking the cross-origin Apps Script response.
+      //
+      // We intentionally DO NOT use response.json().
+      // =================================================
 
-    const name =
-      document.getElementById("rsvpName").value.trim();
+      try {
 
-    const email =
-      document.getElementById("rsvpEmail").value.trim();
+        await fetch(
+          RSVP_SCRIPT_URL,
+          {
 
-    const phone =
-      document.getElementById("rsvpPhone").value.trim();
+            method: "POST",
 
-    const guests =
-      document.getElementById("rsvpGuests").value;
+            mode: "no-cors",
 
-    const message =
-      document.getElementById("rsvpMessage").value.trim();
+            headers: {
+              "Content-Type":
+                "application/x-www-form-urlencoded;charset=UTF-8"
+            },
 
+            body:
+              "data=" +
+              encodeURIComponent(
+                JSON.stringify(payload)
+              )
 
-    // -----------------------------------------------
-    // Validate
-    // -----------------------------------------------
-
-    if (!name || !email || !guests) {
-
-      rsvpStatus.textContent =
-        "Please complete all required fields.";
-
-      rsvpStatus.className =
-        "rsvp-status error";
-
-      return;
-
-    }
+          }
+        );
 
 
-    // -----------------------------------------------
-    // Disable button
-    // -----------------------------------------------
-
-    rsvpSubmit.disabled = true;
-
-    rsvpSubmit.textContent =
-      "Sending...";
-
-    rsvpStatus.textContent =
-      "Submitting your RSVP...";
-
-    rsvpStatus.className =
-      "rsvp-status";
-
-
-    // -----------------------------------------------
-    // Build payload
-    // -----------------------------------------------
-
-    const payload = {
-
-      name: name,
-
-      email: email,
-
-      phone: phone,
-
-      guests: guests,
-
-      events: selectedEvents,
-
-      message: message
-
-    };
-
-
-    try {
-
-      // ---------------------------------------------
-      // Send to Google Apps Script
-      // ---------------------------------------------
-
-      const response = await fetch(
-        RSVP_SCRIPT_URL,
-        {
-          method: "POST",
-
-          headers: {
-            "Content-Type":
-              "application/x-www-form-urlencoded;charset=UTF-8"
-          },
-
-          body:
-            "data=" +
-            encodeURIComponent(
-              JSON.stringify(payload)
-            )
-        }
-      );
-
-
-      // ---------------------------------------------
-      // Read response
-      // ---------------------------------------------
-
-      const result =
-        await response.json();
-
-
-      // ---------------------------------------------
-      // Check success
-      // ---------------------------------------------
-
-      if (result.success) {
+        // =================================================
+        // SUCCESS
+        // =================================================
 
         rsvpStatus.textContent =
           "Thank you! Your RSVP has been received. ❤️";
@@ -2368,44 +2448,51 @@ if (rsvpForm) {
         rsvpStatus.className =
           "rsvp-status success";
 
+
+        // Reset form
+
         rsvpForm.reset();
 
 
-      } else {
+        // Remove selected visual states if your
+        // checkbox design adds them manually
 
-        throw new Error(
-          result.error ||
-          "Unable to submit RSVP."
+        rsvpForm
+          .querySelectorAll(
+            'input[name="events"]'
+          )
+          .forEach(function (checkbox) {
+
+            checkbox.checked = false;
+
+          });
+
+
+      } catch (error) {
+
+        console.error(
+          "RSVP submission error:",
+          error
         );
+
+
+        rsvpStatus.textContent =
+          "Sorry, we couldn't submit your RSVP. Please try again.";
+
+        rsvpStatus.className =
+          "rsvp-status error";
+
+      } finally {
+
+        rsvpSubmit.disabled = false;
+
+        rsvpSubmit.textContent =
+          "Send RSVP";
 
       }
 
-
-    } catch (error) {
-
-      console.error(
-        "RSVP submission error:",
-        error
-      );
-
-
-      rsvpStatus.textContent =
-        "Sorry, we couldn't submit your RSVP. Please try again.";
-
-      rsvpStatus.className =
-        "rsvp-status error";
-
-
-    } finally {
-
-      rsvpSubmit.disabled = false;
-
-      rsvpSubmit.textContent =
-        "Send RSVP";
-
     }
-
-  });
+  );
 
 }
 
