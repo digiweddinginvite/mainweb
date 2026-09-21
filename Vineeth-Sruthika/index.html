@@ -289,6 +289,38 @@ textarea{
         0 2px 18px rgba(255,255,255,.95);
 }
 
+/* =========================================================
+   HERO TELUGU BLESSING (Sanskrit text)
+========================================================= */
+
+.hero-sanskrit {
+    margin-bottom: 14px;
+    color: var(--gold);
+    font-family: 'Gautami', 'Nirmala UI', 'Pothana2000', 'Noto Sans Telugu', Georgia, serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-shadow: 0 2px 18px rgba(255, 255, 255, 0.95);
+    line-height: 1.4;
+}
+
+/* Mobile adjustments */
+@media (max-width: 700px) {
+    .hero-sanskrit {
+        margin-bottom: 10px;
+        font-size: clamp(14px, 4vw, 18px);
+        letter-spacing: 0.08em;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-sanskrit {
+        margin-bottom: 8px;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+    }
+}
+
 
 /* =========================================================
    HERO NAMES
@@ -3101,6 +3133,98 @@ footer p{
 }
 
 
+/* ---------- Intro Wedding Date ---------- */
+
+.intro-date{
+    margin-top:14px;
+
+    color:var(--ink);
+
+    font:
+        600 13px Arial,sans-serif;
+
+    letter-spacing:.18em;
+
+    text-shadow:
+        0 2px 12px rgba(255,255,255,.90);
+}
+
+/* ---------- Intro Location Button ---------- */
+
+.intro-location-btn{
+    position:relative;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:14px;
+    padding:12px 22px;
+
+    border:1px solid rgba(255,255,255,.88);
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.80),
+            rgba(255,240,232,.48)
+        );
+
+    color:var(--ink);
+
+    cursor:pointer;
+
+    font:
+        700 10px Arial,sans-serif;
+
+    letter-spacing:.12em;
+    text-transform:uppercase;
+
+    text-decoration:none;
+
+    backdrop-filter:blur(14px) saturate(150%);
+    -webkit-backdrop-filter:blur(14px) saturate(150%);
+
+    box-shadow:
+        0 10px 26px rgba(94,62,45,.14),
+        inset 0 1px 0 rgba(255,255,255,.95);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.intro-location-btn span{
+    color:var(--rose);
+    font-size:15px;
+    line-height:1;
+}
+
+.intro-location-btn:hover{
+    transform:translateY(-2px) scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.92),
+            rgba(255,240,232,.68)
+        );
+
+    box-shadow:
+        0 16px 32px rgba(94,62,45,.20),
+        inset 0 1px 0 rgba(255,255,255,1);
+}
+
+/* Keep the opening button below the location button */
+
+.intro-location-btn + .intro-btn{
+    margin-top:18px;
+}
+
+
 /* ---------- Tap to open button ---------- */
 
 .intro-btn{
@@ -3186,7 +3310,7 @@ footer p{
 @media (max-width: 700px) {
     .intro-copy{
         left:50%;
-        top:82%;
+        top:76%;
 
         width:100%;
         padding:0 14px;
@@ -3413,6 +3537,70 @@ footer p{
     }
 }
 
+/* Move intro artwork slightly upward on desktop */
+@media (min-width:701px){
+
+    .intro-art-wrap{
+        top:-45px;
+    }
+
+}
+
+/* Move introVS artwork upward on mobile */
+@media (max-width:700px){
+
+    .intro-art-wrap{
+        top:-75px;
+    }
+
+}
+
+/* Short mobile screens */
+@media (max-height:640px){
+
+    .intro-art-wrap{
+        top:-50px;
+    }
+
+}
+
+
+/* =========================================================
+   REMOVE BLUE TAP / CLICK HIGHLIGHT
+   Applies to the entire website
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove focus outline caused by tapping on mobile */
+*:focus:not(:focus-visible) {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove blue focus highlight from clickable elements */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent blue outline on buttons and links after tapping */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
 </style>
 </head>
 
@@ -3466,17 +3654,36 @@ footer p{
             Vineeth <span class="amp">&amp;</span> Sruthika
         </h1>
 
-        <p class="intro-word">
-            Wedding
-        </p>
+        
+<p class="intro-word">
+    Wedding
+</p>
 
-        <button
-            class="intro-btn"
-            id="introOpen"
-            type="button"
-        >
-            Tap to open
-        </button>
+<!-- Wedding Date -->
+<p class="intro-date">
+    25 · 11 · 2026
+</p>
+
+<!-- Wedding Location Button -->
+<a
+    href="https://share.google/M6zAtC11eHUPiyptb"
+    target="_blank"
+    rel="noopener"
+    class="intro-location-btn"
+    id="introLocation"
+>
+    <span aria-hidden="true">⌖</span>
+    Wedding Location
+</a>
+
+<!-- Tap to Open -->
+<button
+    class="intro-btn"
+    id="introOpen"
+    type="button"
+>
+    Tap to open
+</button>
 
     </div>
 
@@ -3525,6 +3732,11 @@ footer p{
     <div class="hero-content">
 
         <div class="hero-content-inner">
+
+            <!-- ADDED: Telugu Blessing Text -->
+            <div class="hero-sanskrit">
+                ॐ · శ్రీరస్తు శుభమస్తు · ॐ
+            </div>
 
             <div class="hero-kicker">
                 Together with their families
