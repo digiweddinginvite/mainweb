@@ -15,12 +15,10 @@
 
 :root{
     --cream:#fffaf1;
-    --peach:#f8d8c9;
     --rose:#d9828b;
     --gold:#c89b55;
     --sage:#71806b;
     --ink:#493b37;
-    --white:#fffdf9;
     --light-text:#75645d;
     --shadow:0 24px 60px rgba(94,62,45,.18);
 }
@@ -360,48 +358,6 @@ textarea{
 
     text-shadow:
         0 2px 15px rgba(255,255,255,.95);
-}
-
-
-/* =========================================================
-   SCROLL CUE
-========================================================= */
-
-.scroll-cue{
-    position:absolute;
-
-    bottom:20px;
-    left:50%;
-
-    z-index:30;
-
-    transform:translateX(-50%);
-
-    color:var(--ink);
-
-    font:600 9px Arial,sans-serif;
-    letter-spacing:.25em;
-
-    text-transform:uppercase;
-    white-space:nowrap;
-
-    text-shadow:
-        0 2px 12px rgba(255,255,255,.95);
-
-    pointer-events:none;
-}
-
-.scroll-cue::after{
-    content:"";
-
-    display:block;
-
-    width:1px;
-    height:34px;
-
-    margin:9px auto 0;
-
-    background:currentColor;
 }
 
 
@@ -1173,10 +1129,6 @@ textarea{
     .gallery-hint{
         font-size:8px;
     }
-
-    .venue.venue-animated::after{
-        animation-duration:9s;
-    }
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -1230,11 +1182,6 @@ textarea{
     isolation:isolate;
 }
 
-.venue::before{
-    display:none !important;
-    content:none;
-}
-
 .venue-content{
     position:absolute;
 
@@ -1273,15 +1220,6 @@ textarea{
     font-weight:500;
 
     line-height:1;
-}
-
-.venue-content > p{
-    max-width:500px;
-
-    color:#6d5b53;
-
-    font-size:17px;
-    line-height:1.8;
 }
 
 .details{
@@ -1408,17 +1346,6 @@ textarea{
         0 16px 34px rgba(73,59,55,.20),
         inset 0 1px 0 rgba(255,255,255,.92),
         inset 0 -1px 0 rgba(255,255,255,.24);
-}
-
-
-
-/* Venue animation layer order */
-.venue::before{
-    z-index:0;
-}
-
-.venue::after{
-    z-index:1;
 }
 
 .venue .container{
@@ -1717,11 +1644,6 @@ textarea{
 
 
 /* =========================================================
-   FOOTER
-========================================================= */
-
-
-/* =========================================================
    COUNTDOWN
    ========================================================= */
 
@@ -2008,25 +1930,6 @@ footer p{
 
 
 /* =========================================================
-   STORY TABLET
-========================================================= */
-
-@media(max-width:800px){
-
-    .intro-grid{
-        grid-template-columns:1fr;
-
-        gap:35px;
-    }
-
-    .intro-art{
-        min-height:auto;
-    }
-
-}
-
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -2142,27 +2045,14 @@ footer p{
         line-height:1.6;
     }
 
-    .scroll-cue{
-        bottom:14px;
-
-        font-size:7px;
-    }
-
 
     .venue{
         min-height:720px;
-
-        align-items:flex-start;
-        justify-content:center;
 
         padding-top:0 !important;
         padding-bottom:80px;
 
         background-position:62% center;
-    }
-
-    .venue::before{
-        display:none;
     }
 
     .venue-content{
@@ -2224,18 +2114,6 @@ footer p{
 
 }
 
-
-@media(max-width:390px){
-
-    .parents-heading .section-title{
-        font-size:31px;
-    }
-
-    .rsvp-box h2{
-        font-size:32px;
-    }
-
-}
 
 /* =========================================================
    VERY SMALL MOBILE
@@ -2302,12 +2180,6 @@ footer p{
         font-size:11px;
 
         line-height:1.55;
-    }
-
-    .scroll-cue{
-        bottom:11px;
-
-        font-size:6px;
     }
 
     .event-card{
@@ -2469,10 +2341,6 @@ footer p{
         grid-column:auto;
     }
 
-}
-
-@media(max-width:600px){
-
     .rsvp-box{
         width:100%;
         max-width:360px;
@@ -2571,14 +2439,11 @@ footer p{
         transition:none;
     }
 
-}
-
-
-@media(prefers-reduced-motion:reduce){
     .countdown-item::after{
         animation:none;
         opacity:0;
     }
+
 }
 
 
@@ -2675,10 +2540,6 @@ footer p{
         margin-top:20px;
         font-size:16px;
         line-height:1.75;
-    }
-
-    .scroll-cue{
-        bottom:26px;
     }
 
 
@@ -2836,12 +2697,6 @@ footer p{
     .venue-content h2{
         margin-bottom:22px;
         font-size:clamp(52px,5.5vw,78px);
-    }
-
-    .venue-content > p{
-        max-width:560px;
-        font-size:18px;
-        line-height:1.8;
     }
 
     .details{
@@ -3095,10 +2950,6 @@ footer p{
   white background will show as a box.
 */
 
-/*
-  FIXED: Increased max-height to 75vh so the image renders
-  noticeably larger while still fitting on screen.
-*/
 .intro-art-wrap{
     position:relative;
 
@@ -3108,7 +2959,6 @@ footer p{
 
     flex:0 1 auto;
 
-    /* CHANGED: Increased from 60vh to 75vh */
     max-height:75vh;
 
     width:100%;
@@ -3181,23 +3031,18 @@ footer p{
 
 /* ---------- Copy ---------- */
 
-/*
-  FIXED: Removed padding-bottom to ensure the text block
-  sits naturally centered. The .intro-screen gap handles
-  the separation between image and text.
-*/
-.intro-copy {
-    position: absolute;
+.intro-copy{
+    position:absolute;
 
-    left: 50%;
-    top: 72%;
+    left:50%;
+    top:72%;
 
-    width: 100%;
-    padding: 0 16px;
+    width:100%;
+    padding:0 16px;
 
-    text-align: center;
+    text-align:center;
 
-    transform: translate(-50%, -50%);
+    transform:translate(-50%,-50%);
 
     animation:
         introCopyCenterIn 1s
@@ -3205,15 +3050,15 @@ footer p{
         .25s both;
 }
 
-@keyframes introCopyCenterIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, calc(-50% + 26px));
+@keyframes introCopyCenterIn{
+    from{
+        opacity:0;
+        transform:translate(-50%,calc(-50% + 26px));
     }
 
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%);
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%);
     }
 }
 
@@ -3339,21 +3184,23 @@ footer p{
 
 /* Mobile screens */
 @media (max-width: 700px) {
-    .intro-copy {
-        left: 50%;
-        top: 82%;
+    .intro-copy{
+        left:50%;
+        top:82%;
 
-        width: 100%;
-        padding: 0 14px;
+        width:100%;
+        padding:0 14px;
 
-        text-align: center;
+        text-align:center;
     }
+
+    
 }
 
 /* Short mobile screens */
 @media (max-height: 640px) {
-    .intro-copy {
-        top: 70%;
+    .intro-copy{
+        top:70%;
     }
 }
 
@@ -3385,11 +3232,203 @@ footer p{
     }
 }
 
+
+/* =========================================================
+   BACKGROUND MUSIC TOGGLE  (added)
+   Same frosted-glass language as .intro-btn / .map-btn /
+   .parent-symbol so it feels native to the invitation.
+   ========================================================= */
+
+.music-toggle{
+    position:fixed;
+
+    right:max(16px, env(safe-area-inset-right));
+    bottom:max(16px, env(safe-area-inset-bottom));
+
+    z-index:9000;
+
+    width:52px;
+    height:52px;
+
+    display:grid;
+    place-items:center;
+
+    padding:0;
+
+    border:1px solid rgba(255,255,255,.80);
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.80) 0%,
+            rgba(255,248,243,.46) 100%
+        );
+
+    color:var(--gold);
+
+    cursor:pointer;
+
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+
+    box-shadow:
+        0 14px 32px rgba(94,62,45,.18),
+        0 5px 14px rgba(94,62,45,.08),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -1px 0 rgba(200,155,85,.16);
+
+    /* Hidden until the invitation has been opened */
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transform:translateY(14px) scale(.9);
+
+    transition:
+        opacity .55s ease,
+        visibility .55s ease,
+        transform .55s cubic-bezier(.22,.61,.36,1),
+        background .25s ease,
+        box-shadow .25s ease,
+        color .25s ease;
+}
+
+.music-toggle.is-visible{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transform:translateY(0) scale(1);
+}
+
+.music-toggle.is-visible:hover{
+    transform:translateY(-3px) scale(1.06);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.94) 0%,
+            rgba(255,248,243,.64) 100%
+        );
+
+    box-shadow:
+        0 20px 38px rgba(94,62,45,.22),
+        0 7px 16px rgba(94,62,45,.09),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.18);
+}
+
+.music-toggle.is-visible:active{
+    transform:translateY(-1px) scale(1.01);
+}
+
+.music-toggle svg{
+    width:22px;
+    height:22px;
+
+    display:block;
+    overflow:visible;
+}
+
+.music-toggle .music-note{
+    transition:opacity .25s ease;
+}
+
+.music-toggle .music-slash{
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+/* Muted state */
+.music-toggle.is-muted{
+    color:var(--light-text);
+}
+
+.music-toggle.is-muted .music-note{
+    opacity:.45;
+}
+
+.music-toggle.is-muted .music-slash{
+    opacity:1;
+}
+
+/* Soft breathing ring while music is playing */
+.music-toggle.is-visible:not(.is-muted)::after{
+    content:"";
+
+    position:absolute;
+    inset:-5px;
+
+    border-radius:50%;
+    border:1px solid rgba(217,130,139,.55);
+
+    pointer-events:none;
+
+    animation:musicRing 2.8s ease-out infinite;
+}
+
+@keyframes musicRing{
+    0%{
+        transform:scale(.9);
+        opacity:.75;
+    }
+
+    70%{
+        transform:scale(1.30);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1.30);
+        opacity:0;
+    }
+}
+
+@media(max-width:700px){
+
+    .music-toggle{
+        width:46px;
+        height:46px;
+
+        right:max(13px, env(safe-area-inset-right));
+        bottom:max(13px, env(safe-area-inset-bottom));
+    }
+
+    .music-toggle svg{
+        width:20px;
+        height:20px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .music-toggle{
+        transition:none;
+    }
+
+    .music-toggle.is-visible:not(.is-muted)::after{
+        animation:none;
+        opacity:0;
+    }
+}
+
 </style>
 </head>
 
 
 <body>
+
+<!-- =========================================================
+     BACKGROUND MUSIC
+     File: audio/music1.mpeg
+     (If a browser refuses to play it, simply rename the file
+      to music1.mp3 and update the src below.)
+========================================================= -->
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="audio/music1.mpeg" type="audio/mpeg">
+</audio>
 
 
 <!-- =========================================================
@@ -3447,7 +3486,7 @@ footer p{
 
 <!-- =========================================================
      HERO
-     
+
      LAYER ORDER:
      1. BG1
      2. COUPLE
@@ -3516,11 +3555,7 @@ footer p{
 
     </div>
 
-
- 
-
 </header>
-
 
 
 
@@ -3708,9 +3743,6 @@ footer p{
 
                 </div>
 
-
-            
-
             </div>
 
 
@@ -3827,12 +3859,6 @@ footer p{
 
 
 <!-- =========================================================
-     FOOTER
-========================================================= -->
-
-
-
-<!-- =========================================================
      GALLERY
      ========================================================= -->
 
@@ -3935,7 +3961,6 @@ footer p{
                 aria-label="Show gallery image 3"
             ></button>
 
-
         </div>
 
         <div class="gallery-hint">
@@ -4011,6 +4036,48 @@ footer p{
     </p>
 
 </footer>
+
+
+<!-- =========================================================
+     MUSIC ON / OFF BUTTON
+     Appears once the invitation has been opened.
+========================================================= -->
+
+<button
+    class="music-toggle"
+    id="musicToggle"
+    type="button"
+    aria-label="Turn music on"
+    aria-pressed="false"
+>
+
+    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+
+        <g class="music-note">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </g>
+
+        <line
+            class="music-slash"
+            x1="3.5"
+            y1="3.5"
+            x2="20.5"
+            y2="20.5"
+        />
+
+    </svg>
+
+</button>
 
 
 <script>
@@ -5045,6 +5112,17 @@ document
             window.startHeroIntro();
         }
 
+        /* -------------------------------------------------
+           START THE BACKGROUND MUSIC
+
+           This runs inside a real user gesture (tap / click /
+           key press), so every browser — including iOS Safari
+           and Chrome — allows the audio to play.
+           ------------------------------------------------- */
+        if(typeof window.startWeddingMusic === "function"){
+            window.startWeddingMusic();
+        }
+
         /* Remove the overlay once the fade has finished */
         window.setTimeout(
             function(){
@@ -5097,9 +5175,173 @@ document
             ){
                 closeIntro();
             }
+        }
+    );
+
+})();
+
+
+/* =========================================================
+   BACKGROUND MUSIC CONTROLLER
+   - Starts automatically when the intro is opened
+   - Music on/off button (same frosted-glass style)
+   ========================================================= */
+
+(function(){
+
+    const audio =
+        document.getElementById("bgMusic");
+
+    const toggle =
+        document.getElementById("musicToggle");
+
+    if(!audio || !toggle){
+        return;
+    }
+
+    /* Comfortable background level — change if you like */
+    const VOLUME = 0.55;
+
+    let started = false;
+
+    audio.volume = VOLUME;
+    audio.loop = true;
+
+
+    function isPlaying(){
+        return started && !audio.paused;
+    }
+
+
+    function updateUI(){
+
+        const playing = isPlaying();
+
+        toggle.classList.toggle(
+            "is-muted",
+            !playing
+        );
+
+        toggle.setAttribute(
+            "aria-pressed",
+            playing ? "true" : "false"
+        );
+
+        toggle.setAttribute(
+            "aria-label",
+            playing
+                ? "Turn music off"
+                : "Turn music on"
+        );
+    }
+
+
+    function playMusic(){
+
+        const promise = audio.play();
+
+        if(promise && typeof promise.catch === "function"){
+
+            promise.catch(
+                function(error){
+
+                    console.warn(
+                        "Music could not start automatically:",
+                        error
+                    );
+
+                    updateUI();
+                }
+            );
+        }
+
+        updateUI();
+    }
+
+
+    /* -----------------------------------------------------
+       CALLED BY THE INTRO SCREEN
+       ----------------------------------------------------- */
+
+    window.startWeddingMusic = function(){
+
+        if(!started){
+
+            started = true;
+
+            toggle.classList.add("is-visible");
+        }
+
+        if(audio.paused){
+            playMusic();
+        }
+
+        updateUI();
+    };
+
+
+    /* -----------------------------------------------------
+       BUTTON: TOGGLE ON / OFF
+       ----------------------------------------------------- */
+
+    toggle.addEventListener(
+        "click",
+        function(event){
+
+            event.stopPropagation();
+
+            started = true;
+
+            toggle.classList.add("is-visible");
+
+            if(audio.paused){
+                playMusic();
+            }else{
+                audio.pause();
+                updateUI();
+            }
 
         }
     );
+
+
+    /* -----------------------------------------------------
+       KEEP THE ICON IN SYNC
+       ----------------------------------------------------- */
+
+    audio.addEventListener("play", updateUI);
+    audio.addEventListener("pause", updateUI);
+    audio.addEventListener("ended", updateUI);
+
+
+    /* -----------------------------------------------------
+       FALLBACK
+       If the intro screen is missing (or was removed),
+       start the music on the first user interaction.
+       ----------------------------------------------------- */
+
+    if(!document.getElementById("introScreen")){
+
+        const kick = function(){
+
+            window.startWeddingMusic();
+
+            document.removeEventListener("pointerdown", kick);
+            document.removeEventListener("keydown", kick);
+            document.removeEventListener("touchstart", kick);
+        };
+
+        document.addEventListener("pointerdown", kick);
+        document.addEventListener("keydown", kick);
+        document.addEventListener(
+            "touchstart",
+            kick,
+            { passive:true }
+        );
+    }
+
+
+    updateUI();
 
 })();
 
