@@ -1934,6 +1934,103 @@ const hero = document.getElementById("heroSection");
 const bgMusic = document.getElementById("bgMusic");
 const musicToggle = document.getElementById("musicToggle");
 
+/* ============================================
+   ✨ AUTO SCROLL — HERO ➜ FULL WEBSITE
+   ============================================ */
+
+const AUTO_SCROLL_SPEED = 55;     // px per second (steady scroll speed) → increase for faster
+const AUTO_SCROLL_RAMP  = 1.6;    // seconds to reach full speed (smooth ease-in)
+const AUTO_SCROLL_DELAY = 1500;   // ms after hero reveal before scrolling starts
+
+let autoScrollActive = false;
+let autoScrollRAF    = null;
+let autoScrollStart  = 0;
+let autoScrollLast   = 0;
+let autoScrollListenersOn = false;
+
+function startAutoScroll(){
+    if (autoScrollActive) return;
+
+    // respect users who prefer reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    if (window.scrollY >= maxScroll - 2) return;   // already at bottom
+
+    autoScrollActive = true;
+
+    // ⚠️ kill CSS smooth-scroll so our rAF increments stay buttery
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+
+    autoScrollStart = autoScrollLast = performance.now();
+    autoScrollRAF = requestAnimationFrame(autoScrollStep);
+
+    // stop the instant the guest takes over (small delay so the intro tap doesn't kill it)
+    setTimeout(() => {
+        if (!autoScrollActive) return;
+        window.addEventListener('wheel', handleUserInterrupt, {passive:true});
+        window.addEventListener('touchstart', handleUserInterrupt, {passive:true});
+        window.addEventListener('touchmove', handleUserInterrupt, {passive:true});
+        window.addEventListener('mousedown', handleUserInterrupt, {passive:true});
+        window.addEventListener('keydown', handleUserInterrupt);
+        autoScrollListenersOn = true;
+    }, 400);
+}
+
+function autoScrollStep(now){
+    if (!autoScrollActive) return;
+
+    const dt = Math.min((now - autoScrollLast) / 1000, 0.05); // clamp for tab-switch jumps
+    autoScrollLast = now;
+
+    // smooth ease-in so it never "jerks" into motion
+    const elapsed  = (now - autoScrollStart) / 1000;
+    const progress = Math.min(elapsed / AUTO_SCROLL_RAMP, 1);
+    const eased    = progress * progress * (3 - 2 * progress); // smoothstep
+
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    // reached the footer → stop cleanly
+    if (window.scrollY >= maxScroll - 1){
+        window.scrollTo(0, maxScroll);
+        stopAutoScroll();
+        return;
+    }
+
+    window.scrollBy(0, AUTO_SCROLL_SPEED * eased * dt);
+    autoScrollRAF = requestAnimationFrame(autoScrollStep);
+}
+
+function stopAutoScroll(){
+    autoScrollActive = false;
+
+    if (autoScrollRAF) cancelAnimationFrame(autoScrollRAF);
+    autoScrollRAF = null;
+
+    // restore normal smooth scrolling for the user
+    document.documentElement.style.scrollBehavior = '';
+    document.body.style.scrollBehavior = '';
+
+    if (autoScrollListenersOn){
+        window.removeEventListener('wheel', handleUserInterrupt);
+        window.removeEventListener('touchstart', handleUserInterrupt);
+        window.removeEventListener('touchmove', handleUserInterrupt);
+        window.removeEventListener('mousedown', handleUserInterrupt);
+        window.removeEventListener('keydown', handleUserInterrupt);
+        autoScrollListenersOn = false;
+    }
+}
+
+function handleUserInterrupt(e){
+    // let the music button work without stopping the journey
+    if (e.target && e.target.closest && e.target.closest('#musicToggle')) return;
+    stopAutoScroll();
+}
+
+/* ============================================ */
+
+
 intro.addEventListener("click", () => {
 
     // STEP 1
@@ -1967,6 +2064,9 @@ setTimeout(() => {
         // If autoplay fails, still show the button so user can click it
         musicToggle.classList.add("visible");
     });
+
+    // ✨ AUTO SCROLL — begins a moment after the hero reveal animation
+    setTimeout(startAutoScroll, AUTO_SCROLL_DELAY);
 
 }, 1600);
 
