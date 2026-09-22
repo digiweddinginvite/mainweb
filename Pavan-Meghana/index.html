@@ -1265,11 +1265,39 @@ img:active {
 /* ✅ Mobile specific fix */
 @media (max-width: 768px){
     .tap-text{
-        bottom: 28px;
+        position: fixed;
+
+        bottom: max(30px, calc(env(safe-area-inset-bottom) + 20px));
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        color: #fff;
         font-size: 11px;
+        letter-spacing: 2px;
+
         padding: 7px 16px;
-        z-index: 50;
+
+        background: rgba(0,0,0,0.4);
+        border-radius: 999px;
+
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+
+        text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+
+        white-space: nowrap;
+        pointer-events: none;
+
+        z-index: 99999;
+
+        animation: blink 1.5s infinite;
     }
+
 
     /* keep hands from covering the text */
     .intro-screen{
