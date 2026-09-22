@@ -1,1 +1,5365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A beautiful digital wedding invitation.">
+<title>Vineeth & Sruthika — Wedding Invitation</title>
 
+<!-- If JavaScript is off, never trap the guest on the intro -->
+<noscript>
+    <style>.intro-screen{display:none !important;}</style>
+</noscript>
+
+<style>
+
+:root{
+    --cream:#fffaf1;
+    --rose:#d9828b;
+    --gold:#c89b55;
+    --sage:#71806b;
+    --ink:#493b37;
+    --light-text:#75645d;
+    --shadow:0 24px 60px rgba(94,62,45,.18);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* Scroll lock while the intro screen is open */
+html.intro-lock,
+html.intro-lock body{
+    overflow:hidden;
+}
+
+body{
+    margin:0;
+    color:var(--ink);
+    background:var(--cream);
+    font-family:Georgia,"Times New Roman",serif;
+    overflow-x:hidden;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,
+input,
+select,
+textarea{
+    font:inherit;
+}
+
+.section{
+    position:relative;
+    padding:100px 20px;
+}
+
+.container{
+    width:min(1120px,92%);
+    margin:auto;
+}
+
+.eyebrow{
+    display:inline-block;
+    margin-bottom:15px;
+    color:var(--rose);
+    font:600 11px Arial,sans-serif;
+    letter-spacing:.24em;
+    text-transform:uppercase;
+}
+
+.section-title{
+    margin-bottom:18px;
+    font-size:clamp(40px,5vw,68px);
+    line-height:.98;
+    font-weight:500;
+}
+
+.section-copy{
+    max-width:680px;
+    margin:0 auto 45px;
+    color:#74635c;
+    font-size:17px;
+    line-height:1.8;
+    text-align:center;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
+    position:relative;
+    width:100%;
+    height:100svh;
+    min-height:680px;
+    overflow:hidden;
+    background:#f4eadf;
+    isolation:isolate;
+}
+
+
+/* =========================================================
+   HERO PARALLAX STAGE
+========================================================= */
+
+.hero-parallax{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    z-index:1;
+
+    pointer-events:none;
+
+    contain:layout paint;
+}
+
+
+/* =========================================================
+   HERO LAYERS
+========================================================= */
+
+.hero-layer{
+    position:absolute;
+
+    display:block;
+
+    pointer-events:none;
+    user-select:none;
+
+    max-width:none;
+    max-height:none;
+
+    will-change:transform;
+
+    backface-visibility:hidden;
+
+    transform-origin:center center;
+
+    -webkit-user-drag:none;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.hero-bg{
+    z-index:1;
+
+    width:108%;
+    height:108%;
+
+    top:-4%;
+    left:-4%;
+
+    object-fit:cover;
+    object-position:center center;
+
+    transform:
+        translate3d(0,0,0)
+        scale(1.015);
+
+    transform-origin:center center;
+}
+
+
+/* =========================================================
+   COUPLE
+========================================================= */
+
+.hero-couple{
+    z-index:2;
+
+    width:auto;
+    height:88%;
+
+    max-width:none;
+    max-height:none;
+
+    left:50%;
+    top:53%;
+
+    transform:
+        translate3d(-50%,-50%,0)
+        scale(1);
+
+    object-fit:contain;
+
+    transform-origin:center center;
+}
+
+
+/* =========================================================
+   FOREGROUND FLOWERS
+========================================================= */
+
+.hero-flowers{
+    z-index:3;
+
+    width:auto;
+    height:108%;
+
+    max-width:none;
+    max-height:none;
+
+    left:50%;
+    top:52%;
+
+    transform:
+        translate3d(-50%,-50%,0)
+        scale(1);
+
+    object-fit:contain;
+
+    transform-origin:center center;
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content{
+    position:absolute;
+    inset:0;
+
+    z-index:20;
+
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+
+    padding:76px 20px 20px;
+
+    text-align:center;
+
+    pointer-events:none;
+
+    will-change:transform;
+}
+
+.hero-content-inner{
+    width:min(850px,94vw);
+
+    padding:0;
+
+    background:transparent;
+    border:none;
+    box-shadow:none;
+}
+
+
+/* =========================================================
+   HERO KICKER
+========================================================= */
+
+.hero-kicker{
+    margin-bottom:18px;
+
+    color:var(--ink);
+
+    font:600 11px Arial,sans-serif;
+    letter-spacing:.34em;
+
+    text-transform:uppercase;
+
+    text-shadow:
+        0 2px 18px rgba(255,255,255,.95);
+}
+
+/* =========================================================
+   HERO TELUGU BLESSING (Sanskrit text)
+========================================================= */
+
+.hero-sanskrit {
+    margin-bottom: 14px;
+    color: var(--gold);
+    font-family: 'Gautami', 'Nirmala UI', 'Pothana2000', 'Noto Sans Telugu', Georgia, serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-shadow: 0 2px 18px rgba(255, 255, 255, 0.95);
+    line-height: 1.4;
+}
+
+/* Mobile adjustments */
+@media (max-width: 700px) {
+    .hero-sanskrit {
+        margin-bottom: 10px;
+        font-size: clamp(14px, 4vw, 18px);
+        letter-spacing: 0.08em;
+    }
+}
+
+@media (max-width: 390px) {
+    .hero-sanskrit {
+        margin-bottom: 8px;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+    }
+}
+
+
+/* =========================================================
+   HERO NAMES
+========================================================= */
+
+.hero h1{
+    margin:0;
+
+    color:var(--ink);
+
+    font-size:clamp(48px,7vw,90px);
+    font-weight:500;
+    line-height:.80;
+
+    text-shadow:
+        0 3px 25px rgba(255,255,255,.85);
+}
+
+
+/* =========================================================
+   AND
+========================================================= */
+
+.hero-and{
+    margin:10px 0;
+
+    color:var(--rose);
+
+    font-size:23px;
+    font-style:italic;
+
+    text-shadow:
+        0 2px 15px rgba(255,255,255,.95);
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+.hero-date{
+    margin-top:18px;
+
+    color:var(--ink);
+
+    font-size:18px;
+    letter-spacing:.16em;
+
+    text-shadow:
+        0 2px 16px rgba(255,255,255,.9);
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.hero-sub{
+    max-width:320px;
+
+    margin: 10px auto 0;
+
+    color:#6d5b53;
+
+    font-size:12px;
+    line-height:1.5;
+
+    text-shadow:
+        0 2px 15px rgba(255,255,255,.95);
+}
+
+
+/* =========================================================
+   PARENTS SECTION — FROSTED GLASS PREMIUM CARDS
+   ========================================================= */
+
+.parents{
+    position:relative;
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf1 0%,
+            #fff3ed 48%,
+            #fbe9df 100%
+        );
+    text-align:center;
+    overflow:hidden;
+}
+
+.parents-heading{
+    max-width:760px;
+    margin:0 auto 48px;
+    text-align:center;
+}
+
+.parents-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:30px;
+    max-width:900px;
+    margin:0 auto;
+}
+
+.parent-card{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    padding:34px 28px 28px;
+
+    /* Frosted glass transparency */
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:30px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.76) 0%,
+            rgba(255,255,255,.48) 38%,
+            rgba(255,244,236,.32) 100%
+        );
+
+    /* Premium depth + soft inner borders */
+    box-shadow:
+        0 24px 55px rgba(94,62,45,.15),
+        0 8px 22px rgba(94,62,45,.07),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -1px 0 rgba(200,155,85,.12),
+        inset 0 0 0 1px rgba(255,255,255,.20);
+
+    /* Stronger blur + saturation */
+    backdrop-filter:blur(22px) saturate(165%);
+    -webkit-backdrop-filter:blur(22px) saturate(165%);
+
+    transition:
+        transform .35s cubic-bezier(.22,.61,.36,1),
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+/* Glossy white highlight + animated light sweep */
+.parent-card::before{
+    content:"";
+    position:absolute;
+    top:-65%;
+    left:-75%;
+    width:52%;
+    height:230%;
+    z-index:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,.08) 30%,
+            rgba(255,255,255,.72) 50%,
+            rgba(255,255,255,.10) 70%,
+            transparent 100%
+        );
+
+    transform:rotate(18deg) translateX(-20%);
+    pointer-events:none;
+    opacity:0;
+    animation:parentGlassSweep 5.2s ease-in-out infinite;
+}
+
+/* Soft glossy top edge + inner glass border */
+.parent-card::after{
+    content:"";
+    position:absolute;
+    inset:1px;
+    z-index:0;
+    border-radius:29px;
+    pointer-events:none;
+
+    border:1px solid rgba(255,255,255,.36);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.38) 0%,
+            rgba(255,255,255,.08) 24%,
+            transparent 48%,
+            rgba(255,255,255,.10) 72%,
+            rgba(255,255,255,.24) 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.68),
+        inset 0 0 22px rgba(255,255,255,.10);
+}
+
+.parent-card > *{
+    position:relative;
+    z-index:1;
+}
+
+.parent-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,.94);
+    box-shadow:
+        0 30px 65px rgba(94,62,45,.19),
+        0 10px 26px rgba(94,62,45,.08),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.15),
+        inset 0 0 0 1px rgba(255,255,255,.28);
+}
+
+.parent-symbol{
+    width:52px;
+    height:52px;
+    display:grid;
+    place-items:center;
+    margin:0 auto 14px;
+
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.78),
+            rgba(255,248,243,.38)
+        );
+
+    color:var(--gold);
+    font-size:20px;
+
+    box-shadow:
+        0 12px 28px rgba(94,62,45,.11),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -1px 0 rgba(200,155,85,.10);
+
+    backdrop-filter:blur(14px) saturate(150%);
+    -webkit-backdrop-filter:blur(14px) saturate(150%);
+}
+
+.parent-card h3{
+    margin-bottom:14px;
+    color:var(--ink);
+    font-size:clamp(28px,3.5vw,38px);
+    font-weight:500;
+    line-height:1.1;
+    text-shadow:0 2px 14px rgba(255,255,255,.65);
+}
+
+.parent-names{
+    display:grid;
+    gap:7px;
+}
+
+.parent-name{
+    color:var(--light-text);
+    font-size:16px;
+    line-height:1.5;
+}
+
+.parent-name strong{
+    display:block;
+    margin-bottom:2px;
+    color:var(--rose);
+    font:600 9px Arial,sans-serif;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+}
+
+.parent-divider{
+    width:46px;
+    height:1px;
+    margin:18px auto 0;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(200,155,85,.55),
+            transparent
+        );
+}
+
+@keyframes parentGlassSweep{
+    0%,42%{
+        transform:translateX(-20%) rotate(18deg);
+        opacity:0;
+    }
+
+    50%{
+        opacity:.95;
+    }
+
+    72%,100%{
+        transform:translateX(390%) rotate(18deg);
+        opacity:0;
+    }
+}
+
+@media(max-width:700px){
+    .parents{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .parents-heading{
+        margin-bottom:32px;
+    }
+
+    .parents-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+        max-width:430px;
+    }
+
+    .parent-card{
+        padding:24px 20px 22px;
+        border-radius:24px;
+
+        /* Keep the glass effect smooth on mobile */
+        backdrop-filter:blur(18px) saturate(155%);
+        -webkit-backdrop-filter:blur(18px) saturate(155%);
+
+        box-shadow:
+            0 18px 42px rgba(94,62,45,.14),
+            0 6px 18px rgba(94,62,45,.07),
+            inset 0 1px 0 rgba(255,255,255,.98),
+            inset 0 -1px 0 rgba(200,155,85,.10);
+    }
+
+    .parent-card::after{
+        border-radius:23px;
+    }
+
+    .parent-divider{
+        margin-top:14px;
+    }
+
+    .parent-symbol{
+        width:46px;
+        height:46px;
+        margin-bottom:12px;
+        font-size:18px;
+    }
+
+    .parent-card h3{
+        margin-bottom:12px;
+        font-size:29px;
+    }
+
+    .parent-name{
+        font-size:14px;
+        line-height:1.4;
+    }
+
+    .parent-card:hover{
+        transform:none;
+    }
+}
+
+/* Reduced-motion support */
+@media(prefers-reduced-motion:reduce){
+    .parent-card{
+        transition:none;
+    }
+
+    .parent-card::before{
+        animation:none;
+        opacity:0;
+    }
+
+    .parent-card:hover{
+        transform:none;
+    }
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+.events{
+    background:#fdf7ee;
+}
+
+.events-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:28px;
+
+    perspective:1400px;
+
+    align-items:stretch;
+}
+
+
+/* =========================================================
+   EVENT CARD
+   Clean layout: no quote/description text.
+   Heading + date + time are perfectly aligned.
+   ========================================================= */
+
+.event-card{
+    position:relative;
+    width:100%;
+    aspect-ratio:3 / 4;
+    height:auto;
+    min-height:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    align-items:center;
+
+    padding:48px 28px 42px;
+    text-align:center;
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform .18s ease,
+        filter .25s ease;
+
+    filter:
+        drop-shadow(
+            0 18px 22px
+            rgba(88,62,48,.16)
+        );
+
+    isolation:isolate;
+    overflow:hidden;
+}
+
+.event-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+        url("assets/card.png");
+
+    background-position:center;
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+
+    z-index:-1;
+    pointer-events:none;
+    transform:translateZ(0);
+}
+
+.event-card::after{
+    content:"";
+    position:absolute;
+    inset:7px;
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.24),
+            transparent 45%,
+            rgba(200,155,85,.06)
+        );
+
+    z-index:-1;
+    pointer-events:none;
+}
+
+.event-icon{
+    position:absolute;
+
+    /*
+     * Keep the icon anchored to the card artwork itself.
+     * A fixed pixel offset prevents percentage-based movement
+     * when the card aspect ratio changes across devices.
+     */
+    top:24px;
+    left:50%;
+
+    transform:
+        translateX(-50%)
+        translateZ(35px);
+
+    width:48px;
+    height:48px;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid rgba(200,155,85,.65);
+    border-radius:50%;
+
+    background:rgba(255,250,241,.82);
+    color:var(--gold);
+    font-size:22px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(100,70,50,.10);
+
+    z-index:2;
+    pointer-events:none;
+}
+
+.event-content{
+    position:relative;
+    z-index:2;
+
+    width:100%;
+    min-height:82px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+
+    text-align:center;
+
+    transform:translateZ(28px);
+}
+
+.event-card h3{
+    order:1;
+
+    width:100%;
+    margin:0 0 12px;
+
+    color:var(--ink);
+    font-size:27px;
+    font-weight:500;
+    line-height:1.1;
+
+    transform:translateZ(28px);
+}
+
+.event-date{
+    order:2;
+
+    width:100%;
+    margin:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:3px;
+
+    color:var(--rose);
+
+    font:
+        600 10px Arial,sans-serif;
+
+    letter-spacing:.15em;
+    line-height:1.4;
+    text-transform:uppercase;
+
+    transform:translateZ(25px);
+}
+
+.event-day{
+    display:block;
+    white-space:nowrap;
+}
+
+.event-time{
+    display:block;
+    white-space:nowrap;
+    color:var(--light-text);
+
+    font:
+        600 10px Arial,sans-serif;
+
+    letter-spacing:.12em;
+}
+
+.event-address{
+    order:3;
+    width:100%;
+    margin-top:8px;
+
+    color:var(--light-text);
+
+    font:
+        600 9px Arial,sans-serif;
+
+    letter-spacing:.06em;
+    line-height:1.4;
+
+    text-transform:uppercase;
+
+    opacity:.85;
+}
+
+.event-address .venue-name{
+    display:block;
+    margin-bottom:2px;
+    color:var(--rose);
+    font-weight:700;
+    letter-spacing:.08em;
+}
+
+.event-card:hover{
+    filter:
+        drop-shadow(
+            0 25px 32px
+            rgba(88,62,48,.22)
+        );
+}
+
+
+/* =========================================================
+   OUTFIT ALERT
+   Images are ALWAYS displayed at their ORIGINAL size.
+   They are never stretched, squashed, cropped or upscaled —
+   they only scale DOWN proportionally when the screen is
+   too narrow to hold them.
+   ========================================================= */
+
+.outfit{
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf1,
+            #fff1eb
+        );
+    overflow:hidden;
+}
+
+.outfit-heading{
+    text-align:center;
+    margin-bottom:46px;
+}
+
+.outfit-grid{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    gap:30px;
+}
+
+/* The card hugs the image — it never forces a size on it */
+.outfit-card{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    /* Allows the card (and therefore the image) to shrink
+       gracefully instead of overflowing on small screens. */
+    min-width:0;
+    max-width:100%;
+
+    padding:14px;
+
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.76) 0%,
+            rgba(255,255,255,.48) 40%,
+            rgba(255,244,236,.34) 100%
+        );
+
+    box-shadow:
+        0 24px 55px rgba(94,62,45,.15),
+        0 8px 22px rgba(94,62,45,.07),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -1px 0 rgba(200,155,85,.12);
+
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+
+    transition:
+        transform .35s cubic-bezier(.22,.61,.36,1),
+        box-shadow .35s ease,
+        border-color .35s ease;
+}
+
+/* Soft inner glass border + glossy top surface */
+.outfit-card::after{
+    content:"";
+    position:absolute;
+    inset:1px;
+    z-index:1;
+    border-radius:27px;
+    pointer-events:none;
+
+    border:1px solid rgba(255,255,255,.34);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.34) 0%,
+            rgba(255,255,255,.06) 26%,
+            transparent 50%,
+            rgba(255,255,255,.10) 100%
+        );
+}
+
+.outfit-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,.94);
+    box-shadow:
+        0 30px 65px rgba(94,62,45,.19),
+        0 10px 26px rgba(94,62,45,.08),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.15);
+}
+
+/* ORIGINAL SIZE ONLY — width/height auto, never upscaled */
+.outfit-card img{
+    position:relative;
+    z-index:2;
+
+    display:block;
+
+    width:auto;
+    height:auto;
+
+    max-width:100%;
+    max-height:none;
+
+    object-fit:contain;
+
+    border-radius:16px;
+
+    -webkit-user-drag:none;
+    user-select:none;
+}
+
+
+/* =========================================================
+   GALLERY — REMOVED (replaced by OUTFIT ALERT above)
+   ========================================================= */
+
+
+/* =========================================================
+   VENUE — STAGGERED RISE ONLY
+   No side movement, no zoom, no sparkle animation.
+   Each content element rises vertically in sequence.
+   ========================================================= */
+
+.venue-content > .eyebrow,
+.venue-content > h2,
+.venue-content > .details,
+.venue-content > .map-btn{
+    opacity:0;
+    transform:translate3d(0,48px,0);
+    will-change:transform,opacity;
+}
+
+.venue.venue-animated .venue-content > .eyebrow{
+    animation:venueRise .85s cubic-bezier(.22,.61,.36,1) .10s forwards;
+}
+
+.venue.venue-animated .venue-content > h2{
+    animation:venueRise .85s cubic-bezier(.22,.61,.36,1) .26s forwards;
+}
+
+.venue.venue-animated .venue-content > .details{
+    animation:venueRise .85s cubic-bezier(.22,.61,.36,1) .42s forwards;
+}
+
+.venue.venue-animated .venue-content > .map-btn{
+    animation:venueRise .85s cubic-bezier(.22,.61,.36,1) .58s forwards;
+}
+
+@keyframes venueRise{
+    0%{
+        opacity:0;
+        transform:translate3d(0,48px,0);
+    }
+
+    65%{
+        opacity:1;
+        transform:translate3d(0,-4px,0);
+    }
+
+    100%{
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+
+@media(max-width:700px){
+
+    .outfit{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .outfit-heading{
+        margin-bottom:30px;
+    }
+
+    .outfit-grid{
+        flex-direction:column;
+        align-items:center;
+        gap:18px;
+    }
+
+    .outfit-card{
+        width:auto;
+        max-width:100%;
+
+        padding:10px;
+        border-radius:22px;
+    }
+
+    .outfit-card::after{
+        border-radius:21px;
+    }
+
+    .outfit-card img{
+        border-radius:13px;
+    }
+
+    .outfit-card:hover{
+        transform:none;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .outfit-card{
+        transition:none;
+    }
+
+    .outfit-card:hover{
+        transform:none;
+    }
+
+    .venue-content > .eyebrow,
+    .venue-content > h2,
+    .venue-content > .details,
+    .venue-content > .map-btn{
+        animation:none !important;
+        opacity:1;
+        transform:none;
+    }
+}
+
+
+/* =========================================================
+   VENUE
+========================================================= */
+
+.venue{
+    position:relative;
+
+    min-height:820px;
+
+    /* The venue artwork is the hero of this section.
+       Keep ALL text/buttons in the clear sky area at the very top. */
+    display:block;
+
+    padding:0;
+
+    background-color:#e9d9c9;
+
+    background-image:
+        url("assets/venue.png");
+
+    background-size:cover;
+
+    background-position:center;
+
+    isolation:isolate;
+}
+
+.venue-content{
+    position:absolute;
+
+    z-index:10;
+
+    top:32px;
+    left:50%;
+
+    width:min(760px,calc(100% - 30px));
+
+    margin:0;
+
+    padding:0;
+
+    transform:translateX(-50%);
+
+    background:transparent;
+
+    border:none;
+
+    box-shadow:none;
+
+    text-align:center;
+
+    text-shadow:
+        0 2px 18px
+        rgba(255,255,255,.82);
+}
+
+.venue-content h2{
+    margin-bottom:20px;
+
+    font-size:
+        clamp(44px,6vw,76px);
+
+    font-weight:500;
+
+    line-height:1;
+}
+
+.details{
+    display:grid;
+
+    gap:12px;
+
+    margin:22px auto 20px;
+
+    justify-items:center;
+
+    text-align:center;
+}
+
+.detail{
+    font-size:15px;
+    line-height:1.45;
+    text-align:center;
+}
+
+.detail strong{
+    display:block;
+
+    margin-bottom:3px;
+
+    color:var(--rose);
+
+    font:
+        600 10px Arial,sans-serif;
+
+    letter-spacing:.16em;
+
+    text-transform:uppercase;
+}
+
+.map-btn{
+    position:relative;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:9px;
+
+    margin-top:2px;
+
+    padding:14px 25px;
+
+    border:1px solid rgba(255,255,255,.72);
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.58),
+            rgba(255,250,241,.24)
+        );
+
+    color:#493b37;
+
+    font:
+        700 11px Arial,sans-serif;
+
+    letter-spacing:.10em;
+
+    text-transform:uppercase;
+
+    backdrop-filter:blur(14px) saturate(125%);
+
+    -webkit-backdrop-filter:blur(14px) saturate(125%);
+
+    box-shadow:
+        0 10px 28px rgba(73,59,55,.16),
+        inset 0 1px 0 rgba(255,255,255,.82),
+        inset 0 -1px 0 rgba(255,255,255,.20);
+
+    text-shadow:0 1px 8px rgba(255,255,255,.72);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.map-btn::before{
+    content:"";
+
+    position:absolute;
+
+    inset:1px;
+
+    border-radius:inherit;
+
+    border:1px solid rgba(255,255,255,.28);
+
+    pointer-events:none;
+}
+
+.map-btn::after{
+    content:"↗";
+
+    font-size:14px;
+
+    line-height:1;
+
+    transform:translateY(-1px);
+}
+
+
+.map-btn:hover{
+    transform:translateY(-3px) scale(1.015);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.72),
+            rgba(255,250,241,.34)
+        );
+
+    box-shadow:
+        0 16px 34px rgba(73,59,55,.20),
+        inset 0 1px 0 rgba(255,255,255,.92),
+        inset 0 -1px 0 rgba(255,255,255,.24);
+}
+
+.venue .container{
+    position:relative;
+    z-index:10;
+}
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.rsvp{
+    background:
+        linear-gradient(
+            135deg,
+            #fff8f0,
+            #f9e7df
+        );
+}
+
+/* =========================================================
+   RSVP CARD — PREMIUM FROSTED GLASS + FLOATING 3D
+   ========================================================= */
+
+.rsvp-box{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+
+    max-width:760px;
+    margin:auto;
+    padding:65px 28px;
+
+    /* Frosted glass transparency */
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.72) 0%,
+            rgba(255,255,255,.48) 38%,
+            rgba(255,244,238,.34) 72%,
+            rgba(248,216,201,.26) 100%
+        );
+
+    /* Stronger blur + saturation */
+    backdrop-filter:blur(26px) saturate(175%);
+    -webkit-backdrop-filter:blur(26px) saturate(175%);
+
+    /* Premium depth + floating/drop shadow */
+    box-shadow:
+        0 34px 75px rgba(94,62,45,.20),
+        0 16px 34px rgba(94,62,45,.10),
+        0 5px 12px rgba(94,62,45,.06),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.14),
+        inset 0 0 0 1px rgba(255,255,255,.24);
+
+    /* Extra soft drop shadow for a lifted 3D look */
+    filter:drop-shadow(0 22px 24px rgba(88,62,48,.12));
+
+    transform-style:preserve-3d;
+    will-change:transform,box-shadow;
+
+    text-align:center;
+
+    transition:
+        transform .35s cubic-bezier(.22,.61,.36,1),
+        box-shadow .35s ease,
+        filter .35s ease;
+}
+
+/* Glossy white highlight + subtle animated light sweep */
+.rsvp-box::before{
+    content:"";
+    position:absolute;
+
+    top:-70%;
+    left:-85%;
+
+    width:52%;
+    height:240%;
+
+    z-index:0;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(255,255,255,.06) 28%,
+            rgba(255,255,255,.78) 50%,
+            rgba(255,255,255,.10) 72%,
+            transparent 100%
+        );
+
+    transform:rotate(18deg) translateX(-20%);
+    opacity:0;
+
+    animation:
+        rsvpGlassSweep 5.8s ease-in-out infinite;
+}
+
+/* Soft inner border + glossy top surface */
+.rsvp-box::after{
+    content:"";
+    position:absolute;
+    inset:1px;
+
+    z-index:0;
+    pointer-events:none;
+
+    border-radius:34px;
+    border:1px solid rgba(255,255,255,.40);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.42) 0%,
+            rgba(255,255,255,.10) 25%,
+            transparent 48%,
+            rgba(255,255,255,.08) 72%,
+            rgba(255,255,255,.26) 100%
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.72),
+        inset 0 0 28px rgba(255,255,255,.12);
+}
+
+/* Keep all RSVP content above the glass layers */
+.rsvp-box > *{
+    position:relative;
+    z-index:1;
+}
+
+/* Gentle floating / lifted interaction */
+.rsvp-box:hover{
+    transform:translateY(-6px) translateZ(8px);
+    box-shadow:
+        0 42px 85px rgba(94,62,45,.22),
+        0 18px 38px rgba(94,62,45,.11),
+        0 6px 14px rgba(94,62,45,.06),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.16),
+        inset 0 0 0 1px rgba(255,255,255,.30);
+    filter:drop-shadow(0 26px 28px rgba(88,62,48,.15));
+}
+
+@keyframes rsvpGlassSweep{
+    0%,42%{
+        transform:translateX(-20%) rotate(18deg);
+        opacity:0;
+    }
+
+    50%{
+        opacity:.95;
+    }
+
+    72%,100%{
+        transform:translateX(390%) rotate(18deg);
+        opacity:0;
+    }
+}
+
+.rsvp-box h2{
+    margin-bottom:15px;
+
+    font-size:
+        clamp(43px,6vw,72px);
+
+    font-weight:500;
+}
+
+.rsvp-box > p{
+    color:var(--light-text);
+
+    line-height:1.8;
+}
+
+.rsvp-form{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:14px;
+
+    margin-top:30px;
+
+    text-align:left;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea{
+    width:100%;
+
+    padding:15px 16px;
+
+    border:
+        1px solid rgba(115,90,76,.2);
+
+    border-radius:14px;
+
+    outline:none;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.78),
+            rgba(255,255,255,.52)
+        );
+
+    color:var(--ink);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.78),
+        0 4px 12px rgba(94,62,45,.04);
+
+    backdrop-filter:blur(10px) saturate(135%);
+    -webkit-backdrop-filter:blur(10px) saturate(135%);
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.rsvp-form input:focus,
+.rsvp-form select:focus,
+.rsvp-form textarea:focus{
+    border-color:
+        rgba(217,130,139,.65);
+
+    background:rgba(255,255,255,.84);
+
+    box-shadow:
+        0 0 0 3px rgba(217,130,139,.08),
+        inset 0 1px 0 rgba(255,255,255,.90),
+        0 8px 18px rgba(94,62,45,.06);
+}
+
+.rsvp-form textarea{
+    grid-column:1/-1;
+
+    min-height:100px;
+
+    resize:vertical;
+}
+
+.rsvp-form button{
+    grid-column:1/-1;
+
+    border:0;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    background:var(--rose);
+
+    color:white;
+
+    cursor:pointer;
+
+    font:
+        600 12px Arial,sans-serif;
+
+    letter-spacing:.1em;
+
+    text-transform:uppercase;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.rsvp-form button:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(217,130,139,.30);
+}
+
+#rsvpMsg{
+    display:none;
+
+    margin-top:15px;
+
+    color:var(--sage);
+
+    font-size:14px;
+}
+
+
+/* =========================================================
+   COUNTDOWN
+   ========================================================= */
+
+.countdown{
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf1,
+            #f8e3d9
+        );
+    text-align:center;
+    overflow:hidden;
+}
+
+.countdown-wrap{
+    width:min(980px,94%);
+    margin:auto;
+    padding:10px 0;
+}
+
+.countdown-title{
+    margin-bottom:12px;
+    font-size:clamp(38px,5.5vw,68px);
+    font-weight:500;
+    line-height:1;
+    white-space:nowrap;
+    letter-spacing:-.02em;
+}
+
+.countdown-copy{
+    max-width:420px;
+    margin:0 auto 38px;
+    color:var(--light-text);
+    font-size:15px;
+    line-height:1.6;
+}
+
+.countdown-grid{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+    max-width:780px;
+    margin:0 auto;
+}
+
+.countdown-item{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    padding:28px 15px 24px;
+    border:1px solid rgba(255,255,255,.78);
+    border-radius:24px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.68) 0%,
+            rgba(255,255,255,.34) 42%,
+            rgba(248,216,201,.26) 100%
+        );
+    box-shadow:
+        0 18px 45px rgba(94,62,45,.13),
+        inset 0 1px 0 rgba(255,255,255,.95),
+        inset 0 -1px 0 rgba(200,155,85,.16);
+    backdrop-filter:blur(14px) saturate(135%);
+    -webkit-backdrop-filter:blur(14px) saturate(135%);
+}
+
+.countdown-item::before{
+    content:"";
+    position:absolute;
+    inset:1px;
+    z-index:-1;
+    border-radius:23px;
+    background:
+        linear-gradient(
+            118deg,
+            rgba(255,255,255,.72) 0%,
+            rgba(255,255,255,.18) 30%,
+            transparent 52%,
+            rgba(255,255,255,.30) 100%
+        );
+    pointer-events:none;
+}
+
+.countdown-item::after{
+    content:"";
+    position:absolute;
+    top:-55%;
+    left:-70%;
+    width:55%;
+    height:210%;
+    z-index:0;
+    background:linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255,255,255,.08) 35%,
+        rgba(255,255,255,.62) 50%,
+        rgba(255,255,255,.08) 65%,
+        transparent 100%
+    );
+    transform:rotate(18deg);
+    pointer-events:none;
+    animation:countdownShine 4.8s ease-in-out infinite;
+}
+
+.countdown-number,
+.countdown-label{
+    position:relative;
+    z-index:1;
+}
+
+@keyframes countdownShine{
+    0%,45%{
+        transform:translateX(-20%) rotate(18deg);
+        opacity:0;
+    }
+    55%{
+        opacity:.9;
+    }
+    78%,100%{
+        transform:translateX(360%) rotate(18deg);
+        opacity:0;
+    }
+}
+
+.countdown-number{
+    display:block;
+    color:var(--ink);
+    font-size:clamp(42px,6vw,70px);
+    font-weight:500;
+    line-height:1;
+}
+
+.countdown-label{
+    display:block;
+    margin-top:10px;
+    color:var(--rose);
+    font:600 10px Arial,sans-serif;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.countdown-heart{
+    margin-top:30px;
+    color:var(--rose);
+    font-size:20px;
+    font-style:italic;
+}
+
+@media(max-width:600px){
+    .countdown{
+        padding:75px 15px;
+    }
+
+    .countdown-wrap{
+        width:100%;
+    }
+
+    .countdown-title{
+        font-size:clamp(34px,10vw,48px);
+        white-space:nowrap;
+        letter-spacing:-.025em;
+    }
+
+    .countdown-copy{
+        max-width:300px;
+        margin-bottom:28px;
+        font-size:13px;
+        line-height:1.5;
+    }
+
+    .countdown-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:12px;
+        max-width:360px;
+    }
+
+    .countdown-item{
+        padding:23px 10px 20px;
+        border-radius:20px;
+    }
+
+    .countdown-number{
+        font-size:clamp(38px,12vw,52px);
+    }
+
+    .countdown-label{
+        margin-top:8px;
+        font-size:8px;
+        letter-spacing:.14em;
+    }
+
+    .countdown-heart{
+        margin-top:24px;
+        font-size:18px;
+    }
+}
+
+footer{
+    padding:55px 20px;
+
+    /* Slightly deeper pastel footer for stronger visual separation */
+    background:#e8cec2;
+
+    text-align:center;
+}
+
+.footer-names{
+    color:var(--rose);
+
+    font-size:38px;
+
+    font-style:italic;
+}
+
+footer p{
+    margin-top:8px;
+
+    opacity:.65;
+
+    font:
+        11px Arial,sans-serif;
+
+    letter-spacing:.13em;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:translateY(35px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+/* Venue entrance animation is controlled by .venue.venue-animated. */
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:1000px){
+
+    .events-grid{
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:24px;
+    }
+
+    .event-card{
+        width:min(100%, 420px);
+        aspect-ratio:1.75 / 1;
+        height:auto;
+        min-height:0;
+    }
+
+    .hero-couple{
+        height:80%;
+        top:58%;
+    }
+
+    .hero-flowers{
+        height:106%;
+        top:52%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px){
+
+    .hero{
+        height:100svh;
+
+        min-height:0;
+
+        width:100%;
+
+        overflow:hidden;
+    }
+
+
+    .hero-bg{
+        width:112%;
+        height:112%;
+
+        top:-6%;
+        left:-6%;
+
+        object-fit:cover;
+
+        object-position:center center;
+
+        transform:
+            translate3d(0,0,0)
+            scale(1.015);
+    }
+
+
+    .hero-couple{
+        width:auto;
+
+        height:86%;
+
+        max-width:none;
+        max-height:none;
+
+        top:53%;
+        left:50%;
+
+        transform:
+            translate3d(-50%,-50%,0)
+            scale(1);
+
+        object-fit:contain;
+    }
+
+
+    .hero-flowers{
+        width:auto;
+
+        height:108%;
+
+        max-width:none;
+        max-height:none;
+
+        top:52%;
+        left:50%;
+
+        transform:
+            translate3d(-50%,-50%,0)
+            scale(1);
+
+        object-fit:contain;
+    }
+
+
+    .hero-content{
+        
+            padding: 30px 15px 15px;
+    }
+
+    .hero-kicker{
+        margin-bottom:15px;
+
+        font-size:8px;
+
+        letter-spacing:.27em;
+    }
+
+    .hero h1{
+        font-size:
+            clamp(40px,12vw,62px);
+
+        line-height:.82;
+    }
+
+    .hero-and{
+        margin:8px 0;
+
+        font-size:18px;
+    }
+
+    .hero-date{
+        margin-top:14px;
+
+        font-size:14px;
+
+        letter-spacing:.12em;
+    }
+
+    .hero-sub{
+        max-width:320px;
+
+        margin-top:13px;
+
+        font-size:12.5px;
+
+        line-height:1.6;
+    }
+
+
+    .venue{
+        min-height:720px;
+
+        padding-top:0 !important;
+        padding-bottom:80px;
+
+        background-position:62% center;
+    }
+
+    .venue-content{
+        top:24px;
+        left:50%;
+
+        width:calc(100% - 24px);
+
+        padding:20px;
+
+        text-align:center;
+    }
+
+    .venue-content h2{
+        margin-bottom:14px;
+    }
+
+    .details{
+        gap:10px;
+        margin:18px auto 17px;
+    }
+
+    .map-btn{
+        padding:13px 21px;
+        font-size:10px;
+    }
+
+
+    .events-grid{
+        grid-template-columns:1fr;
+
+        gap:20px;
+    }
+
+    .event-card{
+        width:min(100%, 420px);
+        aspect-ratio:1.75 / 1;
+        height:auto;
+        min-height:0;
+
+        margin:0 auto;
+
+        /* Reduced padding to make room for address on mobile */
+        padding:40px 20px 30px;
+    }
+
+    /* Smaller address text on mobile */
+    .event-address{
+        font-size:7.5px;
+        letter-spacing:.04em;
+        margin-top:6px;
+    }
+
+    /* Smaller heading for the long "Pre Wedding Ceremony" title */
+    .event-card h3.event-title-sm{
+        font-size:20px;
+        line-height:1.1;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media(max-width:390px){
+
+    .hero{
+        height:100svh;
+
+        min-height:0;
+    }
+
+    .hero-couple{
+        height:76%;
+
+        top:59%;
+    }
+
+    .hero-flowers{
+        height:104%;
+
+        top:52%;
+    }
+
+    .hero-content{
+        padding-top:30px;
+    }
+
+    .hero-kicker{
+        margin-bottom:12px;
+
+        font-size:7px;
+
+        letter-spacing:.22em;
+    }
+
+    .hero h1{
+        font-size:
+            clamp(36px,12vw,50px);
+
+        line-height:.82;
+    }
+
+    .hero-and{
+        margin:6px 0;
+
+        font-size:16px;
+    }
+
+    .hero-date{
+        margin-top:11px;
+
+        font-size:12px;
+
+        letter-spacing:.11em;
+    }
+
+    .hero-sub{
+        max-width:280px;
+
+        margin-top:10px;
+
+        font-size:11px;
+
+        line-height:1.55;
+    }
+
+    .event-card{
+        width:min(100%, 340px);
+        aspect-ratio:1.75 / 1;
+        height:auto;
+        min-height:0;
+
+        /* Slightly reduced padding for very small screens */
+        padding:36px 16px 26px;
+    }
+
+    .event-icon{
+        width:38px;
+        height:38px;
+
+        /* Keep the same vertical anchor on very small screens. */
+        top:20px;
+        font-size:18px;
+    }
+
+    .event-content{
+        min-height:70px;
+        padding-top:8px;
+        transform:translateZ(20px);
+    }
+
+    .event-card h3{
+        margin-bottom:9px;
+        font-size:23px;
+        line-height:1.1;
+    }
+
+    .event-card h3.event-title-sm{
+        font-size:18px;
+        line-height:1.1;
+    }
+
+    .event-date{
+        font-size:8px;
+        letter-spacing:.12em;
+        gap:2px;
+    }
+
+    .event-time{
+        font-size:8px;
+        letter-spacing:.10em;
+    }
+
+    /* Even smaller address on very small screens */
+    .event-address{
+        font-size:7px;
+        letter-spacing:.03em;
+        margin-top:5px;
+    }
+
+}
+
+
+/* =========================================================
+   TALL MOBILE
+========================================================= */
+
+@media(
+    min-width:391px
+) and (
+    max-width:700px
+) and (
+    min-height:800px
+){
+
+    .hero-couple{
+        height:78%;
+
+        top:59%;
+    }
+
+    .hero-flowers{
+        height:109%;
+
+        top:52%;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL TABLETS
+========================================================= */
+
+@media(
+    min-width:701px
+) and (
+    max-width:900px
+){
+
+    .hero-couple{
+        height:86%;
+
+        top:53%;
+    }
+
+    .hero-flowers{
+        height:106%;
+
+        top:52%;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE HEADING + SUBTEXT REFINEMENT
+========================================================= */
+
+@media(max-width:700px){
+
+    .parents-heading .section-title{
+        white-space:nowrap;
+        font-size:clamp(30px,8.8vw,36px);
+        line-height:1;
+    }
+
+    .parents-heading .section-copy{
+        max-width:330px;
+        margin-bottom:32px;
+        font-size:13px;
+        line-height:1.65;
+    }
+
+    .rsvp-box h2{
+        white-space:nowrap;
+        font-size:clamp(31px,9vw,38px);
+        line-height:1;
+    }
+
+    .rsvp-box > p{
+        max-width:290px;
+        margin-left:auto;
+        margin-right:auto;
+        font-size:13px;
+        line-height:1.65;
+    }
+
+}
+
+/* =========================================================
+   RSVP MOBILE
+========================================================= */
+
+@media(max-width:600px){
+
+    .rsvp-form{
+        grid-template-columns:1fr;
+    }
+
+    .rsvp-form textarea,
+    .rsvp-form button{
+        grid-column:auto;
+    }
+
+    .rsvp-box{
+        width:100%;
+        max-width:360px;
+
+        padding:48px 20px 42px;
+        border-radius:28px;
+
+        /* Mobile-friendly stronger glass */
+        background:
+            linear-gradient(
+                145deg,
+                rgba(255,255,255,.74) 0%,
+                rgba(255,255,255,.50) 45%,
+                rgba(248,216,201,.30) 100%
+            );
+
+        backdrop-filter:blur(20px) saturate(165%);
+        -webkit-backdrop-filter:blur(20px) saturate(165%);
+
+        box-shadow:
+            0 28px 58px rgba(94,62,45,.18),
+            0 12px 26px rgba(94,62,45,.09),
+            inset 0 1px 0 rgba(255,255,255,1),
+            inset 0 -1px 0 rgba(200,155,85,.12),
+            inset 0 0 0 1px rgba(255,255,255,.24);
+
+        filter:drop-shadow(0 18px 22px rgba(88,62,48,.11));
+    }
+
+    .rsvp-box::after{
+        border-radius:27px;
+    }
+
+    .rsvp-box:hover{
+        transform:translateY(-3px);
+        box-shadow:
+            0 32px 64px rgba(94,62,45,.20),
+            0 14px 28px rgba(94,62,45,.09),
+            inset 0 1px 0 rgba(255,255,255,1),
+            inset 0 -1px 0 rgba(200,155,85,.14);
+        filter:drop-shadow(0 20px 24px rgba(88,62,48,.13));
+    }
+
+    .rsvp-form{
+        gap:12px;
+        margin-top:26px;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea{
+        padding:14px 14px;
+        border-radius:13px;
+        font-size:14px;
+    }
+
+    .rsvp-form textarea{
+        min-height:92px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCE MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    .rsvp-box{
+        transition:none;
+    }
+
+    .rsvp-box::before{
+        animation:none;
+        opacity:0;
+    }
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    .reveal{
+        opacity:1;
+
+        transform:none;
+
+        transition:none;
+    }
+
+    .event-card{
+        transition:none;
+    }
+
+    .parent-card{
+        transition:none;
+    }
+
+    .countdown-item::after{
+        animation:none;
+        opacity:0;
+    }
+
+}
+
+
+/* EVENTS SUBTEXT SIZE */
+.events .section-copy{
+    font-size:14px;
+    line-height:1.6;
+    max-width:560px;
+}
+
+@media(max-width:700px){
+    .events .section-copy{
+        font-size:12px;
+        line-height:1.5;
+        max-width:310px;
+    }
+}
+
+
+/* =========================================================
+   DESKTOP OPTIMIZATION
+   Mobile/tablet layouts remain unchanged.
+   Applies only to screens wider than 1000px.
+   ========================================================= */
+@media(min-width:1001px){
+
+    /* ---------- GLOBAL DESKTOP ---------- */
+    .section{
+        padding:120px 32px;
+    }
+
+    .container{
+        width:min(1180px,94%);
+    }
+
+    .section-title{
+        font-size:clamp(52px,5vw,72px);
+    }
+
+    .section-copy{
+        max-width:720px;
+        margin-bottom:48px;
+        font-size:17px;
+        line-height:1.75;
+    }
+
+
+    /* ---------- HERO ---------- */
+    .hero{
+        min-height:760px;
+    }
+
+    .hero-couple{
+        height:91%;
+        top:54%;
+    }
+
+    .hero-flowers{
+        height:112%;
+        top:53%;
+    }
+
+    .hero-content{
+        padding-top:82px;
+    }
+
+    .hero-content-inner{
+        width:min(900px,92vw);
+    }
+
+    .hero-kicker{
+        margin-bottom:20px;
+        font-size:12px;
+        letter-spacing:.36em;
+    }
+
+    .hero h1{
+        font-size:clamp(60px,6.5vw,95px);
+        line-height:.80;
+    }
+
+    .hero-and{
+        margin:12px 0;
+        font-size:25px;
+    }
+
+    .hero-date{
+        margin-top:20px;
+        font-size:19px;
+    }
+
+    .hero-sub{
+        max-width:560px;
+        margin-top:20px;
+        font-size:16px;
+        line-height:1.75;
+    }
+
+
+    /* ---------- PARENTS ---------- */
+    .parents{
+        padding-top:125px;
+        padding-bottom:125px;
+    }
+
+    .parents-heading{
+        max-width:820px;
+        margin-bottom:52px;
+    }
+
+    .parents-heading .section-copy{
+        max-width:620px;
+    }
+
+    .parents-grid{
+        grid-template-columns:repeat(2,minmax(0,430px));
+        gap:34px;
+        max-width:900px;
+    }
+
+    .parent-card{
+        min-height:255px;
+        padding:30px 34px 26px;
+        border-radius:30px;
+    }
+
+    .parent-symbol{
+        width:54px;
+        height:54px;
+        margin-bottom:13px;
+        font-size:20px;
+    }
+
+    .parent-card h3{
+        margin-bottom:13px;
+        font-size:36px;
+    }
+
+    .parent-names{
+        gap:6px;
+    }
+
+    .parent-name{
+        font-size:16px;
+        line-height:1.45;
+    }
+
+    .parent-divider{
+        margin-top:15px;
+    }
+
+
+    /* ---------- EVENTS ---------- */
+    .events{
+        padding-top:120px;
+        padding-bottom:120px;
+    }
+
+    .events .container{
+        width:min(1180px,94%);
+    }
+
+    .events-grid{
+        grid-template-columns:repeat(4,minmax(0,1fr));
+        gap:24px;
+        max-width:1080px;
+        margin:0 auto;
+    }
+
+    .event-card{
+        aspect-ratio:4 / 5;
+        padding:42px 22px 34px;
+    }
+
+    .event-icon{
+        top:26px;
+        width:50px;
+        height:50px;
+        font-size:22px;
+    }
+
+    .event-content{
+        min-height:78px;
+    }
+
+    .event-card h3{
+        margin-bottom:11px;
+        font-size:27px;
+    }
+
+    .event-date{
+        gap:4px;
+        font-size:10px;
+    }
+
+
+    /* ---------- OUTFIT ALERT ---------- */
+    .outfit{
+        padding-top:125px;
+        padding-bottom:125px;
+    }
+
+    .outfit-heading{
+        margin-bottom:52px;
+    }
+
+    .outfit-grid{
+        gap:34px;
+    }
+
+    .outfit-card{
+        padding:16px;
+        border-radius:30px;
+    }
+
+    .outfit-card::after{
+        border-radius:29px;
+    }
+
+    .outfit-card img{
+        border-radius:18px;
+    }
+
+
+    /* ---------- VENUE ---------- */
+    .venue{
+        min-height:860px;
+        background-position:center center;
+    }
+
+    .venue-content{
+        top:44px;
+        width:min(820px,calc(100% - 60px));
+    }
+
+    .venue-content h2{
+        margin-bottom:22px;
+        font-size:clamp(52px,5.5vw,78px);
+    }
+
+    .details{
+        gap:14px;
+        margin:24px auto 22px;
+    }
+
+    .detail{
+        font-size:16px;
+    }
+
+    .map-btn{
+        padding:15px 28px;
+        font-size:11px;
+    }
+
+
+    /* ---------- RSVP ---------- */
+    .rsvp{
+        padding-top:125px;
+        padding-bottom:125px;
+    }
+
+    .rsvp-box{
+        max-width:820px;
+        padding:72px 48px 68px;
+        border-radius:36px;
+    }
+
+    .rsvp-box h2{
+        font-size:clamp(50px,5.5vw,74px);
+        margin-bottom:17px;
+    }
+
+    .rsvp-box > p{
+        font-size:16px;
+        line-height:1.75;
+    }
+
+    .rsvp-form{
+        gap:16px;
+        margin-top:32px;
+    }
+
+    .rsvp-form input,
+    .rsvp-form select,
+    .rsvp-form textarea{
+        padding:16px 17px;
+        border-radius:15px;
+        font-size:15px;
+    }
+
+    .rsvp-form textarea{
+        min-height:110px;
+    }
+
+    .rsvp-form button{
+        padding:17px;
+        border-radius:15px;
+    }
+
+
+    /* ---------- COUNTDOWN ---------- */
+    .countdown{
+        padding-top:120px;
+        padding-bottom:120px;
+    }
+
+    .countdown-wrap{
+        width:min(1060px,94%);
+    }
+
+    .countdown-title{
+        margin-bottom:14px;
+        font-size:clamp(52px,5.5vw,72px);
+    }
+
+    .countdown-copy{
+        max-width:500px;
+        margin-bottom:42px;
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    .countdown-grid{
+        max-width:900px;
+        gap:22px;
+    }
+
+    .countdown-item{
+        padding:30px 18px 26px;
+        border-radius:26px;
+    }
+
+    .countdown-number{
+        font-size:clamp(48px,5vw,72px);
+    }
+
+    .countdown-label{
+        margin-top:11px;
+        font-size:10px;
+    }
+
+    .countdown-heart{
+        margin-top:32px;
+        font-size:21px;
+    }
+
+
+    /* ---------- FOOTER ---------- */
+    footer{
+        padding:65px 32px;
+    }
+
+    .footer-names{
+        font-size:42px;
+    }
+}
+
+
+/* =========================================================
+   INTRO SCREEN — "TAP TO OPEN"
+   ========================================================= */
+
+.intro-screen{
+    position:fixed;
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    /* FIXED: Increased gap for clean separation */
+    gap:30px;
+
+    padding:30px 20px;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 16%,
+            #fffdf9 0%,
+            #fff4ec 38%,
+            #fae3d7 70%,
+            #f3d5c5 100%
+        );
+
+    text-align:center;
+
+    transition:
+        opacity .9s ease,
+        visibility .9s ease;
+}
+
+.intro-screen.is-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+
+/* ---------- Falling flower layer (sits behind the artwork) ---------- */
+
+.intro-flowers{
+    position:absolute;
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+}
+
+.intro-petal{
+    position:absolute;
+    top:-14vh;
+
+    line-height:1;
+
+    user-select:none;
+    pointer-events:none;
+
+    /*
+      Force a full-colour emoji font on every platform.
+      The emoji list below only uses characters that ship
+      as solid, colourful glyphs on iOS / Android / Windows.
+    */
+    font-family:
+        "Apple Color Emoji",
+        "Segoe UI Emoji",
+        "Noto Color Emoji",
+        "Android Emoji",
+        "EmojiOne Color",
+        "Segoe UI Symbol",
+        sans-serif;
+
+    font-style:normal;
+    font-weight:400;
+
+    font-variant-emoji:emoji;
+
+    text-rendering:optimizeSpeed;
+
+    will-change:transform,opacity;
+
+    animation-name:petalFall;
+    animation-timing-function:linear;
+    animation-iteration-count:infinite;
+}
+
+@keyframes petalFall{
+    0%{
+        transform:
+            translate3d(0,0,0)
+            rotate(0deg);
+        opacity:0;
+    }
+
+    8%{
+        opacity:var(--op,.85);
+    }
+
+    88%{
+        opacity:var(--op,.85);
+    }
+
+    100%{
+        transform:
+            translate3d(
+                var(--drift,0px),
+                128vh,
+                0
+            )
+            rotate(
+                var(--spin,360deg)
+            );
+        opacity:0;
+    }
+}
+
+
+/* ---------- Artwork ---------- */
+
+/*
+  NOTE: .intro-art-wrap and .intro-art-wrap::before must NOT
+  create a stacking context (no z-index / transform / opacity),
+  otherwise mix-blend-mode on the artwork is isolated and the
+  white background will show as a box.
+*/
+
+.intro-art-wrap{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex:0 1 auto;
+
+    max-height:75vh;
+
+    width:100%;
+
+    margin-bottom:0;
+}
+
+.intro-art-wrap::before{
+    content:"";
+
+    position:absolute;
+
+    width:min(88vw,460px);
+    aspect-ratio:1 / 1;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.92) 0%,
+            rgba(255,255,255,.55) 45%,
+            rgba(255,255,255,0) 72%
+        );
+
+    pointer-events:none;
+}
+
+/*
+  introVS.png is rendered at its ORIGINAL size.
+  It is never stretched, squashed or cropped — only scaled
+  down proportionally if it would not fit the screen.
+*/
+.intro-art{
+    position:relative;
+
+    display:block;
+
+    /* Original intrinsic size */
+    width:auto;
+    height:auto;
+
+    max-width:100%;
+    max-height:100%;
+
+    object-fit:contain;
+
+    /*
+      Removes the white background of the artwork so it melts
+      into the cream backdrop.
+      Delete this line if you supply a transparent PNG.
+    */
+    mix-blend-mode:multiply;
+
+    pointer-events:none;
+
+    animation:introArtFloat 6.5s ease-in-out infinite;
+}
+
+@keyframes introArtFloat{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-14px) rotate(.6deg);
+    }
+}
+
+
+/* ---------- Copy ---------- */
+
+.intro-copy{
+    position:absolute;
+
+    left:50%;
+    top:72%;
+
+    width:100%;
+    padding:0 16px;
+
+    text-align:center;
+
+    transform:translate(-50%,-50%);
+
+    animation:
+        introCopyCenterIn 1s
+        cubic-bezier(.22,.61,.36,1)
+        .25s both;
+}
+
+@keyframes introCopyCenterIn{
+    from{
+        opacity:0;
+        transform:translate(-50%,calc(-50% + 26px));
+    }
+
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%);
+    }
+}
+
+.intro-kicker{
+    margin-bottom:10px;
+
+    color:var(--rose);
+
+    font:600 10px Arial,sans-serif;
+    letter-spacing:.34em;
+
+    text-transform:uppercase;
+}
+
+.intro-names{
+    margin:0;
+
+    color:var(--ink);
+
+    font-size:clamp(27px,6.6vw,48px);
+    font-weight:500;
+    line-height:1.05;
+    letter-spacing:-.01em;
+}
+
+.intro-names .amp{
+    color:var(--rose);
+    font-style:italic;
+}
+
+.intro-word{
+    margin-top:9px;
+
+    color:var(--light-text);
+
+    font:600 10px Arial,sans-serif;
+    letter-spacing:.3em;
+
+    text-transform:uppercase;
+}
+
+
+/* ---------- Intro Wedding Date ---------- */
+
+.intro-date{
+    margin-top:14px;
+
+    color:var(--ink);
+
+    font:
+        600 13px Arial,sans-serif;
+
+    letter-spacing:.18em;
+
+    text-shadow:
+        0 2px 12px rgba(255,255,255,.90);
+}
+
+/* ---------- Intro Location Button ---------- */
+
+.intro-location-btn{
+    position:relative;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:14px;
+    padding:12px 22px;
+
+    border:1px solid rgba(255,255,255,.88);
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.80),
+            rgba(255,240,232,.48)
+        );
+
+    color:var(--ink);
+
+    cursor:pointer;
+
+    font:
+        700 10px Arial,sans-serif;
+
+    letter-spacing:.12em;
+    text-transform:uppercase;
+
+    text-decoration:none;
+
+    backdrop-filter:blur(14px) saturate(150%);
+    -webkit-backdrop-filter:blur(14px) saturate(150%);
+
+    box-shadow:
+        0 10px 26px rgba(94,62,45,.14),
+        inset 0 1px 0 rgba(255,255,255,.95);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+}
+
+.intro-location-btn span{
+    color:var(--rose);
+    font-size:15px;
+    line-height:1;
+}
+
+.intro-location-btn:hover{
+    transform:translateY(-2px) scale(1.02);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.92),
+            rgba(255,240,232,.68)
+        );
+
+    box-shadow:
+        0 16px 32px rgba(94,62,45,.20),
+        inset 0 1px 0 rgba(255,255,255,1);
+}
+
+/* Keep the opening button below the location button */
+
+.intro-location-btn + .intro-btn{
+    margin-top:18px;
+}
+
+
+/* ---------- Tap to open button ---------- */
+
+.intro-btn{
+    position:relative;
+
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    margin-top:26px;
+    padding:15px 30px;
+
+    border:1px solid rgba(255,255,255,.88);
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.86),
+            rgba(255,240,232,.55)
+        );
+
+    color:var(--ink);
+    cursor:pointer;
+
+    font:700 11px Arial,sans-serif;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+
+    backdrop-filter:blur(14px) saturate(150%);
+    -webkit-backdrop-filter:blur(14px) saturate(150%);
+
+    box-shadow:
+        0 14px 34px rgba(94,62,45,.16),
+        inset 0 1px 0 rgba(255,255,255,.95);
+
+    animation:introBtnPulse 2.8s ease-in-out infinite;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+}
+
+.intro-btn::after{
+    content:"♡";
+
+    color:var(--rose);
+
+    font-size:13px;
+    line-height:1;
+
+    transform:translateY(-1px);
+}
+
+.intro-btn:hover{
+    transform:translateY(-2px) scale(1.02);
+
+    box-shadow:
+        0 20px 40px rgba(94,62,45,.20),
+        inset 0 1px 0 rgba(255,255,255,1);
+}
+
+@keyframes introBtnPulse{
+    0%,100%{
+        box-shadow:
+            0 14px 34px rgba(94,62,45,.16),
+            0 0 0 0 rgba(217,130,139,.30),
+            inset 0 1px 0 rgba(255,255,255,.95);
+    }
+
+    55%{
+        box-shadow:
+            0 18px 38px rgba(94,62,45,.17),
+            0 0 0 14px rgba(217,130,139,0),
+            inset 0 1px 0 rgba(255,255,255,.95);
+    }
+}
+
+
+/* ---------- Intro responsive ---------- */
+
+/* Mobile screens */
+@media (max-width: 700px) {
+    .intro-copy{
+        left:50%;
+        top:76%;
+
+        width:100%;
+        padding:0 14px;
+
+        text-align:center;
+    }
+
+    
+}
+
+/* Short mobile screens */
+@media (max-height: 640px) {
+    .intro-copy{
+        top:70%;
+    }
+}
+
+
+/* ---------- Intro reduced motion ---------- */
+
+@media(prefers-reduced-motion:reduce){
+
+    .intro-petal{
+        display:none;
+    }
+
+    .intro-art{
+        animation:none;
+    }
+
+    .intro-copy{
+        animation:none;
+        opacity:1;
+        transform:none;
+    }
+
+    .intro-btn{
+        animation:none;
+    }
+
+    .intro-screen{
+        transition:none;
+    }
+}
+
+
+/* =========================================================
+   BACKGROUND MUSIC TOGGLE  (added)
+   Same frosted-glass language as .intro-btn / .map-btn /
+   .parent-symbol so it feels native to the invitation.
+   ========================================================= */
+
+.music-toggle{
+    position:fixed;
+
+    right:max(16px, env(safe-area-inset-right));
+    bottom:max(16px, env(safe-area-inset-bottom));
+
+    z-index:9000;
+
+    width:52px;
+    height:52px;
+
+    display:grid;
+    place-items:center;
+
+    padding:0;
+
+    border:1px solid rgba(255,255,255,.80);
+    border-radius:50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.80) 0%,
+            rgba(255,248,243,.46) 100%
+        );
+
+    color:var(--gold);
+
+    cursor:pointer;
+
+    backdrop-filter:blur(16px) saturate(160%);
+    -webkit-backdrop-filter:blur(16px) saturate(160%);
+
+    box-shadow:
+        0 14px 32px rgba(94,62,45,.18),
+        0 5px 14px rgba(94,62,45,.08),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -1px 0 rgba(200,155,85,.16);
+
+    /* Hidden until the invitation has been opened */
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+
+    transform:translateY(14px) scale(.9);
+
+    transition:
+        opacity .55s ease,
+        visibility .55s ease,
+        transform .55s cubic-bezier(.22,.61,.36,1),
+        background .25s ease,
+        box-shadow .25s ease,
+        color .25s ease;
+}
+
+.music-toggle.is-visible{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+
+    transform:translateY(0) scale(1);
+}
+
+.music-toggle.is-visible:hover{
+    transform:translateY(-3px) scale(1.06);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.94) 0%,
+            rgba(255,248,243,.64) 100%
+        );
+
+    box-shadow:
+        0 20px 38px rgba(94,62,45,.22),
+        0 7px 16px rgba(94,62,45,.09),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.18);
+}
+
+.music-toggle.is-visible:active{
+    transform:translateY(-1px) scale(1.01);
+}
+
+.music-toggle svg{
+    width:22px;
+    height:22px;
+
+    display:block;
+    overflow:visible;
+}
+
+.music-toggle .music-note{
+    transition:opacity .25s ease;
+}
+
+.music-toggle .music-slash{
+    opacity:0;
+    transition:opacity .25s ease;
+}
+
+/* Muted state */
+.music-toggle.is-muted{
+    color:var(--light-text);
+}
+
+.music-toggle.is-muted .music-note{
+    opacity:.45;
+}
+
+.music-toggle.is-muted .music-slash{
+    opacity:1;
+}
+
+/* Soft breathing ring while music is playing */
+.music-toggle.is-visible:not(.is-muted)::after{
+    content:"";
+
+    position:absolute;
+    inset:-5px;
+
+    border-radius:50%;
+    border:1px solid rgba(217,130,139,.55);
+
+    pointer-events:none;
+
+    animation:musicRing 2.8s ease-out infinite;
+}
+
+@keyframes musicRing{
+    0%{
+        transform:scale(.9);
+        opacity:.75;
+    }
+
+    70%{
+        transform:scale(1.30);
+        opacity:0;
+    }
+
+    100%{
+        transform:scale(1.30);
+        opacity:0;
+    }
+}
+
+@media(max-width:700px){
+
+    .music-toggle{
+        width:46px;
+        height:46px;
+
+        right:max(13px, env(safe-area-inset-right));
+        bottom:max(13px, env(safe-area-inset-bottom));
+    }
+
+    .music-toggle svg{
+        width:20px;
+        height:20px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce){
+
+    .music-toggle{
+        transition:none;
+    }
+
+    .music-toggle.is-visible:not(.is-muted)::after{
+        animation:none;
+        opacity:0;
+    }
+}
+
+/* Move intro artwork slightly upward on desktop */
+@media (min-width:701px){
+
+    .intro-art-wrap{
+        top:-45px;
+    }
+
+}
+
+/* Move introVS artwork upward on mobile */
+@media (max-width:700px){
+
+    .intro-art-wrap{
+        top:-75px;
+    }
+
+}
+
+/* Short mobile screens */
+@media (max-height:640px){
+
+    .intro-art-wrap{
+        top:-50px;
+    }
+
+}
+
+/* =========================================================
+   FINAL MOBILE HERO OVERLAP FIX
+   Keep subtitle clear of the couple's head.
+   ========================================================= */
+
+@media (max-width:700px){
+
+    .hero-couple{
+        height:72%;
+        top:64%;
+    }
+
+}
+
+/* Tall mobile devices */
+
+@media (min-width:391px)
+and (max-width:700px)
+and (min-height:800px){
+
+    .hero-couple{
+        height:78%;
+        top:64%;
+    }
+
+}
+
+
+/* =========================================================
+   REMOVE BLUE TAP / CLICK HIGHLIGHT
+   Applies to the entire website
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove focus outline caused by tapping on mobile */
+*:focus:not(:focus-visible) {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Remove blue focus highlight from clickable elements */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Prevent blue outline on buttons and links after tapping */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<!-- =========================================================
+     BACKGROUND MUSIC
+     File: audio/music1.mpeg
+     (If a browser refuses to play it, simply rename the file
+      to music1.mp3 and update the src below.)
+========================================================= -->
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="audio/music1.mpeg" type="audio/mpeg">
+</audio>
+
+
+<!-- =========================================================
+     INTRO SCREEN
+     Save the Radha–Krishna artwork as: assets/introVS.png
+     (change the src below if you use a different filename)
+========================================================= -->
+
+<div class="intro-screen" id="introScreen">
+
+    <!-- Falling flower emojis (behind the artwork) -->
+    <div class="intro-flowers" id="introFlowers" aria-hidden="true"></div>
+
+
+    <!-- Artwork — displayed at its ORIGINAL size -->
+    <div class="intro-art-wrap">
+
+        <img
+            src="assets/introVS.png"
+            class="intro-art"
+            alt="Radha and Krishna"
+        >
+
+    </div>
+
+
+    <!-- Copy + CTA -->
+    <div class="intro-copy">
+
+        <p class="intro-kicker">
+            You're invited to
+        </p>
+
+        <h1 class="intro-names">
+            Sruthika <span class="amp">&amp;</span> Vineeth
+        </h1>
+
+        
+<p class="intro-word">
+    Wedding
+</p>
+
+<!-- Wedding Date -->
+<p class="intro-date">
+    25 · 11 · 2026
+</p>
+
+<!-- Wedding Location Button -->
+<a
+    href="https://share.google/M6zAtC11eHUPiyptb"
+    target="_blank"
+    rel="noopener"
+    class="intro-location-btn"
+    id="introLocation"
+>
+    <span aria-hidden="true">⌖</span>
+    Wedding Location
+</a>
+
+<!-- Tap to Open -->
+<button
+    class="intro-btn"
+    id="introOpen"
+    type="button"
+>
+    Tap to open
+</button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     HERO
+
+     LAYER ORDER:
+     1. BG1
+     2. COUPLE
+     3. FOREGROUND FLOWERS
+     4. TEXT
+========================================================= -->
+
+<header class="hero" id="home">
+
+    <div class="hero-parallax">
+
+        <img
+            src="assets/bg1.png"
+            class="hero-layer hero-bg"
+            alt=""
+            aria-hidden="true"
+        >
+
+        <img
+            src="assets/coupleimg.png"
+            class="hero-layer hero-couple"
+            alt=""
+            aria-hidden="true"
+        >
+
+        <img
+            src="assets/foregroundflower.png"
+            class="hero-layer hero-flowers"
+            alt=""
+            aria-hidden="true"
+        >
+
+    </div>
+
+
+    <div class="hero-content">
+
+        <div class="hero-content-inner">
+
+            <!-- ADDED: Telugu Blessing Text -->
+            <div class="hero-sanskrit">
+                ॐ · శ్రీరస్తు శుభమస్తు · ॐ
+            </div>
+
+            <div class="hero-kicker">
+                Together with their families
+            </div>
+
+            <h1>
+                Sruthika
+            </h1>
+
+            <div class="hero-and">
+                and
+            </div>
+
+            <h1>
+                Vineeth
+            </h1>
+
+            <div class="hero-date">
+                25 · 11 · 2026
+            </div>
+
+            <p class="hero-sub">
+                Invite you to celebrate a beautiful beginning,
+                surrounded by love, laughter and flowers.
+            </p>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+
+<!-- =========================================================
+     EVENTS
+========================================================= -->
+
+<section class="section events" id="events">
+
+    <div class="container">
+
+        <div
+            class="reveal"
+            style="text-align:center;"
+        >
+
+            <span class="eyebrow">
+                Save the dates
+            </span>
+
+            <h2 class="section-title">
+                Wedding Celebrations
+            </h2>
+
+            <p class="section-copy">
+                Four moments, one unforgettable celebration.
+                Come celebrate every chapter with us.
+            </p>
+
+        </div>
+
+
+        <div class="events-grid">
+
+
+            <article class="event-card reveal tilt">
+
+                <div class="event-icon" aria-hidden="true">♢</div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Sangeeth
+                    </h3>
+
+                    <div class="event-date">
+                        <span class="event-day">23rd November 2026</span>
+                        <span class="event-time">7:00 PM</span>
+                    </div>
+
+                    <div class="event-address">
+                        3793 Kayewood St, Little Elm, TX 75068
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="event-card reveal tilt">
+
+                <div class="event-icon" aria-hidden="true">✿</div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Haldi
+                    </h3>
+
+                    <div class="event-date">
+                        <span class="event-day">24th November 2026</span>
+                        <span class="event-time">12:00 PM</span>
+                    </div>
+
+                    <div class="event-address">
+                        3793 Kayewood St, Little Elm, TX 75068
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+
+            <article class="event-card reveal tilt">
+
+                <div class="event-icon" aria-hidden="true">✦</div>
+
+                <div class="event-content">
+
+                    <h3>
+                        Wedding Ceremony
+                    </h3>
+
+                    <div class="event-date">
+                        <span class="event-day">25th November 2026</span>
+                        <span class="event-time">10:00 AM</span>
+                    </div>
+
+                    <div class="event-address">
+
+                        <span class="venue-name">
+                            Soaring Heights B&amp;B Venue
+                        </span>
+
+                        <span>
+                            145 Aero Country Rd, McKinney, TX 75071
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     VENUE
+========================================================= -->
+
+<section class="section venue" id="venue">
+
+    <div class="container">
+
+        <div class="venue-content">
+
+            <span class="eyebrow">
+                The celebration awaits
+            </span>
+
+            <h2>
+                Our Venue
+            </h2>
+
+            <div class="details">
+
+                <div class="detail">
+
+                    <strong>
+                        Venue
+                    </strong>
+
+                    Soaring Heights B&B Venue
+
+                </div>
+
+
+                <div class="detail">
+
+                    <strong>
+                        Address
+                    </strong>
+
+                    145 Aero Country Rd, McKinney, TX 75071
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="https://share.google/M6zAtC11eHUPiyptb"
+                target="_blank"
+                rel="noopener"
+                class="map-btn"
+            >
+                Open in Google Maps
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     RSVP
+========================================================= -->
+
+<section class="section rsvp" id="rsvp">
+
+    <div class="container">
+
+        <div class="rsvp-box reveal">
+
+            <span class="eyebrow">
+                We'd love to see you
+            </span>
+
+            <h2>
+                Will you join us?
+            </h2>
+
+            <p>
+                Please let us know if you can be
+                part of our special day.
+            </p>
+
+
+            <form
+                class="rsvp-form"
+                id="rsvpForm"
+            >
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email address"
+                >
+
+                <select
+                    name="attendance"
+                    required
+                >
+
+                    <option value="">
+                        Will you attend?
+                    </option>
+
+                    <option value="Joyfully attending">
+                        Joyfully attending
+                    </option>
+
+                    <option value="Sorry, can't attend">
+                        Sorry, can't attend
+                    </option>
+
+                </select>
+
+
+                <input
+                    type="number"
+                    name="guests"
+                    min="1"
+                    max="10"
+                    placeholder="Number of guests"
+                >
+
+
+                <textarea
+                    name="message"
+                    placeholder="A little note for the couple (optional)"
+                ></textarea>
+
+
+                <button type="submit">
+                    Send RSVP
+                </button>
+
+            </form>
+
+
+            <div id="rsvpMsg">
+                Thank you!
+                Your RSVP has been received. ♡
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OUTFIT ALERT  (replaces the old gallery section)
+     ========================================================= -->
+
+<section class="section outfit" id="outfit">
+
+    <div class="container">
+
+        <div class="outfit-heading reveal">
+
+            <span class="eyebrow">
+                Dress to celebrate
+            </span>
+
+            <h2 class="section-title">
+                Outfit Alert
+            </h2>
+
+            <p class="section-copy">
+                We can’t wait to see everyone bring the colors
+                and glamour to the celebrations!
+            </p>
+
+        </div>
+
+
+        <div class="outfit-grid reveal">
+
+            <figure class="outfit-card">
+                <img
+                    src="assets/image1.jpeg"
+                    alt="Outfit inspiration for the celebrations"
+                >
+            </figure>
+
+            <figure class="outfit-card">
+                <img
+                    src="assets/image2.jpeg"
+                    alt="Outfit inspiration for the celebrations"
+                >
+            </figure>
+
+            <figure class="outfit-card">
+                <img
+                    src="assets/image3.jpeg"
+                    alt="Outfit inspiration for the celebrations"
+                >
+            </figure>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     COUNTDOWN
+     ========================================================= -->
+
+<section class="section countdown" id="countdown">
+
+    <div class="countdown-wrap reveal">
+
+        <span class="eyebrow">
+            Counting the moments
+        </span>
+
+        <h2 class="countdown-title">
+            Until Our Forever
+        </h2>
+
+        <p class="countdown-copy">
+            Counting down to our beautiful day.
+        </p>
+
+        <div class="countdown-grid">
+
+            <div class="countdown-item">
+                <span class="countdown-number" id="countDays">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+
+            <div class="countdown-item">
+                <span class="countdown-number" id="countHours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+
+            <div class="countdown-item">
+                <span class="countdown-number" id="countMinutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+
+            <div class="countdown-item">
+                <span class="countdown-number" id="countSeconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+
+        </div>
+
+        <div class="countdown-heart">
+            Sruthika &amp; Vineeth · 25 November 2026
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+
+    <div class="footer-names">
+        Sruthika &amp; Vineeth
+    </div>
+
+    <p>
+        Made with love · 25 November 2026
+    </p>
+
+</footer>
+
+
+<!-- =========================================================
+     MUSIC ON / OFF BUTTON
+     Appears once the invitation has been opened.
+========================================================= -->
+
+<button
+    class="music-toggle"
+    id="musicToggle"
+    type="button"
+    aria-label="Turn music on"
+    aria-pressed="false"
+>
+
+    <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.7"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+
+        <g class="music-note">
+            <path d="M9 18V5l12-2v13"/>
+            <circle cx="6" cy="18" r="3"/>
+            <circle cx="18" cy="16" r="3"/>
+        </g>
+
+        <line
+            class="music-slash"
+            x1="3.5"
+            y1="3.5"
+            x2="20.5"
+            y2="20.5"
+        />
+
+    </svg>
+
+</button>
+
+
+<script>
+
+/* =========================================================
+   HERO PARALLAX + OPENING RISE
+   BG1 stays fixed.
+   Couple / flowers / text rise into place once the intro
+   screen is dismissed, then scroll parallax continues.
+   ========================================================= */
+
+(function(){
+
+    const hero =
+        document.querySelector(".hero");
+
+    const bg =
+        document.querySelector(".hero-bg");
+
+    const couple =
+        document.querySelector(".hero-couple");
+
+    const flowers =
+        document.querySelector(".hero-flowers");
+
+    const text =
+        document.querySelector(".hero-content");
+
+
+    if(
+        !hero ||
+        !bg ||
+        !couple ||
+        !flowers ||
+        !text
+    ){
+        return;
+    }
+
+
+    /* =====================================================
+       SCROLL PARALLAX SPEEDS
+
+       Smaller = slower.
+       Larger = faster.
+
+       BG1 is intentionally fixed and does NOT move.
+       ===================================================== */
+
+    const COUPLE_SPEED = 0.22;
+    const FLOWERS_SPEED = 0.36;
+    const TEXT_SPEED = 0.18;
+
+
+    /* =====================================================
+       OPENING RISE SETTINGS
+
+       The layers start below their final positions and
+       smoothly rise into place after the intro screen.
+
+       BG1 remains completely fixed.
+       ===================================================== */
+
+    const INTRO_DURATION = 1400;
+
+    const COUPLE_RISE = 120;
+    const FLOWERS_RISE = 180;
+    const TEXT_RISE = 80;
+
+
+    let currentProgress = 0;
+    let targetProgress = 0;
+
+    let ticking = false;
+
+    /*
+      introStart stays null while the intro screen is open,
+      so the hero layers hold their "below" position.
+      window.startHeroIntro() releases them.
+    */
+    let introStart = null;
+
+
+    /* =====================================================
+       CALCULATE SCROLL POSITION
+       ===================================================== */
+
+    function updateTarget(){
+
+        const rect =
+            hero.getBoundingClientRect();
+
+
+        const scrolled =
+            Math.max(
+                0,
+                -rect.top
+            );
+
+
+        targetProgress =
+            Math.min(
+                scrolled,
+                hero.offsetHeight
+            );
+
+
+        ticking = false;
+    }
+
+
+    /* =====================================================
+       SCROLL EVENT
+       ===================================================== */
+
+    window.addEventListener(
+        "scroll",
+        function(){
+
+            if(!ticking){
+
+                window.requestAnimationFrame(
+                    updateTarget
+                );
+
+                ticking = true;
+            }
+
+        },
+        {
+            passive:true
+        }
+    );
+
+
+    /* =====================================================
+       RESIZE
+       ===================================================== */
+
+    window.addEventListener(
+        "resize",
+        function(){
+
+            updateTarget();
+
+        },
+        {
+            passive:true
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL POSITION
+       ===================================================== */
+
+    updateTarget();
+
+
+    /* =====================================================
+       OPENING RISE EASING
+
+       Smooth cubic-bezier-like ease-out.
+       Starts at 0 and finishes at 1.
+       ===================================================== */
+
+    function easeOutCubic(t){
+
+        return 1 - Math.pow(
+            1 - t,
+            3
+        );
+    }
+
+
+    /* =====================================================
+       ANIMATION LOOP
+       ===================================================== */
+
+    function animate(){
+
+        currentProgress +=
+            (
+                targetProgress -
+                currentProgress
+            ) * 0.085;
+
+
+        if(
+            Math.abs(
+                targetProgress -
+                currentProgress
+            ) < 0.01
+        ){
+
+            currentProgress =
+                targetProgress;
+        }
+
+
+        /* =================================================
+           OPENING RISE PROGRESS
+           (waits until the intro screen is dismissed)
+           ================================================= */
+
+        const elapsed =
+            introStart === null
+                ? 0
+                : performance.now() - introStart;
+
+
+        const introRaw =
+            introStart === null
+                ? 0
+                : Math.min(
+                    elapsed / INTRO_DURATION,
+                    1
+                );
+
+
+        const introProgress =
+            easeOutCubic(
+                introRaw
+            );
+
+
+        const introRemaining =
+            1 - introProgress;
+
+
+        /* =================================================
+           BACKGROUND — FIXED
+
+           Never apply scroll movement to bg1.
+           Keep its original scale and position.
+           ================================================= */
+
+        bg.style.transform = `
+            translate3d(
+                0,
+                0,
+                0
+            )
+            scale(1.015)
+        `;
+
+
+        /* =================================================
+           COUPLE
+
+           Scroll parallax +
+           opening rise from below.
+           ================================================= */
+
+        const coupleY =
+            currentProgress *
+            COUPLE_SPEED;
+
+        const coupleIntroY =
+            COUPLE_RISE *
+            introRemaining;
+
+
+        couple.style.transform = `
+            translate3d(
+                -50%,
+                calc(
+                    -50% +
+                    ${(
+                        coupleY +
+                        coupleIntroY
+                    ).toFixed(2)}px
+                ),
+                0
+            )
+            scale(1)
+        `;
+
+
+        /* =================================================
+           FOREGROUND FLOWERS
+
+           Fastest scroll parallax +
+           stronger opening rise.
+           ================================================= */
+
+        const flowersY =
+            currentProgress *
+            FLOWERS_SPEED;
+
+        const flowersIntroY =
+            FLOWERS_RISE *
+            introRemaining;
+
+
+        flowers.style.transform = `
+            translate3d(
+                -50%,
+                calc(
+                    -50% +
+                    ${(
+                        flowersY +
+                        flowersIntroY
+                    ).toFixed(2)}px
+                ),
+                0
+            )
+            scale(1)
+        `;
+
+
+        /* =================================================
+           TEXT
+
+           Gentle scroll parallax +
+           subtle opening rise.
+           ================================================= */
+
+        const textY =
+            currentProgress *
+            TEXT_SPEED;
+
+        const textIntroY =
+            TEXT_RISE *
+            introRemaining;
+
+
+        text.style.transform = `
+            translate3d(
+                0,
+                ${(
+                    textY +
+                    textIntroY
+                ).toFixed(2)}px,
+                0
+            )
+        `;
+
+
+        requestAnimationFrame(
+            animate
+        );
+    }
+
+
+    animate();
+
+
+    /* =====================================================
+       RELEASE THE HERO RISE
+       Called by the intro screen ("Tap to open").
+       ===================================================== */
+
+    window.startHeroIntro = function(){
+
+        if(introStart === null){
+
+            introStart =
+                performance.now();
+        }
+    };
+
+})();
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+        function(entries){
+
+            entries.forEach(
+                function(entry){
+
+                    if(
+                        entry.isIntersecting
+                    ){
+
+                        entry.target
+                            .classList
+                            .add("visible");
+
+
+                        revealObserver
+                            .unobserve(
+                                entry.target
+                            );
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold:.14
+        }
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(
+        function(element){
+
+            revealObserver.observe(
+                element
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   3D EVENT CARD TILT
+========================================================= */
+
+document
+    .querySelectorAll(".tilt")
+    .forEach(
+        function(card){
+
+            card.addEventListener(
+                "pointermove",
+                function(event){
+
+                    if(
+                        window.matchMedia(
+                            "(hover: none)"
+                        ).matches
+                    ){
+                        return;
+                    }
+
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+
+                    const x =
+                        (
+                            event.clientX -
+                            rect.left
+                        ) /
+                        rect.width -
+                        .5;
+
+
+                    const y =
+                        (
+                            event.clientY -
+                            rect.top
+                        ) /
+                        rect.height -
+                        .5;
+
+
+                    const rotateX =
+                        -y * 8;
+
+
+                    const rotateY =
+                        x * 10;
+
+
+                    card.style.transform = `
+                        rotateX(
+                            ${rotateX.toFixed(2)}deg
+                        )
+                        rotateY(
+                            ${rotateY.toFixed(2)}deg
+                        )
+                        translateY(-7px)
+                    `;
+
+                }
+            );
+
+
+            card.addEventListener(
+                "pointerleave",
+                function(){
+
+                    card.style.transform =
+                        "";
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   GALLERY CAROUSEL — REMOVED
+   (The gallery section has been replaced by "Outfit Alert",
+    which uses no carousel and no JavaScript.)
+   ========================================================= */
+
+
+/* =========================================================
+   VENUE ENTRANCE ANIMATION
+   ========================================================= */
+
+(function(){
+
+    const venue =
+        document.querySelector(".venue");
+
+    if(!venue){
+        return;
+    }
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+    if(reducedMotion){
+
+        venue.classList.add(
+            "venue-animated"
+        );
+
+        return;
+    }
+
+    const venueObserver =
+        new IntersectionObserver(
+            function(entries){
+
+                entries.forEach(
+                    function(entry){
+
+                        if(
+                            entry.isIntersecting
+                        ){
+
+                            venue.classList.add(
+                                "venue-animated"
+                            );
+
+                            venueObserver.unobserve(
+                                venue
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold:.18
+            }
+        );
+
+    venueObserver.observe(venue);
+
+})();
+
+
+/* =========================================================
+   WEDDING COUNTDOWN
+   Target: 25 November 2026 · 9:00 AM
+   ========================================================= */
+
+(function(){
+
+    const daysEl =
+        document.getElementById("countDays");
+
+    const hoursEl =
+        document.getElementById("countHours");
+
+    const minutesEl =
+        document.getElementById("countMinutes");
+
+    const secondsEl =
+        document.getElementById("countSeconds");
+
+    if(
+        !daysEl ||
+        !hoursEl ||
+        !minutesEl ||
+        !secondsEl
+    ){
+        return;
+    }
+
+    const weddingDate =
+        new Date("2026-11-25T09:00:00");
+
+    function pad(value){
+        return String(value).padStart(2,"0");
+    }
+
+    function updateCountdown(){
+
+        const now = new Date();
+
+        const difference =
+            weddingDate.getTime() -
+            now.getTime();
+
+        if(difference <= 0){
+
+            daysEl.textContent = "00";
+            hoursEl.textContent = "00";
+            minutesEl.textContent = "00";
+            secondsEl.textContent = "00";
+
+            return;
+        }
+
+        const totalSeconds =
+            Math.floor(difference / 1000);
+
+        const days =
+            Math.floor(totalSeconds / 86400);
+
+        const hours =
+            Math.floor(
+                (totalSeconds % 86400) / 3600
+            );
+
+        const minutes =
+            Math.floor(
+                (totalSeconds % 3600) / 60
+            );
+
+        const seconds =
+            totalSeconds % 60;
+
+        daysEl.textContent = String(days);
+        hoursEl.textContent = pad(hours);
+        minutesEl.textContent = pad(minutes);
+        secondsEl.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+
+    setInterval(updateCountdown,1000);
+
+})();
+
+
+/* =========================================================
+   INTRO SCREEN
+   - Generates the falling flower field
+   - Locks scrolling
+   - "Tap to open" dismisses and releases the hero rise
+   ========================================================= */
+
+(function(){
+
+    const screen =
+        document.getElementById("introScreen");
+
+    const openBtn =
+        document.getElementById("introOpen");
+
+    const flowerLayer =
+        document.getElementById("introFlowers");
+
+    if(!screen){
+        return;
+    }
+
+
+    const reducedMotion =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    /* -----------------------------------------------------
+       BUILD THE FALLING FLOWER FIELD
+       (rendered behind the artwork — DOM order handles it)
+
+       Emoji list below uses ONLY solid, full-colour emoji
+       characters that render correctly on every mobile
+       platform (iOS, Android, Windows, macOS).
+
+       Deliberately excluded:
+         💮  white flower   → looks transparent
+         🏵️  rosette        → inconsistent across devices
+         ❁ ✿  dingbats      → render as thin outline text glyphs
+       ----------------------------------------------------- */
+
+    if(flowerLayer && !reducedMotion){
+
+        const petals = [
+            "🌸",
+            "🌺",
+            "🌼",
+            "🌷",
+            "🌹",
+            "🌻",
+            "💐"
+        ];
+
+        const total =
+            window.innerWidth < 700
+                ? 16
+                : 26;
+
+
+        for(let i = 0; i < total; i++){
+
+            const petal =
+                document.createElement("span");
+
+            petal.className = "intro-petal";
+
+            petal.textContent =
+                petals[
+                    Math.floor(
+                        Math.random() * petals.length
+                    )
+                ];
+
+            petal.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            const size =
+                16 + Math.random() * 22;
+
+            const duration =
+                7 + Math.random() * 7;
+
+            /* Negative delay = the sky is already full on load */
+            const delay =
+                -Math.random() * duration;
+
+            const drift =
+                Math.round(
+                    Math.random() * 180 - 90
+                );
+
+            const spin =
+                Math.round(
+                    Math.random() * 720 - 360
+                );
+
+            const opacity =
+                (0.55 + Math.random() * 0.40)
+                    .toFixed(2);
+
+
+            petal.style.left =
+                (Math.random() * 100).toFixed(2) + "%";
+
+            petal.style.fontSize =
+                size.toFixed(1) + "px";
+
+            petal.style.animationDuration =
+                duration.toFixed(2) + "s";
+
+            petal.style.animationDelay =
+                delay.toFixed(2) + "s";
+
+            petal.style.setProperty(
+                "--drift",
+                drift + "px"
+            );
+
+            petal.style.setProperty(
+                "--spin",
+                spin + "deg"
+            );
+
+            petal.style.setProperty(
+                "--op",
+                opacity
+            );
+
+
+            flowerLayer.appendChild(petal);
+        }
+    }
+
+
+    /* -----------------------------------------------------
+       LOCK SCROLL + RESET SCROLL POSITION
+       ----------------------------------------------------- */
+
+    if("scrollRestoration" in history){
+        history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo(0,0);
+
+    document.documentElement
+        .classList
+        .add("intro-lock");
+
+
+    /* -----------------------------------------------------
+       OPEN THE INVITATION
+       ----------------------------------------------------- */
+
+    let closed = false;
+
+    function closeIntro(){
+
+        if(closed){
+            return;
+        }
+
+        closed = true;
+
+        screen.classList.add("is-hidden");
+
+        document.documentElement
+            .classList
+            .remove("intro-lock");
+
+        /* Release the hero opening rise */
+        if(typeof window.startHeroIntro === "function"){
+            window.startHeroIntro();
+        }
+
+        /* -------------------------------------------------
+           START THE BACKGROUND MUSIC
+
+           This runs inside a real user gesture (tap / click /
+           key press), so every browser — including iOS Safari
+           and Chrome — allows the audio to play.
+           ------------------------------------------------- */
+        if(typeof window.startWeddingMusic === "function"){
+            window.startWeddingMusic();
+        }
+
+        /* Remove the overlay once the fade has finished */
+        window.setTimeout(
+            function(){
+
+                if(screen.parentNode){
+                    screen.parentNode
+                        .removeChild(screen);
+                }
+
+            },
+            1000
+        );
+    }
+
+
+    if(openBtn){
+
+        openBtn.addEventListener(
+            "click",
+            function(event){
+
+                event.stopPropagation();
+                closeIntro();
+
+            }
+        );
+    }
+
+
+    /* Tap anywhere on the intro to open */
+    screen.addEventListener(
+        "click",
+        closeIntro
+    );
+
+
+    /* Keyboard accessibility */
+    window.addEventListener(
+        "keydown",
+        function(event){
+
+            if(closed){
+                return;
+            }
+
+            if(
+                event.key === "Enter" ||
+                event.key === " " ||
+                event.key === "Escape"
+            ){
+                closeIntro();
+            }
+        }
+    );
+
+})();
+
+
+/* =========================================================
+   BACKGROUND MUSIC CONTROLLER
+   - Starts automatically when the intro is opened
+   - Music on/off button (same frosted-glass style)
+   ========================================================= */
+
+(function(){
+
+    const audio =
+        document.getElementById("bgMusic");
+
+    const toggle =
+        document.getElementById("musicToggle");
+
+    if(!audio || !toggle){
+        return;
+    }
+
+    /* Comfortable background level — change if you like */
+    const VOLUME = 0.55;
+
+    let started = false;
+
+    audio.volume = VOLUME;
+    audio.loop = true;
+
+
+    function isPlaying(){
+        return started && !audio.paused;
+    }
+
+
+    function updateUI(){
+
+        const playing = isPlaying();
+
+        toggle.classList.toggle(
+            "is-muted",
+            !playing
+        );
+
+        toggle.setAttribute(
+            "aria-pressed",
+            playing ? "true" : "false"
+        );
+
+        toggle.setAttribute(
+            "aria-label",
+            playing
+                ? "Turn music off"
+                : "Turn music on"
+        );
+    }
+
+
+    function playMusic(){
+
+        const promise = audio.play();
+
+        if(promise && typeof promise.catch === "function"){
+
+            promise.catch(
+                function(error){
+
+                    console.warn(
+                        "Music could not start automatically:",
+                        error
+                    );
+
+                    updateUI();
+                }
+            );
+        }
+
+        updateUI();
+    }
+
+
+    /* -----------------------------------------------------
+       CALLED BY THE INTRO SCREEN
+       ----------------------------------------------------- */
+
+    window.startWeddingMusic = function(){
+
+        if(!started){
+
+            started = true;
+
+            toggle.classList.add("is-visible");
+        }
+
+        if(audio.paused){
+            playMusic();
+        }
+
+        updateUI();
+    };
+
+
+    /* -----------------------------------------------------
+       BUTTON: TOGGLE ON / OFF
+       ----------------------------------------------------- */
+
+    toggle.addEventListener(
+        "click",
+        function(event){
+
+            event.stopPropagation();
+
+            started = true;
+
+            toggle.classList.add("is-visible");
+
+            if(audio.paused){
+                playMusic();
+            }else{
+                audio.pause();
+                updateUI();
+            }
+
+        }
+    );
+
+
+    /* -----------------------------------------------------
+       KEEP THE ICON IN SYNC
+       ----------------------------------------------------- */
+
+    audio.addEventListener("play", updateUI);
+    audio.addEventListener("pause", updateUI);
+    audio.addEventListener("ended", updateUI);
+
+
+    /* -----------------------------------------------------
+       FALLBACK
+       If the intro screen is missing (or was removed),
+       start the music on the first user interaction.
+       ----------------------------------------------------- */
+
+    if(!document.getElementById("introScreen")){
+
+        const kick = function(){
+
+            window.startWeddingMusic();
+
+            document.removeEventListener("pointerdown", kick);
+            document.removeEventListener("keydown", kick);
+            document.removeEventListener("touchstart", kick);
+        };
+
+        document.addEventListener("pointerdown", kick);
+        document.addEventListener("keydown", kick);
+        document.addEventListener(
+            "touchstart",
+            kick,
+            { passive:true }
+        );
+    }
+
+
+    updateUI();
+
+})();
+
+
+// =========================================================
+// RSVP — GOOGLE APPS SCRIPT INTEGRATION
+// =========================================================
+
+const rsvpForm =
+    document.getElementById("rsvpForm");
+
+const rsvpMessage =
+    document.getElementById("rsvpMsg");
+
+// PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbwZxK3EHShGck2DjC3uBnKBJ3Q0Wppg2b6QVr_fj-tsj4MXqOdQVf2EuAMFDQL-Bk2hrA/exec";
+
+
+if (rsvpForm && rsvpMessage) {
+
+    rsvpForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+            const submitButton =
+                rsvpForm.querySelector(
+                    'button[type="submit"]'
+                );
+
+            const originalButtonText =
+                submitButton.textContent;
+
+            // Prevent multiple submissions
+            submitButton.disabled = true;
+            submitButton.textContent = "Sending...";
+
+            rsvpMessage.style.display = "none";
+            rsvpMessage.textContent = "";
+
+            try {
+
+                const formData =
+                    new FormData(rsvpForm);
+
+                const response =
+                    await fetch(
+                        GOOGLE_SCRIPT_URL,
+                        {
+                            method: "POST",
+                            body: new URLSearchParams(formData)
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error(
+                        "Network request failed."
+                    );
+                }
+
+                // Show success message
+                rsvpMessage.textContent =
+                    "Thank you! Your RSVP has been received. ♡";
+
+                rsvpMessage.style.display =
+                    "block";
+
+                // Reset form after successful submission
+                rsvpForm.reset();
+
+            } catch (error) {
+
+                console.error(
+                    "RSVP submission error:",
+                    error
+                );
+
+                rsvpMessage.textContent =
+                    "Something went wrong. Please try again.";
+
+                rsvpMessage.style.display =
+                    "block";
+
+            } finally {
+
+                submitButton.disabled = false;
+
+                submitButton.textContent =
+                    originalButtonText;
+
+            }
+
+        }
+    );
+
+}
+
+</script>
+
+</body>
+</html>
