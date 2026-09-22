@@ -769,13 +769,14 @@ margin-bottom: -55px; /* adjust until flush */
     left:0;
     width:100%;
     height:100vh;
-display:flex;
+    height:100dvh; /* ✅ FIXED: Added dynamic viewport height for iOS */
+    display:flex;
     flex-direction:column;
 
     /* ✅ CENTER EVERYTHING */
     align-items:center;
     justify-content:flex-start;
-padding-bottom: 180px;  /* adjust 60–120px as needed */
+    padding-bottom: 180px;  /* adjust 60–120px as needed */
     gap:0px; /* controls space between hands */
     
 
@@ -858,7 +859,7 @@ padding-bottom: 180px;  /* adjust 60–120px as needed */
 }
 
 .boy-hand{
-    margin-top: 60px; /* move hand down */
+    margin-top: 15px; /* ✅ FIXED: Changed from 60px to move hand up */
 }
 
 /* Optional: even bigger on desktop */
@@ -1267,7 +1268,8 @@ img:active {
     .tap-text{
         position: fixed;
 
-        bottom: max(30px, calc(env(safe-area-inset-bottom) + 20px));
+        /* ✅ FIXED: Pushed higher up to avoid iPhone Safari bottom bar */
+        bottom: max(80px, calc(env(safe-area-inset-bottom) + 60px)) !important;
 
         left: 50%;
         transform: translateX(-50%);
