@@ -1222,14 +1222,45 @@ img:active {
 .tap-text{
     position:absolute;
     bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+
     color:#fff;
     font-size:12px;
     letter-spacing:2px;
-    opacity:0.7;
+    opacity:0.95;
     animation: blink 1.5s infinite;
-    z-index:2;
+
+    /* 🔥 bring above the hands */
+    z-index: 50;
+
+    /* 🔥 make it readable on any background */
+    background: rgba(0,0,0,0.4);
+    padding: 8px 20px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+
+    white-space: nowrap;
+    pointer-events: none;
 }
 
+/* ✅ Mobile specific fix */
+@media (max-width: 768px){
+    .tap-text{
+        bottom: 28px;
+        font-size: 11px;
+        padding: 7px 16px;
+        z-index: 50;
+    }
+
+    /* keep hands from covering the text */
+    .intro-screen{
+        overflow: hidden;
+        padding-bottom: 140px;
+    }
+}
 @keyframes blink{
     0%,100%{opacity:0.3;}
     50%{opacity:1;}
