@@ -929,10 +929,14 @@ textarea{
 
 
 /* =========================================================
-   GALLERY CAROUSEL
+   OUTFIT ALERT
+   Images are ALWAYS displayed at their ORIGINAL size.
+   They are never stretched, squashed, cropped or upscaled —
+   they only scale DOWN proportionally when the screen is
+   too narrow to hold them.
    ========================================================= */
 
-.gallery{
+.outfit{
     background:
         linear-gradient(
             135deg,
@@ -942,138 +946,118 @@ textarea{
     overflow:hidden;
 }
 
-.gallery-heading{
+.outfit-heading{
     text-align:center;
-    margin-bottom:42px;
+    margin-bottom:46px;
 }
 
-.gallery-carousel{
-    position:relative;
-    width:min(980px,94%);
-    margin:0 auto;
-    overflow:hidden;
-    border-radius:34px;
-    box-shadow:var(--shadow);
-    background:#eadbd0;
-    touch-action:pan-y;
-}
-
-.gallery-track{
+.outfit-grid{
     display:flex;
-    width:400%;
-    transform:translateX(0);
-    transition:transform .75s cubic-bezier(.22,.61,.36,1);
-    will-change:transform;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start;
+    gap:30px;
 }
 
-.gallery-slide{
+/* The card hugs the image — it never forces a size on it */
+.outfit-card{
     position:relative;
-    flex:0 0 25%;
-    width:25%;
-    aspect-ratio:16/10;
+    isolation:isolate;
     overflow:hidden;
-}
 
-.gallery-slide::after{
-    content:"";
-    position:absolute;
-    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    /* Allows the card (and therefore the image) to shrink
+       gracefully instead of overflowing on small screens. */
+    min-width:0;
+    max-width:100%;
+
+    padding:14px;
+
+    border:1px solid rgba(255,255,255,.82);
+    border-radius:28px;
+
     background:
         linear-gradient(
-            180deg,
-            rgba(73,59,55,.02),
-            rgba(73,59,55,.16)
+            145deg,
+            rgba(255,255,255,.76) 0%,
+            rgba(255,255,255,.48) 40%,
+            rgba(255,244,236,.34) 100%
         );
-    pointer-events:none;
+
+    box-shadow:
+        0 24px 55px rgba(94,62,45,.15),
+        0 8px 22px rgba(94,62,45,.07),
+        inset 0 1px 0 rgba(255,255,255,.98),
+        inset 0 -1px 0 rgba(200,155,85,.12);
+
+    backdrop-filter:blur(20px) saturate(160%);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);
+
+    transition:
+        transform .35s cubic-bezier(.22,.61,.36,1),
+        box-shadow .35s ease,
+        border-color .35s ease;
 }
 
-.gallery-slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transform:scale(1.02);
-    transition:transform 1.1s ease;
-}
-
-.gallery-slide.active img{
-    transform:scale(1.07);
-}
-
-.gallery-arrow{
+/* Soft inner glass border + glossy top surface */
+.outfit-card::after{
+    content:"";
     position:absolute;
-    top:50%;
-    z-index:5;
-    width:48px;
-    height:48px;
-    display:grid;
-    place-items:center;
-    border:1px solid rgba(255,255,255,.75);
-    border-radius:50%;
-    background:rgba(255,255,255,.55);
-    color:var(--ink);
-    font-size:25px;
-    line-height:1;
-    cursor:pointer;
-    backdrop-filter:blur(10px);
-    -webkit-backdrop-filter:blur(10px);
-    box-shadow:0 10px 28px rgba(73,59,55,.16);
-    transform:translateY(-50%);
-    transition:
-        transform .25s ease,
-        background .25s ease,
-        box-shadow .25s ease;
+    inset:1px;
+    z-index:1;
+    border-radius:27px;
+    pointer-events:none;
+
+    border:1px solid rgba(255,255,255,.34);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.34) 0%,
+            rgba(255,255,255,.06) 26%,
+            transparent 50%,
+            rgba(255,255,255,.10) 100%
+        );
 }
 
-.gallery-arrow:hover{
-    transform:translateY(-50%) scale(1.08);
-    background:rgba(255,255,255,.78);
-    box-shadow:0 14px 30px rgba(73,59,55,.20);
+.outfit-card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,255,255,.94);
+    box-shadow:
+        0 30px 65px rgba(94,62,45,.19),
+        0 10px 26px rgba(94,62,45,.08),
+        inset 0 1px 0 rgba(255,255,255,1),
+        inset 0 -1px 0 rgba(200,155,85,.15);
 }
 
-.gallery-prev{
-    left:18px;
+/* ORIGINAL SIZE ONLY — width/height auto, never upscaled */
+.outfit-card img{
+    position:relative;
+    z-index:2;
+
+    display:block;
+
+    width:auto;
+    height:auto;
+
+    max-width:100%;
+    max-height:none;
+
+    object-fit:contain;
+
+    border-radius:16px;
+
+    -webkit-user-drag:none;
+    user-select:none;
 }
 
-.gallery-next{
-    right:18px;
-}
 
-.gallery-dots{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:9px;
-    margin-top:22px;
-}
-
-.gallery-dot{
-    width:8px;
-    height:8px;
-    padding:0;
-    border:0;
-    border-radius:50%;
-    background:rgba(217,130,139,.35);
-    cursor:pointer;
-    transition:
-        width .3s ease,
-        border-radius .3s ease,
-        background .3s ease;
-}
-
-.gallery-dot.active{
-    width:26px;
-    border-radius:999px;
-    background:var(--rose);
-}
-
-.gallery-hint{
-    margin-top:13px;
-    color:var(--light-text);
-    font:600 9px Arial,sans-serif;
-    letter-spacing:.18em;
-    text-align:center;
-    text-transform:uppercase;
-}
+/* =========================================================
+   GALLERY — REMOVED (replaced by OUTFIT ALERT above)
+   ========================================================= */
 
 
 /* =========================================================
@@ -1126,54 +1110,50 @@ textarea{
 
 @media(max-width:700px){
 
-    .gallery{
-        padding-left:12px;
-        padding-right:12px;
+    .outfit{
+        padding-left:15px;
+        padding-right:15px;
     }
 
-    .gallery-carousel{
-        width:100%;
-        border-radius:24px;
+    .outfit-heading{
+        margin-bottom:30px;
     }
 
-    .gallery-slide{
-        aspect-ratio:4/5;
+    .outfit-grid{
+        flex-direction:column;
+        align-items:center;
+        gap:18px;
     }
 
-    .gallery-arrow{
-        width:40px;
-        height:40px;
-        font-size:21px;
+    .outfit-card{
+        width:auto;
+        max-width:100%;
+
+        padding:10px;
+        border-radius:22px;
     }
 
-    .gallery-prev{
-        left:10px;
+    .outfit-card::after{
+        border-radius:21px;
     }
 
-    .gallery-next{
-        right:10px;
+    .outfit-card img{
+        border-radius:13px;
     }
 
-    .gallery-dots{
-        margin-top:17px;
-    }
-
-    .gallery-hint{
-        font-size:8px;
+    .outfit-card:hover{
+        transform:none;
     }
 }
 
 @media(prefers-reduced-motion:reduce){
 
-    .gallery-track,
-    .gallery-slide img,
-    .gallery-arrow,
-    .gallery-dot{
+    .outfit-card{
         transition:none;
     }
 
-    .gallery-slide.active img{
-        transform:scale(1);
+    .outfit-card:hover{
+        transform:none;
     }
 
     .venue-content > .eyebrow,
@@ -2672,46 +2652,31 @@ footer p{
     }
 
 
-    /* ---------- GALLERY ---------- */
-    .gallery{
+    /* ---------- OUTFIT ALERT ---------- */
+    .outfit{
         padding-top:125px;
         padding-bottom:125px;
     }
 
-    .gallery-heading{
-        margin-bottom:46px;
+    .outfit-heading{
+        margin-bottom:52px;
     }
 
-    .gallery-carousel{
-        width:min(1060px,94%);
-        border-radius:36px;
+    .outfit-grid{
+        gap:34px;
     }
 
-    .gallery-slide{
-        aspect-ratio:16 / 9;
+    .outfit-card{
+        padding:16px;
+        border-radius:30px;
     }
 
-    .gallery-arrow{
-        width:52px;
-        height:52px;
-        font-size:27px;
+    .outfit-card::after{
+        border-radius:29px;
     }
 
-    .gallery-prev{
-        left:20px;
-    }
-
-    .gallery-next{
-        right:20px;
-    }
-
-    .gallery-dots{
-        margin-top:24px;
-    }
-
-    .gallery-hint{
-        margin-top:14px;
-        font-size:9px;
+    .outfit-card img{
+        border-radius:18px;
     }
 
 
@@ -3678,7 +3643,7 @@ textarea:focus:not(:focus-visible) {
         </p>
 
         <h1 class="intro-names">
-            Vineeth <span class="amp">&amp;</span> Sruthika
+            Sruthika <span class="amp">&amp;</span> Vineeth
         </h1>
 
         
@@ -3770,7 +3735,7 @@ textarea:focus:not(:focus-visible) {
             </div>
 
             <h1>
-                Vineeth
+                Sruthika
             </h1>
 
             <div class="hero-and">
@@ -3778,7 +3743,7 @@ textarea:focus:not(:focus-visible) {
             </div>
 
             <h1>
-                Sruthika
+                Vineeth
             </h1>
 
             <div class="hero-date">
@@ -3879,28 +3844,6 @@ textarea:focus:not(:focus-visible) {
             </article>
 
 
-            <article class="event-card reveal tilt">
-
-                <div class="event-icon" aria-hidden="true">♡</div>
-
-                <div class="event-content">
-
-                    <h3 class="event-title-sm">
-                        Pre Wedding Ceremony
-                    </h3>
-
-                    <div class="event-date">
-                        <span class="event-day">24th November 2026</span>
-                        <span class="event-time">7:00 PM</span>
-                    </div>
-
-                    <div class="event-address">
-                        3793 Kayewood St, Little Elm, TX 75068
-                    </div>
-
-                </div>
-
-            </article>
 
 
             <article class="event-card reveal tilt">
@@ -4098,112 +4041,54 @@ textarea:focus:not(:focus-visible) {
 
 
 <!-- =========================================================
-     GALLERY
+     OUTFIT ALERT  (replaces the old gallery section)
      ========================================================= -->
 
-<section class="section gallery" id="gallery">
+<section class="section outfit" id="outfit">
 
     <div class="container">
 
-        <div class="gallery-heading reveal">
+        <div class="outfit-heading reveal">
 
             <span class="eyebrow">
-                A few beautiful moments
+                Dress to celebrate
             </span>
 
             <h2 class="section-title">
-                Our Gallery
+                Outfit Alert
             </h2>
 
             <p class="section-copy">
-                A little glimpse into the love, laughter and memories
-                that brought us here.
+                We can’t wait to see everyone bring the colors
+                and glamour to the celebrations!
             </p>
 
         </div>
 
 
-        <div
-            class="gallery-carousel reveal"
-            id="galleryCarousel"
-            aria-label="Wedding photo gallery"
-        >
+        <div class="outfit-grid reveal">
 
-            <div class="gallery-track" id="galleryTrack">
+            <figure class="outfit-card">
+                <img
+                    src="assets/image1.jpeg"
+                    alt="Outfit inspiration for the celebrations"
+                >
+            </figure>
 
-                <div class="gallery-slide active">
-                    <img
-                        src="assets/image1.jpeg"
-                        alt="Vineeth and Sruthika"
-                    >
-                </div>
+            <figure class="outfit-card">
+                <img
+                    src="assets/image2.jpeg"
+                    alt="Outfit inspiration for the celebrations"
+                >
+            </figure>
 
-                <div class="gallery-slide">
-                    <img
-                        src="assets/image2.jpeg"
-                        alt="Wedding floral scene"
-                    >
-                </div>
+            <figure class="outfit-card">
+                <img
+                    src="assets/image3.jpeg"
+                    alt="Outfit inspiration for the celebrations"
+                >
+            </figure>
 
-                <div class="gallery-slide">
-                    <img
-                        src="assets/image3.jpeg"
-                        alt="Wedding venue"
-                    >
-                </div>
-
-            </div>
-
-
-            <button
-                class="gallery-arrow gallery-prev"
-                id="galleryPrev"
-                type="button"
-                aria-label="Previous gallery image"
-            >
-                ‹
-            </button>
-
-            <button
-                class="gallery-arrow gallery-next"
-                id="galleryNext"
-                type="button"
-                aria-label="Next gallery image"
-            >
-                ›
-            </button>
-
-        </div>
-
-
-        <div
-            class="gallery-dots"
-            id="galleryDots"
-            aria-label="Gallery navigation"
-        >
-
-            <button
-                class="gallery-dot active"
-                type="button"
-                aria-label="Show gallery image 1"
-            ></button>
-
-            <button
-                class="gallery-dot"
-                type="button"
-                aria-label="Show gallery image 2"
-            ></button>
-
-            <button
-                class="gallery-dot"
-                type="button"
-                aria-label="Show gallery image 3"
-            ></button>
-
-        </div>
-
-        <div class="gallery-hint">
-            Swipe or use the arrows
         </div>
 
     </div>
@@ -4256,7 +4141,7 @@ textarea:focus:not(:focus-visible) {
         </div>
 
         <div class="countdown-heart">
-            Vineeth &amp; Sruthika · 25 November 2026
+            Sruthika &amp; Vineeth · 25 November 2026
         </div>
 
     </div>
@@ -4267,7 +4152,7 @@ textarea:focus:not(:focus-visible) {
 <footer>
 
     <div class="footer-names">
-        Vineeth &amp; Sruthika
+        Sruthika &amp; Vineeth
     </div>
 
     <p>
@@ -4813,216 +4698,10 @@ document
 
 
 /* =========================================================
-   GALLERY CAROUSEL
-   - Auto-play
-   - Arrow controls
-   - Dots
-   - Touch/swipe support
+   GALLERY CAROUSEL — REMOVED
+   (The gallery section has been replaced by "Outfit Alert",
+    which uses no carousel and no JavaScript.)
    ========================================================= */
-
-(function(){
-
-    const carousel =
-        document.getElementById("galleryCarousel");
-
-    const track =
-        document.getElementById("galleryTrack");
-
-    const slides =
-        carousel
-            ? carousel.querySelectorAll(".gallery-slide")
-            : [];
-
-    const dots =
-        document.querySelectorAll(".gallery-dot");
-
-    const prev =
-        document.getElementById("galleryPrev");
-
-    const next =
-        document.getElementById("galleryNext");
-
-    if(
-        !carousel ||
-        !track ||
-        !slides.length
-    ){
-        return;
-    }
-
-    let current = 0;
-    let timer = null;
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    function showSlide(index){
-
-        current =
-            (index + slides.length) %
-            slides.length;
-
-        track.style.transform =
-            "translateX(-" +
-            (current * 25) +
-            "%)";
-
-        slides.forEach(
-            function(slide, i){
-                slide.classList.toggle(
-                    "active",
-                    i === current
-                );
-            }
-        );
-
-        dots.forEach(
-            function(dot, i){
-                dot.classList.toggle(
-                    "active",
-                    i === current
-                );
-            }
-        );
-    }
-
-    function nextSlide(){
-        showSlide(current + 1);
-    }
-
-    function prevSlide(){
-        showSlide(current - 1);
-    }
-
-    function stopAutoPlay(){
-        if(timer){
-            clearInterval(timer);
-            timer = null;
-        }
-    }
-
-    function startAutoPlay(){
-
-        stopAutoPlay();
-
-        if(
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches
-        ){
-            return;
-        }
-
-        timer = setInterval(
-            nextSlide,
-            4500
-        );
-    }
-
-    if(prev){
-        prev.addEventListener(
-            "click",
-            function(){
-                prevSlide();
-                startAutoPlay();
-            }
-        );
-    }
-
-    if(next){
-        next.addEventListener(
-            "click",
-            function(){
-                nextSlide();
-                startAutoPlay();
-            }
-        );
-    }
-
-    dots.forEach(
-        function(dot, index){
-
-            dot.addEventListener(
-                "click",
-                function(){
-                    showSlide(index);
-                    startAutoPlay();
-                }
-            );
-
-        }
-    );
-
-    carousel.addEventListener(
-        "mouseenter",
-        stopAutoPlay
-    );
-
-    carousel.addEventListener(
-        "mouseleave",
-        startAutoPlay
-    );
-
-    carousel.addEventListener(
-        "touchstart",
-        function(event){
-
-            const touch =
-                event.changedTouches[0];
-
-            touchStartX =
-                touch.clientX;
-
-            touchStartY =
-                touch.clientY;
-
-            stopAutoPlay();
-
-        },
-        {
-            passive:true
-        }
-    );
-
-    carousel.addEventListener(
-        "touchend",
-        function(event){
-
-            const touch =
-                event.changedTouches[0];
-
-            const dx =
-                touch.clientX -
-                touchStartX;
-
-            const dy =
-                touch.clientY -
-                touchStartY;
-
-            if(
-                Math.abs(dx) > 45 &&
-                Math.abs(dx) > Math.abs(dy)
-            ){
-
-                if(dx < 0){
-                    nextSlide();
-                }else{
-                    prevSlide();
-                }
-
-            }
-
-            startAutoPlay();
-
-        },
-        {
-            passive:true
-        }
-    );
-
-    showSlide(0);
-    startAutoPlay();
-
-})();
 
 
 /* =========================================================
