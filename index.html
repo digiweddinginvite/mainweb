@@ -737,19 +737,19 @@ section { position: relative; }
   .demo-tier-title.standard-tier,
   .demo-tier-title.premium-tier,
   .demo-tier-title.luxury-tier {
-    padding: 15px 16px;
-    font-size: 23px;
+    padding: 13px 14px;
+    font-size: 19px;
     margin-left: 4px;
     margin-right: 4px;
   }
 }
 .demo-grid {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
   margin-top: 10px;
 }
-@media (min-width: 640px) { .demo-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 640px) { .demo-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
 @media (min-width: 960px) { .demo-grid { grid-template-columns: repeat(3, 1fr); } }
 .demo-card {
   background: #fff;
@@ -837,6 +837,102 @@ section { position: relative; }
   min-width: 120px;
 }
 
+/* ============================================
+   MOBILE 2x2 GRID COMPACT CARD STYLES
+   (only affects the wedding demo cards, not
+   the single Gruhapravesam / Upanayanam cards)
+   ============================================ */
+@media (max-width: 639px) {
+  .demo-grid { gap: 11px; }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-card {
+    border-radius: 16px;
+    padding: 0 0 14px 0;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-thumb-wrap {
+    height: 122px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-card-content {
+    padding: 12px 9px 0;
+    gap: 4px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-card h3 {
+    font-size: 14px;
+    margin-bottom: 2px;
+    line-height: 1.25;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-card p {
+    font-size: 10.5px;
+    line-height: 1.45;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .template-price {
+    flex-direction: column;
+    gap: 0;
+    margin: 6px 0 9px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .template-price .offer-price {
+    font-size: 15.5px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .template-price .original-price {
+    font-size: 10.5px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .template-actions {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding: 0 3px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .template-actions .btn {
+    width: 100%;
+    min-width: 0;
+    flex: 0 0 auto;
+    padding: 8px 6px;
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-website-badge {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2px;
+    padding: 9px 6px 0;
+    white-space: normal;
+    overflow: visible;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-website-badge .badge-icon {
+    font-size: 9px;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-website-badge strong {
+    font-size: 8px;
+    letter-spacing: .2px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-website-badge span {
+    font-size: 8px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .demo-grid:not(.gruhapravesam-grid):not(.upanayanam-grid) .demo-website-badge span::before {
+    content: none;
+    margin: 0;
+  }
+}
 
 /* Luxury tier — balanced three-card layout */
 .luxury-tier + .demo-grid {
@@ -902,8 +998,8 @@ section { position: relative; }
    WHY DIGITAL — CARDS
    ============================================ */
 .why-section { padding: 110px 0; }
-.why-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
-@media (min-width: 640px) { .why-grid { grid-template-columns: 1fr 1fr; } }
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+@media (min-width: 640px) { .why-grid { grid-template-columns: 1fr 1fr; gap: 22px; } }
 @media (min-width: 1024px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
 .why-card {
   background: #fff;
@@ -924,6 +1020,22 @@ section { position: relative; }
 .why-card:hover .why-icon { transform: rotate(-8deg) scale(1.08); }
 .why-card h3 { font-family: var(--font-head); font-size: 19px; margin-bottom: 10px; }
 .why-card p { font-size: 14px; color: var(--text-soft); }
+
+/* Mobile 2x2 advantage grid */
+@media (max-width: 639px) {
+  .why-section { padding: 80px 0; }
+  .why-grid { gap: 12px; }
+  .why-card {
+    padding: 20px 14px;
+    border-radius: 18px;
+  }
+  .why-icon {
+    width: 46px; height: 46px; border-radius: 14px;
+    font-size: 19px; margin-bottom: 14px;
+  }
+  .why-card h3 { font-size: 15px; margin-bottom: 7px; }
+  .why-card p { font-size: 12px; line-height: 1.55; }
+}
 
 /* ============================================
    COMPARISON TABLE - OPTIMIZED FOR MOBILE
@@ -1050,7 +1162,13 @@ table.compare tbody tr:hover { background: rgba(253,251,247,0.6); }
   display: flex; align-items: center; justify-content: center;
   position: relative; overflow: hidden;
 }
-.choose-illustration i { font-size: 96px; color: var(--primary); opacity: .85; }
+.choose-illustration img {
+  width: 85%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: var(--radius-md);
+}
 .choose-list { display: flex; flex-direction: column; gap: 18px; }
 .choose-item { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: var(--radius-sm); transition: background .3s; }
 .choose-item:hover { background: var(--bg-secondary); }
@@ -1060,6 +1178,31 @@ table.compare tbody tr:hover { background: rgba(253,251,247,0.6); }
   color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px;
 }
 .choose-item span { font-size: 15.5px; font-weight: 500; }
+
+/* Mobile 2x2 grid for Why Choose Us */
+@media (max-width: 640px) {
+  .choose-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .choose-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 12px;
+    gap: 10px;
+    height: 100%;
+  }
+  .choose-item .ico {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+  .choose-item span {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+}
 
 /* ============================================
    TESTIMONIALS
@@ -1957,7 +2100,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="1499">₹1,499</span><span class="original-price js-price" data-inr="1999">₹1,999</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/3rdLetter/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%201%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template1%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
 
         </div>
@@ -1978,7 +2121,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="1499">₹1,499</span><span class="original-price js-price" data-inr="1999">₹1,999</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/1stRedtheme/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%202%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template2%20for%20₹1499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
 
         </div>
@@ -2004,7 +2147,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/test1.0/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%203%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template3%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
 
         </div>
@@ -2025,7 +2168,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/2ndRing/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%204%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template4%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
 
         </div>
@@ -2046,7 +2189,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/cutewed1/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%205%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template5%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
 
         </div>
@@ -2067,7 +2210,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="1999">₹1,999</span><span class="original-price js-price" data-inr="2499">₹2,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/templeintro/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Invitation%20Website%206%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Invitation%20Website6%20for%20₹1999." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
         <div class="demo-website-badge">
@@ -2093,7 +2236,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/tester19/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%207%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template7%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
         <div class="demo-website-badge">
@@ -2114,7 +2257,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/hinduwed2/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%208%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template8%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
         <div class="demo-website-badge">
@@ -2135,7 +2278,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/muslimwed/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template%209%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Template9%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
         <div class="demo-website-badge">
@@ -2156,7 +2299,7 @@ a:focus-visible,
           <div class="template-price"><span class="offer-price js-price" data-inr="2499">₹2,499</span><span class="original-price js-price" data-inr="3499">₹3,499</span></div>
           <div class="template-actions">
             <button class="btn btn-outline" onclick="openDemo('https://manikantaande24-bot.github.io/tester17/')">View Demo</button>
-            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Invitation%20Website%2010%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
+            <a href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20Invitation%20Website10%20for%20₹2499." class="btn btn-primary js-buy-link" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Buy Now</a>
           </div>
         </div>
         <div class="demo-website-badge">
@@ -2366,7 +2509,7 @@ a:focus-visible,
 <section class="choose-section" id="choose">
   <div class="container choose-grid">
     <div class="choose-illustration reveal left">
-      <i class="fa-solid fa-heart-circle-check"></i>
+      <img src="images/digiweddinginvite.png" alt="Digi Wedding Invite">
     </div>
     <div class="reveal right">
       <p class="eyebrow">Why Choose Us</p>
@@ -2718,7 +2861,7 @@ const features = [
   ['book-open','Wedding Story'],
   ['hourglass-half','Countdown Timer'],
   ['location-dot','Google Maps'],
-  ['phone','One-click Calling'],
+  ['clipboard-check','RSVP'],
   ['timeline','Events Timeline'],
   ['people-roof','Family Details'],
   ['user-group','Bride & Groom Profiles'],
