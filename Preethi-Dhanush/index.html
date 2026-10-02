@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -56,8 +55,6 @@ section {
   text-align: center;
 }
 
-
-
 h1, h2 {
   color: #8B0000;
 }
@@ -87,7 +84,6 @@ h1, h2 {
   display: none;
 }
 
-
 .hero img {
   width: 120px;
   margin-bottom: 20px;
@@ -102,8 +98,6 @@ h1, h2 {
   max-width: 400px;
   margin: auto;
 }
-
-
 
 .countdown {
   margin-top: 15px;
@@ -168,7 +162,6 @@ footer {
   align-items: center;
 }
 
-
 .hero-text h1 {
   font-size: 2rem;
 }
@@ -185,7 +178,7 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 245, 225, 0.6); /* soft overlay */
+  background: rgba(255, 245, 225, 0.6);
 }
 
 .hero {
@@ -212,10 +205,10 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;   /* 🔥 CHANGE HERE */
+  object-fit: contain;
   pointer-events: none;
-  
 }
+
 /* Individual layers */
 .layer1 {
   bottom: 0;
@@ -241,12 +234,11 @@ footer {
   z-index: 5;
 }
 
-
 .layer {
   position: absolute;
   inset: 0;
-  background-size: cover;      /* 🔥 SAME as background */
-  background-position: center; /* 🔥 SAME as background */
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -299,7 +291,6 @@ footer {
 .layer {
   will-change: transform;
 }
-
 
 /* =========================
    MUHURTHAM SECTION
@@ -457,18 +448,16 @@ footer {
   justify-content: center;
   align-items: flex-start;
 
-  padding: 0; /* 🔥 important */
+  padding: 0;
 }
 
 /* COMMON LAYER */
 /* MATCH MUHURTHAM EXACTLY */
 .v-layer {
-
   inset: 0;
 
-  background-position: center center; /* 🔥 force exact center */
+  background-position: center center;
   background-repeat: no-repeat;
-
 }
 
 /* MAIN BACKGROUND (Temple Image) */
@@ -493,9 +482,9 @@ footer {
   z-index: 2;
 }
 
-/* TEMPLE IMAGE LAYER (like hero god image) */
+/* TEMPLE IMAGE LAYER */
 .v-layer3 {
-    margin-bottom: 50%;
+  margin-bottom: 50%;
   top: 0;
   left: 0;
   width: 100%;
@@ -507,11 +496,10 @@ footer {
   z-index: 3;
 }
 
-
 /* CONTENT */
 .venue-content {
   position: absolute;
-  bottom: 140px;   /* ✅ push text to bottom */
+  bottom: 140px;
   width: 100%;
   z-index: 5;
   text-align: center;
@@ -525,12 +513,12 @@ footer {
 
 @media (max-width: 768px) {
   .v-layer1 {
-    background-position: 42% center; /* 🔥 MAGIC FIX */
+    background-position: 42% center;
   }
 }
 .temple-img {
   position: absolute;
-  top: -60px; /* 🔥 move image upward */
+  top: -60px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -538,8 +526,8 @@ footer {
 }
 
 .temple-img img {
-  width: 480px;   /* 🔥 control size here */
-  height: auto;   /* ✅ keeps 9:16 ratio PERFECT */
+  width: 480px;
+  height: auto;
 }
 
 .banana-img {
@@ -565,17 +553,15 @@ footer {
 .banana-img,
 .venue-content {
   will-change: transform;
-transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (max-width: 380px) and (max-height: 700px) {
-
   /* TEMPLE IMAGE FIX */
   .v-layer3 {
-    
-    margin-bottom: 0;              /* ❌ remove old push */
+    margin-bottom: 0;
     height: 100%;
-    background-position: center 20%;  /* push slightly down */
+    background-position: center 20%;
     background-size: contain;
   }
 
@@ -587,7 +573,7 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 
   /* TEXT POSITION FIX */
   .venue-content {
-    bottom: 40px;   /* move text slightly up */
+    bottom: 40px;
     padding: 0 10px;
   }
 
@@ -598,12 +584,10 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   .venue-content p {
     font-size: 1rem;
   }
-
 }
 
 /* =========================================================
    PREMIUM WEDDING EVENTS CARDS
-   3D depth + layered gold shine + luxury glass finish
    ========================================================= */
 
 /* Events area */
@@ -674,7 +658,6 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   min-width: 0;
   padding: 18px 14px;
 
-  /* Premium warm glass surface */
   background:
     linear-gradient(
       145deg,
@@ -683,12 +666,10 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
       rgba(250, 238, 207, 0.84) 100%
     );
 
-  /* Gold layered border */
   border: 1px solid transparent;
   border-radius: 18px;
   background-clip: padding-box;
 
-  /* Strong 3D depth */
   box-shadow:
     0 2px 0 rgba(255, 255, 255, 0.95) inset,
     0 -1px 0 rgba(120, 76, 12, 0.12) inset,
@@ -702,11 +683,9 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow 0.45s ease,
     filter 0.45s ease;
 
-  /* Gold border ring without taking space */
   outline: 1px solid rgba(212, 175, 55, 0.62);
   outline-offset: -1px;
 
-  /* Keeps shine clipped inside the card */
   will-change: transform;
 }
 
@@ -1022,7 +1001,6 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 
 /* =========================================================
    PREMIUM GALLERY CAROUSEL — PERFECT IMAGE FIT
-   Keeps the original image ratio and prevents cropping.
    ========================================================= */
 .carousel {
   position: relative;
@@ -1042,7 +1020,7 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-/* Images — preserve the real image dimensions, no forced 500px crop */
+/* Images */
 .carousel-track img {
   display: block;
   flex: 0 0 100%;
@@ -1051,7 +1029,6 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
   max-width: 100%;
   object-fit: contain;
   object-position: center;
- 
   background: #fff8eb;
 }
 
@@ -1106,7 +1083,6 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* DOTS */
-/* Dots Fix */
 .carousel-dots {
   display: flex;
   justify-content: center;
@@ -1209,6 +1185,32 @@ footer::before {
   }
 }
 
+/* =========================================================
+   THARUN PHOTOGRAPHY LOGO — FOOTER
+   ========================================================= */
+.footer-logo {
+  display: block;
+  margin: 28px auto 0;
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.3));
+  /* White strip only for the logo */
+  background: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 576px) {
+  .footer-logo {
+    max-width: 150px;
+    margin-top: 22px;
+    padding: 8px 12px;
+    border-radius: 6px;
+  }
+}
 
 /* COUNTDOWN SECTION */
 .countdown-section {
@@ -1283,7 +1285,6 @@ footer::before {
 
 /* =========================================================
    PREMIUM VENUE MAP BUTTON
-   Elegant gold glass finish + animated shine
    ========================================================= */
 .map-btn {
   position: relative;
@@ -1429,11 +1430,8 @@ footer::before {
   }
 }
 
-
-
 /* =========================================================
    CLEAN PREMIUM PARENTS / BLESSINGS SECTION
-   Minimal luxury — balanced spacing, no visual clutter
    ========================================================= */
 
 .parents-section {
@@ -1790,10 +1788,8 @@ footer::before {
   filter: blur(2px);
   transform: scale(1.1);
 
-  z-index: 0;   /* 🔥 stays behind everything */
+  z-index: 0;
 }
-
-
 
 .hand {
   position: absolute;
@@ -1801,7 +1797,7 @@ footer::before {
   height: 100vh;
   width: auto;
 
-  min-width: 60vw;   /* 🔥 THIS FIXES SLIM LOOK */
+  min-width: 60vw;
   max-width: none;
 
   object-fit: contain;
@@ -1812,21 +1808,18 @@ footer::before {
 }
 
 /* GODDESS HAND (LEFT) */
-/* INITIAL VISIBLE POSITION */
 .goddess {
-  left: -10%;   /* 🔥 bring inside */
-  bottom: -30%;  /* 🔥 adjust height */
+  left: -10%;
+  bottom: -30%;
   transform: rotate(-8deg) scale(0.95);
   z-index: 2;
-  
 }
 
 .god {
-  right: -10%;  /* 🔥 bring inside */
-  top: -30%;     /* 🔥 adjust height */
+  right: -10%;
+  top: -30%;
   transform: rotate(10deg) scale(0.95);
 }
-
 
 /* TEXT */
 .tap-text {
@@ -1863,8 +1856,6 @@ footer::before {
   pointer-events: none;
 }
 
-
-
 .divine-light {
   position: absolute;
   top: 50%;
@@ -1894,9 +1885,6 @@ footer::before {
   opacity: 1;
   transition: all 0.9s ease-in;
 }
-
-
-
 
 /* =========================================================
    WEDDING EVENTS — MOBILE ONE-BY-ONE LAYOUT
@@ -1940,17 +1928,13 @@ footer::before {
 
 /* =========================================================
    WEDDING EVENTS — MOBILE CONTENT SIZE FIX
-   Keep the card size exactly the same, enlarge only
-   the content inside each card.
    ========================================================= */
 @media (max-width: 576px) {
   .events-grid .event-card {
-    /* Keep the card dimensions EXACTLY the same */
     aspect-ratio: 1 / 1;
     padding: 18px 12px;
   }
 
-  /* Larger, more prominent event icon */
   .events-grid .event-card .icon {
     margin-bottom: 12px;
   }
@@ -1961,7 +1945,6 @@ footer::before {
     padding: 9px;
   }
 
-  /* Larger event name */
   .events-grid .event-card h3 {
     font-size: 2.2rem;
     line-height: 1.05;
@@ -1969,14 +1952,12 @@ footer::before {
     letter-spacing: 0.5px;
   }
 
-  /* Larger date */
   .events-grid .event-card .date {
     font-size: 1rem;
     line-height: 1.3;
     letter-spacing: 0.5px;
   }
 
-  /* Larger time */
   .events-grid .event-card p {
     font-size: 0.98rem;
     line-height: 1.25;
@@ -1984,7 +1965,7 @@ footer::before {
   }
 }
 
-/* Small phones — keep content prominent without changing card size */
+/* Small phones */
 @media (max-width: 380px) {
   .events-grid .event-card {
     padding: 16px 10px;
@@ -2017,10 +1998,8 @@ footer::before {
   }
 }
 
-
 /* =========================================================
    PREMIUM CARD ENTRANCE + MICRO-INTERACTIONS
-   Lightweight: transform/opacity only, triggered on reveal
    ========================================================= */
 
 /* PARENTS CARDS */
@@ -2231,10 +2210,8 @@ footer::before {
   }
 }
 
-
 /* =========================================================
    FINAL WEDDING EVENTS CARD SIZE — COMPACT MOBILE
-   Reduce empty space while keeping the enlarged content
    ========================================================= */
 @media (max-width: 576px) {
   .events-grid {
@@ -2265,10 +2242,8 @@ footer::before {
   }
 }
 
-
 /* =========================================================
    WEDDING MUSIC — PREMIUM ICON-ONLY ON/OFF CONTROL
-   Matches the website's warm ivory + gold + deep red palette.
    ========================================================= */
 #weddingMusic {
   display: none;
@@ -2455,11 +2430,8 @@ footer::before {
   }
 }
 
-
 /* =========================================================
    RECEPTION CARD — DINNER DETAILS
-   Added: gold divider + "Dinner" block inside the
-   Reception event card.
    ========================================================= */
 
 /* Gold divider between the reception time and dinner details */
@@ -2618,7 +2590,6 @@ footer::before {
   }
 }
 </style>
-
 </head>
 
 <body>
@@ -2757,10 +2728,6 @@ footer::before {
 
 </section>
 
-
-
-<!-- EVENTS -->
-
 <!-- EVENTS -->
 <section class="events-section">
 
@@ -2775,94 +2742,87 @@ footer::before {
     <div class="events-grid">
 
       <div class="event-card">
-  <div class="icon">
-    <img src="assests/haldiicon.png" alt="Haldi">
-  </div>
-  <h3>Haldi</h3>
-  <span class="date">14-10-2026</span>
-  <p>At VMR CONVENTION CENTRE, ROMPICHERLA</p>
-</div>
+        <div class="icon">
+          <img src="assests/haldiicon.png" alt="Haldi">
+        </div>
+        <h3>Haldi</h3>
+        <span class="date">14-10-2026</span>
+        <p>At VMR CONVENTION CENTRE, ROMPICHERLA</p>
+      </div>
 
+      <!-- ✅ RECEPTION (with Dinner details) -->
+      <div class="event-card reception-card">
+        <div class="icon">
+          <img src="assests/receptionicon.png" alt="Reception">
+        </div>
+        <h3>Reception</h3>
+        <span class="date">15-10-2026</span>
+        <p>Bet: 7.00 PM onwards</p>
 
+        <!-- Divider -->
+        <div class="event-divider" aria-hidden="true"></div>
 
-<!-- ✅ RECEPTION (with Dinner details) -->
-<div class="event-card reception-card">
-  <div class="icon">
-    <img src="assests/receptionicon.png" alt="Reception">
-  </div>
-  <h3>Reception</h3>
-  <span class="date">15-10-2026</span>
-  <p>Bet: 7.00 PM onwards</p>
+        <!-- Dinner details -->
+        <div class="dinner-title">Dinner</div>
+        <div class="dinner-text">
+          On Thursday 15-10-2026<br>
+          from 7.30 p.m. onwards
+        </div>
+      </div>
 
-  <!-- Divider -->
-  <div class="event-divider" aria-hidden="true"></div>
+      <div class="event-card">
+        <div class="icon">
+          <img src="assests/muhurtham.png" alt="Muhurtham">
+        </div>
+        <h3>Muhurtham</h3>
+        <span class="date">16 October 2026</span>
+        <p>Bet: 6.20 - 7.45 AM</p>
+      </div>
 
-  <!-- Dinner details -->
-  <div class="dinner-title">Dinner</div>
-  <div class="dinner-text">
-    On Thursday 15-10-2026<br>
-    from 7.30 p.m. onwards
-  </div>
-</div>
-
-<div class="event-card">
-  <div class="icon">
-    <img src="assests/muhurtham.png" alt="Muhurtham">
-  </div>
-  <h3>Muhurtham</h3>
-  <span class="date">16 October 2026</span>
-  <p>Bet: 6.20 - 7.45 AM</p>
-</div>
     </div>
   </div>
 
 </section>
 
 <!-- VENUE -->
-
 <section class="venue-section">
 
   <div class="v-layer v-layer1"></div>
-<div class="banana-img">
-  <img src="assests/bananaleaves.png">
-</div>
+  <div class="banana-img">
+    <img src="assests/bananaleaves.png">
+  </div>
 
   <!-- ✅ NEW TEMPLE LAYER -->
-<div class="temple-img">
-  <img src="assests/templeimg.png" alt="Temple">
-</div>
+  <div class="temple-img">
+    <img src="assests/templeimg.png" alt="Temple">
+  </div>
 
- <div class="venue-content reveal">
-  <h2>Venue</h2>
-  <p>V.M.R. Convention Center, Rompicherla Road,
-    Peddagottigallu, Rompicherla (M).</p>
-  
-  <!-- MAP BUTTON -->
-  <a href="https://share.google/MHIESOdjIinIUJmFC"
-     target="_blank"
-     class="map-btn">
-     View on Map
-  </a>
-</div>
+  <div class="venue-content reveal">
+    <h2>Venue</h2>
+    <p>V.M.R. Convention Center, Rompicherla Road,
+      Peddagottigallu, Rompicherla (M).</p>
+
+    <!-- MAP BUTTON -->
+    <a href="https://share.google/MHIESOdjIinIUJmFC"
+       target="_blank"
+       class="map-btn">
+       View on Map
+    </a>
+  </div>
 </section>
 
-
 <!-- GALLERY -->
-
 <section class="gallery-section">
   <h2 class="gallery-title reveal">Our Moments</h2>
 
   <div class="carousel reveal">
 
     <div class="carousel-track">
-     <img src="assests/hinducouple1.jpeg">
-<img src="assests/hinducouple2.jpeg">
-<img src="assests/hinducouple3.jpeg">
-<img src="assests/hinducouple4.png">
-
+      <img src="assests/hinducouple1.jpeg">
+      <img src="assests/hinducouple2.jpeg">
+      <img src="assests/hinducouple3.jpeg">
+      <img src="assests/hinducouple4.png">
     </div>
-
-
 
     <!-- Dots -->
     <div class="carousel-dots"></div>
@@ -2902,7 +2862,6 @@ footer::before {
 </section>
 
 <!-- FOOTER -->
-
 <footer>
   <div class="footer-content">
     <p class="footer-line">
@@ -2914,17 +2873,18 @@ footer::before {
     <p class="footer-love">With Love,</p>
 
     <h2 class="footer-names">Preethi & Dhanush</h2>
+
+    <div class="footer-divider"></div>
+
+    <!-- THARUN PHOTOGRAPHY LOGO -->
+    <img src="assests/tharunlogo.png" alt="Tharun Photography" class="footer-logo">
   </div>
 </footer>
 
 <!-- COUNTDOWN SCRIPT -->
-
 <script>
-
 /* =========================================================
    ALWAYS START INVITATION FROM HERO AFTER REFRESH
-   Prevent the browser from restoring the previous scroll
-   position (e.g. Countdown / Venue / Gallery) on reload.
    ========================================================= */
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -2936,12 +2896,8 @@ window.addEventListener("pageshow", () => {
   window.scrollTo(0, 0);
 });
 
-
 /* =========================================================
    WEDDING MUSIC
-   Playback starts from the invitation's intro click so that
-   browser autoplay restrictions are handled reliably.
-   Music is silent during the intro and fades in as Hero starts.
    ========================================================= */
 const weddingMusic = document.getElementById("weddingMusic");
 const musicToggle = document.getElementById("musicToggle");
@@ -2961,7 +2917,6 @@ function updateMusicButton() {
 
   musicToggle.setAttribute("aria-label", musicActionLabel);
   musicToggle.setAttribute("title", musicActionLabel);
-
 }
 
 function showMusicButton() {
@@ -2971,7 +2926,6 @@ function showMusicButton() {
 function startWeddingMusic() {
   if (!weddingMusic || !musicEnabled) return;
 
-  // This call happens directly from the user's intro click.
   weddingMusic.volume = 0;
 
   const playPromise = weddingMusic.play();
@@ -3050,7 +3004,6 @@ updateMusicButton();
 
 if (musicToggle) {
   musicToggle.addEventListener("click", (event) => {
-    // Prevent the button from triggering the intro click handler.
     event.stopPropagation();
 
     if (musicEnabled) {
@@ -3064,54 +3017,33 @@ if (musicToggle) {
 // START EVERYTHING ONLY AFTER INTRO
 const intro = document.getElementById("intro");
 
-
-
 intro.addEventListener("click", () => {
-
-  // Start music from the same user gesture that opens the invitation.
-  // Volume stays at zero until the Hero section appears.
   startWeddingMusic();
 
-  // Step 1: hands move
   intro.classList.add("active");
 
-  // Step 2: after hands meet
   setTimeout(() => {
     intro.classList.add("hide");
 
-    // Music control appears with the Hero.
     showMusicButton();
 
-    // Fade the music in smoothly as the Hero begins.
     fadeMusicIn(1200, 0.65);
 
-    // START HERO ANIMATION HERE ONLY
     document.querySelector(".hero").classList.add("loaded");
 
-    // START PARALLAX AFTER HERO ANIMATION
     setTimeout(() => {
       smoothParallax();
     }, 800);
 
-    // Start the continuous, gentle auto-scroll from the Hero.
-    // The delay lets the Hero animation settle before movement begins.
     smoothAutoScroll.start(900);
 
   }, 1400);
-
 });
 
 /* =========================================================
    PREMIUM CONTINUOUS AUTO-SCROLL
    ========================================================= */
-/* =========================================================
-   PREMIUM CONTINUOUS AUTO-SCROLL
-   Smooth startup + smooth continuous movement
-   Manual scrolling remains smooth
-   ========================================================= */
-
 const smoothAutoScroll = (() => {
-
   let running = false;
   let rafId = null;
   let lastTime = 0;
@@ -3119,9 +3051,7 @@ const smoothAutoScroll = (() => {
   let startTimer = null;
   let resumeTimer = null;
 
-  /* Auto-scroll speed */
   const SPEED = 40;
-
   const root = document.documentElement;
 
   function maxScroll() {
@@ -3131,27 +3061,15 @@ const smoothAutoScroll = (() => {
     );
   }
 
-  /* -----------------------------------------
-     Restore normal manual smooth scrolling
-     ----------------------------------------- */
   function restoreSmoothScroll() {
     root.style.scrollBehavior = "smooth";
   }
 
-  /* -----------------------------------------
-     Disable CSS smooth behavior while the
-     RAF auto-scroll is running.
-     This prevents the two systems fighting.
-     ----------------------------------------- */
   function prepareAutoScroll() {
     root.style.scrollBehavior = "auto";
   }
 
-  /* -----------------------------------------
-     STOP
-     ----------------------------------------- */
   function stop() {
-
     running = false;
     lastTime = 0;
 
@@ -3173,21 +3091,13 @@ const smoothAutoScroll = (() => {
     restoreSmoothScroll();
   }
 
-  /* -----------------------------------------
-     AUTO-SCROLL FRAME
-     ----------------------------------------- */
   function frame(now) {
-
     if (!running) return;
 
     if (!lastTime) {
       lastTime = now;
     }
 
-    /*
-      Prevent a large jump if the browser
-      temporarily pauses the animation.
-    */
     const elapsed = Math.min(32, now - lastTime);
     lastTime = now;
 
@@ -3198,17 +3108,10 @@ const smoothAutoScroll = (() => {
       return;
     }
 
-    /*
-      If user manually moved the page,
-      immediately synchronize our position.
-    */
     if (Math.abs(window.scrollY - position) > 3) {
       position = window.scrollY;
     }
 
-    /*
-      Smooth constant movement.
-    */
     position += SPEED * elapsed / 1000;
 
     if (position >= bottom) {
@@ -3222,12 +3125,6 @@ const smoothAutoScroll = (() => {
       return;
     }
 
-    /*
-      IMPORTANT:
-      behavior:auto + temporary CSS scrollBehavior:auto
-      prevents CSS smooth scrolling from fighting
-      against the requestAnimationFrame movement.
-    */
     window.scrollTo({
       top: position,
       left: 0,
@@ -3237,11 +3134,7 @@ const smoothAutoScroll = (() => {
     rafId = requestAnimationFrame(frame);
   }
 
-  /* -----------------------------------------
-     START
-     ----------------------------------------- */
   function start(delay = 900) {
-
     if (startTimer !== null) {
       clearTimeout(startTimer);
     }
@@ -3252,32 +3145,16 @@ const smoothAutoScroll = (() => {
     }
 
     startTimer = setTimeout(() => {
-
       startTimer = null;
 
-      /*
-        Make absolutely sure we start from the
-        current Hero position.
-      */
       prepareAutoScroll();
 
       position = window.scrollY;
       lastTime = 0;
 
-      /*
-        Wait for one browser paint so the Hero,
-        intro fade and layout are fully settled.
-      */
       requestAnimationFrame(() => {
-
         requestAnimationFrame(() => {
-
           if (maxScroll() <= 0) {
-            /*
-              Page is still calculating its height.
-              Try once again shortly instead of
-              recursively fighting the page.
-            */
             startTimer = setTimeout(() => {
               start(0);
             }, 300);
@@ -3294,19 +3171,12 @@ const smoothAutoScroll = (() => {
           }
 
           rafId = requestAnimationFrame(frame);
-
         });
-
       });
-
     }, delay);
   }
 
-  /* -----------------------------------------
-     MANUAL SCROLL PAUSE
-     ----------------------------------------- */
   function pauseForManualScroll() {
-
     if (!running) return;
 
     running = false;
@@ -3317,23 +3187,14 @@ const smoothAutoScroll = (() => {
       rafId = null;
     }
 
-    /*
-      Immediately restore normal smooth scrolling
-      for the user's manual movement.
-    */
     restoreSmoothScroll();
 
     if (resumeTimer !== null) {
       clearTimeout(resumeTimer);
     }
 
-    /*
-      Resume after the user stops manually scrolling.
-    */
     resumeTimer = setTimeout(() => {
-
       if (window.scrollY < maxScroll() - 2) {
-
         prepareAutoScroll();
 
         position = window.scrollY;
@@ -3342,65 +3203,36 @@ const smoothAutoScroll = (() => {
 
         rafId = requestAnimationFrame(frame);
       }
-
     }, 3000);
   }
 
-  /* -----------------------------------------
-     USER INPUT
-     ----------------------------------------- */
-
-  window.addEventListener(
-    "wheel",
-    pauseForManualScroll,
-    { passive: true }
-  );
-
-  window.addEventListener(
-    "touchstart",
-    pauseForManualScroll,
-    { passive: true }
-  );
-
-  window.addEventListener(
-    "keydown",
-    event => {
-
-      if (
-        [
-          "ArrowDown",
-          "ArrowUp",
-          "PageDown",
-          "PageUp",
-          "Home",
-          "End",
-          " "
-        ].includes(event.key)
-      ) {
-        pauseForManualScroll();
-      }
-
+  window.addEventListener("wheel", pauseForManualScroll, { passive: true });
+  window.addEventListener("touchstart", pauseForManualScroll, { passive: true });
+  window.addEventListener("keydown", event => {
+    if (
+      [
+        "ArrowDown",
+        "ArrowUp",
+        "PageDown",
+        "PageUp",
+        "Home",
+        "End",
+        " "
+      ].includes(event.key)
+    ) {
+      pauseForManualScroll();
     }
-  );
+  });
 
   return {
     start,
     stop
   };
-
 })();
 
 /* =========================
    WEDDING COUNTDOWN — MUHURTHAM
    ========================= */
-
-/*
-  The countdown is tied directly to the Muhurtham shown above:
-  05 September 2026 at 10:45 AM IST (India Standard Time).
-
-  Using an ISO timestamp with +05:30 makes the target unambiguous
-  even if the invitation is opened on a device in another timezone.
-*/
 const muhurthamDate = new Date("2026-10-16T07:45:00+05:30").getTime();
 
 const daysEl = document.getElementById("days");
@@ -3415,7 +3247,6 @@ let countdownFinished = false;
 function updateCountdown() {
   const distance = muhurthamDate - Date.now();
 
-  /* Muhurtham time reached */
   if (distance <= 0) {
     daysEl.textContent = "00";
     hoursEl.textContent = "00";
@@ -3441,20 +3272,17 @@ function updateCountdown() {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  /* Keep every unit synchronized and visually consistent */
   daysEl.textContent = String(days).padStart(2, "0");
   hoursEl.textContent = String(hours).padStart(2, "0");
   minutesEl.textContent = String(minutes).padStart(2, "0");
   secondsEl.textContent = String(seconds).padStart(2, "0");
 }
 
-/* Update immediately, then refresh every second */
 updateCountdown();
 
 if (!countdownFinished) {
   countdownTimer = setInterval(updateCountdown, 1000);
 }
-
 
 let scrollY = 0;
 
@@ -3463,7 +3291,6 @@ window.addEventListener("scroll", () => {
 });
 
 function smoothParallax() {
-
   // HERO
   document.querySelector(".layer1").style.transform =
     `translateY(${scrollY * 0.2}px)`;
@@ -3477,31 +3304,24 @@ function smoothParallax() {
   document.querySelector(".hero-text").style.transform =
     `translateY(${scrollY * 0.3}px)`;
 
+  // MUHURTHAM
+  const muhurtham = document.querySelector(".muhurtham");
+  const mTop = muhurtham.offsetTop;
+  const mDistance = scrollY - mTop;
 
-  // MUHURTHAM (🔥 smoother now)
-const muhurtham = document.querySelector(".muhurtham");
-const mTop = muhurtham.offsetTop;
-const mDistance = scrollY - mTop;
+  if (mDistance > -500 && mDistance < window.innerHeight + 500) {
+    document.querySelector(".m-layer1").style.transform =
+      `translateY(${mDistance * 0.05}px)`;
 
-if (mDistance > -500 && mDistance < window.innerHeight + 500) {
+    document.querySelector(".m-layer2").style.transform =
+      `translateY(${mDistance * 0.35}px)`;
 
-  // background slow (depth)
-  document.querySelector(".m-layer1").style.transform =
-    `translateY(${mDistance * 0.05}px)`;
+    document.querySelector(".m-layer3").style.transform =
+      `translateY(${mDistance * 0.3}px)`;
 
-  // god image medium
- document.querySelector(".m-layer2").style.transform =
-  `translateY(${mDistance * 0.35}px)`;
-
-  // banana leaves faster (front layer)
-  document.querySelector(".m-layer3").style.transform =
-    `translateY(${mDistance * 0.3}px)`;
-
-  // text slight movement
-  document.querySelector(".muhurtham-content").style.transform =
-    `translateY(${mDistance * 0.08}px)`;
-}
-
+    document.querySelector(".muhurtham-content").style.transform =
+      `translateY(${mDistance * 0.08}px)`;
+  }
 
   // VENUE
   const venue = document.querySelector(".venue-section");
@@ -3509,7 +3329,6 @@ if (mDistance > -500 && mDistance < window.innerHeight + 500) {
   const distance = scrollY - venueTop;
 
   if (distance > -500 && distance < window.innerHeight + 500) {
-
     document.querySelector(".banana-img").style.transform =
       `translateY(${distance * -0.1}px)`;
 
@@ -3529,7 +3348,6 @@ const eTop = events.offsetTop;
 const eDistance = scrollY - eTop;
 
 if (eDistance > -500 && eDistance < window.innerHeight + 500) {
-
   document.querySelector(".e-layer1").style.transform =
     `translateY(${eDistance * 0.05}px)`;
 
@@ -3539,7 +3357,6 @@ if (eDistance > -500 && eDistance < window.innerHeight + 500) {
   document.querySelector(".events-content").style.transform =
     `translateY(${eDistance * 0.1}px)`;
 }
-
 
 const reveals = document.querySelectorAll(".reveal");
 
@@ -3558,82 +3375,73 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 
 // CAROUSEL
+const track = document.querySelector('.carousel-track');
+const slides = document.querySelectorAll('.carousel-track img');
+const dotsContainer = document.querySelector('.carousel-dots');
+const carousel = document.querySelector('.carousel');
 
-  const track = document.querySelector('.carousel-track');
-  const slides = document.querySelectorAll('.carousel-track img');
-  const dotsContainer = document.querySelector('.carousel-dots');
-  const carousel = document.querySelector('.carousel');
+let index = 0;
 
-  let index = 0;
+dotsContainer.innerHTML = '';
 
-  // Clear existing dots to prevent duplicates on reload
-  dotsContainer.innerHTML = '';
+slides.forEach((_, i) => {
+  const dot = document.createElement('span');
+  if (i === 0) dot.classList.add('active');
+  dotsContainer.appendChild(dot);
 
-  // Create indicator dots dynamically
-  slides.forEach((_, i) => {
-    const dot = document.createElement('span');
-    if (i === 0) dot.classList.add('active');
-    dotsContainer.appendChild(dot);
-
-    dot.addEventListener('click', () => {
-      index = i;
-      updateCarousel();
-    });
+  dot.addEventListener('click', () => {
+    index = i;
+    updateCarousel();
   });
+});
 
-  const dots = document.querySelectorAll('.carousel-dots span');
+const dots = document.querySelectorAll('.carousel-dots span');
 
-  function updateCarousel() {
-    track.style.transform = `translateX(-${index * 100}%)`;
-    dots.forEach(dot => dot.classList.remove('active'));
-    if (dots[index]) {
-      dots[index].classList.add('active');
-    }
+function updateCarousel() {
+  track.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach(dot => dot.classList.remove('active'));
+  if (dots[index]) {
+    dots[index].classList.add('active');
   }
+}
 
-  // Auto slide every 2.5 seconds
-  let autoSlide = setInterval(() => {
+let autoSlide = setInterval(() => {
+  index = (index + 1) % slides.length;
+  updateCarousel();
+}, 2500);
+
+carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
+carousel.addEventListener('mouseleave', () => {
+  autoSlide = setInterval(() => {
     index = (index + 1) % slides.length;
     updateCarousel();
   }, 2500);
+});
 
-  // Pause auto-slide on touch/hover
-  carousel.addEventListener('mouseenter', () => clearInterval(autoSlide));
-  carousel.addEventListener('mouseleave', () => {
-    autoSlide = setInterval(() => {
+let startX = 0;
+let endX = 0;
+
+carousel.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+}, { passive: true });
+
+carousel.addEventListener('touchmove', (e) => {
+  endX = e.touches[0].clientX;
+}, { passive: true });
+
+carousel.addEventListener('touchend', () => {
+  const threshold = 50;
+  if (startX && endX) {
+    if (startX - endX > threshold) {
       index = (index + 1) % slides.length;
-      updateCarousel();
-    }, 2500);
-  });
-
-  // Touch Swipe Gesture logic
-  let startX = 0;
-  let endX = 0;
-
-  carousel.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener('touchmove', (e) => {
-    endX = e.touches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', () => {
-    const threshold = 50; // Minimum swipe distance in px
-    if (startX && endX) {
-      if (startX - endX > threshold) {
-        // Swiped Left -> Next Slide
-        index = (index + 1) % slides.length;
-      } else if (endX - startX > threshold) {
-        // Swiped Right -> Previous Slide
-        index = (index - 1 + slides.length) % slides.length;
-      }
-      updateCarousel();
+    } else if (endX - startX > threshold) {
+      index = (index - 1 + slides.length) % slides.length;
     }
-    // Reset touch coordinates
-    startX = 0;
-    endX = 0;
-  });
+    updateCarousel();
+  }
+  startX = 0;
+  endX = 0;
+});
 </script>
 
 </body>
