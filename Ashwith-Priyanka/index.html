@@ -52,10 +52,6 @@ button {
 
 /* =========================================================
    WEDDING MUSIC CONTROL
-   ---------------------------------------------------------
-   The button is fully hidden (opacity 0, no pointer events,
-   not focusable) until the guest leaves the intro screen and
-   enters the hero section. `enterHero()` adds `.show`.
 ========================================================= */
 
 .music-toggle {
@@ -78,7 +74,6 @@ button {
         0 8px 22px rgba(53,21,31,.22),
         inset 0 0 0 4px rgba(184,137,60,.08);
 
-    /* hidden state */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -133,8 +128,6 @@ button {
     align-items: center;
     justify-content: center;
 }
-
-/* ---------- REVEALED STATE (after the hero is entered) ---------- */
 
 .music-toggle.show {
     opacity: 1;
@@ -369,13 +362,7 @@ button {
 
 /* =========================================================
    HERO OPENING — CINEMATIC PARALLAX ENTRANCE
-   ---------------------------------------------------------
-   The hero is held in its "pre-entry" state (hidden) until the
-   intro screen is tapped. Once the intro begins to fade, the
-   JS adds the `.play` class which fires every staged animation.
 ========================================================= */
-
-/* ---------- PRE-ENTRY (hidden) STATE ---------- */
 
 .parallax.hero-intro .sky {
     opacity: 0;
@@ -411,8 +398,6 @@ button {
     opacity: 0;
     transform: translateY(30px);
 }
-
-/* ---------- PLAY STATE (triggered after intro tap) ---------- */
 
 .parallax.hero-intro.play .sky {
     animation: heroSkyDepth 2.8s cubic-bezier(.16,.72,.18,1) .05s forwards;
@@ -496,8 +481,6 @@ button {
 }
 
 @media (max-width: 768px) {
-
-    /* Pre-entry mobile positions */
     .parallax.hero-intro .temple img {
         transform: translateX(-50%) translateY(75px) scale(1.035);
     }
@@ -510,7 +493,6 @@ button {
         transform: translateY(125px) scale(1.07);
     }
 
-    /* Mobile animation timings */
     .parallax.hero-intro.play .sky {
         animation-duration: 2.55s;
     }
@@ -694,7 +676,6 @@ button {
     gap: clamp(35px, 5vw, 75px);
 }
 
-/* Arch-shaped framed portrait */
 .couple-photo {
     position: relative;
     width: 100%;
@@ -722,7 +703,6 @@ button {
     border-radius: 29% 29% 4px 4px;
 }
 
-/* First row: IMAGE LEFT — TEXT RIGHT */
 .couple-row:first-child .couple-photo {
     order: 1;
 }
@@ -751,13 +731,30 @@ button {
 }
 
 .couple-info h3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(58px, 7vw, 88px);
     font-style: italic;
     font-weight: 500;
-    line-height: .92;
     color: #8A5A18;
     margin: 12px 0 18px;
+    line-height: 1;
+}
+
+.couple-info h3 .name-main {
+    font-size: clamp(54px, 6.5vw, 82px);
+    line-height: .92;
+    letter-spacing: 0;
+}
+
+.couple-info h3 .name-family {
+    font-size: clamp(22px, 2.6vw, 32px);
+    line-height: 1.15;
+    letter-spacing: 1.5px;
+    color: #8A5A18;
+    opacity: .95;
 }
 
 .couple-info p {
@@ -767,7 +764,6 @@ button {
     margin: 0;
 }
 
-/* Ornamental divider between education and family details */
 .couple-info .info-divider {
     width: min(170px, 72%);
     height: 1px;
@@ -847,7 +843,6 @@ button {
     isolation: isolate;
 }
 
-/* Oversized bleed prevents solid background exposure */
 .muhurtham-bg {
     position: absolute;
     top: -5%;
@@ -1075,6 +1070,32 @@ button {
     font-size: clamp(15px, 1.8vw, 22px);
 }
 
+/* ---------------------------------------------------------
+   LUNCH NOTE — appears right after the Muhurtham time
+--------------------------------------------------------- */
+.muhurtham-lunch {
+    width: 100%;
+    margin: 6px 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(12px, 1.2vw, 16px);
+    line-height: 1.25;
+    color: #f0d99a;
+    text-shadow: 0 2px 6px rgba(0,0,0,.55);
+    text-align: center;
+}
+
+.muhurtham-lunch-icon {
+    font-style: normal;
+    color: #d8b25d;
+    font-size: 0.95em;
+    line-height: 1;
+}
+
 .muhurtham-heart-icon {
     width: 26px;
     height: 26px;
@@ -1154,7 +1175,6 @@ button {
     margin: 17px auto 0;
 }
 
-/* Timeline wrapper */
 #events .timeline {
     position: relative;
     width: min(100%, 920px);
@@ -1165,9 +1185,6 @@ button {
     gap: 28px;
 }
 
-/* ---------------------------------------------
-   EVENT CARD
---------------------------------------------- */
 #events .event {
     position: relative;
     width: 100%;
@@ -1196,7 +1213,6 @@ button {
     z-index: -1;
 }
 
-/* Large date panel */
 #events .event-date {
     grid-row: 1 / -1;
     width: auto;
@@ -1256,7 +1272,6 @@ button {
     color: #E0B85C;
 }
 
-/* Event name */
 #events .event h3 {
     grid-column: 2;
     margin: 25px 26px 18px;
@@ -1277,13 +1292,13 @@ button {
     vertical-align: middle;
 }
 
-/* Details grid: TIME / VENUE / ADDRESS */
+/* Details grid: TIME | ADDRESS (VENUE removed) */
 #events .event-details {
     grid-column: 2;
-    margin: 0 20px 16px;
+    margin: 0 20px 22px;
     padding: 0;
     display: grid;
-    grid-template-columns: .75fr 1fr 1.55fr;
+    grid-template-columns: 1fr 2.1fr;
     border: 1px solid rgba(184,137,60,.30);
     border-radius: 14px;
     background: #FFF9F3;
@@ -1327,10 +1342,6 @@ button {
     content: "◷";
 }
 
-#events .event-detail:nth-child(2) span::before {
-    content: "⌂";
-}
-
 #events .event-detail-address span::before {
     content: "⌖";
 }
@@ -1357,36 +1368,6 @@ button {
     line-height: 1.25;
 }
 
-/* ---------------------------------------------
-   LUNCH LINE
---------------------------------------------- */
-#events .event-lunch {
-    grid-column: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 0 20px 22px;
-    padding: 13px 16px;
-    border: 1px solid rgba(184,137,60,.34);
-    border-radius: 12px;
-    background: linear-gradient(135deg, rgba(255,249,240,.96), rgba(249,238,225,.92));
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 19px;
-    font-style: italic;
-    line-height: 1.3;
-    color: #6B4650;
-    text-align: center;
-}
-
-#events .event-lunch-icon {
-    color: #B8893C;
-    font-size: 15px;
-    font-style: normal;
-    line-height: 1;
-}
-
-/* Small decorative marker */
 #events .event-dot {
     position: absolute;
     top: 15px;
@@ -1410,9 +1391,6 @@ button {
     background: #35151F;
 }
 
-/* ---------------------------------------------
-   EVENT CARD ANIMATION
---------------------------------------------- */
 #events .event.reveal {
     opacity: 0;
     transform: translate3d(0, 34px, 0) scale(.975);
@@ -1456,18 +1434,12 @@ button {
     }
 }
 
-/* ---------------------------------------------
-   EVENTS — DESKTOP
---------------------------------------------- */
 @media (min-width: 769px) {
     #events .section-heading {
         margin-bottom: 65px;
     }
 }
 
-/* ---------------------------------------------
-   EVENTS — MOBILE
---------------------------------------------- */
 @media (max-width: 768px) {
     #events {
         padding: 68px 14px 76px;
@@ -1543,9 +1515,10 @@ button {
         font-size: clamp(36px, 10vw, 48px);
     }
 
+    /* Mobile: single column stack — TIME on top, ADDRESS below */
     #events .event-details {
-        margin: 0 13px 14px;
-        grid-template-columns: 1fr 1fr;
+        margin: 0 13px 18px;
+        grid-template-columns: 1fr;
         border-radius: 13px;
     }
 
@@ -1557,17 +1530,11 @@ button {
         border-top: 1px solid rgba(184,137,60,.15);
     }
 
-    #events .event-detail:nth-child(1),
-    #events .event-detail:nth-child(2) {
+    #events .event-detail:first-child {
         border-top: 0;
     }
 
-    #events .event-detail:nth-child(even) {
-        border-left: 1px solid rgba(184,137,60,.15);
-    }
-
     #events .event-detail-address {
-        grid-column: 1 / -1;
         min-height: 82px;
     }
 
@@ -1589,12 +1556,6 @@ button {
         line-height: 1.25;
     }
 
-    #events .event-lunch {
-        margin: 0 13px 16px;
-        padding: 12px 14px;
-        font-size: 17px;
-    }
-
     #events .event-dot {
         top: 15px;
         right: 15px;
@@ -1603,7 +1564,6 @@ button {
     }
 }
 
-/* Very small phones */
 @media (max-width: 380px) {
     #events {
         padding-left: 12px;
@@ -1631,12 +1591,6 @@ button {
     #events .event-details {
         margin-left: 11px;
         margin-right: 11px;
-    }
-
-    #events .event-lunch {
-        margin-left: 11px;
-        margin-right: 11px;
-        font-size: 16px;
     }
 
     #events .event-detail {
@@ -1917,13 +1871,13 @@ button {
 
 
 /* =========================================================
-   SECTION 5B - RSVP (CLEAN & SIMPLE REDESIGN)
+   SECTION 5B - RSVP
 ========================================================= */
 
 #rsvp {
     position: relative;
     padding: 80px 20px 100px;
-    background: #241019; /* Dark theme background */
+    background: #241019;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1938,7 +1892,6 @@ button {
     align-items: center;
 }
 
-/* Top Ornament Line */
 .rsvp-ornament {
     display: flex;
     align-items: center;
@@ -1962,42 +1915,50 @@ button {
     line-height: 1;
 }
 
-/* Card Container */
 .rsvp-card {
     position: relative;
     z-index: 2;
     width: min(500px, 100%);
-    background: #2E1A22; /* Slightly lighter than background */
+    background: #2E1A22;
     border: 1px solid rgba(224, 184, 92, 0.25);
     border-radius: 16px;
     padding: 35px 30px;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
 }
 
-/* Form Layout */
 .rsvp-form {
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* Individual Fields */
 .rsvp-field {
     width: 100%;
 }
 
-/* Remove the label text from view, use placeholder as per image */
 .rsvp-field label {
     display: none;
 }
 
-/* Input, Select, Textarea Styling */
+#rsvpGuestsField > label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #E0B85C;
+    margin-bottom: 10px;
+    text-align: left;
+    line-height: 1.2;
+}
+
 .rsvp-field input,
 .rsvp-field select,
 .rsvp-field textarea {
     width: 100%;
     padding: 16px 18px;
-    background: #3D232C; /* Dark input background */
+    background: #3D232C;
     border: 1px solid rgba(224, 184, 92, 0.25);
     border-radius: 8px;
     color: #FFFDFC;
@@ -2015,14 +1976,12 @@ button {
     min-height: 90px;
 }
 
-/* Placeholder text styling */
 .rsvp-field input::placeholder,
 .rsvp-field textarea::placeholder {
     color: #A8897B;
     font-style: italic;
 }
 
-/* Focus states */
 .rsvp-field input:focus,
 .rsvp-field select:focus,
 .rsvp-field textarea:focus {
@@ -2031,7 +1990,6 @@ button {
     box-shadow: 0 0 0 3px rgba(224, 184, 92, 0.1);
 }
 
-/* Custom Dropdown Arrow */
 .rsvp-field select {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E0B85C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -2046,13 +2004,100 @@ button {
     color: #FFFDFC;
 }
 
-/* Disabled state for Guests Field */
 .rsvp-field.is-disabled {
     opacity: 0.4;
     pointer-events: none;
 }
 
-/* Submit Button */
+.rsvp-field .rsvp-stepper {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    background: #3D232C;
+    border: 1px solid rgba(224, 184, 92, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rsvp-field .rsvp-stepper:focus-within {
+    border-color: #E0B85C;
+    background: #4A2A34;
+    box-shadow: 0 0 0 3px rgba(224, 184, 92, 0.1);
+}
+
+.rsvp-stepper-btn {
+    flex: 0 0 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #E0B85C;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .rsvp-stepper-btn:hover:not(:disabled) {
+        background: rgba(224, 184, 92, 0.14);
+        color: #FFF9F0;
+    }
+}
+
+.rsvp-stepper-btn:active:not(:disabled) {
+    background: rgba(224, 184, 92, 0.24);
+}
+
+.rsvp-stepper-btn:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+}
+
+.rsvp-stepper-btn:focus-visible {
+    outline: 2px solid #E0B85C;
+    outline-offset: -3px;
+}
+
+.rsvp-field .rsvp-stepper input,
+.rsvp-field .rsvp-stepper input:focus {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    padding: 16px 4px;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid rgba(224, 184, 92, 0.18);
+    border-right: 1px solid rgba(224, 184, 92, 0.18);
+    border-radius: 0;
+    box-shadow: none;
+    color: #FFFDFC;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    outline: none;
+    cursor: default;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.rsvp-field .rsvp-stepper input::-webkit-outer-spin-button,
+.rsvp-field .rsvp-stepper input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .rsvp-submit {
     margin-top: 10px;
     width: 100%;
@@ -2087,7 +2132,6 @@ button {
     transform: none;
 }
 
-/* Status Message */
 .rsvp-status {
     min-height: 20px;
     margin-top: 5px;
@@ -2103,7 +2147,6 @@ button {
 .rsvp-status.show { opacity: 1; }
 .rsvp-status.error { color: #F2A6A6; }
 
-/* Thank You State */
 .rsvp-thanks {
     display: none;
     text-align: center;
@@ -2148,7 +2191,6 @@ button {
     margin: 0 auto;
 }
 
-/* Responsive adjustments */
 @media (max-width: 480px) {
     .rsvp-card {
         padding: 25px 20px;
@@ -2162,6 +2204,22 @@ button {
     .rsvp-submit {
         padding: 16px 20px;
         font-size: 11px;
+    }
+
+    .rsvp-stepper-btn {
+        flex-basis: 52px;
+        font-size: 25px;
+    }
+
+    .rsvp-field .rsvp-stepper input,
+    .rsvp-field .rsvp-stepper input:focus {
+        padding: 14px 4px;
+        font-size: 20px;
+    }
+
+    #rsvpGuestsField > label {
+        font-size: 9px;
+        letter-spacing: 2px;
     }
 }
 
@@ -2232,7 +2290,7 @@ button {
 }
 
 #countdown .section-heading h2::after {
-    content: "05 · SEPTEMBER · 2026";
+    content: "26 · NOVEMBER · 2026";
     display: block;
     margin: 22px auto 0;
     font-family: 'Montserrat', sans-serif;
@@ -2433,14 +2491,92 @@ footer {
     color: #E5D5CA;
 }
 
+/* ---------------------------------------------------------
+   #PRIYASH HASHTAG — elegant gold script-style display
+--------------------------------------------------------- */
+.footer-hashtag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 40px auto 0;
+    padding: 16px 38px;
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(34px, 5.5vw, 54px);
+    font-weight: 600;
+    letter-spacing: 6px;
+    line-height: 1;
+    color: #E0B85C;
+    background: linear-gradient(135deg, rgba(224,184,92,.10), rgba(224,184,92,.02));
+    border: 1px solid rgba(224,184,92,.55);
+    border-radius: 999px;
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.06);
+    text-shadow:
+        0 2px 6px rgba(0,0,0,.45),
+        0 0 18px rgba(224,184,92,.28);
+    transition: transform .4s ease, box-shadow .4s ease, color .4s ease;
+}
+
+.footer-hashtag::before,
+.footer-hashtag::after {
+    content: "";
+    font-style: normal;
+    font-size: 0.42em;
+    letter-spacing: 0;
+    color: #E0B85C;
+    opacity: .85;
+    transform: translateY(-2px);
+}
+
+.footer-hashtag .hash {
+    color: #B8893C;
+    font-size: 0.88em;
+    letter-spacing: 0;
+    margin-right: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .footer-hashtag:hover {
+        transform: translateY(-3px);
+        color: #F4D488;
+        box-shadow:
+            0 16px 38px rgba(0,0,0,.35),
+            0 0 26px rgba(224,184,92,.32),
+            inset 0 1px 0 rgba(255,255,255,.08);
+    }
+}
+
 .footer-bottom {
-    margin-top: 60px;
+    margin-top: 40px;
     padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,.1);
     font-family: 'Montserrat', sans-serif;
     font-size: 9px;
     letter-spacing: 2px;
     color: #A8897B;
+}
+
+@media (max-width: 768px) {
+    .footer-hashtag {
+        margin-top: 32px;
+        padding: 12px 26px;
+        gap: 12px;
+        font-size: clamp(28px, 8vw, 42px);
+        letter-spacing: 4px;
+    }
+
+    .footer-hashtag::before,
+    .footer-hashtag::after {
+        font-size: 0.38em;
+    }
+
+    .footer-bottom {
+        margin-top: 32px;
+    }
 }
 
 
@@ -2496,7 +2632,6 @@ footer {
     transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Goddess hand (left) — initial position */
 .goddess {
     left: -10%;
     bottom: -30%;
@@ -2504,7 +2639,6 @@ footer {
     z-index: 2;
 }
 
-/* God hand (right) — initial position */
 .god {
     right: -10%;
     top: -30%;
@@ -2525,7 +2659,6 @@ footer {
     50% { opacity: 0.4; }
 }
 
-/* Hands come together */
 .firstsection.active .goddess {
     bottom: 5%;
     left: 15%;
@@ -2624,7 +2757,6 @@ footer {
     .section { padding: 75px 18px; }
     .section-heading { margin-bottom: 40px; }
 
-    /* Couple */
     #couple-section {
         padding-top: 70px;
         padding-bottom: 75px;
@@ -2683,9 +2815,19 @@ footer {
     }
 
     .couple-info h3 {
-        font-size: clamp(38px, 12vw, 58px);
-        line-height: .92;
+        gap: 2px;
         margin: 9px 0 16px;
+    }
+
+    .couple-info h3 .name-main {
+        font-size: clamp(34px, 10vw, 52px);
+        line-height: .92;
+    }
+
+    .couple-info h3 .name-family {
+        font-size: clamp(16px, 4.2vw, 24px);
+        letter-spacing: 1px;
+        line-height: 1.15;
     }
 
     .couple-info p {
@@ -2708,7 +2850,6 @@ footer {
         padding: 0 5px;
     }
 
-    /* Muhurtham */
     #muhurtham {
         height: 100vh;
         min-height: 550px;
@@ -2766,6 +2907,12 @@ footer {
         font-size: 16px;
     }
 
+    .muhurtham-lunch {
+        font-size: 12px;
+        gap: 5px;
+        margin: 5px 0 1px;
+    }
+
     .muhurtham-heart-icon {
         width: 22px;
         height: 22px;
@@ -2794,9 +2941,6 @@ footer {
 
 <!-- =====================================================
      WEDDING MUSIC
-     -----------------------------------------------------
-     The audio element and the control button both stay
-     dormant until the hero section is entered.
 ===================================================== -->
 
 <audio id="weddingMusic" preload="auto" loop>
@@ -2863,11 +3007,14 @@ footer {
         <div class="couple-layout">
             <div class="couple-row">
                 <div class="couple-photo reveal">
-                    <img src="assets/GroomImg.png" alt="Ashwith">
+                    <img src="assets/GroomImg.png" alt="Ashwith Reddy Gollamada">
                 </div>
                 <div class="couple-info reveal">
                     <div class="person-role">The Groom</div>
-                    <h3>Ashwith</h3>
+                    <h3>
+                        <span class="name-main">Ashwith</span>
+                        <span class="name-family">Reddy Gollamada</span>
+                    </h3>
                     <div class="info-divider" aria-hidden="true"></div>
                     <p>
                         Son of<br>
@@ -2880,16 +3027,19 @@ footer {
             <div class="couple-row reverse">
                 <div class="couple-info reveal">
                     <div class="person-role">The Bride</div>
-                    <h3>Priyanka</h3>
+                    <h3>
+                        <span class="name-main">Priyanka</span>
+                        <span class="name-family">Reddy Muthyala</span>
+                    </h3>
                     <div class="info-divider" aria-hidden="true"></div>
                     <p>
                         Daughter of<br>
-                        <strong>Smt. Muthyala Sharadha</strong> &amp;<br>
-                        <strong>Sri Muthyala Tirupathi Reddy</strong>
+                        <strong>Sri Muthyala Tirupathi Reddy</strong> &amp;<br>
+                        <strong>Smt. Muthyala Sharadha</strong>
                     </p>
                 </div>
                 <div class="couple-photo reveal">
-                    <img src="assets/BrideImg.png" alt="Priyanka">
+                    <img src="assets/BrideImg.png" alt="Priyanka Reddy Muthyala">
                 </div>
             </div>
         </div>
@@ -2935,6 +3085,11 @@ footer {
                     <div class="detail-item">
                         <span>MUHURTHAM</span>
                         <strong class="time-text">10:15 AM</strong>
+                    </div>
+
+                    <div class="muhurtham-lunch">
+                        <span class="muhurtham-lunch-icon" aria-hidden="true"></span>
+                        <span>Followed by Lunch at 12:30 PM</span>
                     </div>
 
                     <div class="section-divider"><span>•</span></div>
@@ -2988,27 +3143,17 @@ footer {
 
                 <h3>Wedding</h3>
 
+                <!-- VENUE box removed; only TIME and ADDRESS remain -->
                 <div class="event-details">
                     <div class="event-detail event-detail-time">
                         <span>TIME</span>
                         <strong>10:15 AM</strong>
                     </div>
 
-                    <div class="event-detail">
-                        <span>VENUE</span>
-                        <strong>Bharatiya Temple of Lansing</strong>
-                    </div>
-
                     <div class="event-detail event-detail-address">
                         <span>ADDRESS</span>
                         <strong>Bharatiya Temple of Lansing, 955 Haslett Rd, Haslett, MI 48840</strong>
                     </div>
-                </div>
-
-                <!-- LUNCH LINE -->
-                <div class="event-lunch">
-                    <span class="event-lunch-icon" aria-hidden="true">❦</span>
-                    <span>Followed by Lunch at 12:30 PM</span>
                 </div>
             </div>
 
@@ -3025,7 +3170,7 @@ footer {
     <div class="section-inner">
         <div class="venue-grid reveal">
             <div class="venue-info">
-                <div class="label">Wedding &amp; Reception</div>
+                <div class="label">Wedding </div>
                 <h3>Bharatiya Temple <br>of Lansing</h3>
                 <p>955 Haslett Rd,<br>Haslett, MI 48840</p>
                 <div class="venue-note">A beautiful setting for our most cherished celebration.</div>
@@ -3039,12 +3184,11 @@ footer {
 
 
 <!-- =====================================================
-     SECTION 5B - RSVP (UPDATED)
+     SECTION 5B - RSVP
 ===================================================== -->
 
 <section class="section" id="rsvp">
     <div class="section-inner">
-        <!-- Added Heading -->
         <div class="section-heading reveal" style="margin-bottom: 20px;">
             <div class="section-label" style="color: #E0B85C; letter-spacing: 5px;">Kindly Respond</div>
             <h2 style="color: #FFF9F0; font-family: 'Playfair Display', serif; font-size: clamp(38px, 6vw, 56px);">RSVP</h2>
@@ -3052,7 +3196,6 @@ footer {
             <p style="color: #A8897B; max-width: 400px; margin: 0 auto; font-size: 18px;">Please let us know if you can join us.</p>
         </div>
 
-        <!-- Top Ornament Line -->
         <div class="rsvp-ornament reveal">
             <span>✦</span>
         </div>
@@ -3072,8 +3215,6 @@ footer {
                     >
                 </div>
 
-                <!-- EMAIL FIELD REMOVED AS REQUESTED -->
-
                 <div class="rsvp-field">
                     <label for="rsvpAttending">Will you be attending?</label>
                     <select id="rsvpAttending" name="attending" required>
@@ -3085,16 +3226,35 @@ footer {
 
                 <div class="rsvp-field" id="rsvpGuestsField">
                     <label for="rsvpGuests">Number of Guests Attending</label>
-                    <input
-                        type="number"
-                        id="rsvpGuests"
-                        name="guests"
-                        min="1"
-                        max="20"
-                        step="1"
-                        inputmode="numeric"
-                        placeholder="Number of Guests Attending"
-                    >
+
+                    <div class="rsvp-stepper">
+                        <button
+                            type="button"
+                            class="rsvp-stepper-btn"
+                            id="guestMinus"
+                            aria-label="Decrease number of guests"
+                        >−</button>
+
+                        <input
+                            type="number"
+                            id="rsvpGuests"
+                            name="guests"
+                            min="1"
+                            max="20"
+                            step="1"
+                            value="1"
+                            inputmode="numeric"
+                            aria-label="Number of Guests Attending"
+                            readonly
+                        >
+
+                        <button
+                            type="button"
+                            class="rsvp-stepper-btn"
+                            id="guestPlus"
+                            aria-label="Increase number of guests"
+                        >+</button>
+                    </div>
                 </div>
 
                 <div class="rsvp-field">
@@ -3107,14 +3267,11 @@ footer {
                     ></textarea>
                 </div>
 
-                <!-- HONEYPOT REMOVED TO FIX WHITE BOX ISSUE -->
-
                 <button type="submit" class="rsvp-submit">Submit RSVP</button>
 
                 <div class="rsvp-status" id="rsvpStatus" role="status" aria-live="polite"></div>
             </form>
 
-            <!-- Thank-you state -->
             <div class="rsvp-thanks" id="rsvpThanks">
                 <div class="rsvp-thanks-icon" aria-hidden="true">♥</div>
                 <h3>Thank You!</h3>
@@ -3176,6 +3333,14 @@ footer {
         Your presence, love and blessings will make
         our wedding celebration even more special.
     </div>
+
+    <!-- =============================================
+         #PRIYASH HASHTAG
+    ============================================== -->
+    <div class="footer-hashtag" aria-label="Wedding hashtag Priyash">
+        <span class="hash">#</span>PRIYASH
+    </div>
+
     <div class="footer-bottom">
         MADE WITH LOVE · Ashwith &amp; Priyanka · 2026
     </div>
@@ -3218,21 +3383,13 @@ render();
 ========================================================= */
 const hero = document.getElementById("hero");
 
-/* Fires the staged rise/reveal animation of the hero section
-   AND unlocks the wedding music, which is only allowed to
-   begin once the guest has actually entered the hero. */
 function playHeroIntro() {
     if (!hero || hero.classList.contains("play")) return;
 
     hero.classList.add("play");
 
-    /* Music + music button become available right here — the
-       moment the invitation opens into the hero section. */
     enterHeroSection();
 
-    /* Once every staged animation has finished, drop the
-       animation classes so the hero returns to its clean,
-       scroll-driven parallax state. */
     window.setTimeout(() => {
         hero.classList.remove("hero-intro", "play");
     }, 3300);
@@ -3297,17 +3454,10 @@ muhurthamParallaxLoop();
 
 /* =========================================================
    WEDDING MUSIC
-   ---------------------------------------------------------
-   The music NEVER plays during the intro screen. It is only
-   allowed to start once `enterHeroSection()` runs — i.e. when
-   the hands have come together, the intro has faded, and the
-   hero section is revealed. The control button is hidden
-   until that exact same moment.
 ========================================================= */
 const weddingMusic = document.getElementById("weddingMusic");
 const musicToggle = document.getElementById("musicToggle");
 
-/* Gate flag — blocks all playback until the hero is entered. */
 let heroEntered = false;
 
 function updateMusicButton(isPlaying) {
@@ -3329,7 +3479,6 @@ function updateMusicButton(isPlaying) {
 }
 
 function startWeddingMusic() {
-    /* Hard gate: no music before the hero section. */
     if (!heroEntered) return;
     if (!weddingMusic) return;
 
@@ -3348,23 +3497,16 @@ function stopWeddingMusic() {
     updateMusicButton(false);
 }
 
-/* ---------------------------------------------------------
-   Called once, from playHeroIntro(), when the guest enters
-   the hero section. Reveals the music button and starts the
-   background track.
---------------------------------------------------------- */
 function enterHeroSection() {
     if (heroEntered) return;
     heroEntered = true;
 
-    /* Reveal the music control */
     if (musicToggle) {
         musicToggle.classList.add("show");
         musicToggle.setAttribute("aria-hidden", "false");
         musicToggle.removeAttribute("tabindex");
     }
 
-    /* Begin the wedding music */
     startWeddingMusic();
 }
 
@@ -3378,7 +3520,6 @@ if (weddingMusic && musicToggle) {
         event.preventDefault();
         event.stopPropagation();
 
-        /* Safety: never allow playback before the hero. */
         if (!heroEntered) return;
 
         if (weddingMusic.paused) {
@@ -3422,13 +3563,9 @@ setInterval(updateCountdown, 1000);
 
 
 /* =========================================================
-   RSVP FORM  →  GOOGLE APPS SCRIPT
-   ---------------------------------------------------------
-   1. Deploy your Google Apps Script as a Web App
-      (Execute as: Me · Who has access: Anyone)
-   2. Paste the /exec URL below.
+   RSVP FORM → GOOGLE APPS SCRIPT
 ========================================================= */
-const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPpRvMzcUQmetmKKeCwtoZAhcVW09vjihnEO5EmFnHSYKxzu5GeQK/exec";
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzCjSML8Pwc36lqutgVpdNa8pJWem_GlpwDptdfFjHStmVHGMDYqJrPvtzs8tDtBatO/exec";
 
 (function initRsvpForm() {
     const rsvpForm = document.getElementById("rsvpForm");
@@ -3441,10 +3578,14 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
     const attendingEl  = document.getElementById("rsvpAttending");
     const guestsEl     = document.getElementById("rsvpGuests");
     const guestsField  = document.getElementById("rsvpGuestsField");
+    const guestMinus   = document.getElementById("guestMinus");
+    const guestPlus    = document.getElementById("guestPlus");
     const nameEl       = document.getElementById("rsvpName");
     const messageEl    = document.getElementById("rsvpMessage");
 
-    /* ---------- status helper ---------- */
+    const GUEST_MIN = 1;
+    const GUEST_MAX = 20;
+
     function setStatus(message, isError) {
         if (!statusEl) return;
         statusEl.textContent = message || "";
@@ -3452,7 +3593,38 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
         statusEl.classList.toggle("error", Boolean(isError));
     }
 
-    /* ---------- guests field enable / disable ---------- */
+    function updateStepperState() {
+        const current = Number(guestsEl.value) || 0;
+        const notAttending = attendingEl.value === "No";
+
+        if (guestMinus) {
+            guestMinus.disabled = notAttending || current <= GUEST_MIN;
+        }
+        if (guestPlus) {
+            guestPlus.disabled = notAttending || current >= GUEST_MAX;
+        }
+    }
+
+    function setGuests(nextValue) {
+        const clamped = Math.min(GUEST_MAX, Math.max(GUEST_MIN, nextValue));
+        guestsEl.value = String(clamped);
+        updateStepperState();
+    }
+
+    if (guestMinus) {
+        guestMinus.addEventListener("click", (event) => {
+            event.preventDefault();
+            setGuests((Number(guestsEl.value) || GUEST_MIN) - 1);
+        });
+    }
+
+    if (guestPlus) {
+        guestPlus.addEventListener("click", (event) => {
+            event.preventDefault();
+            setGuests((Number(guestsEl.value) || GUEST_MIN) + 1);
+        });
+    }
+
     function syncGuestsField() {
         const value = attendingEl.value;
         const notAttending = value === "No";
@@ -3462,8 +3634,12 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
         guestsEl.required = value === "Yes";
 
         if (notAttending) {
-            guestsEl.value = "";
+            guestsEl.value = "0";
+        } else if (value === "Yes" && (!guestsEl.value || Number(guestsEl.value) < GUEST_MIN)) {
+            guestsEl.value = String(GUEST_MIN);
         }
+
+        updateStepperState();
     }
 
     attendingEl.addEventListener("change", () => {
@@ -3473,7 +3649,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
 
     syncGuestsField();
 
-    /* ---------- submit ---------- */
     rsvpForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -3484,7 +3659,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
         const guests    = attending === "Yes" ? (guestsEl.value.trim() || "1") : "0";
         const message   = messageEl ? messageEl.value.trim() : "";
 
-        // Removed email validation
         if (!name || !attending) {
             setStatus("Please fill in all the required fields.", true);
             return;
@@ -3495,7 +3669,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
             return;
         }
 
-        /* Build form-encoded payload (CORS-safe, no preflight) */
         const payload = new URLSearchParams();
         payload.append("name", name);
         payload.append("attending", attending);
@@ -3516,8 +3689,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
             body: payload.toString()
         })
         .then(() => {
-            /* "no-cors" returns an opaque response, so a resolved
-               request is treated as a successful submission. */
             showThanks(name, attending);
         })
         .catch(() => {
@@ -3527,7 +3698,6 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
         });
     });
 
-    /* ---------- thank-you state ---------- */
     function showThanks(name, attending) {
         if (thanksTextEl) {
             thanksTextEl.textContent = attending === "Yes"
@@ -3543,26 +3713,16 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbwBABtq4D2L54HrPp
 
 /* =========================================================
    INTRO SCREEN → START THE EXPERIENCE
-   ---------------------------------------------------------
-   Tapping the intro ONLY plays the hands-together animation.
-   No music starts here. Once the intro fades away and the
-   hero takes over, playHeroIntro() runs — and that is the
-   single moment where the music and its button come to life.
 ========================================================= */
 const firstsection = document.getElementById("firstsection");
 
 firstsection.addEventListener("click", () => {
 
-    // Hands move together and the divine light appears
     firstsection.classList.add("active");
 
-    // Fade out the intro, then remove it from the flow
     setTimeout(() => {
         firstsection.classList.add("hide");
 
-        // The hero rise animation starts exactly as the intro fades.
-        // This call also unlocks + starts the wedding music and
-        // reveals the music toggle button.
         playHeroIntro();
 
         setTimeout(() => {
