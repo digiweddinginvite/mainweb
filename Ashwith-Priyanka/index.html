@@ -3116,11 +3116,6 @@ footer {
 </section>
 
 
-<!-- =====================================================
-     SECTION 4 - WEDDING EVENTS
-===================================================== -->
-
-
 
 
 <!-- =====================================================
@@ -3416,80 +3411,198 @@ muhurthamParallaxLoop();
 /* =========================================================
    WEDDING MUSIC
 ========================================================= */
+
+/* =========================================================
+   WEDDING MUSIC
+   iOS-SAFE USER-GESTURE START
+========================================================= */
+
 const weddingMusic = document.getElementById("weddingMusic");
 const musicToggle = document.getElementById("musicToggle");
 
 let heroEntered = false;
+let musicStartedByGesture = false;
 
 function updateMusicButton(isPlaying) {
     if (!musicToggle) return;
 
     musicToggle.classList.toggle("is-playing", isPlaying);
     musicToggle.setAttribute("aria-pressed", String(isPlaying));
+
     musicToggle.setAttribute(
         "aria-label",
-        isPlaying ? "Turn wedding music off" : "Turn wedding music on"
+        isPlaying
+            ? "Turn wedding music off"
+            : "Turn wedding music on"
     );
+
     musicToggle.setAttribute(
         "title",
-        isPlaying ? "Turn music off" : "Turn music on"
+        isPlaying
+            ? "Turn music off"
+            : "Turn music on"
     );
 
     const status = musicToggle.querySelector(".music-status");
-    if (status) status.textContent = isPlaying ? "ON" : "OFF";
+
+    if (status) {
+        status.textContent = isPlaying ? "ON" : "OFF";
+    }
 }
+
+
+/* ---------------------------------------------------------
+   START MUSIC
+--------------------------------------------------------- */
 
 function startWeddingMusic() {
-    if (!heroEntered) return;
+
     if (!weddingMusic) return;
 
-    weddingMusic.volume = 1;
-    weddingMusic.play().then(
-        () => updateMusicButton(true)
-    ).catch(
-        () => updateMusicButton(false)
-    );
+    /*
+     * IMPORTANT:
+     * On iOS Safari this function must be reached directly
+     * from the user's tap/click event.
+     */
+
+    const playPromise = weddingMusic.play();
+
+    if (playPromise !== undefined) {
+
+        playPromise
+            .then(() => {
+
+                musicStartedByGesture = true;
+
+                if (heroEntered) {
+                    updateMusicButton(true);
+                }
+
+            })
+            .catch(() => {
+
+                updateMusicButton(false);
+
+            });
+
+    } else {
+
+        musicStartedByGesture = true;
+
+        if (heroEntered) {
+            updateMusicButton(true);
+        }
+    }
 }
 
+
+/* ---------------------------------------------------------
+   STOP MUSIC
+--------------------------------------------------------- */
+
 function stopWeddingMusic() {
+
     if (!weddingMusic) return;
 
     weddingMusic.pause();
+
     updateMusicButton(false);
 }
 
+
+/* ---------------------------------------------------------
+   ENTER HERO
+--------------------------------------------------------- */
+
 function enterHeroSection() {
+
     if (heroEntered) return;
+
     heroEntered = true;
 
     if (musicToggle) {
+
         musicToggle.classList.add("show");
-        musicToggle.setAttribute("aria-hidden", "false");
+
+        musicToggle.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
         musicToggle.removeAttribute("tabindex");
     }
 
-    startWeddingMusic();
+    /*
+     * Music has already been started from the user gesture.
+     * Only update the button state here.
+     */
+
+    if (weddingMusic && !weddingMusic.paused) {
+        updateMusicButton(true);
+    }
 }
 
+
+/* ---------------------------------------------------------
+   AUDIO EVENTS
+--------------------------------------------------------- */
+
 if (weddingMusic && musicToggle) {
-    weddingMusic.addEventListener("play", () => updateMusicButton(true));
-    weddingMusic.addEventListener("playing", () => updateMusicButton(true));
-    weddingMusic.addEventListener("pause", () => updateMusicButton(false));
-    weddingMusic.addEventListener("ended", () => updateMusicButton(false));
+
+    weddingMusic.addEventListener("play", () => {
+
+        if (heroEntered) {
+            updateMusicButton(true);
+        }
+
+    });
+
+    weddingMusic.addEventListener("playing", () => {
+
+        if (heroEntered) {
+            updateMusicButton(true);
+        }
+
+    });
+
+    weddingMusic.addEventListener("pause", () => {
+
+        updateMusicButton(false);
+
+    });
+
+    weddingMusic.addEventListener("ended", () => {
+
+        updateMusicButton(false);
+
+    });
+
+
+    /* -----------------------------------------------------
+       MUSIC BUTTON
+    ----------------------------------------------------- */
 
     musicToggle.addEventListener("click", (event) => {
+
         event.preventDefault();
         event.stopPropagation();
 
         if (!heroEntered) return;
 
         if (weddingMusic.paused) {
+
             startWeddingMusic();
+
         } else {
+
             stopWeddingMusic();
+
         }
+
     });
+
 }
+
 
 
 /* =========================================================
@@ -3675,23 +3788,49 @@ const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzCjSML8Pwc36lqut
 /* =========================================================
    INTRO SCREEN → START THE EXPERIENCE
 ========================================================= */
+
+/* =========================================================
+   INTRO SCREEN → START THE EXPERIENCE
+========================================================= */
+
 const firstsection = document.getElementById("firstsection");
 
 firstsection.addEventListener("click", () => {
 
+    /*
+     * IMPORTANT:
+     * Start music IMMEDIATELY inside the real user tap.
+     *
+     * Do NOT put startWeddingMusic() inside setTimeout().
+     * iOS Safari can block delayed audio playback.
+     */
+
+    startWeddingMusic();
+
+    /*
+     * Start the hero transition.
+     */
     firstsection.classList.add("active");
 
+    playHeroIntro();
+
+    /*
+     * Keep the existing visual timing.
+     */
     setTimeout(() => {
+
         firstsection.classList.add("hide");
 
-        playHeroIntro();
-
         setTimeout(() => {
+
             firstsection.style.display = "none";
+
         }, 1100);
+
     }, 1400);
 
 }, { once: true });
+
 </script>
 
 </body>
