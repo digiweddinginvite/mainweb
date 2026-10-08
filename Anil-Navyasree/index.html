@@ -1093,6 +1093,85 @@ h1{
     letter-spacing:1px;
 }
 
+/* ============================================
+   ✅ NEW: FOOTER LOGO & CONTACT
+   ============================================ */
+.footer-logo {
+    margin: 0 auto;           /* spacing handled by divider above */
+    display: block;           /* allows auto centering */
+    max-width: 240px;
+    width: 100%;
+    height: auto;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+}
+
+.footer-logo:hover {
+    opacity: 1;
+}
+
+.footer-contact {
+    margin-top: -20px;          /* ✅ reduced from 15px → 2px */
+    margin-bottom: 0;
+    line-height: 1.2;
+    font-size: 15px;
+    color: #d4af37;
+    letter-spacing: 1px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+/* ============================================
+   ✅ NEW: DIVIDER ABOVE VJ LOGO
+   (always visible, not dependent on scroll reveal)
+   ============================================ */
+.footer-logo-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    width:100%;
+    max-width:320px;
+    margin:24px auto 16px;
+    padding:0;
+}
+
+.footer-logo-divider .divider-line{
+    height:1px;
+    flex:1;
+    max-width:110px;
+}
+
+.footer-logo-divider .divider-line:first-child{
+    background:linear-gradient(
+        to right,
+        transparent,
+        rgba(212,175,55,0.45),
+        rgba(212,175,55,0.9)
+    );
+}
+
+.footer-logo-divider .divider-line:last-child{
+    background:linear-gradient(
+        to left,
+        transparent,
+        rgba(212,175,55,0.45),
+        rgba(212,175,55,0.9)
+    );
+}
+
+.footer-logo-divider .divider-diamond{
+    color:rgba(212,175,55,0.9);
+    font-size:10px;
+    line-height:1;
+    text-shadow:
+        0 0 10px rgba(212,175,55,0.7),
+        0 0 20px rgba(212,175,55,0.35);
+}
+
 .name{
     font-family:'Cinzel',serif;
     font-size:40px;
@@ -1274,6 +1353,38 @@ h1{
         width: 120px;
         margin-bottom: 30px;
     }
+
+    /* ============================================
+       ✅ FIX: Reduce gap between VJ logo & phone
+       on mobile (compensates for the internal
+       whitespace inside the logo image itself)
+       ============================================ */
+    .footer-logo {
+        max-width: 350px;
+        margin-bottom: -90px;   /* pulls phone number up over logo's empty bottom space */
+    }
+
+    .footer-contact {
+        font-size: 13px;
+        margin-top: 0;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* ✅ Divider above VJ logo — mobile tweaks */
+    .footer-logo-divider{
+        max-width: 260px;
+        margin: 20px auto 12px;
+        gap: 12px;
+    }
+
+    .footer-logo-divider .divider-line{
+        max-width: 80px;
+    }
+
+    .footer-logo-divider .divider-diamond{
+        font-size: 8px;
+    }
 }
 
 * {
@@ -1439,6 +1550,17 @@ button, .btn, .nav, .intro-seal {
 
     .wedding-venue{
         font-size:13px;
+    }
+
+    /* Footer logo & contact spacing on mobile
+       (gap handled above with negative margin) */
+    .footer-logo {
+        max-width: 350px;
+    }
+
+    .footer-contact {
+        font-size: 13px;
+        margin-top: 0;
     }
 }
 
@@ -1707,6 +1829,17 @@ button, .btn, .nav, .intro-seal {
     <div class="footer">
         <p>With Love,</p>
         <h3>Anil Kumar & Navyasree</h3>
+
+        <!-- ✅ NEW: Gold diamond divider above VJ logo -->
+        <div class="footer-logo-divider">
+            <span class="divider-line"></span>
+            <span class="divider-diamond">◆</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- NEW ADDITIONS -->
+        <img src="Assets/vjlogo.PNG" alt="VJ Logo" class="footer-logo">
+        <p class="footer-contact">📞 7093645147</p>
     </div>
 </footer>
 
