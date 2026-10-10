@@ -1,1 +1,2826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2E1A11">
+<meta name="description" content="Join us to celebrate the wedding of Lekha Antham & Sathwick Reddy Mummadi.">
+<title>Lekha &amp; Sathwick — Wedding Invitation</title>
 
+<!-- Confetti Library for Scratch Card -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --chocolate-dark: #2E1A11;
+  --chocolate: #4A2C2A;
+  --chocolate-light: #6B4226;
+  --cream: #FDFBF7;
+  --cream-dark: #F0E6D6;
+  --gold: #D4AF37;
+  --gold-light: #E8D3A5;
+  --muted: #8A7666;
+  --line: #E0D0BE;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background: var(--cream);
+  color: var(--chocolate-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.intro-active {
+  overflow: hidden;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+}
+
+.serif {
+  font-family: "Playfair Display", serif;
+}
+
+.script {
+  font-family: "Great Vibes", cursive;
+  color: var(--gold);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 10px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.section {
+  padding: 100px 22px;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-heading h2 {
+  font: 400 clamp(42px, 7vw, 70px) "Playfair Display", serif;
+  margin: 15px 0;
+  color: var(--chocolate-dark);
+}
+
+.section-heading p {
+  max-width: 520px;
+  margin: 0 auto;
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 50px;
+  padding: 14px 32px;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  background: var(--chocolate-dark);
+  color: var(--cream);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all .4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 0; height: 100%;
+  background: var(--gold);
+  transition: width .4s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn:hover {
+  color: var(--chocolate-dark);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+}
+
+.btn-outline {
+  color: var(--chocolate-dark);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  color: var(--cream);
+}
+
+.btn-outline::before {
+  background: var(--chocolate-dark);
+}
+
+/* 01 — INTRO VIDEO (TAP ANYWHERE) */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--chocolate-dark);
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+  cursor: pointer;
+}
+
+.intro.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.intro video.playing {
+  opacity: 1;
+}
+
+.intro-content {
+  position: relative;
+  z-index: 3;
+  color: var(--cream);
+  text-align: center;
+  padding: 50px 40px;
+  animation: introText 1.8s ease both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(46, 26, 17, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.intro-ganesh {
+  width: 180px;
+  height: auto;
+  margin-bottom: 25px;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
+}
+
+.intro-content .eyebrow {
+  color: var(--gold-light);
+  margin-bottom: 15px;
+}
+
+.intro-content h1 {
+  font: 400 clamp(38px, 8vw, 60px) "Playfair Display", serif;
+  margin: 10px 0;
+  color: var(--cream);
+  letter-spacing: 2px;
+  line-height: 1.1;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+}
+
+.intro-content p {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+  color: var(--gold-light);
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+}
+
+.tap-hint {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 40px;
+  animation: pulse 2s infinite;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes introText {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   02 — HERO (SMOOTH SCROLL PARALLAX — RISE UPWARD)
+   ========================================================= */
+.hero {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  background: var(--cream-dark);
+  isolation: isolate;
+}
+
+.hero-bg-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  font-size: 0;
+  line-height: 0;
+}
+
+.hero-bg {
+  width: 100%;
+  height: auto;
+  display: block;
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1.25);
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-couple {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.hero-couple img {
+  width: auto;
+  height: auto;
+  max-width: 96%;
+  max-height: 58%;
+  object-fit: contain;
+  object-position: bottom center;
+  display: block;
+  filter: drop-shadow(0 18px 30px rgba(46, 26, 17, 0.18));
+}
+
+.hero-inner {
+  position: absolute;
+  top: 14%;
+  left: 0;
+  right: 0;
+  padding: 0 22px;
+  text-align: center;
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: auto;
+}
+
+.hero .eyebrow {
+  color: var(--chocolate);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.hero h1 {
+  font: 400 clamp(45px, 9vw, 90px)/1 "Playfair Display", serif;
+  margin: 15px 0;
+  color: var(--chocolate-dark);
+  text-shadow: 0 2px 6px rgba(255, 255, 255, 0.9);
+}
+
+.hero h1 span {
+  display: block;
+  font-family: "Playfair Display", serif;
+  font-size: .65em;
+  color: var(--gold);
+  margin: 10px 0;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.9);
+}
+
+
+.hero-subtitle {
+  font-size: 8px;
+  line-height: 2;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--chocolate);
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+.hero-ornament {
+  color: var(--gold);
+  font-size: 20px;
+  margin: 20px 0;
+  opacity: 1;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   HERO — RISE PARALLAX (ENTRANCE) ANIMATIONS
+   • Plays once when the intro overlay is dismissed.
+   • Scroll parallax is handled by JS below.
+========================================================= */
+
+@keyframes heroRiseCouple {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 80px, 0) scale(0.94);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes heroRiseText {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Base hidden state so the entrance starts from a clean slate */
+.hero-couple img,
+.hero-inner .eyebrow,
+.hero-inner h1,
+.hero-inner .hero-subtitle {
+  opacity: 0;
+}
+
+/* Trigger the rise once the intro overlay is dismissed */
+body:not(.intro-active) .hero-couple img {
+  animation: heroRiseCouple 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+}
+
+body:not(.intro-active) .hero-inner .eyebrow {
+  animation: heroRiseText 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+}
+
+body:not(.intro-active) .hero-inner h1 {
+  animation: heroRiseText 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.40s forwards;
+}
+
+body:not(.intro-active) .hero-inner .hero-subtitle {
+  animation: heroRiseText 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-couple img,
+  .hero-inner .eyebrow,
+  .hero-inner h1,
+  .hero-inner .hero-subtitle {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+}
+
+/* 03 — STORY */
+.story {
+  background: var(--cream-dark);
+}
+
+.story-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Polaroid stack — original image size, no drop shadow */
+/* OUR STORY — DIAGONAL OVERLAPPING IMAGE POSITIONING */
+
+.story-polaroids {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 440px;
+  height: 510px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: visible;
+}
+
+/* Both images: no frames, backgrounds, or shadows */
+
+.story-polaroids img {
+  position: absolute;
+  display: block;
+  width: 68%;
+  max-width: 290px;
+  height: auto;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none !important;
+  filter: none !important;
+  object-fit: contain;
+}
+
+/* First image — upper left */
+
+.story-polaroids img:first-child {
+  top: -30px;
+  left: 0;
+  z-index: 1;
+  transform: rotate(-1deg);
+}
+
+/* Second image — lower right */
+
+.story-polaroids img:last-child {
+  right: 0;
+  bottom: -20px;
+  z-index: 2;
+  transform: rotate(1deg);
+}
+
+
+.story-copy h2 {
+  font: 400 clamp(42px, 6vw, 68px)/1.1 "Playfair Display", serif;
+  margin: 20px 0 30px;
+  color: var(--chocolate-dark);
+}
+
+.story-copy p {
+  font: 400 17px/2 "Playfair Display", serif;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* Mobile layout */
+
+@media (max-width: 760px) {
+  .story-polaroids {
+    width: 100%;
+    max-width: 380px;
+    height: 410px;
+  }
+
+  .story-polaroids img {
+    width: 68%;
+    max-width: 245px;
+  }
+}
+
+@media (max-width: 380px) {
+  .story-polaroids {
+    height: 360px;
+  }
+
+  .story-polaroids img {
+    width: 70%;
+  }
+}
+
+/* 04 — SCRATCH DATE */
+.scratch-section {
+  background: var(--cream);
+  text-align: center;
+}
+
+.scratch-wrap {
+  max-width: 420px;
+  margin: 40px auto 0;
+}
+
+.scratch-card {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+  background: var(--cream-dark);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 15px 35px rgba(241, 177, 0, 0.08);
+  touch-action: pan-y;
+}
+
+.scratch-message {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.scratch-message .date {
+  font: 600 clamp(28px, 5vw, 42px) "Playfair Display", serif;
+  color: var(--chocolate-dark);
+  margin: 8px 0;
+}
+
+.scratch-message p {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#scratchCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  touch-action: none;
+  border-radius: 8px;
+}
+
+.scratch-hint {
+  margin-top: 20px;
+  color: var(--chocolate-dark);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* =========================================================
+   05 — EVENTS (HORIZONTAL SWIPABLE TIMELINE, NO CARDS)
+   ========================================================= */
+.events {
+  background: var(--chocolate-dark);
+  color: var(--cream);
+  padding-bottom: 120px;
+  overflow: hidden;
+}
+
+.events .section-heading h2 {
+  color: var(--cream);
+}
+
+.events .section-heading p {
+  color: rgba(253, 251, 247, 0.6);
+}
+
+/* Highlighted date banner */
+.timeline-date-highlight {
+  text-align: center;
+  margin: 0 auto 60px;
+  max-width: 620px;
+}
+
+.timeline-date-highlight .eyebrow {
+  color: var(--gold-light);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.highlighted-date {
+  font: 600 clamp(30px, 6vw, 56px)/1.15 "Playfair Display", serif;
+  letter-spacing: 1px;
+  margin: 0;
+  padding: 22px 30px;
+  color: var(--gold-light);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.12) 0%,
+    rgba(212, 175, 55, 0.03) 50%,
+    rgba(212, 175, 55, 0.12) 100%
+  );
+  border-top: 1px solid rgba(212, 175, 55, 0.35);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.35);
+  display: inline-block;
+  width: 100%;
+}
+
+.highlighted-date .date-accent {
+  display: block;
+  font-family: "Great Vibes", cursive;
+  font-size: 0.65em;
+  color: var(--gold);
+  margin-top: 6px;
+  letter-spacing: 3px;
+}
+
+.timeline-date-highlight .hero-ornament {
+  color: var(--gold);
+  margin-top: 25px;
+  text-shadow: none;
+  font-size: 18px;
+}
+
+/* Horizontal swipable timeline */
+.timeline-container {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.timeline-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 30px;
+  padding: 40px 20px 60px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.timeline-track::-webkit-scrollbar {
+  display: none;
+}
+
+.timeline-item {
+  flex: 0 0 260px;
+  scroll-snap-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: -50%;
+  width: 100%;
+  height: 1px;
+  background: rgba(212, 175, 55, 0.3);
+  z-index: 0;
+}
+
+.timeline-item:first-child::before {
+  display: none;
+}
+
+.timeline-time {
+  font: 600 14px "Playfair Display", serif;
+  color: var(--gold);
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+}
+
+.timeline-content {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.event-icon {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--gold);
+}
+
+.timeline-type {
+  color: var(--gold);
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.timeline-name {
+  font: 500 24px "Playfair Display", serif;
+  margin: 10px 0;
+  color: var(--cream);
+}
+
+.timeline-venue {
+  font-size: 12px;
+  color: rgba(253, 251, 247, 0.6);
+  line-height: 1.8;
+  margin-top: 12px;
+  min-height: 43px;
+}
+
+.timeline-link {
+  display: inline-block;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  margin-top: 15px;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+}
+
+.timeline-link:hover {
+  opacity: 0.7;
+}
+
+.swipe-hint {
+  text-align: center;
+  font-size: 11px;
+  color: rgba(253, 251, 247, 0.4);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: -20px;
+}
+
+/* =====================================================
+   06 — PREMIUM WEDDING GALLERY CAROUSEL (OVERLAPPING STYLE)
+===================================================== */
+
+.gallery {
+  background: var(--cream);
+  overflow: hidden;
+}
+
+.gallery-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.gallery-track {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  padding: 30px 0; /* Space for the scaled up center image */
+  /* Removed border, box-shadow, border-radius from track */
+}
+
+/* ✨ Spacers so first & last slides can center properly (fixes last image issue) */
+.gallery-track::before,
+.gallery-track::after {
+  content: "";
+  flex: 0 0 calc(12.5% - 10px);
+  pointer-events: none;
+}
+
+.gallery-track::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-slide {
+  position: relative;
+  flex: 0 0 75%; /* Creates the peeking effect */
+  width: 75%;
+  aspect-ratio: 3 / 4;
+  max-height: 720px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  margin: 0 10px;
+  background: var(--cream-dark);
+  border-radius: 16px;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.4s ease,
+              box-shadow 0.4s ease;
+  will-change: transform;
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease;
+}
+
+.gallery-slide:hover img {
+  transform: scale(1.025);
+}
+
+/* Active slide - scales up and pops out */
+.gallery-slide.is-active {
+  transform: scale(1.05);
+  z-index: 2;
+  opacity: 1;
+  box-shadow: 0 15px 35px rgba(46, 26, 17, 0.25);
+}
+
+/* Non-active slides - slightly smaller and faded */
+.gallery-slide:not(.is-active) {
+  transform: scale(0.92);
+  opacity: 0.6;
+}
+
+/* Previous and next arrow buttons */
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid rgba(212, 175, 55, 0.7);
+  border-radius: 50%;
+  background: rgba(253, 251, 247, 0.95);
+  color: var(--chocolate-dark);
+  font-family: serif;
+  font-size: 30px;
+  line-height: 1;
+  box-shadow: 0 5px 20px rgba(46, 26, 17, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transform: translateY(-50%);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.gallery-arrow:hover {
+  background: var(--gold);
+  color: var(--chocolate-dark);
+  border-color: var(--gold);
+}
+
+.gallery-prev {
+  left: 16px;
+}
+
+.gallery-next {
+  right: 16px;
+}
+
+.gallery-arrow:focus-visible,
+.gallery-dot:focus-visible {
+  outline: 2px solid var(--chocolate-dark);
+  outline-offset: 4px;
+}
+
+/* Carousel navigation */
+
+.gallery-controls {
+  max-width: 680px;
+  margin: 25px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.gallery-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  flex: 1;
+}
+
+.gallery-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: none;
+  border-radius: 20px;
+  background: #D8CBB8;
+  transition:
+    width 0.35s ease,
+    background 0.35s ease;
+}
+
+.gallery-dot.is-active {
+  width: 27px;
+  background: var(--gold);
+}
+
+.gallery-counter {
+  min-width: 60px;
+  text-align: right;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gallery-counter .current {
+  color: var(--chocolate-dark);
+  font-weight: 700;
+}
+
+.gallery-swipe-hint {
+  margin-top: 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Mobile optimization */
+
+@media (max-width: 760px) {
+  .gallery-carousel {
+    max-width: 100%;
+  }
+
+  .gallery-slide {
+    flex: 0 0 80%; /* Slightly wider on mobile */
+    width: 80%;
+    aspect-ratio: 3 / 4;
+    max-height: 68svh;
+    margin: 0 8px;
+  }
+
+  /* Update spacer width for mobile slide sizes */
+  .gallery-track::before,
+  .gallery-track::after {
+    flex-basis: calc(10% - 8px);
+  }
+
+  .gallery-slide.is-active {
+    transform: scale(1.02);
+  }
+
+  .gallery-slide:not(.is-active) {
+    transform: scale(0.95);
+    opacity: 0.5;
+  }
+
+  .gallery-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 25px;
+  }
+
+  .gallery-prev {
+    left: 10px;
+  }
+
+  .gallery-next {
+    right: 10px;
+  }
+
+  .gallery-controls {
+    margin-top: 20px;
+  }
+
+  .gallery-swipe-hint {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-track {
+    scroll-behavior: auto;
+  }
+
+  .gallery-slide {
+    transition: none;
+  }
+
+  .gallery-slide img,
+  .gallery-arrow,
+  .gallery-dot {
+    transition: none;
+  }
+}
+
+/* 07 — RSVP */
+.rsvp {
+  background: var(--cream-dark);
+}
+
+.rsvp-form {
+  max-width: 560px;
+  margin: 0 auto;
+  background: var(--cream);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(46, 26, 17, 0.05);
+  border: 1px solid var(--line);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--chocolate-dark);
+  outline: none;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ✨ Guest counter (− / +) */
+.guest-counter {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--cream);
+  overflow: hidden;
+  transition: border-color 0.3s, opacity 0.3s, background 0.3s;
+}
+
+.guest-counter:focus-within {
+  border-color: var(--gold);
+}
+
+/* ✨ Disabled state (when "Sorry, cannot attend" is selected) */
+.guest-counter.is-disabled {
+  opacity: 0.45;
+  background: var(--cream-dark);
+  pointer-events: none;
+}
+
+.guest-counter.is-disabled .guest-counter-btn {
+  cursor: not-allowed;
+}
+
+.guest-counter.is-disabled .guest-counter-value {
+  color: var(--muted);
+}
+
+.guest-counter-btn {
+  flex: 0 0 54px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--chocolate-dark);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.guest-counter-btn:hover:not(:disabled) {
+  background: var(--gold);
+  color: var(--chocolate-dark);
+}
+
+.guest-counter-btn:active:not(:disabled) {
+  background: var(--chocolate-dark);
+  color: var(--cream);
+}
+
+.guest-counter-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.guest-counter-btn:focus-visible {
+  outline: 2px solid var(--chocolate-dark);
+  outline-offset: -4px;
+}
+
+.guest-counter-value {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--chocolate-dark);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.rsvp .btn {
+  width: 100%;
+  background: var(--chocolate-dark);
+  border-color: var(--chocolate-dark);
+  color: var(--cream);
+}
+
+.rsvp .btn:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--chocolate-dark);
+}
+
+.form-status {
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--chocolate-dark);
+  font-weight: 700;
+}
+
+/* 08 — CALENDAR & COUNTDOWN */
+.calendar-section {
+  text-align: center;
+  background: var(--cream);
+}
+
+.calendar-section p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 15px auto 30px;
+  max-width: 480px;
+  font-size: 14px;
+}
+
+.countdown-section {
+  text-align: center;
+  padding: 100px 20px;
+  background: var(--chocolate);
+  color: var(--cream);
+}
+
+.countdown-section .eyebrow {
+  color: var(--gold-light);
+}
+
+.countdown-section h2 {
+  color: var(--cream);
+}
+
+.countdown-grid {
+  max-width: 650px;
+  margin: 45px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.count-box {
+  padding: 25px 10px;
+  border: 1px solid rgba(253, 251, 247, 0.15);
+  background: rgba(253, 251, 247, 0.05);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.count-box strong {
+  display: block;
+  font: 600 clamp(32px, 6vw, 52px) "Playfair Display", serif;
+  color: var(--gold);
+}
+
+.count-box span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(253, 251, 247, 0.7);
+  margin-top: 8px;
+  display: block;
+}
+
+.countdown-note {
+  margin-top: 35px;
+  font: 28px "Great Vibes", cursive;
+  color: var(--gold-light);
+}
+
+/* FOOTER */
+.footer {
+  background: #1A0F0A;
+  color: var(--cream);
+  padding: 80px 20px 30px;
+  text-align: center;
+}
+
+.footer-monogram {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(34px, 5vw, 46px);
+  font-weight: 600;
+  letter-spacing: 5px;
+  line-height: 1.3;
+  color: var(--gold);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.footer p {
+  font-size: 12px;
+  line-height: 2;
+  color: rgba(253, 251, 247, 0.5);
+  margin-top: 15px;
+}
+
+.footer-bottom {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(253, 251, 247, 0.1);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(253, 251, 247, 0.3);
+}
+
+/* RESPONSIVE */
+@media (max-width: 760px) {
+  .section {
+    padding: 80px 20px;
+  }
+
+  .hero-inner {
+    top: 12%;
+    padding: 0 16px;
+  }
+
+  .hero-couple img {
+    max-width: 96%;
+    max-height: 88%;
+  }
+
+  .story-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .story-polaroids {
+    gap: 22px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .scratch-card {
+    height: 160px;
+  }
+
+  .countdown-grid {
+    gap: 10px;
+  }
+
+  .count-box {
+    padding: 18px 5px;
+  }
+
+  .count-box span {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-ganesh {
+    width: 140px;
+  }
+
+  .intro-content {
+    padding: 40px 20px;
+  }
+
+  .tap-hint {
+    font-size: 10px;
+    padding: 0;
+  }
+
+  /* Timeline mobile tweaks */
+  .timeline-date-highlight {
+    margin-bottom: 45px;
+  }
+
+  .highlighted-date {
+    padding: 18px 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .timeline-item {
+    flex: 0 0 240px;
+  }
+
+  /* Slightly tighter guest counter on mobile */
+  .guest-counter-btn {
+    flex: 0 0 48px;
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* REMOVE BLUE TAP HIGHLIGHT THROUGHOUT THE WEBSITE */
+
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Prevent blue highlight on clickable elements */
+a,
+button,
+img,
+section,
+div,
+span,
+figure,
+canvas,
+label,
+select {
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Keep keyboard navigation accessible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+</style>
+</head>
+
+<body class="intro-active">
+
+<!-- 01. INTRO VIDEO (TAP ANYWHERE) -->
+<section class="intro" id="intro">
+  <video id="introVideo" playsinline preload="auto">
+    <source src="Assets/introvd.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="intro-content" id="introContent">
+    <img src="Assets/ganeshimg.png" alt="Ganesha" class="intro-ganesh">
+    <div class="eyebrow">A beautiful beginning</div>
+    <h1 class="serif">Lekha &amp; Sathwick</h1>
+    <p>Two hearts · One forever</p>
+    <div class="tap-hint" id="tapHint">Tap anywhere to enter ✧</div>
+  </div>
+</section>
+
+<main>
+
+  <!-- 02. HERO / INVITATION -->
+  <section class="hero" id="home">
+    <div class="hero-bg-wrap">
+      <img
+        src="Assets/mobilebg.png"
+        alt=""
+        class="hero-bg"
+        id="heroBg"
+        aria-hidden="true"
+      >
+    </div>
+
+    <div class="hero-overlay">
+      <div class="hero-couple" id="heroCouple">
+        <img src="Assets/coupleimg.png" alt="Lekha and Sathwick">
+      </div>
+
+      <div class="hero-inner" id="heroInner">
+        <div class="eyebrow">Together with our families</div>
+
+        <h1>
+          <span id="brideHero">Lekha Antham</span>
+          <span>&amp;</span>
+          <span id="groomHero">Sathwick Reddy</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Invite you to celebrate<br>
+          the beginning of their forever
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. OUR LITTLE STORY -->
+  <section class="section story" id="story">
+    <div class="container story-layout">
+
+      <!-- Polaroid photos (original size, no shadow) -->
+      <div class="story-polaroids">
+        <img src="Assets/storyimg1.png" alt="Sathwick Reddy">
+        <img src="Assets/storyimg2.png" alt="Lekha Antham">
+      </div>
+
+      <div class="story-copy">
+        <div class="eyebrow">Written in the stars</div>
+        <h2>Our Little<br><span class="script">Love Story</span></h2>
+
+        <p id="storyParagraph1">
+          Somewhere between a thousand ordinary moments,
+          two hearts found something extraordinary.
+        </p>
+
+        <p id="storyParagraph2">
+          What began as a beautiful connection grew into
+          a love filled with laughter, little adventures,
+          and dreams of a lifetime together.
+        </p>
+
+        <p id="storyParagraph3">
+          Now, with the blessings of our families,
+          we are ready to begin our forever. We would
+          love for you to be part of our special day.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04. SCRATCH TO REVEAL -->
+  <section class="section scratch-section" id="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">A little surprise</div>
+        <h2>Save the <span class="script">Date</span></h2>
+        <p>
+          Our special day is waiting to be discovered.
+          Gently scratch the card below to reveal the date.
+        </p>
+      </div>
+
+      <div class="scratch-wrap">
+        <div class="scratch-card" id="scratchCard">
+          <div class="scratch-message">
+            <div class="eyebrow">Mark your calendar</div>
+            <div class="date" id="scratchDate">05 December 2026</div>
+            <p id="scratchWeekday">Saturday · A day to remember</p>
+            <div class="hero-ornament" style="margin: 10px 0 0; font-size: 14px;">✧ ❦ ✧</div>
+          </div>
+          <canvas id="scratchCanvas"
+            aria-label="Scratch this card to reveal the wedding date">
+          </canvas>
+        </div>
+
+        <p class="scratch-hint" id="scratchHint">
+          ✧ Touch and drag to reveal our date ✧
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05. WEDDING EVENTS (HORIZONTAL SWIPABLE TIMELINE, NO CARDS) -->
+  <section class="section events" id="events">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">The celebration</div>
+        <h2>What to <span class="script">expect</span></h2>
+        <p>
+          Join us for these beautiful celebrations on our special day.
+        </p>
+      </div>
+
+      <!-- Highlighted date -->
+      <div class="timeline-date-highlight">
+        <span class="eyebrow">Save the date</span>
+        <div class="highlighted-date">
+          Saturday, 05 December 2026
+          <span class="date-accent">A day to remember</span>
+        </div>
+        <div class="hero-ornament" style="text-shadow: none;">✧ ❦ ✧</div>
+      </div>
+
+      <!-- Horizontal timeline container -->
+      <div class="timeline-container">
+        <div class="timeline-track" id="timelineTrack"></div>
+        <p class="swipe-hint">← Swipe to explore →</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06. GALLERY -->
+<!-- =====================================================
+     06. WEDDING GALLERY CAROUSEL (OVERLAPPING STYLE)
+===================================================== -->
+
+<section class="section gallery" id="gallery">
+
+  <div class="container">
+
+    <div class="section-heading">
+      <div class="eyebrow">Captured Moments</div>
+
+      <h2>
+        Our <span class="script">Gallery</span>
+      </h2>
+    </div>
+
+    <div class="gallery-carousel" id="galleryCarousel">
+
+      <!-- Image slider -->
+      <div
+        class="gallery-track"
+        id="galleryTrack"
+        aria-label="Wedding photo gallery"
+        aria-roledescription="carousel"
+        tabindex="0"
+      >
+
+        <figure class="gallery-slide">
+          <img
+            src="Assets/galleryimg3.png"
+            alt="Lekha and Sathwick — Wedding portrait"
+            loading="lazy"
+          >
+        </figure>
+
+        <figure class="gallery-slide">
+          <img
+            src="Assets/galleryimg4.png"
+            alt="A beautiful wedding celebration"
+            loading="lazy"
+          >
+        </figure>
+
+           <figure class="gallery-slide">
+          <img
+            src="Assets/galleryimg1.png"
+            alt="A beautiful wedding celebration"
+            loading="lazy"
+          >
+        </figure>
+
+        <figure class="gallery-slide">
+          <img
+            src="Assets/galleryimg2.png"
+            alt="A beautiful wedding celebration"
+            loading="lazy"
+          >
+        </figure>
+
+
+        <!-- Add more gallery-slide figures here -->
+
+      </div>
+
+      <!-- Previous button -->
+      <button
+        class="gallery-arrow gallery-prev"
+        id="galleryPrev"
+        type="button"
+        aria-label="Previous photo"
+      >&#8249;</button>
+
+      <!-- Next button -->
+      <button
+        class="gallery-arrow gallery-next"
+        id="galleryNext"
+        type="button"
+        aria-label="Next photo"
+      >&#8250;</button>
+
+    </div>
+
+    <!-- Dots and image counter -->
+    <div class="gallery-controls">
+
+      <div
+        class="gallery-dots"
+        id="galleryDots"
+        aria-label="Choose a gallery photo"
+      ></div>
+
+      <div class="gallery-counter" aria-live="polite">
+        <span class="current" id="galleryCurrent">01</span>
+        /
+        <span id="galleryTotal">02</span>
+      </div>
+
+    </div>
+
+    <p class="gallery-swipe-hint">
+      Swipe to explore our moments ♡
+    </p>
+
+  </div>
+
+</section>
+
+  <!-- 07. RSVP -->
+  <section class="section rsvp" id="rsvp">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Your presence means everything</div>
+        <h2>Kindly <span class="script">RSVP</span></h2>
+        <p>
+          Please let us know if you can join our celebration.
+          We cannot wait to celebrate this beautiful day with you.
+        </p>
+      </div>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guestName">YOUR NAME *</label>
+            <input id="guestName" name="name"
+              type="text" placeholder="Enter your full name"
+              autocomplete="name" required>
+          </div>
+
+    
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="attendance">WILL YOU ATTEND? *</label>
+            <select id="attendance" name="attendance" required>
+              <option value="">Choose an option</option>
+              <option value="Yes, joyfully attending">Yes, joyfully attending</option>
+              <option value="Sorry, cannot attend">Sorry, cannot attend</option>
+            </select>
+          </div>
+
+          <!-- ✨ Guest counter (− / +) -->
+          <div class="form-group">
+            <label id="guestCountLabel">NUMBER OF GUESTS</label>
+            <div class="guest-counter" id="guestCounter" role="group" aria-labelledby="guestCountLabel">
+              <button
+                type="button"
+                class="guest-counter-btn"
+                id="guestDecrease"
+                aria-label="Decrease number of guests"
+              >−</button>
+
+              <span
+                class="guest-counter-value"
+                id="guestCountValue"
+                aria-live="polite"
+              >1</span>
+
+              <button
+                type="button"
+                class="guest-counter-btn"
+                id="guestIncrease"
+                aria-label="Increase number of guests"
+              >+</button>
+            </div>
+
+            <!-- Hidden input keeps the existing FormData logic working -->
+            <input type="hidden" id="guestCount" name="guests" value="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="guestMessage">A LITTLE MESSAGE (OPTIONAL)</label>
+          <textarea id="guestMessage" name="message"
+            placeholder="Send us your wishes..."></textarea>
+        </div>
+
+        <button class="btn" type="submit">
+          Send Our Response &nbsp; ♡
+        </button>
+
+        <p class="form-status" id="rsvpStatus" role="status"
+           aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- 08. ADD TO CALENDAR -->
+  <section class="section calendar-section" id="calendar">
+    <div class="container">
+      <div class="eyebrow">Make it a date</div>
+      <h2 class="serif" style="font-size:clamp(42px,7vw,65px); margin: 15px 0;">
+        Keep the Day <span class="script">Special</span>
+      </h2>
+      <p>
+        Add our wedding to your calendar so you never miss
+        a moment of our celebration.
+      </p>
+
+      <button class="btn" id="addCalendar" type="button">
+        ♧ &nbsp; Add to Google Calendar
+      </button>
+    </div>
+  </section>
+
+  <!-- 09. COUNTDOWN -->
+  <section class="countdown-section" id="countdown">
+    <div class="container">
+      <div class="eyebrow">Counting every moment</div>
+      <h2 class="serif" style="font-size:clamp(42px,7vw,66px);margin-top:15px">
+        Until Our <span class="script">Forever</span>
+      </h2>
+
+      <div class="countdown-grid" aria-label="Wedding countdown">
+        <div class="count-box">
+          <strong id="days">00</strong>
+          <span>Days</span>
+        </div>
+        <div class="count-box">
+          <strong id="hours">00</strong>
+          <span>Hours</span>
+        </div>
+        <div class="count-box">
+          <strong id="minutes">00</strong>
+          <span>Minutes</span>
+        </div>
+        <div class="count-box">
+          <strong id="seconds">00</strong>
+          <span>Seconds</span>
+        </div>
+      </div>
+
+      <p class="countdown-note" id="countdownMessage">
+        A lifetime of love begins soon...
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 10. FOOTER -->
+<footer class="footer">
+  <div class="footer-monogram" id="footerNames">Lekha Antham &amp;Sathwick Reddy</div>
+
+  <p>
+    Two souls, one heart, one beautiful forever.<br>
+    Thank you for being part of our story.
+  </p>
+
+  <div class="footer-bottom">
+    MADE WITH LOVE · <span id="footerYear">2026</span>
+  </div>
+</footer>
+
+<script>
+/* =====================================================
+   WEDDING SETTINGS
+   UPDATED: Muhurtham, Sangeet, and Reception as separate
+   events on the same day (Dec 5th, 2026).
+===================================================== */
+
+const WEDDING = {
+  bride: "Lekha Antham",
+  groom: "Sathwick Reddy",
+  weddingDate: "2026-12-05T08:00:00-06:00",
+  events: [
+    {
+      id: "muhurtham",
+      type: "The Main Event",
+      name: "Muhurtham",
+      icon: "♡",
+      time: "8:00 AM",
+      venue: "Celebrino Event Centre, Austin, Texas",
+      map: ""
+    },
+    {
+      id: "sangeet",
+      type: "Let's Celebrate",
+      name: "Sangeet",
+      icon: "❧",
+      time: "6:30 PM",
+      venue: "Celebrino Event Centre, Austin, Texas",
+      map: ""
+    },
+    {
+      id: "reception",
+      type: "Toast to Forever",
+      name: "Reception",
+      icon: "✦",
+      time: "8:30 PM",
+      venue: "Celebrino Event Centre, Austin, Texas",
+      map: ""
+    }
+  ],
+  rsvpEmail: "",
+  rsvpEndpoint: "https://script.google.com/macros/s/AKfycbxQS6PWeFtkLFFAu10jcDr2CuU2jJyteryhJJsVQpjPWEhOupuVQ9O1xE4iCRYIbJQhKA/exec"
+};
+
+/* =====================================================
+   INTRO VIDEO (TAP ANYWHERE)
+===================================================== */
+
+const intro = document.getElementById("intro");
+const introVideo = document.getElementById("introVideo");
+const introContent = document.getElementById("introContent");
+
+let introClosed = false;
+let isPlaying = false;
+
+function playVideoAndTransition() {
+  if (introClosed) return;
+
+  if (isPlaying) {
+    closeIntro();
+    return;
+  }
+
+  isPlaying = true;
+  introContent.style.display = "none";
+  introVideo.classList.add("playing");
+
+  introVideo.play().then(() => {
+    introVideo.onended = closeIntro;
+  }).catch(error => {
+    console.warn("Video playback failed or blocked. Transitioning immediately.", error);
+    closeIntro();
+  });
+}
+
+function closeIntro() {
+  if (introClosed) return;
+  introClosed = true;
+
+  intro.classList.add("hidden");
+  document.body.classList.remove("intro-active");
+
+  if (introVideo) {
+    introVideo.pause();
+  }
+
+  setTimeout(() => {
+    intro.style.display = "none";
+  }, 1200);
+}
+
+intro.addEventListener("click", playVideoAndTransition);
+
+/* =====================================================
+   HERO — SMOOTH SCROLL PARALLAX (RISE UPWARD)
+===================================================== */
+
+(function initHeroParallax() {
+  const heroSection = document.getElementById("home");
+  const heroBg = document.getElementById("heroBg");
+  const heroCouple = document.getElementById("heroCouple");
+  const heroInner = document.getElementById("heroInner");
+
+  if (!heroSection || !heroBg || !heroCouple || !heroInner) return;
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const SMOOTHING = 0.09;
+
+  // NEGATIVE = rises upward with scroll (rise parallax)
+  // POSITIVE = would move downward with scroll
+  const BG_SPEED     = -0.08;
+  const COUPLE_SPEED = -0.16;
+  const TEXT_SPEED   = -0.30;
+
+  const TEXT_FADE_AT = 0.65;
+
+  let current  = 0;
+  let target   = 0;
+  let rafId    = null;
+  let isActive = true;
+
+  function readScrollTarget() {
+    const rect  = heroSection.getBoundingClientRect();
+    const heroH = heroSection.offsetHeight || rect.height;
+
+    target = Math.min(Math.max(-rect.top, 0), heroH);
+
+    isActive = rect.bottom > -200 && rect.top < window.innerHeight + 200;
+  }
+
+  function applyTransforms() {
+    heroBg.style.transform =
+      "translate3d(0, " + (current * BG_SPEED).toFixed(2) + "px, 0) scale(1.25)";
+
+    heroCouple.style.transform =
+      "translate3d(0, " + (current * COUPLE_SPEED).toFixed(2) + "px, 0)";
+
+    const heroH = heroSection.offsetHeight || 1;
+    const fade = Math.max(0, 1 - current / (heroH * TEXT_FADE_AT));
+    heroInner.style.transform =
+      "translate3d(0, " + (current * TEXT_SPEED).toFixed(2) + "px, 0)";
+    heroInner.style.opacity = fade.toFixed(3);
+  }
+
+  function tick() {
+    if (!isActive) {
+      rafId = null;
+      return;
+    }
+
+    readScrollTarget();
+
+    const diff = target - current;
+    if (Math.abs(diff) < 0.05) {
+      current = target;
+    } else {
+      current += diff * SMOOTHING;
+    }
+
+    applyTransforms();
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function kick() {
+    if (rafId === null) {
+      isActive = true;
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+
+  window.addEventListener("scroll", kick, { passive: true });
+  window.addEventListener("resize", kick);
+  window.addEventListener("orientationchange", kick);
+  window.addEventListener("load", kick);
+
+  kick();
+})();
+
+/* =====================================================
+   PERSONALIZE WEBSITE CONTENT
+===================================================== */
+
+const bride = WEDDING.bride;
+const groom = WEDDING.groom;
+const weddingDate = new Date(WEDDING.weddingDate);
+
+function initials(name) {
+  const words = name.trim().split(/\s+/);
+  return words.map(word => word.charAt(0)).join("").slice(0, 2);
+}
+
+const coupleInitials = initials(bride) + " & " + initials(groom);
+
+document.getElementById("brideHero").textContent = bride;
+document.getElementById("groomHero").textContent = groom;
+document.getElementById("footerNames").textContent = coupleInitials;
+
+const dateOptions = {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "America/Chicago"
+};
+
+document.getElementById("scratchDate").textContent =
+  weddingDate.toLocaleDateString("en-US", dateOptions);
+
+document.getElementById("scratchWeekday").textContent =
+  weddingDate.toLocaleDateString("en-US", {
+    weekday: "long",
+    timeZone: "America/Chicago"
+  }) + " · A day to remember";
+
+document.getElementById("footerYear").textContent =
+  weddingDate.getFullYear();
+
+/* =====================================================
+   EVENTS TIMELINE (HORIZONTAL SWIPABLE, NO CARDS)
+===================================================== */
+
+const timelineTrack = document.getElementById("timelineTrack");
+
+function renderTimeline() {
+  WEDDING.events.forEach(event => {
+    let mapUrl = event.map;
+    if (!mapUrl || !/^https:\/\/(www\.)?(google\.[^/]+\/maps|maps\.app\.goo\.gl\/)/i.test(mapUrl)) {
+      mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.venue);
+    }
+
+    const itemHTML = `
+      <div class="timeline-item">
+        <div class="timeline-time">${event.time}</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="event-icon">${event.icon}</div>
+          <span class="timeline-type">${event.type}</span>
+          <h3 class="timeline-name">${event.name}</h3>
+          <p class="timeline-venue">${event.venue}</p>
+          <a class="timeline-link" href="${mapUrl}" target="_blank" rel="noopener">View Location ↗</a>
+        </div>
+      </div>
+    `;
+    timelineTrack.insertAdjacentHTML("beforeend", itemHTML);
+  });
+}
+
+renderTimeline();
+
+/* =====================================================
+   SCRATCH CARD & CONFETTI
+   — Gold foil surface, no lines, gold text
+===================================================== */
+
+const canvas = document.getElementById("scratchCanvas");
+const scratchCard = document.getElementById("scratchCard");
+const scratchHint = document.getElementById("scratchHint");
+const ctx = canvas.getContext("2d", { willReadFrequently: true });
+
+let isScratching = false;
+let scratchComplete = false;
+let lastPoint = null;
+
+function setupScratch() {
+  const rect = scratchCard.getBoundingClientRect();
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = Math.round(rect.width * ratio);
+  canvas.height = Math.round(rect.height * ratio);
+
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+  ctx.globalCompositeOperation = "source-over";
+
+ // Premium gold foil scratch surface
+const gradient = ctx.createLinearGradient(
+  0, 0, rect.width, rect.height
+);
+
+gradient.addColorStop(0, "#F8E7A1");
+gradient.addColorStop(0.25, "#D4AF37");
+gradient.addColorStop(0.5, "#FFF0A6");
+gradient.addColorStop(0.75, "#C9A227");
+gradient.addColorStop(1, "#E8C75A");
+
+ctx.fillStyle = gradient;
+ctx.fillRect(0, 0, rect.width, rect.height);
+
+// Dark chocolate text for contrast
+ctx.fillStyle = "#4A2C2A";
+ctx.textAlign = "center";
+ctx.textBaseline = "middle";
+ctx.font = "11px 'Lato', sans-serif";
+
+ctx.fillText(
+  "✧  SCRATCH TO REVEAL  ✧",
+  rect.width / 2,
+  rect.height / 2
+);
+
+ctx.globalCompositeOperation = "destination-out";
+}
+
+function scratchAt(event) {
+  if (!isScratching || scratchComplete) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.lineWidth = 30;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+
+  ctx.beginPath();
+
+  if (lastPoint) {
+    ctx.moveTo(lastPoint.x, lastPoint.y);
+    ctx.lineTo(x, y);
+  } else {
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 0.1, y + 0.1);
+  }
+
+  ctx.stroke();
+  lastPoint = { x, y };
+
+  checkScratchProgress();
+}
+
+function checkScratchProgress() {
+  const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+  let transparent = 0;
+  let samples = 0;
+
+  for (let i = 3; i < pixels.length; i += 4 * 24) {
+    samples++;
+    if (pixels[i] < 40) transparent++;
+  }
+
+  if (samples && transparent / samples > 0.42) {
+    revealScratch();
+  }
+}
+
+function revealScratch() {
+  if (scratchComplete) return;
+  scratchComplete = true;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.style.transition = "opacity .5s ease";
+  canvas.style.opacity = "0";
+  scratchHint.textContent = "♡ Our special day — " +
+    weddingDate.toLocaleDateString("en-US", dateOptions);
+  canvas.style.pointerEvents = "none";
+
+  confetti({
+    particleCount: 150,
+    spread: 80,
+    origin: { y: 0.6 },
+    colors: ['#D4AF37', '#E8D3A5', '#FDFBF7', '#4A2C2A'],
+    zIndex: 2000
+  });
+}
+
+canvas.addEventListener("pointerdown", event => {
+  if (scratchComplete) return;
+  isScratching = true;
+  lastPoint = null;
+  canvas.setPointerCapture(event.pointerId);
+  scratchAt(event);
+});
+
+canvas.addEventListener("pointermove", scratchAt);
+
+function stopScratching() {
+  isScratching = false;
+  lastPoint = null;
+}
+
+canvas.addEventListener("pointerup", stopScratching);
+canvas.addEventListener("pointercancel", stopScratching);
+canvas.addEventListener("lostpointercapture", stopScratching);
+
+setupScratch();
+
+window.addEventListener("resize", () => {
+  if (!scratchComplete && !isScratching) setupScratch();
+});
+
+/* =====================================================
+   GALLERY CAROUSEL (OVERLAPPING STYLE)
+   • Swipe + arrows + clickable dots + image counter
+   • Auto-scroll every 4s (pauses on user interaction)
+   • First & last image center correctly (spacer fix)
+===================================================== */
+
+(function initGalleryCarousel() {
+
+  const track = document.getElementById("galleryTrack");
+  const prevButton = document.getElementById("galleryPrev");
+  const nextButton = document.getElementById("galleryNext");
+  const dotsContainer = document.getElementById("galleryDots");
+  const currentCounter = document.getElementById("galleryCurrent");
+  const totalCounter = document.getElementById("galleryTotal");
+
+  if (
+    !track ||
+    !prevButton ||
+    !nextButton ||
+    !dotsContainer ||
+    !currentCounter ||
+    !totalCounter
+  ) {
+    return;
+  }
+
+  const slides = Array.from(
+    track.querySelectorAll(".gallery-slide")
+  );
+
+  if (!slides.length) return;
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  let activeIndex = 0;
+  let scrollFrame = null;
+
+  // Auto-scroll state
+  let autoScrollTimer = null;
+  let resumeTimer = null;
+  let isProgrammaticScroll = false;
+  let programmaticResetTimer = null;
+
+  const AUTO_SCROLL_INTERVAL = 4000;        // 4s between slides
+  const AUTO_SCROLL_RESUME_DELAY = 8000;    // Resume 8s after user stops interacting
+  const PROGRAMMATIC_RESET_DELAY = 700;     // How long to ignore scroll events after goToSlide
+
+  const formatNumber = number =>
+    String(number).padStart(2, "0");
+
+  // ----- Navigation dots -----
+  dotsContainer.innerHTML = "";
+
+  const dots = slides.map((slide, index) => {
+    const dot = document.createElement("button");
+
+    dot.type = "button";
+    dot.className = "gallery-dot";
+    dot.setAttribute(
+      "aria-label",
+      `Go to photo ${index + 1}`
+    );
+
+    dot.addEventListener("click", () => {
+      goToSlide(index);
+      pauseAutoScroll();
+    });
+
+    dotsContainer.appendChild(dot);
+
+    return dot;
+  });
+
+  totalCounter.textContent = formatNumber(slides.length);
+
+  // ----- Update UI (active slide, dots, counter) -----
+  function updateGalleryUI(index) {
+    activeIndex = Math.max(
+      0,
+      Math.min(index, slides.length - 1)
+    );
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("is-active", i === activeIndex);
+    });
+
+    dots.forEach((dot, i) => {
+      const isActive = i === activeIndex;
+
+      dot.classList.toggle("is-active", isActive);
+
+      if (isActive) {
+        dot.setAttribute("aria-current", "true");
+      } else {
+        dot.removeAttribute("aria-current");
+      }
+    });
+
+    currentCounter.textContent = formatNumber(
+      activeIndex + 1
+    );
+
+    prevButton.disabled = slides.length < 2;
+    nextButton.disabled = slides.length < 2;
+  }
+
+  // ----- Find nearest slide index based on scroll position -----
+  function getNearestIndex() {
+    const trackRect = track.getBoundingClientRect();
+    const trackCenter = trackRect.left + trackRect.width / 2;
+
+    let nearest = 0;
+    let minDist = Infinity;
+
+    slides.forEach((slide, i) => {
+      const rect = slide.getBoundingClientRect();
+      const center = rect.left + rect.width / 2;
+      const dist = Math.abs(center - trackCenter);
+      if (dist < minDist) {
+        minDist = dist;
+        nearest = i;
+      }
+    });
+
+    return nearest;
+  }
+
+  // ----- Scroll so the given slide is centered -----
+  function goToSlide(index) {
+    const targetIndex =
+      (index + slides.length) % slides.length;
+
+    const targetSlide = slides[targetIndex];
+
+    // Calculate exact scrollLeft to center this slide
+    const trackRect = track.getBoundingClientRect();
+    const slideRect = targetSlide.getBoundingClientRect();
+
+    const targetScrollLeft =
+      track.scrollLeft +
+      (slideRect.left - trackRect.left) -
+      (trackRect.width - slideRect.width) / 2;
+
+    const behavior = reducedMotion.matches
+      ? "auto"
+      : "smooth";
+
+    // Ignore scroll events during the programmatic scroll
+    isProgrammaticScroll = true;
+    if (programmaticResetTimer) clearTimeout(programmaticResetTimer);
+    programmaticResetTimer = setTimeout(() => {
+      isProgrammaticScroll = false;
+    }, PROGRAMMATIC_RESET_DELAY);
+
+    track.scrollTo({
+      left: targetScrollLeft,
+      behavior
+    });
+
+    updateGalleryUI(targetIndex);
+  }
+
+  // ----- Auto-scroll controls -----
+  function startAutoScroll() {
+    stopAutoScroll();
+    if (slides.length < 2) return;
+
+    autoScrollTimer = setInterval(() => {
+      if (document.hidden) return;
+      const nextIndex = (activeIndex + 1) % slides.length;
+      goToSlide(nextIndex);
+    }, AUTO_SCROLL_INTERVAL);
+  }
+
+  function stopAutoScroll() {
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+  }
+
+  function pauseAutoScroll() {
+    stopAutoScroll();
+    if (resumeTimer) clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(() => {
+      startAutoScroll();
+    }, AUTO_SCROLL_RESUME_DELAY);
+  }
+
+  // ----- Arrows -----
+  prevButton.addEventListener("click", () => {
+    goToSlide(activeIndex - 1);
+    pauseAutoScroll();
+  });
+
+  nextButton.addEventListener("click", () => {
+    goToSlide(activeIndex + 1);
+    pauseAutoScroll();
+  });
+
+  // ----- Scroll tracking (user swipe) -----
+  track.addEventListener("scroll", () => {
+    if (scrollFrame !== null) return;
+
+    scrollFrame = requestAnimationFrame(() => {
+      scrollFrame = null;
+
+      // Skip updates during programmatic scrolls
+      if (isProgrammaticScroll) return;
+
+      const nearestIndex = getNearestIndex();
+      updateGalleryUI(nearestIndex);
+    });
+  }, { passive: true });
+
+  // ----- Keyboard nav -----
+  track.addEventListener("keydown", event => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      goToSlide(activeIndex - 1);
+      pauseAutoScroll();
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      goToSlide(activeIndex + 1);
+      pauseAutoScroll();
+    }
+  });
+
+  // ----- Pause auto-scroll on user interaction -----
+  track.addEventListener("pointerdown", pauseAutoScroll);
+  track.addEventListener("touchstart", pauseAutoScroll, { passive: true });
+  track.addEventListener("wheel", pauseAutoScroll, { passive: true });
+
+  // Pause when the tab is hidden
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stopAutoScroll();
+    } else {
+      startAutoScroll();
+    }
+  });
+
+  // ----- Keep current slide aligned after resize -----
+  window.addEventListener("resize", () => {
+    // Temporarily ignore scroll events during re-align
+    isProgrammaticScroll = true;
+    if (programmaticResetTimer) clearTimeout(programmaticResetTimer);
+    programmaticResetTimer = setTimeout(() => {
+      isProgrammaticScroll = false;
+    }, 250);
+
+    const targetSlide = slides[activeIndex];
+    if (!targetSlide) return;
+
+    const trackRect = track.getBoundingClientRect();
+    const slideRect = targetSlide.getBoundingClientRect();
+
+    track.scrollLeft =
+      track.scrollLeft +
+      (slideRect.left - trackRect.left) -
+      (trackRect.width - slideRect.width) / 2;
+  });
+
+  // ----- Initialize -----
+  updateGalleryUI(0);
+  startAutoScroll();
+
+})();
+
+/* =====================================================
+   GUEST COUNTER (− / +)
+   • Min 1, Max 10
+   • Keeps hidden input[name="guests"] in sync
+   • Supports disabling via window.__setGuestCounterDisabled(bool)
+   • Exposes window.__resetGuestCounter for form reset
+===================================================== */
+
+(function initGuestCounter() {
+  const decreaseBtn = document.getElementById("guestDecrease");
+  const increaseBtn = document.getElementById("guestIncrease");
+  const valueEl = document.getElementById("guestCountValue");
+  const hiddenInput = document.getElementById("guestCount");
+  const counterEl = document.getElementById("guestCounter");
+
+  if (!decreaseBtn || !increaseBtn || !valueEl || !hiddenInput || !counterEl) return;
+
+  const MIN_GUESTS = 1;
+  const MAX_GUESTS = 10;
+
+  let count = MIN_GUESTS;
+  let isDisabled = false;
+
+  function apply(newCount) {
+    count = Math.max(MIN_GUESTS, Math.min(MAX_GUESTS, newCount));
+    valueEl.textContent = String(count);
+    hiddenInput.value = String(count);
+
+    if (isDisabled) {
+      decreaseBtn.disabled = true;
+      increaseBtn.disabled = true;
+    } else {
+      decreaseBtn.disabled = count <= MIN_GUESTS;
+      increaseBtn.disabled = count >= MAX_GUESTS;
+    }
+  }
+
+  function setDisabled(disabled) {
+    isDisabled = !!disabled;
+    counterEl.classList.toggle("is-disabled", isDisabled);
+    counterEl.setAttribute("aria-disabled", isDisabled ? "true" : "false");
+
+    // When disabling, reset the counter back to 1
+    if (isDisabled) {
+      apply(MIN_GUESTS);
+    } else {
+      apply(count);
+    }
+  }
+
+  decreaseBtn.addEventListener("click", () => {
+    if (isDisabled) return;
+    apply(count - 1);
+  });
+
+  increaseBtn.addEventListener("click", () => {
+    if (isDisabled) return;
+    apply(count + 1);
+  });
+
+  // Expose helpers for the RSVP form / attendance listener
+  window.__resetGuestCounter = () => apply(MIN_GUESTS);
+  window.__setGuestCounterDisabled = setDisabled;
+
+  // Initialize
+  apply(MIN_GUESTS);
+})();
+
+/* =====================================================
+   ATTENDANCE → GUEST COUNTER TOGGLE
+   • If "Sorry, cannot attend" is selected → disable counter
+   • Otherwise → enable counter
+===================================================== */
+
+(function initAttendanceToggle() {
+  const attendanceSelect = document.getElementById("attendance");
+  if (!attendanceSelect) return;
+
+  const DECLINE_VALUE = "Sorry, cannot attend";
+
+  function updateState() {
+    const shouldDisable = attendanceSelect.value === DECLINE_VALUE;
+
+    if (typeof window.__setGuestCounterDisabled === "function") {
+      window.__setGuestCounterDisabled(shouldDisable);
+    }
+  }
+
+  attendanceSelect.addEventListener("change", updateState);
+
+  // Initialize on page load
+  updateState();
+})();
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+const countdownIds = {
+  days: document.getElementById("days"),
+  hours: document.getElementById("hours"),
+  minutes: document.getElementById("minutes"),
+  seconds: document.getElementById("seconds")
+};
+
+const countdownMessage = document.getElementById("countdownMessage");
+
+function updateCountdown() {
+  const now = Date.now();
+  const remaining = weddingDate.getTime() - now;
+
+  if (!Number.isFinite(weddingDate.getTime())) {
+    countdownMessage.textContent = "Please check the wedding date.";
+    return;
+  }
+
+  if (remaining <= 0) {
+    Object.values(countdownIds).forEach(el => el.textContent = "00");
+    countdownMessage.textContent =
+      "Today marks the beginning of our forever ♡";
+    return;
+  }
+
+  const secondsTotal = Math.floor(remaining / 1000);
+  const days = Math.floor(secondsTotal / 86400);
+  const hours = Math.floor((secondsTotal % 86400) / 3600);
+  const minutes = Math.floor((secondsTotal % 3600) / 60);
+  const seconds = secondsTotal % 60;
+
+  countdownIds.days.textContent = String(days).padStart(2, "0");
+  countdownIds.hours.textContent = String(hours).padStart(2, "0");
+  countdownIds.minutes.textContent = String(minutes).padStart(2, "0");
+  countdownIds.seconds.textContent = String(seconds).padStart(2, "0");
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* =====================================================
+   ADD TO GOOGLE CALENDAR
+   Opens Google Calendar with the wedding event pre-filled.
+   The event spans the full day (8:00 AM – 11:30 PM CT) and
+   lists all three ceremonies in the description.
+===================================================== */
+
+function toGoogleCalDate(date) {
+  // Google Calendar expects: YYYYMMDDTHHMMSSZ in UTC
+  return date
+    .toISOString()
+    .replace(/[-:]/g, "")
+    .replace(/\.\d{3}/, "");
+}
+
+document.getElementById("addCalendar").addEventListener("click", () => {
+  const start = new Date(weddingDate); // 8:00 AM CT (Muhurtham)
+  const end   = new Date("2026-12-05T23:30:00-06:00"); // End of Reception (CT)
+
+  const eventTitle = bride + " & " + groom + " — Wedding";
+  const venue = WEDDING.events.find(e => e.id === "muhurtham").venue;
+
+  const details = [
+    "Join us to celebrate our wedding! ♡",
+    "",
+    "Schedule:",
+    ...WEDDING.events.map(e => `• ${e.time} — ${e.name} (${e.type})`),
+    "",
+    "Venue:",
+    venue
+  ].join("\n");
+
+  const gcalUrl = new URL("https://calendar.google.com/calendar/render");
+  gcalUrl.searchParams.set("action", "TEMPLATE");
+  gcalUrl.searchParams.set("text", eventTitle);
+  gcalUrl.searchParams.set(
+    "dates",
+    toGoogleCalDate(start) + "/" + toGoogleCalDate(end)
+  );
+  gcalUrl.searchParams.set("details", details);
+  gcalUrl.searchParams.set("location", venue);
+
+  window.open(gcalUrl.toString(), "_blank", "noopener,noreferrer");
+});
+
+/* =====================================================
+   RSVP
+===================================================== */
+
+const rsvpForm = document.getElementById("rsvpForm");
+const rsvpStatus = document.getElementById("rsvpStatus");
+
+rsvpForm.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!rsvpForm.reportValidity()) return;
+
+  const formData = new FormData(rsvpForm);
+
+  const responseData = {
+    name: String(formData.get("name") || "").trim(),
+    attendance: String(formData.get("attendance") || ""),
+    guests: String(formData.get("guests") || "1"),
+    message: String(formData.get("message") || "").trim(),
+    couple: bride + " & " + groom
+  };
+
+  if (WEDDING.rsvpEndpoint) {
+    rsvpStatus.textContent = "Sending your response...";
+
+    try {
+      const response = await fetch(WEDDING.rsvpEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(responseData)
+      });
+
+      if (!response.ok) throw new Error("Submission failed");
+
+      rsvpStatus.textContent =
+        "Thank you, " + responseData.name +
+        "! Your RSVP has been submitted successfully. ♡";
+
+      rsvpForm.reset();
+
+      // Reset the guest counter back to 1 (and re-enable it)
+      if (typeof window.__resetGuestCounter === "function") {
+        window.__resetGuestCounter();
+      }
+      if (typeof window.__setGuestCounterDisabled === "function") {
+        window.__setGuestCounterDisabled(false);
+      }
+
+      return;
+
+    } catch (error) {
+      rsvpStatus.textContent =
+        "We couldn't submit your RSVP. Please try again or contact the couple.";
+      return;
+    }
+  }
+
+  if (WEDDING.rsvpEmail) {
+    const subject = encodeURIComponent("Wedding RSVP — " + responseData.name);
+
+    const body = encodeURIComponent(
+      "Couple: " + responseData.couple + "\n" +
+      "Guest name: " + responseData.name + "\n" +
+      "Attendance: " + responseData.attendance + "\n" +
+      "Guests: " + responseData.guests + "\n" +
+      "Message: " + responseData.message
+    );
+
+    window.location.href =
+      "mailto:" + WEDDING.rsvpEmail + "?subject=" + subject + "&body=" + body;
+
+    rsvpStatus.textContent =
+      "Your email application should open with your RSVP details. " +
+      "Please send the email to complete your response.";
+    return;
+  }
+
+  rsvpStatus.textContent =
+    "Demo mode: your form is working, but responses are not being saved. " +
+    "Connect a Google Apps Script endpoint or email address to receive RSVPs.";
+});
+
+/* =====================================================
+   END
+===================================================== */
+</script>
+
+</body>
+</html>
