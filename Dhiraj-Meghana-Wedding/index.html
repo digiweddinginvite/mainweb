@@ -3213,6 +3213,94 @@ footer p{
     }
 }
 
+/* =========================================================
+   FIX: INTRO SCROLL CUE VISIBILITY
+========================================================= */
+
+.intro-cue {
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+
+    color: #ffffff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+
+    visibility: visible;
+    white-space: nowrap;
+}
+
+/* High-contrast label */
+.intro-cue-label {
+    display: inline-block;
+    padding: 9px 15px;
+
+    color: #ffffff;
+    background: rgba(34, 59, 75, 0.76);
+
+    border: 1px solid rgba(255, 255, 255, 0.86);
+    border-radius: 999px;
+
+    box-shadow:
+        0 8px 24px rgba(16, 39, 54, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Visible indicator line */
+.intro-cue::after {
+    background: #ffffff;
+    opacity: 0.8;
+    box-shadow: 0 1px 6px rgba(15, 40, 55, 0.45);
+}
+
+/* Mobile optimization */
+@media (max-width: 700px) {
+    .intro-cue {
+        bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+        font-size: 8px;
+        letter-spacing: 0.24em;
+    }
+
+    .intro-cue-label {
+        padding: 8px 12px;
+    }
+
+    .intro-cue::after {
+        height: 28px;
+        margin-top: 8px;
+    }
+}
+
+/* Animated hero scroll-down indicator */
+.scroll-cue::after {
+    animation: heroCueLine 1.8s ease-in-out infinite;
+}
+
+@keyframes heroCueLine {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.35;
+    }
+
+    50% {
+        transform: translateY(7px);
+        opacity: 0.9;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .intro-cue::after,
+    .scroll-cue::after {
+        animation: none;
+    }
+}
+
 </style>
 </head>
 
@@ -3274,12 +3362,9 @@ footer p{
         aria-hidden="true"
     ></div>
 
-    <div
-        class="intro-cue"
-        id="introCue"
-    >
-        Scroll to enter
-    </div>
+    <div class="intro-cue" id="introCue">
+    <span class="intro-cue-label">Scroll to enter</span>
+</div>
 
 </section>
 
@@ -3348,7 +3433,10 @@ footer p{
         </div>
 
     </div>
-
+<!-- Hero scroll-down indicator -->
+    <div class="scroll-cue" aria-hidden="true">
+        Scroll down
+    </div>
 </header>
 
 
@@ -4272,7 +4360,8 @@ footer p{
 
         if(cue){
 
-            const cp = clamp(p / 0.10, 0, 1);
+            // Keep the cue visible during the initial scroll.
+const cp = clamp((p - 0.10) / 0.30, 0, 1);
 
             cue.style.opacity = (1 - cp).toFixed(3);
 
