@@ -122,6 +122,9 @@ textarea{
     background: #a9d6f2;
     isolation: isolate;
 
+    /* whole stage is tappable */
+    cursor: pointer;
+
     /* 3D stage — every layer sits on its own Z plane */
     perspective: 1200px;
     perspective-origin: 50% 46%;
@@ -133,6 +136,7 @@ textarea{
 .intro.is-done{
     opacity: 0;
     pointer-events: none;
+    cursor: default;
 }
 
 /* ---- Sky — FARTHEST plane (z = -420px) ---- */
@@ -281,7 +285,7 @@ textarea{
         );
 }
 
-/* ---- Scroll cue — CLOSEST plane (z = +45px) ---- */
+/* ---- Tap cue — CLOSEST plane (z = +45px) ---- */
 .intro-cue{
     position:absolute;
 
@@ -309,32 +313,35 @@ textarea{
     will-change:transform,opacity;
 }
 
+/* pulsing dot under the label — reads as "tap" */
 .intro-cue::after{
     content:"";
 
     display:block;
 
-    width:1px;
-    height:36px;
+    width:9px;
+    height:9px;
 
-    margin:10px auto 0;
+    margin:12px auto 0;
+
+    border-radius:50%;
 
     background:currentColor;
 
     opacity:.5;
 
-    animation:introCueLine 2s ease-in-out infinite;
+    animation:introCueTap 1.9s ease-in-out infinite;
 }
 
-@keyframes introCueLine{
+@keyframes introCueTap{
     0%,100%{
-        transform:translateY(0);
+        transform:scale(.7);
         opacity:.30;
     }
 
     50%{
-        transform:translateY(9px);
-        opacity:.85;
+        transform:scale(1.15);
+        opacity:.90;
     }
 }
 
@@ -369,8 +376,9 @@ textarea{
     }
 
     .intro-cue::after{
-        height:28px;
-        margin-top:8px;
+        width:8px;
+        height:8px;
+        margin-top:10px;
     }
 }
 
@@ -3214,7 +3222,7 @@ footer p{
 }
 
 /* =========================================================
-   FIX: INTRO SCROLL CUE VISIBILITY
+   FIX: INTRO TAP CUE VISIBILITY
 ========================================================= */
 
 .intro-cue {
@@ -3232,7 +3240,7 @@ footer p{
     white-space: nowrap;
 }
 
-/* High-contrast label */
+/* High-contrast label — pulses softly to invite a tap */
 .intro-cue-label {
     display: inline-block;
     padding: 9px 15px;
@@ -3249,13 +3257,30 @@ footer p{
 
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+
+    animation: introCuePulse 2.6s ease-in-out infinite;
 }
 
-/* Visible indicator line */
+@keyframes introCuePulse{
+    0%, 100%{
+        box-shadow:
+            0 8px 24px rgba(16,39,54,.25),
+            inset 0 1px 0 rgba(255,255,255,.18),
+            0 0 0 0 rgba(255,255,255,.45);
+    }
+
+    50%{
+        box-shadow:
+            0 8px 24px rgba(16,39,54,.25),
+            inset 0 1px 0 rgba(255,255,255,.18),
+            0 0 0 11px rgba(255,255,255,0);
+    }
+}
+
+/* Visible indicator dot */
 .intro-cue::after {
     background: #ffffff;
     opacity: 0.8;
-    box-shadow: 0 1px 6px rgba(15, 40, 55, 0.45);
 }
 
 /* Mobile optimization */
@@ -3271,8 +3296,9 @@ footer p{
     }
 
     .intro-cue::after {
-        height: 28px;
-        margin-top: 8px;
+        width: 8px;
+        height: 8px;
+        margin-top: 10px;
     }
 }
 
@@ -3296,10 +3322,63 @@ footer p{
 /* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
     .intro-cue::after,
+    .intro-cue-label,
     .scroll-cue::after {
         animation: none;
     }
 }
+
+
+/* ==========================================
+   REMOVE BLUE TAP HIGHLIGHT — FULL WEBSITE
+   ========================================== */
+
+html,
+body,
+*,
+*::before,
+*::after {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none;
+}
+
+/* Remove default focus outlines */
+*:focus,
+*:active {
+    outline: none !important;
+}
+
+/* Remove browser default button appearance */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Prevent blue selection on decorative images */
+img,
+svg {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Keep text selection available */
+input,
+textarea {
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+/* Accessible keyboard focus without blue box */
+:focus-visible {
+    outline: 2px solid #d9828b !important;
+    outline-offset: 3px;
+}
+
 
 </style>
 </head>
@@ -3316,7 +3395,7 @@ footer p{
 
 
 <!-- =========================================================
-     INTRO — STANDALONE FIRST PAGE
+     INTRO — STANDALONE FIRST PAGE  (TAP TO ENTER)
 ========================================================= -->
 
 <section class="intro" id="intro">
@@ -3363,8 +3442,8 @@ footer p{
     ></div>
 
     <div class="intro-cue" id="introCue">
-    <span class="intro-cue-label">Scroll to enter</span>
-</div>
+        <span class="intro-cue-label">Tap to enter</span>
+    </div>
 
 </section>
 
@@ -4075,7 +4154,7 @@ footer p{
 <script>
 
 /* =========================================================
-   INTRO — SCROLL-DRIVEN 3D PARALLAX
+   INTRO — TAP TO ENTER  +  SCROLL-DRIVEN 3D PARALLAX
    ========================================================= */
 
 (function(){
@@ -4101,6 +4180,13 @@ footer p{
     const ZOOM_SCALE   = 4.6;
     const START_CROP   = 0.012;
     const INTRO_LENGTH = 900;
+
+    /* ---- TAP-TO-ENTER ----------------------------------
+       TAP_DURATION  : how long the automatic entrance takes
+       TAP_TOLERANCE : finger/mouse travel still counted as a tap
+    -----------------------------------------------------*/
+    const TAP_DURATION  = 2800;
+    const TAP_TOLERANCE = 12;
 
     /* ---- 3D DEPTH PLANES -------------------------------
        .intro carries `perspective`, so a layer's Z value
@@ -4143,6 +4229,16 @@ footer p{
     let targetProgress  = 0;
     let currentProgress = 0;
     let done = false;
+
+    /* ---- auto-entrance state ---- */
+    let autoPlaying   = false;
+    let autoStartTime = 0;
+    let autoFrom      = 0;
+
+    /* ---- tap detection state ---- */
+    let tapStartX = 0;
+    let tapStartY = 0;
+    let tapMoved  = false;
 
 
     function clamp(v,min,max){
@@ -4213,12 +4309,12 @@ footer p{
 
 
     /* =====================================================
-       ADVANCE
+       MANUAL SCROLL ADVANCE (still supported as a fallback)
        ===================================================== */
 
     function advance(delta){
 
-        if(done){ return; }
+        if(done || autoPlaying){ return; }
 
         targetProgress =
             clamp(
@@ -4234,16 +4330,80 @@ footer p{
 
 
     /* =====================================================
+       TAP TO ENTER — automatic cinematic entrance
+       ===================================================== */
+
+    function startAutoEnter(){
+
+        if(done || autoPlaying){ return; }
+
+        if(currentProgress >= 0.999){
+            finishIntro();
+            return;
+        }
+
+        autoPlaying   = true;
+        autoFrom      = currentProgress;
+        autoStartTime = performance.now();
+    }
+
+
+    function beginTap(x, y){
+        tapStartX = x;
+        tapStartY = y;
+        tapMoved  = false;
+    }
+
+    function moveTap(x, y){
+        if(tapMoved){ return; }
+
+        if(
+            Math.abs(x - tapStartX) > TAP_TOLERANCE ||
+            Math.abs(y - tapStartY) > TAP_TOLERANCE
+        ){
+            tapMoved = true;
+        }
+    }
+
+    function endTap(){
+        if(done || autoPlaying || tapMoved){ return; }
+        startAutoEnter();
+    }
+
+
+    /* =====================================================
        RENDER LOOP
        ===================================================== */
 
     function render(){
 
-        currentProgress +=
-            (targetProgress - currentProgress) * 0.16;
+        if(autoPlaying){
 
-        if(Math.abs(targetProgress - currentProgress) < 0.0004){
-            currentProgress = targetProgress;
+            const t =
+                clamp(
+                    (performance.now() - autoStartTime) / TAP_DURATION,
+                    0,
+                    1
+                );
+
+            const e = easeInOut(t);
+
+            currentProgress = autoFrom + (1 - autoFrom) * e;
+            targetProgress  = currentProgress;
+
+            if(t >= 1){
+                autoPlaying = false;
+                finishIntro();
+            }
+
+        } else {
+
+            currentProgress +=
+                (targetProgress - currentProgress) * 0.16;
+
+            if(Math.abs(targetProgress - currentProgress) < 0.0004){
+                currentProgress = targetProgress;
+            }
         }
 
         const p = currentProgress;
@@ -4356,12 +4516,14 @@ footer p{
 
         /* =============================================
            CUE — closest plane (z = +45)
+           Disappears instantly once the entrance starts.
            ============================================= */
 
         if(cue){
 
-            // Keep the cue visible during the initial scroll.
-const cp = clamp((p - 0.10) / 0.30, 0, 1);
+            const cp = autoPlaying
+                ? 1
+                : clamp((p - 0.10) / 0.30, 0, 1);
 
             cue.style.opacity = (1 - cp).toFixed(3);
 
@@ -4389,7 +4551,77 @@ const cp = clamp((p - 0.10) / 0.30, 0, 1);
     render();
 
 
-    /* ---------- WHEEL ---------- */
+    /* ---------- TAP / CLICK TO ENTER ---------- */
+
+    intro.addEventListener(
+        "touchstart",
+        function(e){
+            if(done || autoPlaying){ return; }
+            const t = e.touches[0];
+            beginTap(t.clientX, t.clientY);
+        },
+        { passive: true }
+    );
+
+    intro.addEventListener(
+        "touchmove",
+        function(e){
+            if(done || autoPlaying){ return; }
+            const t = e.touches[0];
+            moveTap(t.clientX, t.clientY);
+        },
+        { passive: true }
+    );
+
+    intro.addEventListener(
+        "touchend",
+        function(e){
+            if(done || autoPlaying){ return; }
+
+            if(e.changedTouches && e.changedTouches.length){
+                const t = e.changedTouches[0];
+                moveTap(t.clientX, t.clientY);
+            }
+
+            endTap();
+        },
+        { passive: true }
+    );
+
+    intro.addEventListener(
+        "touchcancel",
+        function(){
+            tapMoved = true;
+        },
+        { passive: true }
+    );
+
+    /* mouse / trackpad / pen */
+    intro.addEventListener(
+        "mousedown",
+        function(e){
+            if(done || autoPlaying){ return; }
+            beginTap(e.clientX, e.clientY);
+        }
+    );
+
+    intro.addEventListener(
+        "mousemove",
+        function(e){
+            if(done || autoPlaying || !e.buttons){ return; }
+            moveTap(e.clientX, e.clientY);
+        }
+    );
+
+    intro.addEventListener(
+        "click",
+        function(){
+            endTap();
+        }
+    );
+
+
+    /* ---------- WHEEL (optional manual entrance) ---------- */
 
     window.addEventListener(
         "wheel",
@@ -4402,7 +4634,7 @@ const cp = clamp((p - 0.10) / 0.30, 0, 1);
     );
 
 
-    /* ---------- TOUCH ---------- */
+    /* ---------- TOUCH DRAG (optional manual entrance) ---------- */
 
     let lastTouchY = 0;
 
@@ -4421,6 +4653,8 @@ const cp = clamp((p - 0.10) / 0.30, 0, 1);
             if(done){ return; }
             e.preventDefault();
 
+            if(autoPlaying){ return; }
+
             const currentY = e.touches[0].clientY;
             const delta    = lastTouchY - currentY;
 
@@ -4437,13 +4671,19 @@ const cp = clamp((p - 0.10) / 0.30, 0, 1);
     window.addEventListener(
         "keydown",
         function(e){
-            if(done){ return; }
+            if(done || autoPlaying){ return; }
 
             if(
+                e.key === "Enter" ||
+                e.key === " "     ||
+                e.key === "Spacebar"
+            ){
+                e.preventDefault();
+                startAutoEnter();
+
+            } else if(
                 e.key === "ArrowDown" ||
-                e.key === "PageDown"  ||
-                e.key === " "         ||
-                e.key === "Enter"
+                e.key === "PageDown"
             ){
                 e.preventDefault();
                 advance(140);
