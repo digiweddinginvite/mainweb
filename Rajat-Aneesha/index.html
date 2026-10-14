@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Divine Invitation Intro</title>
+    <title>Aneesha & Rajat Wedding Invitation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@
     font-weight: 600;
     letter-spacing: 5px;
     line-height: 1.5;
-    color: #10116b;
+    color: #012f64;
     text-align: center;
     text-transform: uppercase;
 }
@@ -73,7 +73,7 @@
             font-style:italic;
             font-size:2.25rem;
             font-weight:600;
-            color:#800000; /* maroon */
+            color:#ffffff; /* maroon */
             letter-spacing:1.5px;
             text-transform:none;
             line-height:1.5;
@@ -814,7 +814,7 @@
         @media (max-width:480px){
             .invite-text{top:12%;font-size:0.75rem;letter-spacing:3px;}
            .invite-text span:not(.invite-wedding) {font-size:clamp(1.35rem,6vw,2rem);letter-spacing:1px;}
-            .tap-text{font-size:0.85rem;letter-spacing:4px;padding:10px 24px;bottom:5%;}
+            .tap-text{font-size:0.70rem;letter-spacing:4px;padding:10px 24px;bottom:5%;}
             .hero-content{padding:11vh 14px 0;}
             .hero-sub{max-width:340px;}
             .hero-couple{object-fit:contain;object-position:center bottom;}
@@ -843,6 +843,31 @@
             .parents-arch,.parents-pillars{transform:none !important;will-change:auto;}
             .event-card{opacity:1 !important;transform:none !important;transition:none !important;}
         }
+
+        
+.hero-invitation {
+    margin: 0 auto 16px;
+    max-width: 340px;
+    padding: 0 8px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(0.72rem, 2.5vw, 0.88rem);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    color: #fdf5e6;
+    text-align: center;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: 480px) {
+    .hero-invitation {
+        max-width: 310px;
+        font-size: 0.72rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -858,7 +883,7 @@
 
         <div class="invite-text" id="invite-text">
     You're invited to the wedding of
-    <span>Rajat Malviya<br>&amp;<br>Aneesha Srivastava</span>
+    <span>Aneesha Srivastava<br>&amp;<br>Rajat Malviya</span>
     
 </div>
 <div class="tap-text" id="tap-text">Tap to Open</div>
@@ -873,16 +898,20 @@
             </div>
 
             <div class="hero-content" id="hero-content">
-                <p class="hero-eyebrow">Together with our families</p>
+                <p class="hero-eyebrow"> Together with your families</p>
+                <p class="hero-invitation">
+    On this auspicious occasion, we cordially invite you
+    to grace the wedding ceremony of our daughter
+</p>
 
                 <h1 class="hero-names">
-                    <span class="hero-name">Rajat Malviya</span>
-                    <span class="amp">&amp;</span>
                     <span class="hero-name">Aneesha Srivastava</span>
+                    <span class="amp">&amp;</span>
+                    <span class="hero-name">Rajat Malviya</span>
                 </h1>
 
                 <div class="hero-divider"><span>&#9670;</span></div>
-                <p class="hero-date">Save the Date &nbsp;&middot;&nbsp; 09 . 12 . 2026</p>
+                <p class="hero-date">09 . 12 . 2026</p>
             </div>
 
             <div class="scroll-cue" id="scroll-cue">
@@ -901,18 +930,20 @@
                 <div class="parents-divider"><span>&#9670;</span></div>
 
                 <div class="parents-grid">
+                    
+
+                    <div class="parents-side">
+                        <p class="parents-role">Bride's Parents</p>
+                        <p class="parents-names">Mr. Abhay Kumar Srivastava &amp; Mrs. Arpita Srivastava</p>
+                        <p class="parents-note">Daughter &mdash; Aneesha</p>
+                        <p class="parents-note">Granddaughter of Late Vikramaditya Srivastava &amp; Late Lalita Devi</p>
+                    </div>
+
                     <div class="parents-side">
                         <p class="parents-role">Groom's Parents</p>
                         <p class="parents-names">Mr. Vinod Malviya &amp; Mrs. Shashi Malviya</p>
                         <p class="parents-note">Son &mdash; Rajat</p>
-                        <p class="parents-note">Grandson of Mr. Satya Dev Malviya &amp; Mrs. Achla Malviya</p>
-                    </div>
-
-                    <div class="parents-side">
-                        <p class="parents-role">Bride's Parents</p>
-                        <p class="parents-names">Mr. Abhay Srivastava &amp; Mrs. Arpita Srivastava</p>
-                        <p class="parents-note">Daughter &mdash; Aneesha</p>
-                        <p class="parents-note">Granddaughter of Mr. Vikramaditya Srivastava &amp; Mrs. Lalita Devi</p>
+                        <p class="parents-note">Grandson of Late Satya Dev Malviya &amp; Late Achla Malviya</p>
                     </div>
                 </div>
             </div>
@@ -929,20 +960,8 @@
                 <p class="events-sub">Join us for these joyful ceremonies as we begin our journey together.</p>
 
                 <div class="events-grid">
-                    <!-- HALDI -->
-                    <article class="event-card" data-event="haldi">
-                        <img src="Assets/eventcard.png" alt="" class="event-card-frame" aria-hidden="true" draggable="false">
-                        <div class="event-content">
-                            <img src="Assets/haldiicon.png" alt="Haldi Icon" class="event-icon-img" draggable="false">
-                            <h3 class="event-name">Haldi</h3>
-                            <div class="event-meta">
-                                <strong>6 December 2026</strong>
-                                
-                            </div>
-                        </div>
-                    </article>
 
-                    <!-- MEHANDI -->
+ <!-- MEHANDI -->
                     <article class="event-card" data-event="mehandi">
                         <img src="Assets/eventcard.png" alt="" class="event-card-frame" aria-hidden="true" draggable="false">
                         <div class="event-content">
@@ -950,10 +969,27 @@
                             <h3 class="event-name">Mehandi</h3>
                             <div class="event-meta">
                                 <strong>7 December 2026</strong>
+                                <strong>7:00 PM</strong>
                                 
                             </div>
                         </div>
                     </article>
+
+                    <!-- HALDI -->
+                    <article class="event-card" data-event="haldi">
+                        <img src="Assets/eventcard.png" alt="" class="event-card-frame" aria-hidden="true" draggable="false">
+                        <div class="event-content">
+                            <img src="Assets/haldiicon.png" alt="Haldi Icon" class="event-icon-img" draggable="false">
+                            <h3 class="event-name">Haldi</h3>
+                            <div class="event-meta">
+                                <strong>8 December 2026</strong>
+                                <strong>7:00 PM</strong>
+                                
+                            </div>
+                        </div>
+                    </article>
+
+                   
 
                     <!-- WEDDING (SHADI) -->
                     <article class="event-card" data-event="wedding">
@@ -963,6 +999,8 @@
                             <h3 class="event-name">Shadi</h3>
                             <div class="event-meta">
                                 <strong>9 December 2026</strong>
+                                <strong>6:00 PM onwards</strong>
+
                                 
                             </div>
                         </div>
@@ -1001,7 +1039,7 @@
 
                 <a
                     class="venue-btn"
-                    href="https://www.google.com/maps/search/?api=1&query=Ram+Janki+Palace+Babatpur+Varanasi"
+                    href="https://maps.app.goo.gl/y8mULE8Hn4VYgEW56?g_st=aw"
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Open the venue location in Google Maps"
@@ -1017,7 +1055,7 @@
         <!-- ADD TO CALENDAR SECTION — COMPACT -->
         <section id="calendar-section" aria-labelledby="calendar-title">
             <div class="calendar-card">
-                <p class="details-eyebrow">Save the Date</p>
+                <p class="details-eyebrow">JOIN US IN CELEBRATION</p>
                 <h2 class="details-title" id="calendar-title">Add to your Calendar</h2>
 
                 <div class="calendar-meta">
@@ -1088,7 +1126,7 @@
         <!-- FOOTER -->
         <footer id="site-footer">
             <img src="Assets/logo.png" alt="Rajat and Aneesha" class="footer-logo" draggable="false">
-            <p class="footer-names">Rajat &amp; Aneesha</p>
+            <p class="footer-names">Aneesha &amp; Rajat</p>
             <p class="footer-date">9 December 2026 · Varanasi, Uttar Pradesh, India</p>
             <p class="footer-message">Together is a beautiful place to be</p>
         </footer>
@@ -1817,7 +1855,8 @@
             const countdownSeconds = document.getElementById('countdown-seconds');
             const countdownMessage = document.getElementById('countdown-message');
 
-            const weddingDate = new Date('2026-12-09T00:00:00+05:30');
+            const weddingDate = new Date('2026-12-09T18:00:00+05:30');
+
 
             function updateCountdown() {
                 if (
