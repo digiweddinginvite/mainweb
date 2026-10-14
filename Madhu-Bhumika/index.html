@@ -2686,6 +2686,52 @@ footer::before {
     animation: none;
   }
 }
+
+
+/* =========================================
+   REMOVE BLUE TAP HIGHLIGHT — FULL WEBSITE
+   ========================================= */
+
+/* Remove the default blue tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Remove browser-default focus boxes on tap */
+*:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* Keep an elegant focus indicator for keyboard users */
+*:focus-visible {
+  outline: 2px solid #D4AF37;
+  outline-offset: 3px;
+}
+
+/* Prevent blue highlighting on interactive elements */
+a,
+button,
+img,
+span,
+div,
+section,
+.carousel-dots span {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Remove blue selection color */
+::selection {
+  background: rgba(212, 175, 55, 0.25);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(212, 175, 55, 0.25);
+  color: inherit;
+}
+
 </style>
 
 </head>
@@ -2813,7 +2859,7 @@ footer::before {
     </p>
 
     <p class="time">
-      10:00 PM
+      10:20 PM
     </p>
 
     <div class="m-divider"></div>
