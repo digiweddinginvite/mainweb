@@ -485,6 +485,71 @@
             color:#91671d;
         }
 
+        /* ============ DUO CARD — MEHANDI & SANGEETH ============ */
+        .event-card--duo .event-content{
+            padding:13% 10% 15%;
+        }
+
+        .event-icons-duo{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:clamp(8px,2.2vw,14px);
+            margin:0 auto 12px;
+            width:100%;
+        }
+
+        .event-icons-duo .event-icon-img{
+            width:clamp(40px,6.6vw,54px);
+            height:clamp(40px,6.6vw,54px);
+            margin:0;
+            padding:5px;
+            border:1px solid rgba(167,128,22,0.38);
+            background:radial-gradient(circle at 50% 32%,
+                rgba(255,250,235,0.98) 0%,
+                rgba(255,236,193,0.72) 62%,
+                rgba(255,255,255,0.10) 100%);
+            box-shadow:
+                0 4px 12px rgba(167,128,22,0.16),
+                inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+
+        .event-icons-sep{
+            flex:0 0 auto;
+            width:1px;
+            height:clamp(26px,4.4vw,34px);
+            border-radius:1px;
+            background:linear-gradient(180deg,
+                rgba(167,128,22,0) 0%,
+                rgba(167,128,22,0.75) 50%,
+                rgba(167,128,22,0) 100%);
+        }
+
+        .event-name--duo{
+            display:flex;
+            flex-wrap:wrap;
+            align-items:baseline;
+            justify-content:center;
+            gap:0 6px;
+            font-size:clamp(0.98rem,3.05vw,1.34rem);
+            letter-spacing:1.1px;
+            line-height:1.28;
+        }
+        .event-name--duo .event-name-part{
+            display:inline-block;
+            white-space:nowrap;
+        }
+        .event-name--duo .event-name-amp{
+            display:inline-block;
+            font-family:'Playfair Display',serif;
+            font-style:italic;
+            font-weight:400;
+            font-size:0.86em;
+            line-height:1;
+            color:#a78016;
+            text-shadow:0 1px 6px rgba(255,255,255,0.8);
+        }
+
         /* WEDDING DATE SECTION */
         #wedding-date-section{
             position:relative;
@@ -809,6 +874,12 @@
             .countdown-unit{min-height:96px;padding:14px 6px;border-radius:14px;}
             .countdown-label{margin-top:8px;letter-spacing:1px;}
             #site-footer{padding:36px 18px 30px;}
+            /* Duo card tuning on small screens */
+            .event-card--duo .event-content{padding:12% 9% 14%;}
+            .event-icons-duo{gap:9px;margin-bottom:10px;}
+            .event-icons-duo .event-icon-img{width:42px;height:42px;padding:4px;}
+            .event-icons-sep{height:24px;}
+            .event-name--duo{font-size:0.98rem;letter-spacing:0.8px;gap:0 5px;}
         }
 
         @media (max-width:480px){
@@ -961,17 +1032,28 @@
 
                 <div class="events-grid">
 
- <!-- MEHANDI -->
-                    <article class="event-card" data-event="mehandi">
+                    <!-- MEHANDI & SANGEETH — SAME DAY, SAME TIME, ONE CARD -->
+                    <article class="event-card event-card--duo" data-event="mehandi sangeeth">
                         <img src="Assets/eventcard.png" alt="" class="event-card-frame" aria-hidden="true" draggable="false">
                         <div class="event-content">
-                            <img src="Assets/mehandiicon.png" alt="Mehandi Icon" class="event-icon-img" draggable="false">
-                            <h3 class="event-name">Mehandi</h3>
+
+                            <div class="event-icons-duo">
+                                <img src="Assets/mehandiicon.png" alt="Mehandi icon" class="event-icon-img" draggable="false">
+                                <span class="event-icons-sep" aria-hidden="true"></span>
+                                <img src="Assets/Sangeethicon.png" alt="Sangeeth icon" class="event-icon-img" draggable="false">
+                            </div>
+
+                            <h3 class="event-name event-name--duo">
+                                <span class="event-name-part">Mehandi</span>
+                                <span class="event-name-amp">&amp;</span>
+                                <span class="event-name-part">Sangeeth</span>
+                            </h3>
+
                             <div class="event-meta">
                                 <strong>7 December 2026</strong>
                                 <strong>7:00 PM</strong>
-                                
                             </div>
+
                         </div>
                     </article>
 
@@ -1341,6 +1423,7 @@
                 'Assets/eventcard.png',
                 'Assets/haldiicon.png',
                 'Assets/mehandiicon.png',
+                'Assets/Sangeethicon.png',
                 'Assets/muhurtham.png'
             ];
 
