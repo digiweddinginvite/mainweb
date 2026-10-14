@@ -851,7 +851,7 @@ transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 /* Venue / extra detail line inside a card */
 .event-card .venue-name {
   color: #6c4a20;
-  font-size: 0.68rem;
+  font-size: 0.58rem;
   font-weight: 600;
   line-height: 1.15;
   margin: 4px 0 0;
@@ -1824,6 +1824,40 @@ footer::before {
   50% { opacity: 0.4; }
 }
 
+.intro-title {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(90%, 700px);
+  margin: 0;
+
+  z-index: 6;
+
+  color: #fff8e7;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  text-align: center;
+
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.5),
+    0 0 22px rgba(255, 215, 0, 0.25);
+
+  pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .intro-title {
+    top: 10%;
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+    letter-spacing: 1.5px;
+  }
+}
+
 /* ✨ ACTIVE STATE (HANDS COME & TOUCH) */
 .intro-screen.active .goddess {
   bottom: 5%;
@@ -1966,7 +2000,7 @@ footer::before {
 
   /* Venue line stays a touch smaller so long names fit */
   .events-grid .event-card .venue-name {
-    font-size: 0.82rem;
+    font-size: 0.52rem;
     line-height: 1.2;
     margin-top: 5px;
   }
@@ -2005,7 +2039,7 @@ footer::before {
   }
 
   .events-grid .event-card .venue-name {
-    font-size: 0.78rem;
+    font-size: 0.48rem;
     margin-top: 4px;
   }
 }
@@ -2740,12 +2774,14 @@ section,
 
 <section class="hero">
 
-  <div class="intro-screen" id="intro">
+<div class="intro-screen" id="intro">
 
   <img src="assests/goddesshand2.png" class="hand goddess">
   <img src="assests/godhand1.png" class="hand god">
 
+  <p class="intro-title">Umaka's Wedding<br> Invitation</p>
   <p class="tap-text">Tap to Begin</p>
+
   <div class="divine-light"></div>
 
 </div>
@@ -2895,6 +2931,19 @@ section,
         <span class="date">28-10-2026</span>
         <p>9:30 AM</p>
         <p class="venue-name">Srikant Nagar, Road No. 8, Arilova, Visakhapatnam.</p>
+
+         <a href="https://maps.app.goo.gl/g5FRFNwfAXXEqDXU8?g_st=ac"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="event-map-btn"
+           aria-label="Open Muhurtham venue location in Google Maps">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s-7-5.4-7-11a7 7 0 1 1 14 0c0 5.6-7 11-7 11Z"></path>
+            <circle cx="12" cy="10" r="2.6"></circle>
+          </svg>
+          Location
+        </a>
+
       </div>
       
       <!-- haldi -->
@@ -2904,8 +2953,21 @@ section,
         </div>
         <h3>Haldi</h3>
         <span class="date">28-10-2026</span>
-        <p>6:00 PM</p>
+        <p>6:00 PM Onwards</p>
         <p class="venue-name">Srikant Nagar, Road No. 8, Arilova, Visakhapatnam.</p>
+
+         <a href="https://maps.app.goo.gl/g5FRFNwfAXXEqDXU8?g_st=ac"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="event-map-btn"
+           aria-label="Open Muhurtham venue location in Google Maps">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 21s-7-5.4-7-11a7 7 0 1 1 14 0c0 5.6-7 11-7 11Z"></path>
+            <circle cx="12" cy="10" r="2.6"></circle>
+          </svg>
+          Location
+        </a>
+        
       </div>
 
       <!-- MUHURTHAM -->
@@ -2913,7 +2975,7 @@ section,
         <div class="icon">
           <img src="assests/muhurtham.png" alt="Muhurtham">
         </div>
-        <h3>Muhurtham</h3>
+        <h3>Pelli Muhurtham</h3>
         <span class="date">29-10-2026</span>
         <p>10:20 PM</p>
        
@@ -2974,13 +3036,13 @@ section,
   <div class="carousel reveal">
 
     <div class="carousel-track">
-     <img src="assests/image7.png">
      <img src="assests/image6.png">
+     <img src="assests/image5.png">
      <img src="assests/image1.png">
      <img src="assests/image2.png">
      <img src="assests/image3.png">
      <img src="assests/image4.png">
-     <img src="assests/image5.png">
+     <img src="assests/image7.png">
      
      
 
