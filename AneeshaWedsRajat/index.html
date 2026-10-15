@@ -6,7 +6,7 @@
     <title>Aneesha & Rajat Wedding Invitation</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+Devanagari:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         *,*::before,*::after{box-sizing:border-box;}
@@ -73,7 +73,7 @@
             font-style:italic;
             font-size:2.25rem;
             font-weight:600;
-            color:#ffffff; /* maroon */
+            color:#ffffff;
             letter-spacing:1.5px;
             text-transform:none;
             line-height:1.5;
@@ -264,7 +264,7 @@
             flex-direction:column;
             align-items:center;
             justify-content:center;
-            padding:32% 24% 20%;
+            padding:min(25%, 21vh) 22% min(16%, 12vh);
             text-align:center;
             opacity:0;
             transform:translate3d(0,28px,0);
@@ -282,12 +282,49 @@
             transform-origin:center center;
             transform:translate3d(0,0,100px) scale(1.06);
         }
-        .parents-eyebrow{margin:0 0 10px;font-family:'Cinzel',serif;font-size:clamp(0.56rem,2.3vw,0.76rem);font-weight:600;letter-spacing:5px;text-transform:uppercase;color:#a78016;text-shadow:0 1px 6px rgba(255,255,255,0.55);}
-        .parents-title{margin:0;font-family:'Cinzel',serif;font-weight:700;font-size:clamp(1.25rem,5.6vw,2.1rem);line-height:1.15;letter-spacing:1.5px;color:#14314f;text-shadow:0 1px 8px rgba(255,255,255,0.6);}
-        .parents-divider{display:flex;align-items:center;gap:10px;margin:14px 0 0;width:min(200px,68%);}
+
+        /* ===== GANESH ICON + SLOKA ===== */
+        .parents-ganesh{
+            display:block;
+            width:clamp(62px, 14vw, 100px);
+            height:auto;
+            margin:0 auto clamp(8px, 1.6vw, 14px);
+            object-fit:contain;
+            user-select:none;
+            -webkit-user-drag:none;
+            pointer-events:none;
+            filter:drop-shadow(0 6px 16px rgba(167,128,22,0.28));
+            animation:ganeshGlow 3.8s ease-in-out infinite;
+        }
+        @keyframes ganeshGlow{
+            0%,100%{filter:drop-shadow(0 6px 16px rgba(167,128,22,0.26));}
+            50%{filter:drop-shadow(0 6px 24px rgba(214,170,44,0.52));}
+        }
+
+        .parents-sloka{
+            margin:0;
+            font-family:'Noto Serif Devanagari','Playfair Display',serif;
+            font-size:clamp(0.72rem, 2.65vw, 0.94rem);
+            font-weight:400;
+            line-height:1.85;
+            letter-spacing:0.3px;
+            color:#14314f;
+            text-shadow:0 1px 8px rgba(255,255,255,0.75);
+        }
+        .parents-sloka .sloka-invocation{
+            display:block;
+            margin-bottom:4px;
+            font-size:1.06em;
+            font-weight:600;
+            letter-spacing:1px;
+            color:#8a6410;
+            text-shadow:0 1px 8px rgba(255,255,255,0.8);
+        }
+
+        .parents-divider{display:flex;align-items:center;gap:10px;margin:clamp(10px,2vw,14px) 0 0;width:min(200px,68%);}
         .parents-divider::before,.parents-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(167,128,22,0.85),transparent);}
         .parents-divider span{font-size:0.55rem;color:#a78016;line-height:1;text-shadow:0 0 8px rgba(167,128,22,0.45);}
-        .parents-grid{display:flex;flex-direction:column;gap:clamp(14px,4vw,22px);margin-top:clamp(16px,4vw,24px);width:100%;}
+        .parents-grid{display:flex;flex-direction:column;gap:clamp(12px,3.2vw,20px);margin-top:clamp(12px,3vw,20px);width:100%;}
         .parents-side{display:flex;flex-direction:column;align-items:center;gap:5px;}
         .parents-role{margin:0;font-family:'Cinzel',serif;font-size:clamp(0.55rem,2.1vw,0.7rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#9a7513;text-shadow:0 1px 5px rgba(255,255,255,0.55);}
         .parents-names{margin:0;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(0.86rem,3.3vw,1.08rem);line-height:1.5;color:#14314f;text-shadow:0 1px 6px rgba(255,255,255,0.5);}
@@ -891,12 +928,112 @@
             .hero-couple{object-fit:contain;object-position:center bottom;}
             .venue-content{padding:8vh 18px 0;}
             .venue-btn{padding:13px 26px;letter-spacing:2.5px;}
-            .parents-content{padding:30% 22% 18%;}
-            .parents-divider{margin-top:10px;}
         }
 
         @media (max-width:480px) and (min-height:800px){
             .venue-content{padding-top:13vh;}
+        }
+
+        /* ============================================================
+           PARENTS SECTION — RESPONSIVE FIX
+           Ensures all content (Ganesh + Sloka + Parents details)
+           fits fully on smaller / shorter mobile devices.
+        ============================================================ */
+        @media (max-width:600px){
+            .parents-content{
+                /* vh-based padding keeps text clear of the decorative
+                   arch at the top and pillars at the bottom, while
+                   guaranteeing enough vertical room for all content. */
+                padding:20vh 14% 14vh;
+                justify-content:center;
+            }
+            .parents-ganesh{
+                width:clamp(66px, 13vw, 64px);
+                margin-bottom:8px;
+            }
+            .parents-sloka{
+                font-size:clamp(0.62rem, 2.8vw, 0.8rem);
+                line-height:1.7;
+            }
+            .parents-divider{
+                margin-top:8px;
+                width:min(170px, 62%);
+            }
+            .parents-grid{
+                gap:10px;
+                margin-top:10px;
+            }
+            .parents-role{
+                font-size:clamp(0.5rem, 2vw, 0.62rem);
+                letter-spacing:3px;
+            }
+            .parents-names{
+                font-size:clamp(0.76rem, 3vw, 0.94rem);
+                line-height:1.4;
+            }
+            .parents-note{
+                font-size:clamp(0.62rem, 2.4vw, 0.76rem);
+                line-height:1.4;
+                margin-top:4px;
+            }
+        }
+
+        /* Extra compression for short screens (small phones) */
+        @media (max-width:600px) and (max-height:740px){
+            .parents-content{
+                padding:17vh 12% 12vh;
+            }
+            .parents-ganesh{
+                width:clamp(76px, 11vw, 54px);
+                margin-bottom:6px;
+            }
+            .parents-sloka{
+                font-size:clamp(0.56rem, 2.5vw, 0.72rem);
+                line-height:1.62;
+            }
+            .parents-divider{
+                margin-top:6px;
+            }
+            .parents-grid{
+                gap:8px;
+                margin-top:8px;
+            }
+            .parents-note{
+                margin-top:3px;
+            }
+        }
+
+        /* Very short screens (e.g. landscape small phones) */
+        @media (max-width:600px) and (max-height:600px){
+            .parents-content{
+                padding:12vh 10% 9vh;
+            }
+            .parents-ganesh{
+                width:clamp(34px, 9vw, 46px);
+                margin-bottom:4px;
+            }
+            .parents-sloka{
+                font-size:clamp(0.5rem, 2.2vw, 0.64rem);
+                line-height:1.55;
+            }
+            .parents-divider{
+                margin-top:5px;
+            }
+            .parents-grid{
+                gap:6px;
+                margin-top:6px;
+            }
+            .parents-role{
+                font-size:clamp(0.45rem, 1.8vw, 0.56rem);
+                letter-spacing:2px;
+            }
+            .parents-names{
+                font-size:clamp(0.68rem, 2.6vw, 0.84rem);
+            }
+            .parents-note{
+                font-size:clamp(0.56rem, 2.1vw, 0.68rem);
+                margin-top:2px;
+            }
         }
 
         @media (prefers-reduced-motion:reduce){
@@ -912,6 +1049,7 @@
             .wedding-date-content{transform:translate3d(-50%,0,90px) !important;opacity:1 !important;}
             .parents-content{opacity:1 !important;transform:none !important;transition:none !important;}
             .parents-arch,.parents-pillars{transform:none !important;will-change:auto;}
+            .parents-ganesh{animation:none !important;}
             .event-card{opacity:1 !important;transform:none !important;transition:none !important;}
         }
 
@@ -992,12 +1130,18 @@
         </section>
 
         <!-- PARENTS SECTION -->
-        <section id="parents-section" aria-labelledby="parents-title">
+        <section id="parents-section" aria-label="Blessings and Parents">
             <img src="Assets/archimg.png" alt="" class="parents-layer parents-arch" id="parents-arch" aria-hidden="true" draggable="false">
 
             <div class="parents-content" id="parents-content">
-                <p class="parents-eyebrow">With the blessings of</p>
-                <h2 class="parents-title" id="parents-title">Our Parents</h2>
+                <img src="Assets/ganeshimg.png" alt="Lord Ganesha" class="parents-ganesh" draggable="false">
+
+                <p class="parents-sloka">
+                    <span class="sloka-invocation">॥ श्री गणेशाय नमः ॥</span>
+                    वक्रतुण्ड महाकाय सूर्यकोटि समप्रभ ।<br>
+                    निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+                </p>
+
                 <div class="parents-divider"><span>&#9670;</span></div>
 
                 <div class="parents-grid">
@@ -1039,11 +1183,13 @@
 
                             <div class="event-icons-duo">
                                 <img src="Assets/mehandiicon.png" alt="Mehandi icon" class="event-icon-img" draggable="false">
-
+                                
+                                
                             </div>
 
                             <h3 class="event-name event-name--duo">
                                 <span class="event-name-part">Mehandi</span>
+                               
                                
                             </h3>
 
@@ -1054,6 +1200,7 @@
 
                         </div>
                     </article>
+
 
                    
 
@@ -1398,6 +1545,7 @@
                 'Assets/paperimg.png',
                 'Assets/archimg.png',
                 'Assets/pillarsimg.png',
+                'Assets/ganeshimg.png',
                 'Assets/wedbg.png',
                 'Assets/wedarchimg.png',
                 'Assets/coupleimg.png',
