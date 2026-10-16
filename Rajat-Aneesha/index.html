@@ -295,6 +295,8 @@
             pointer-events:none;
             filter:drop-shadow(0 6px 16px rgba(167,128,22,0.28));
             animation:ganeshGlow 3.8s ease-in-out infinite;
+            /* moved a little UP */
+            transform:translateY(-20px);
         }
         @keyframes ganeshGlow{
             0%,100%{filter:drop-shadow(0 6px 16px rgba(167,128,22,0.26));}
@@ -310,6 +312,8 @@
             letter-spacing:0.3px;
             color:#14314f;
             text-shadow:0 1px 8px rgba(255,255,255,0.75);
+            /* moved a little UP together with the Ganesh icon */
+            transform:translateY(-20px);
         }
         .parents-sloka .sloka-invocation{
             display:block;
@@ -321,10 +325,44 @@
             text-shadow:0 1px 8px rgba(255,255,255,0.8);
         }
 
-        .parents-divider{display:flex;align-items:center;gap:10px;margin:clamp(10px,2vw,14px) 0 0;width:min(200px,68%);}
-        .parents-divider::before,.parents-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(167,128,22,0.85),transparent);}
-        .parents-divider span{font-size:0.55rem;color:#a78016;line-height:1;text-shadow:0 0 8px rgba(167,128,22,0.45);}
-        .parents-grid{display:flex;flex-direction:column;gap:clamp(12px,3.2vw,20px);margin-top:clamp(12px,3vw,20px);width:100%;}
+
+.parents-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: clamp(10px, 2vw, 14px) auto 0;
+    width: min(200px, 68%);
+    align-self: center;
+    flex-shrink: 0;
+}
+
+.parents-divider::before,
+.parents-divider::after {
+    content: '';
+    flex: 1;
+    min-width: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(167, 128, 22, 0.85),
+        transparent
+    );
+}
+
+.parents-divider span {
+    display: block;
+    flex: 0 0 auto;
+    font-size: 0.55rem;
+    color: #a78016;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(167, 128, 22, 0.45);
+}
+
+
+        /* ===== MORE SPACE BETWEEN BRIDE'S & GROOM'S PARENTS ===== */
+        .parents-grid{display:flex;flex-direction:column;gap:clamp(26px,5.5vw,42px);margin-top:clamp(18px,3.6vw,28px);width:100%;}
         .parents-side{display:flex;flex-direction:column;align-items:center;gap:5px;}
         .parents-role{margin:0;font-family:'Cinzel',serif;font-size:clamp(0.55rem,2.1vw,0.7rem);font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#9a7513;text-shadow:0 1px 5px rgba(255,255,255,0.55);}
         .parents-names{margin:0;font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(0.86rem,3.3vw,1.08rem);line-height:1.5;color:#14314f;text-shadow:0 1px 6px rgba(255,255,255,0.5);}
@@ -841,6 +879,176 @@
             line-height:1.6;
         }
 
+        /* ============ RSVP SECTION — CALL TO CONFIRM ============ */
+        #rsvp-section{
+            position:relative;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:100%;
+            padding:clamp(52px,8vh,92px) 20px;
+            overflow:hidden;
+            text-align:center;
+            color:#14314f;
+            background:
+                radial-gradient(circle at 16% 14%,rgba(255,247,224,0.95),transparent 38%),
+                radial-gradient(circle at 86% 86%,rgba(255,228,175,0.55),transparent 40%),
+                linear-gradient(150deg,#fdf7ea 0%,#f7ecd5 55%,#f1e0c1 100%);
+            isolation:isolate;
+        }
+        #rsvp-section::after{
+            content:'';
+            position:absolute;
+            inset:0;
+            background:
+                radial-gradient(circle at 50% 0%, rgba(255,255,255,0.62), transparent 55%),
+                radial-gradient(circle at 50% 100%, rgba(255,235,190,0.5), transparent 52%);
+            pointer-events:none;
+            z-index:0;
+        }
+        .rsvp-card{
+            position:relative;
+            z-index:1;
+            width:min(100%,620px);
+            padding:clamp(26px,4.4vw,42px) clamp(20px,4vw,44px);
+            border:1px solid rgba(190,148,40,0.36);
+            border-radius:26px;
+            background:rgba(255,255,255,0.80);
+            box-shadow:0 20px 52px rgba(31,67,98,0.13),inset 0 1px 0 rgba(255,255,255,0.95);
+            backdrop-filter:blur(10px);
+            -webkit-backdrop-filter:blur(10px);
+        }
+        .rsvp-card::before{
+            content:'';
+            position:absolute;
+            inset:8px;
+            border:1px solid rgba(190,148,40,0.22);
+            border-radius:19px;
+            pointer-events:none;
+        }
+        .rsvp-sub{
+            max-width:470px;
+            margin:16px auto 0;
+            font-family:'Playfair Display',serif;
+            font-style:italic;
+            font-size:clamp(0.86rem,2.8vw,1.02rem);
+            line-height:1.7;
+            color:#49647c;
+        }
+        .rsvp-divider{
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:12px;
+            width:min(260px,70%);
+            margin:18px auto 0;
+            color:#ac7a23;
+        }
+        .rsvp-divider::before,.rsvp-divider::after{
+            content:'';
+            flex:1;
+            height:1px;
+            background:linear-gradient(90deg,transparent,rgba(172,122,35,0.85),transparent);
+        }
+        .rsvp-divider span{font-size:0.7rem;line-height:1;}
+
+        .rsvp-list{
+            display:flex;
+            flex-direction:column;
+            gap:clamp(12px,2.4vw,16px);
+            margin:clamp(22px,3.4vw,30px) auto 0;
+            width:100%;
+        }
+        .rsvp-person{
+            display:flex;
+            align-items:center;
+            gap:14px;
+            width:100%;
+            padding:14px 18px;
+            border:1px solid rgba(190,148,40,0.34);
+            border-radius:18px;
+            background:rgba(255,255,255,0.74);
+            box-shadow:0 8px 20px rgba(31,67,98,0.08),inset 0 1px 0 rgba(255,255,255,0.92);
+            text-decoration:none;
+            color:inherit;
+            text-align:left;
+            cursor:pointer;
+            touch-action:manipulation;
+            -webkit-tap-highlight-color:transparent;
+            transition:transform 0.25s ease,box-shadow 0.25s ease,border-color 0.25s ease,background 0.25s ease;
+        }
+        .rsvp-person:hover,.rsvp-person:focus-visible{
+            transform:translateY(-2px);
+            border-color:rgba(190,148,40,0.62);
+            background:rgba(255,255,255,0.94);
+            box-shadow:0 13px 28px rgba(31,67,98,0.16),inset 0 1px 0 rgba(255,255,255,0.98);
+        }
+        .rsvp-person:focus-visible{outline:2px solid #a78016;outline-offset:3px;}
+        .rsvp-person:active{transform:translateY(0) scale(0.99);}
+
+        .rsvp-icon{
+            flex:0 0 auto;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            width:clamp(40px,11vw,48px);
+            height:clamp(40px,11vw,48px);
+            border-radius:50%;
+            border:1px solid rgba(167,128,22,0.4);
+            background:radial-gradient(circle at 50% 32%,
+                rgba(255,250,235,0.98) 0%,
+                rgba(255,236,193,0.75) 62%,
+                rgba(255,255,255,0.15) 100%);
+            box-shadow:0 4px 12px rgba(167,128,22,0.16),inset 0 1px 0 rgba(255,255,255,0.9);
+        }
+        .rsvp-icon svg{width:52%;height:52%;fill:#a78016;}
+
+        .rsvp-info{
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+            min-width:0;
+            flex:1 1 auto;
+        }
+        .rsvp-name{
+            font-family:'Cinzel',serif;
+            font-size:clamp(0.78rem,2.9vw,0.95rem);
+            font-weight:700;
+            letter-spacing:0.8px;
+            line-height:1.35;
+            color:#14314f;
+        }
+        .rsvp-phone{
+            font-family:'Playfair Display',serif;
+            font-style:italic;
+            font-size:clamp(0.82rem,2.9vw,1rem);
+            letter-spacing:0.6px;
+            color:#49647c;
+            word-break:break-word;
+        }
+        .rsvp-cta{
+            flex:0 0 auto;
+            padding:8px 16px;
+            border-radius:999px;
+            border:1px solid rgba(190,148,40,0.5);
+            background:linear-gradient(135deg,#ffdf4f 0%,#e0b52c 100%);
+            color:#0d1b2a;
+            font-family:'Cinzel',serif;
+            font-size:clamp(0.56rem,2.2vw,0.68rem);
+            font-weight:700;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            box-shadow:0 4px 12px rgba(171,129,18,0.22),inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+        .rsvp-note{
+            margin:18px 0 0;
+            color:#6a7e90;
+            font-family:'Playfair Display',serif;
+            font-size:clamp(0.72rem,2.5vw,0.84rem);
+            font-style:italic;
+            line-height:1.6;
+        }
+
         #countdown-section{position:relative;display:flex;align-items:center;justify-content:center;min-height:64vh;padding:clamp(56px,9vh,96px) 20px;overflow:hidden;text-align:center;color:#14314f;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.95),transparent 56%),linear-gradient(180deg,#eaf5ff 0%,#d7e9f8 100%);}
         .countdown-inner{width:min(100%,820px);margin:0 auto;}
         .countdown-date{margin:16px 0 0;color:#49647c;font-family:'Playfair Display',serif;font-size:clamp(1rem,3vw,1.18rem);font-style:italic;letter-spacing:0.6px;}
@@ -919,6 +1127,20 @@
             .event-name--duo{font-size:0.98rem;letter-spacing:0.8px;gap:0 5px;}
         }
 
+        /* ============ RSVP — SMALL SCREEN TUNING ============ */
+        @media (max-width:480px){
+            #rsvp-section{padding:56px 16px;}
+            .rsvp-card{padding:30px 20px;border-radius:22px;}
+            .rsvp-card::before{inset:6px;border-radius:17px;}
+            .rsvp-person{padding:12px 14px;gap:11px;border-radius:15px;}
+            .rsvp-cta{padding:7px 13px;letter-spacing:1.5px;}
+            .rsvp-note{margin-top:16px;}
+        }
+
+        @media (max-width:360px){
+            .rsvp-cta{display:none;}
+        }
+
         @media (max-width:480px){
             .invite-text{top:12%;font-size:0.75rem;letter-spacing:3px;}
            .invite-text span:not(.invite-wedding) {font-size:clamp(1.35rem,6vw,2rem);letter-spacing:1px;}
@@ -950,18 +1172,20 @@
             .parents-ganesh{
                 width:clamp(66px, 13vw, 64px);
                 margin-bottom:8px;
+                transform:translateY(-15px);
             }
             .parents-sloka{
                 font-size:clamp(0.62rem, 2.8vw, 0.8rem);
                 line-height:1.7;
+                transform:translateY(-15px);
             }
             .parents-divider{
                 margin-top:8px;
                 width:min(170px, 62%);
             }
             .parents-grid{
-                gap:10px;
-                margin-top:10px;
+                gap:22px;
+                margin-top:14px;
             }
             .parents-role{
                 font-size:clamp(0.5rem, 2vw, 0.62rem);
@@ -986,17 +1210,19 @@
             .parents-ganesh{
                 width:clamp(76px, 11vw, 54px);
                 margin-bottom:6px;
+                transform:translateY(-12px);
             }
             .parents-sloka{
                 font-size:clamp(0.56rem, 2.5vw, 0.72rem);
                 line-height:1.62;
+                transform:translateY(-12px);
             }
             .parents-divider{
                 margin-top:6px;
             }
             .parents-grid{
-                gap:8px;
-                margin-top:8px;
+                gap:18px;
+                margin-top:12px;
             }
             .parents-note{
                 margin-top:3px;
@@ -1011,17 +1237,19 @@
             .parents-ganesh{
                 width:clamp(34px, 9vw, 46px);
                 margin-bottom:4px;
+                transform:translateY(-8px);
             }
             .parents-sloka{
                 font-size:clamp(0.5rem, 2.2vw, 0.64rem);
                 line-height:1.55;
+                transform:translateY(-8px);
             }
             .parents-divider{
                 margin-top:5px;
             }
             .parents-grid{
-                gap:6px;
-                margin-top:6px;
+                gap:14px;
+                margin-top:10px;
             }
             .parents-role{
                 font-size:clamp(0.45rem, 1.8vw, 0.56rem);
@@ -1115,7 +1343,7 @@
 
                 <h1 class="hero-names">
                     <span class="hero-name">Aneesha Srivastava</span>
-                    <span class="amp">&amp;</span>
+                    <span class="amp">with</span>
                     <span class="hero-name">Rajat Malviya</span>
                 </h1>
 
@@ -1149,16 +1377,17 @@
 
                     <div class="parents-side">
                         <p class="parents-role">Bride's Parents</p>
-                        <p class="parents-names">Mr. Abhay Kumar Srivastava &amp; Mrs. Arpita Srivastava</p>
+                        <p class="parents-names">Mrs. Arpita Srivastava &amp; Mr. Abhay Kumar Srivastava</p>
                         <p class="parents-note">Daughter &mdash; Aneesha</p>
-                        <p class="parents-note">Granddaughter of Late Vikramaditya Srivastava &amp; Late Lalita Devi</p>
+                        <p class="parents-note">Granddaughter of Late Lalita Devi &amp; Late Vikramaditya Srivastava</p>
                     </div>
-
+                          <div class="parents-divider"><span>&#9670;</span></div>
+                          
                     <div class="parents-side">
                         <p class="parents-role">Groom's Parents</p>
-                        <p class="parents-names">Mr. Vinod Malviya &amp; Mrs. Shashi Malviya</p>
+                        <p class="parents-names">Mrs. Shashi Malviya &amp; Mr. Vinod Malviya</p>
                         <p class="parents-note">Son &mdash; Rajat</p>
-                        <p class="parents-note">Grandson of Late Satya Dev Malviya &amp; Late Achla Malviya</p>
+                        <p class="parents-note">Grandson of Late Achla Malviya &amp; Late Satya Dev Malviya</p>
                     </div>
                 </div>
             </div>
@@ -1176,21 +1405,21 @@
 
                 <div class="events-grid">
 
-                    <!-- MEHANDI & SANGEETH — SAME DAY, SAME TIME, ONE CARD -->
+                    <!-- MEHNDI & SANGEET — SAME DAY, SAME TIME, ONE CARD -->
                     <article class="event-card event-card--duo" data-event="mehandi sangeeth">
                         <img src="Assets/eventcard.png" alt="" class="event-card-frame" aria-hidden="true" draggable="false">
                         <div class="event-content">
 
                             <div class="event-icons-duo">
                                 <img src="Assets/mehandiicon.png" alt="Mehandi icon" class="event-icon-img" draggable="false">
-                                <span class="event-icons-sep" aria-hidden="true"></span>
-                                <img src="Assets/Sangeethicon.png" alt="Sangeeth icon" class="event-icon-img" draggable="false">
+                                <span class="events-icons-sep event-icons-sep" aria-hidden="true"></span>
+                                <img src="Assets/Sangeethicon.png" alt="Sangeet icon" class="event-icon-img" draggable="false">
                             </div>
 
                             <h3 class="event-name event-name--duo">
-                                <span class="event-name-part">Mehandi</span>
+                                <span class="event-name-part">Mehndi</span>
                                 <span class="event-name-amp">&amp;</span>
-                                <span class="event-name-part">Sangeeth</span>
+                                <span class="event-name-part">Sangeet</span>
                             </h3>
 
                             <div class="event-meta">
@@ -1217,12 +1446,12 @@
 
                    
 
-                    <!-- WEDDING (SHADI) -->
+                    <!-- WEDDING (shaadi) -->
                     <article class="event-card" data-event="wedding">
                         <img src="Assets/eventcard.png" alt="" class="event-card-frame" aria-hidden="true" draggable="false">
                         <div class="event-content">
                             <img src="Assets/muhurtham.png" alt="Wedding Icon" class="event-icon-img" draggable="false">
-                            <h3 class="event-name">Shadi</h3>
+                            <h3 class="event-name">shaadi</h3>
                             <div class="event-meta">
                                 <strong>9 December 2026</strong>
                                 <strong>6:00 PM onwards</strong>
@@ -1314,6 +1543,63 @@
                 </div>
 
                 
+            </div>
+        </section>
+
+        <!-- ============ RSVP SECTION — CALL TO CONFIRM ============ -->
+        <section id="rsvp-section" aria-labelledby="rsvp-title">
+            <div class="rsvp-card">
+                <p class="details-eyebrow">RSVP</p>
+                <h2 class="details-title" id="rsvp-title">Kindly Confirm Your Presence</h2>
+
+                <div class="rsvp-divider"><span>&#9670;</span></div>
+
+                <p class="rsvp-sub">
+                    Your blessings mean the world to us. Please call any of the
+                    numbers below to confirm your presence.
+                </p>
+
+                <div class="rsvp-list">
+
+                    <a
+                        class="rsvp-person"
+                        href="tel:+919956275841"
+                        aria-label="Call Abhay Kumar Srivastava at 9956275841"
+                    >
+                        <span class="rsvp-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.21 2.2z"/>
+                            </svg>
+                        </span>
+                        <span class="rsvp-info">
+                            <span class="rsvp-name">Abhay Kumar Srivastava</span>
+                            <span class="rsvp-phone">+91 9956275841</span>
+                        </span>
+                        <span class="rsvp-cta" aria-hidden="true">Call</span>
+                    </a>
+
+                    <a
+                        class="rsvp-person"
+                        href="tel:+919919227599"
+                        aria-label="Call Aditya Srivastava at 9919227599"
+                    >
+                        <span class="rsvp-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" focusable="false">
+                                <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.03-.24c1.12.37 2.33.57 3.56.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.4 21 3 13.6 3 4.5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.23.2 2.44.57 3.56a1 1 0 0 1-.24 1.03l-2.21 2.2z"/>
+                            </svg>
+                        </span>
+                        <span class="rsvp-info">
+                            <span class="rsvp-name">Aditya Srivastava</span>
+                            <span class="rsvp-phone">+91 9919227599</span>
+                        </span>
+                        <span class="rsvp-cta" aria-hidden="true">Call</span>
+                    </a>
+
+                </div>
+
+                <p class="rsvp-note">
+                    Tap a number to call directly.
+                </p>
             </div>
         </section>
 
