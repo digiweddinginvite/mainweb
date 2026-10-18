@@ -114,10 +114,6 @@ img, video { display: block; max-width: 100%; }
   box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
 }
 
-.btn-outline { color: var(--chocolate-dark); background: transparent; }
-.btn-outline:hover { color: var(--cream); }
-.btn-outline::before { background: var(--chocolate-dark); }
-
 /* 01 — INTRO VIDEO */
 .intro {
   position: fixed;
@@ -218,7 +214,7 @@ img, video { display: block; max-width: 100%; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 02 — HERO */
+/* 02 — HERO (OPENING PHOTO) */
 .hero {
   position: relative;
   display: block;
@@ -358,77 +354,7 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   animation: heroRiseText 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.55s forwards;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-couple img,
-  .hero-inner .eyebrow,
-  .hero-inner h1,
-  .hero-inner .hero-subtitle { opacity: 1 !important; animation: none !important; }
-}
-
-/* 03 — STORY */
-.story { background: var(--cream-dark); }
-
-.story-layout {
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  align-items: center;
-  gap: 60px;
-}
-
-.story-polaroids {
-  position: relative;
-  display: block;
-  width: 100%;
-  max-width: 440px;
-  height: 510px;
-  margin: 0 auto;
-  padding: 0;
-  overflow: visible;
-}
-
-.story-polaroids img {
-  position: absolute;
-  display: block;
-  width: 68%;
-  max-width: 290px;
-  height: auto;
-  max-height: none;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none !important;
-  filter: none !important;
-  object-fit: contain;
-}
-
-.story-polaroids img:first-child { top: -30px; left: 0; z-index: 1; transform: rotate(-1deg); }
-.story-polaroids img:last-child { right: 0; bottom: -20px; z-index: 2; transform: rotate(1deg); }
-
-.story-copy h2 {
-  font: 400 clamp(42px, 6vw, 68px)/1.1 "Playfair Display", serif;
-  margin: 20px 0 30px;
-  color: var(--chocolate-dark);
-}
-
-.story-copy p {
-  font: 400 17px/2 "Playfair Display", serif;
-  color: var(--muted);
-  margin-bottom: 20px;
-}
-
-@media (max-width: 760px) {
-  .story-polaroids { width: 100%; max-width: 380px; height: 410px; }
-  .story-polaroids img { width: 68%; max-width: 245px; }
-}
-
-@media (max-width: 380px) {
-  .story-polaroids { height: 360px; }
-  .story-polaroids img { width: 70%; }
-}
-
-/* 04 — SCRATCH */
+/* 03 — SCRATCH DATE REVEAL */
 .scratch-section { background: var(--cream); text-align: center; }
 .scratch-wrap { max-width: 420px; margin: 40px auto 0; }
 
@@ -485,7 +411,7 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   font-weight: 700;
 }
 
-/* 05 — EVENTS */
+/* 04 — ALL EVENTS TIMELINE (PREMIUM REDESIGN) */
 .events {
   background: var(--chocolate-dark);
   color: var(--cream);
@@ -526,298 +452,412 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
 
 .timeline-container { position: relative; max-width: 1000px; margin: 0 auto; padding: 20px 0; }
 
-.timeline-track {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 30px;
-  padding: 40px 20px 60px;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.timeline-track::-webkit-scrollbar { display: none; }
-
-.timeline-item {
-  flex: 0 0 260px;
-  scroll-snap-align: center;
+/* Premium Timeline Styles */
+.timeline-vertical {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
-.timeline-item::before {
+.timeline-vertical::before {
   content: '';
   position: absolute;
+  left: 24px;
   top: 40px;
-  left: -50%;
-  width: 100%;
-  height: 1px;
-  background: rgba(212, 175, 55, 0.3);
+  bottom: 40px;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.6) 10%, rgba(212, 175, 55, 0.6) 90%, transparent);
   z-index: 0;
 }
 
-.timeline-item:first-child::before { display: none; }
-
-.timeline-time {
-  font: 600 14px "Playfair Display", serif;
-  color: var(--gold);
-  margin-bottom: 15px;
-  letter-spacing: 2px;
+.timeline-day {
   position: relative;
+  margin-bottom: 50px;
+  padding-left: 65px;
+}
+
+.timeline-day:last-child { margin-bottom: 0; }
+
+.timeline-day-label {
+  font: 600 clamp(18px, 2.5vw, 22px) "Playfair Display", serif;
+  color: var(--gold);
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+  background: rgba(46, 26, 17, 0.95);
+  padding: 8px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   z-index: 1;
 }
 
-.timeline-dot {
+/* Glowing Day Node */
+.timeline-day-label::before {
+  content: '';
+  position: absolute;
+  left: -49px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: var(--chocolate-dark);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+.timeline-event {
+  position: relative;
+  background: linear-gradient(145deg, rgba(253, 251, 247, 0.05) 0%, rgba(253, 251, 247, 0.01) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 20px;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+}
+
+.timeline-event:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.6);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(145deg, rgba(253, 251, 247, 0.08) 0%, rgba(253, 251, 247, 0.02) 100%);
+}
+
+/* Connecting dot on the line */
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: -47px;
+  top: 32px;
   width: 12px;
   height: 12px;
   background: var(--gold);
   border-radius: 50%;
-  margin-bottom: 30px;
-  position: relative;
-  z-index: 1;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
 }
 
-.timeline-dot::after {
+/* Horizontal connecting line from dot to card */
+.timeline-event::after {
   content: '';
   position: absolute;
-  top: -6px; left: -6px; right: -6px; bottom: -6px;
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  border-radius: 50%;
+  left: -36px;
+  top: 37px;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.8), transparent);
 }
 
-.timeline-content { width: 100%; padding: 10px 0; }
-.event-icon { font-size: 24px; margin-bottom: 10px; color: var(--gold); }
-
-.timeline-type {
-  color: var(--gold);
+.timeline-event-time {
+  font: 700 11px "Lato", sans-serif;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  font-size: 9px;
-  letter-spacing: 3px;
-  margin-bottom: 8px;
-  display: block;
-}
-
-.timeline-name { font: 500 24px "Playfair Display", serif; margin: 10px 0; color: var(--cream); }
-
-.timeline-venue {
-  font-size: 12px;
-  color: rgba(253, 251, 247, 0.6);
-  line-height: 1.8;
-  margin-top: 12px;
-  min-height: 43px;
-}
-
-.timeline-link {
-  display: inline-block;
   color: var(--gold);
-  border-bottom: 1px solid var(--gold);
-  margin-top: 15px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.timeline-event-name {
+  font: 500 24px "Playfair Display", serif;
+  color: var(--cream);
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+.timeline-event-venue {
+  font-size: 13px;
+  color: rgba(253, 251, 247, 0.6);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.timeline-event-link {
+  display: inline-flex;
+  align-items: center;
   font-size: 10px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  transition: opacity 0.3s;
+  color: var(--gold);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
 }
 
-.timeline-link:hover { opacity: 0.7; }
-
-.swipe-hint {
-  text-align: center;
-  font-size: 11px;
-  color: rgba(253, 251, 247, 0.4);
+.timeline-event-link:hover { 
+  opacity: 0.8; 
   letter-spacing: 2px;
+}
+
+/* 05 — INDIVIDUAL EVENT DETAILS */
+.event-detail { background: var(--cream); position: relative; }
+.event-detail--alt { background: var(--cream-dark); }
+
+.event-detail-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.event-detail-header .eyebrow { margin-bottom: 12px; }
+
+.event-detail-header h2 {
+  font: 400 clamp(38px, 6vw, 62px)/1.1 "Playfair Display", serif;
+  color: var(--chocolate-dark);
+  margin: 10px 0 18px;
+}
+
+.event-detail-header h2 .script { color: var(--gold); }
+
+.event-meta {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-top: -20px;
+  color: var(--muted);
+  font-weight: 700;
 }
 
-/* 06 — SANGEET VIDEO */
-.sangeet-video-section { background: var(--cream-dark); }
+.event-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
-.sangeet-video-frame {
-  position: relative;
+/* Animated Event Media (Video & Image) */
+.event-hero-media-wrap {
   width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-  border: 1px solid var(--gold);
-  border-radius: 14px;
+  max-width: 440px;
+  margin: 0 auto 45px;
+  border-radius: 16px;
   overflow: hidden;
-  background: #000;
-  aspect-ratio: 9 / 16;
-  box-shadow: 0 25px 60px rgba(46, 26, 17, 0.22);
+  box-shadow: 0 20px 45px rgba(46, 26, 17, 0.15);
+  border: 1px solid var(--gold-light);
+  position: relative;
+  background: var(--chocolate-dark);
 }
 
-.sangeet-video-frame video {
+/* Exact 9:16 aspect ratios */
+.event-hero-media-wrap.image-ratio { aspect-ratio: 9 / 16; }
+.event-hero-media-wrap.video-ratio { aspect-ratio: 9 / 16; }
+
+.event-hero-media {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
-  background: #000;
+  object-position: center;
+  animation: slowZoomOut 20s ease-in-out infinite alternate;
 }
 
-.sangeet-video-frame::after {
-  content: '';
+@keyframes slowZoomOut {
+  0% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+
+/* Overlay Content Inside Image */
+.event-media-overlay {
   position: absolute;
-  inset: 0;
-  border-radius: 14px;
-  pointer-events: none;
-  box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.35);
-}
-
-.sangeet-video-caption {
-  margin-top: 22px;
+  top: -8px;
+  left: 0;
+  right: 0;
+  padding: 85px 25px 60px; 
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(46, 26, 17, 0.7) 45%, transparent 100%);
   text-align: center;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
-@media (max-width: 760px) {
-  .sangeet-video-frame { border-radius: 10px; }
-  .sangeet-video-frame::after { border-radius: 10px; }
-}
-
-/* 07 — GALLERY */
-.gallery { background: var(--cream); overflow: hidden; }
-.gallery-carousel { position: relative; width: 100%; max-width: 680px; margin: 0 auto; }
-
-.gallery-track {
-  display: flex;
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  overscroll-behavior-x: contain;
-  touch-action: pan-x;
-  padding: 30px 0;
-}
-
-.gallery-track::before,
-.gallery-track::after {
-  content: "";
-  flex: 0 0 calc(12.5% - 10px);
+  z-index: 2;
   pointer-events: none;
 }
 
-.gallery-track::-webkit-scrollbar { display: none; }
-
-.gallery-slide {
-  position: relative;
-  flex: 0 0 75%;
-  width: 75%;
-  aspect-ratio: 3 / 4;
-  max-height: 720px;
-  overflow: hidden;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-  margin: 0 10px;
-  background: var(--cream-dark);
-  border-radius: 16px;
-  transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.4s ease, box-shadow 0.4s ease;
-  will-change: transform;
+.event-media-overlay .eyebrow {
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
-.gallery-slide img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; transition: transform 0.8s ease; }
-.gallery-slide:hover img { transform: scale(1.025); }
-.gallery-slide.is-active { transform: scale(1.05); z-index: 2; opacity: 1; box-shadow: 0 15px 35px rgba(46, 26, 17, 0.25); }
-.gallery-slide:not(.is-active) { transform: scale(0.92); opacity: 0.6; }
+.event-media-overlay h2 {
+  font: 400 clamp(28px, 5vw, 42px)/1.1 "Playfair Display", serif;
+  color: var(--cream);
+  margin: 10px 0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
 
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 5;
+.event-media-overlay h2 .script {
+  color: var(--gold);
+}
+
+.event-media-overlay .event-meta {
+  color: var(--cream-dark);
+  font-size: 11px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  gap: 10px 20px;
+}
+
+.event-detail-grid {
   display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  padding: 0;
-  border: 1px solid rgba(212, 175, 55, 0.7);
-  border-radius: 50%;
-  background: rgba(253, 251, 247, 0.95);
-  color: var(--chocolate-dark);
-  font-family: serif;
-  font-size: 30px;
-  line-height: 1;
-  box-shadow: 0 5px 20px rgba(46, 26, 17, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transform: translateY(-50%);
-  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.gallery-arrow:hover { background: var(--gold); color: var(--chocolate-dark); border-color: var(--gold); }
-.gallery-prev { left: 16px; }
-.gallery-next { right: 16px; }
-.gallery-arrow:focus-visible,
-.gallery-dot:focus-visible { outline: 2px solid var(--chocolate-dark); outline-offset: 4px; }
+.event-expect h3,
+.event-wear h3 {
+  font: 700 12px "Lato", sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
 
-.gallery-controls {
-  max-width: 680px;
-  margin: 25px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.event-expect p {
+  font: 400 16px/1.9 "Playfair Display", serif;
+  color: var(--muted);
+}
+
+.event-wear-text {
+  font: 400 15px/1.8 "Lato", sans-serif;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.wear-vibe {
+  font-weight: 700;
+  color: var(--chocolate-dark);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.event-wear-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.event-wear-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.event-wear-list li::before {
+  content: '✦';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.outfit-board {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.outfit-tile {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(46, 26, 17, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  background: var(--cream-dark);
+}
+
+.outfit-tile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.outfit-tile:hover .outfit-tile-img {
+  transform: scale(1.05);
+}
+
+.outfit-tile-label {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--chocolate-dark);
+  background: rgba(253, 251, 247, 0.92);
+  padding: 5px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  text-align: center;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* 06 — COUNTDOWN */
+.countdown-section { text-align: center; padding: 100px 20px; background: var(--chocolate); color: var(--cream); }
+.countdown-section .eyebrow { color: var(--gold-light); }
+.countdown-section h2 { color: var(--cream); }
+
+.countdown-grid {
+  max-width: 650px;
+  margin: 45px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 15px;
 }
 
-.gallery-dots { display: flex; align-items: center; justify-content: center; gap: 9px; flex: 1; }
-
-.gallery-dot {
-  width: 7px;
-  height: 7px;
-  padding: 0;
-  border: none;
-  border-radius: 20px;
-  background: #D8CBB8;
-  transition: width 0.35s ease, background 0.35s ease;
+.count-box {
+  padding: 25px 10px;
+  border: 1px solid rgba(253, 251, 247, 0.15);
+  background: rgba(253, 251, 247, 0.05);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
 }
 
-.gallery-dot.is-active { width: 27px; background: var(--gold); }
+.count-box strong { display: block; font: 600 clamp(32px, 6vw, 52px) "Playfair Display", serif; color: var(--gold); }
 
-.gallery-counter {
-  min-width: 60px;
-  text-align: right;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 2px;
-  font-variant-numeric: tabular-nums;
-}
-
-.gallery-counter .current { color: var(--chocolate-dark); font-weight: 700; }
-
-.gallery-swipe-hint {
-  margin-top: 22px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 10px;
+.count-box span {
+  font-size: 9px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: rgba(253, 251, 247, 0.7);
+  margin-top: 8px;
+  display: block;
 }
 
-@media (max-width: 760px) {
-  .gallery-carousel { max-width: 100%; }
-  .gallery-slide { flex: 0 0 80%; width: 80%; aspect-ratio: 3 / 4; max-height: 68svh; margin: 0 8px; }
-  .gallery-track::before,
-  .gallery-track::after { flex-basis: calc(10% - 8px); }
-  .gallery-slide.is-active { transform: scale(1.02); }
-  .gallery-slide:not(.is-active) { transform: scale(0.95); opacity: 0.5; }
-  .gallery-arrow { width: 38px; height: 38px; font-size: 25px; }
-  .gallery-prev { left: 10px; }
-  .gallery-next { right: 10px; }
-  .gallery-controls { margin-top: 20px; }
-  .gallery-swipe-hint { font-size: 9px; letter-spacing: 1.5px; }
-}
+.countdown-note { margin-top: 35px; font: 28px "Great Vibes", cursive; color: var(--gold-light); }
 
-@media (prefers-reduced-motion: reduce) {
-  .gallery-track { scroll-behavior: auto; }
-  .gallery-slide { transition: none; }
-  .gallery-slide img, .gallery-arrow, .gallery-dot { transition: none; }
+/* 07 — CALENDAR */
+.calendar-section { text-align: center; background: var(--cream); }
+
+.calendar-section p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 15px auto 30px;
+  max-width: 480px;
+  font-size: 14px;
 }
 
 /* 08 — RSVP */
@@ -845,8 +885,22 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   font-weight: 700;
 }
 
+/* Standardized inputs and selects */
 .form-group input,
-.form-group select,
+.form-group select {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  background: var(--cream);
+  color: var(--chocolate-dark);
+  outline: none;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+  font-size: 14px;
+}
+
+/* Keep textarea separate to maintain its resizable height */
 .form-group textarea {
   width: 100%;
   padding: 15px;
@@ -857,13 +911,13 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   border-radius: 4px;
   transition: border-color 0.3s;
   font-size: 14px;
+  min-height: 100px;
+  resize: vertical;
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus { border-color: var(--gold); }
-
-.form-group textarea { min-height: 100px; resize: vertical; }
 
 /* Guest counter */
 .guest-counter {
@@ -918,7 +972,7 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   -webkit-user-select: none;
 }
 
-/* ✨✨✨ EVENT CHECKBOXES — SINGLE LINE FIX ✨✨✨ */
+/* Event checkboxes */
 .event-checkboxes {
   display: grid;
   grid-template-columns: 1fr;
@@ -936,7 +990,9 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   align-items: center !important;
   justify-content: flex-start !important;
   gap: 14px !important;
-  padding: 13px 16px;
+  padding: 0 16px;
+  height: 50px;
+  box-sizing: border-box;
   border: 1px solid var(--line);
   border-radius: 4px;
   background: var(--cream);
@@ -1040,50 +1096,6 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   font-weight: 700;
 }
 
-/* 09 — CALENDAR & COUNTDOWN */
-.calendar-section { text-align: center; background: var(--cream); }
-
-.calendar-section p {
-  color: var(--muted);
-  line-height: 1.8;
-  margin: 15px auto 30px;
-  max-width: 480px;
-  font-size: 14px;
-}
-
-.countdown-section { text-align: center; padding: 100px 20px; background: var(--chocolate); color: var(--cream); }
-.countdown-section .eyebrow { color: var(--gold-light); }
-.countdown-section h2 { color: var(--cream); }
-
-.countdown-grid {
-  max-width: 650px;
-  margin: 45px auto 0;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-}
-
-.count-box {
-  padding: 25px 10px;
-  border: 1px solid rgba(253, 251, 247, 0.15);
-  background: rgba(253, 251, 247, 0.05);
-  border-radius: 8px;
-  backdrop-filter: blur(5px);
-}
-
-.count-box strong { display: block; font: 600 clamp(32px, 6vw, 52px) "Playfair Display", serif; color: var(--gold); }
-
-.count-box span {
-  font-size: 9px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(253, 251, 247, 0.7);
-  margin-top: 8px;
-  display: block;
-}
-
-.countdown-note { margin-top: 35px; font: 28px "Great Vibes", cursive; color: var(--gold-light); }
-
 /* FOOTER */
 .footer { background: #1A0F0A; color: var(--cream); padding: 80px 20px 30px; text-align: center; }
 
@@ -1114,21 +1126,47 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   .section { padding: 80px 20px; }
   .hero-inner { top: 12%; padding: 0 16px; }
   .hero-couple img { max-width: 96%; max-height: 88%; }
-  .story-layout { grid-template-columns: 1fr; gap: 40px; }
-  .story-polaroids { gap: 22px; }
   .form-row { grid-template-columns: 1fr; gap: 0; }
   .scratch-card { height: 160px; }
   .countdown-grid { gap: 10px; }
   .count-box { padding: 18px 5px; }
   .count-box span { font-size: 8px; letter-spacing: 1px; }
-  .gallery-grid { grid-template-columns: 1fr; }
   .intro-ganesh { width: 140px; }
   .intro-content { padding: 40px 20px; }
   .tap-hint { font-size: 10px; padding: 0; }
   .timeline-date-highlight { margin-bottom: 45px; }
   .highlighted-date { padding: 18px 20px; letter-spacing: 0.5px; }
-  .timeline-item { flex: 0 0 240px; }
   .guest-counter-btn { flex: 0 0 48px; font-size: 22px; }
+
+  /* Mobile Timeline Adjustments */
+  .timeline-vertical::before { left: 16px; }
+  .timeline-day { padding-left: 45px; }
+  .timeline-day-label { padding: 6px 14px; font-size: 16px; }
+  .timeline-day-label::before { left: -37px; width: 14px; height: 14px; }
+  
+  .timeline-event { padding: 20px; }
+  .timeline-event::before { left: -35px; top: 28px; width: 10px; height: 10px; }
+  .timeline-event::after { left: -25px; top: 32px; width: 20px; }
+  .timeline-event-name { font-size: 20px; }
+
+  .event-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+  
+  .event-hero-media-wrap {
+    aspect-ratio: 9 / 16;
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 30px;
+  }
+
+  .event-media-overlay {
+    padding: 145px 15px 45px;
+    top: -8px;
+  }
+
+  .outfit-board { gap: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1141,7 +1179,7 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
 
 *, *::before, *::after { -webkit-tap-highlight-color: transparent !important; }
 
-a, button, img, section, div, span, figure, canvas, label, select {
+a, button, img, section, div, span, figure, canvas, label, select, video {
   -webkit-tap-highlight-color: transparent !important;
 }
 
@@ -1172,6 +1210,7 @@ select:focus-visible, textarea:focus-visible {
 
 <main>
 
+  <!-- ===== 01 — OPENING PHOTO (HERO) ===== -->
   <section class="hero" id="home">
     <div class="hero-bg-wrap">
       <img src="Assets/mobilebg.png" alt="" class="hero-bg" id="heroBg" aria-hidden="true">
@@ -1183,7 +1222,7 @@ select:focus-visible, textarea:focus-visible {
       </div>
 
       <div class="hero-inner" id="heroInner">
-        <div class="eyebrow">Together with our families</div>
+        <div class="eyebrow">The wedding celebration of</div>
 
         <h1>
           <span id="brideHero">Lekha Antham</span>
@@ -1192,37 +1231,14 @@ select:focus-visible, textarea:focus-visible {
         </h1>
 
         <p class="hero-subtitle">
-          Invite you to celebrate<br>
-          the beginning of their forever
+          Together with our families, we invite you<br>
+          to celebrate our wedding
         </p>
       </div>
     </div>
   </section>
 
-  <section class="section story" id="story">
-    <div class="container story-layout">
-      <div class="story-polaroids">
-        <img src="Assets/storyimg1.png" alt="Sathwick Reddy">
-        <img src="Assets/storyimg2.png" alt="Lekha Antham">
-      </div>
-
-      <div class="story-copy">
-        <div class="eyebrow">Written in the stars</div>
-        <h2>Our Little<br><span class="script">Love Story</span></h2>
-
-        <p id="storyParagraph1">
-          An Austin girl fell for a Seattle boy—she brought the
-          sunshine, he made rainy days feel romantic. ☀️🤍
-        </p>
-
-        <p id="storyParagraph2">
-          Somewhere between “wish you were here” and “when can I
-          see you?”, they became each other’s home.
-        </p>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===== 02 — DATE REVEAL (SCRATCH) ===== -->
   <section class="section scratch-section" id="reveal">
     <div class="container">
       <div class="section-heading">
@@ -1250,101 +1266,57 @@ select:focus-visible, textarea:focus-visible {
     </div>
   </section>
 
+  <!-- ===== 03 — ALL EVENTS TIMELINE ===== -->
   <section class="section events" id="events">
     <div class="container">
       <div class="section-heading">
         <div class="eyebrow">The celebration</div>
-        <h2>What to <span class="script">expect</span></h2>
-        <p>Join us for these beautiful celebrations on our special day.</p>
-      </div>
-
-      <div class="timeline-date-highlight">
-        <span class="eyebrow">Save the date</span>
-        <div class="highlighted-date">
-          Saturday, 05 December 2026
-          <span class="date-accent">A day to remember</span>
-        </div>
-        <div class="hero-ornament" style="text-shadow: none;">✧ ❦ ✧</div>
+        <h2>Our Wedding <span class="script">Events</span></h2>
+        <p>Join us for a beautiful celebration of love, laughter, and tradition.</p>
       </div>
 
       <div class="timeline-container">
-        <div class="timeline-track" id="timelineTrack"></div>
-        <p class="swipe-hint">← Swipe to explore →</p>
+        <div id="timelineTrack"></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 06 — SANGEET VIDEO ===== -->
-  <section class="section sangeet-video-section" id="sangeet">
+  <!-- ===== 04 — INDIVIDUAL EVENT SECTIONS (rendered dynamically) ===== -->
+  <div id="eventDetails"></div>
+
+  <!-- ===== 05 — COUNTDOWN ===== -->
+  <section class="countdown-section" id="countdown">
     <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">A night of music &amp; dance</div>
-        <h2>Sangeet <span class="script">Moments</span></h2>
-        <p>
-          Relive the rhythm, the laughter and the joy of our
-          sangeet night — playing on repeat, just like our happiness.
-        </p>
+      <div class="eyebrow">Counting every moment</div>
+      <h2 class="serif" style="font-size:clamp(42px,7vw,66px);margin-top:15px">
+        Until Our <span class="script">Forever</span>
+      </h2>
+
+      <div class="countdown-grid" aria-label="Wedding countdown">
+        <div class="count-box"><strong id="days">00</strong><span>Days</span></div>
+        <div class="count-box"><strong id="hours">00</strong><span>Hours</span></div>
+        <div class="count-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div class="count-box"><strong id="seconds">00</strong><span>Seconds</span></div>
       </div>
 
-      <div class="sangeet-video-frame">
-        <video id="sangeetVideo"
-               autoplay
-               loop
-               muted
-               playsinline
-               preload="auto"
-               webkit-playsinline
-               disablepictureinpicture
-               controlslist="nodownload noplaybackrate"
-               aria-label="Sangeet celebration video">
-          <source src="Assets/Sangeethvd.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video>
-      </div>
-
-      <p class="sangeet-video-caption">✧ A glimpse of our sangeet celebration ✧</p>
+      <p class="countdown-note" id="countdownMessage">A lifetime of love begins soon...</p>
     </div>
   </section>
 
-  <section class="section gallery" id="gallery">
+  <!-- ===== 06 — CALENDAR ===== -->
+  <section class="section calendar-section" id="calendar">
     <div class="container">
-      <div class="section-heading">
-        <div class="eyebrow">Captured Moments</div>
-        <h2>Our <span class="script">Gallery</span></h2>
-      </div>
+      <div class="eyebrow">Make it a date</div>
+      <h2 class="serif" style="font-size:clamp(42px,7vw,65px); margin: 15px 0;">
+        Keep the Day <span class="script">Special</span>
+      </h2>
+      <p>Add our wedding to your calendar so you never miss a moment of our celebration.</p>
 
-      <div class="gallery-carousel" id="galleryCarousel">
-        <div class="gallery-track" id="galleryTrack" aria-label="Wedding photo gallery" aria-roledescription="carousel" tabindex="0">
-          <figure class="gallery-slide">
-            <img src="Assets/galleryimg3.png" alt="Lekha and Sathwick — Wedding portrait" loading="lazy">
-          </figure>
-          <figure class="gallery-slide">
-            <img src="Assets/galleryimg4.png" alt="A beautiful wedding celebration" loading="lazy">
-          </figure>
-          <figure class="gallery-slide">
-            <img src="Assets/galleryimg1.png" alt="A beautiful wedding celebration" loading="lazy">
-          </figure>
-          <figure class="gallery-slide">
-            <img src="Assets/galleryimg2.png" alt="A beautiful wedding celebration" loading="lazy">
-          </figure>
-        </div>
-
-        <button class="gallery-arrow gallery-prev" id="galleryPrev" type="button" aria-label="Previous photo">&#8249;</button>
-        <button class="gallery-arrow gallery-next" id="galleryNext" type="button" aria-label="Next photo">&#8250;</button>
-      </div>
-
-      <div class="gallery-controls">
-        <div class="gallery-dots" id="galleryDots" aria-label="Choose a gallery photo"></div>
-
-        <div class="gallery-counter" aria-live="polite">
-          <span class="current" id="galleryCurrent">01</span> / <span id="galleryTotal">02</span>
-        </div>
-      </div>
-
-      <p class="gallery-swipe-hint">Swipe to explore our moments ♡</p>
+      <button class="btn" id="addCalendar" type="button">♧ &nbsp; Add to Google Calendar</button>
     </div>
   </section>
 
+  <!-- ===== 07 — RSVP (FINAL SECTION) ===== -->
   <section class="section rsvp" id="rsvp">
     <div class="container">
       <div class="section-heading">
@@ -1402,40 +1374,10 @@ select:focus-visible, textarea:focus-visible {
     </div>
   </section>
 
-  <section class="section calendar-section" id="calendar">
-    <div class="container">
-      <div class="eyebrow">Make it a date</div>
-      <h2 class="serif" style="font-size:clamp(42px,7vw,65px); margin: 15px 0;">
-        Keep the Day <span class="script">Special</span>
-      </h2>
-      <p>Add our wedding to your calendar so you never miss a moment of our celebration.</p>
-
-      <button class="btn" id="addCalendar" type="button">♧ &nbsp; Add to Google Calendar</button>
-    </div>
-  </section>
-
-  <section class="countdown-section" id="countdown">
-    <div class="container">
-      <div class="eyebrow">Counting every moment</div>
-      <h2 class="serif" style="font-size:clamp(42px,7vw,66px);margin-top:15px">
-        Until Our <span class="script">Forever</span>
-      </h2>
-
-      <div class="countdown-grid" aria-label="Wedding countdown">
-        <div class="count-box"><strong id="days">00</strong><span>Days</span></div>
-        <div class="count-box"><strong id="hours">00</strong><span>Hours</span></div>
-        <div class="count-box"><strong id="minutes">00</strong><span>Minutes</span></div>
-        <div class="count-box"><strong id="seconds">00</strong><span>Seconds</span></div>
-      </div>
-
-      <p class="countdown-note" id="countdownMessage">A lifetime of love begins soon...</p>
-    </div>
-  </section>
-
 </main>
 
 <footer class="footer">
-  <div class="footer-monogram" id="footerNames">Lekha Antham &amp; Sathwick Reddy</div>
+  <div class="footer-monogram" id="footerNames">Lekha&amp;Sathwick</div>
 
   <p>
     Two souls, one heart, one beautiful forever.<br>
@@ -1453,9 +1395,73 @@ const WEDDING = {
   groom: "Sathwick Reddy",
   weddingDate: "2026-12-05T08:00:00-06:00",
   events: [
-    { id: "muhurtham", type: "The Main Event", name: "Muhurtham", icon: "♡", time: "8:00 AM", venue: "Celebrino Event Centre, Austin, Texas", map: "" },
-    { id: "sangeet", type: "Let's Celebrate", name: "Sangeet", icon: "❧", time: "6:30 PM", venue: "Celebrino Event Centre, Austin, Texas", map: "" },
-    { id: "reception", type: "Toast to Forever", name: "Reception", icon: "✦", time: "8:30 PM", venue: "Celebrino Event Centre, Austin, Texas", map: "" }
+    {
+      id: "pellikoduku-pellikuthuru",
+      dayLabel: "Friday, December 4, 2026",
+      name: "Pellikoduku & Pellikuthuru",
+      image: "Assets/pellikoduku&pellikuthuru.png",
+      time: "Morning",
+      venue: "Family Residence, Austin, Texas",
+      map: "",
+      whatToExpect: "A celebration of our Telugu roots, filled with age-old traditions, sacred rituals, family blessings, and beautiful moments before the big day.",
+      whatToWearTitle: "Deeply Rooted in Tradition 🌸",
+      whatToWearList: [
+        "Girls: Traditional half sarees, silk sarees, and temple jewelry.",
+        "Men: Traditional kurtas, dhotis, or pancha.",
+        "Overall vibe: Authentic Telugu heritage, rich traditional colors, jasmine flowers, and timeless elegance."
+      ],
+      outfitTiles: [
+        { img: "Assets/silksaree.png", label: "Silk Saree" },
+        { img: "Assets/jewelleryimg.png", label: "Temple Jewelry" },
+        { img: "Assets/kuthadhotiimg.png", label: "Kurta/Dhoti" },
+        { img: "Assets/jasmineimg.png", label: "Jasmine Flowers" }
+      ]
+    },
+    {
+      id: "muhurtham",
+      dayLabel: "Saturday, December 5, 2026",
+      name: "Muhurtham",
+      image: "Assets/weddingevent.png",
+      time: "8:00 AM",
+      venue: "Celebrino Event Centre, Austin, Texas",
+      map: "",
+      whatToExpect: "The sacred wedding ceremony where the couple ties the knot with traditional Telugu rituals. Witness the beautiful Jeelakarra Bellam moment — a cumin-jaggery paste placed on each other's heads — symbolizing their union. Nadaswaram music fills the air as blessings are showered.",
+      whatToWearTitle: "Classic South Indian Elegance",
+      whatToWearList: [
+        "Traditional wedding sarees, especially silk and Kanjivaram sarees.",
+        "Rich, traditional colors and gold jewelry.",
+        "Classic South Indian elegance for all guests."
+      ],
+      outfitTiles: [
+        { img: "Assets/kanjeevaramimg.png", label: "Kanjeevaram Silk" },
+        { img: "Assets/silkshirtimg.png", label: "Silk Dhoti & Shirt" },
+        { img: "Assets/goldimg.png", label: "Gold Jewelry" },
+        { img: "Assets/silksaree.png", label: "Silk Saree" }
+      ]
+    },
+    {
+      /* Sangeet & Reception merged into ONE event (video-based, no image) */
+      id: "sangeet",
+      dayLabel: "Saturday, December 5, 2026",
+      name: "Sangeet & Reception",
+      video: "Assets/Sangeethvd.mp4",
+      time: "6:00 PM onwards",
+      venue: "Celebrino Event Centre, Austin, Texas",
+      map: "",
+      whatToExpect: "A lively evening of music, dance, and celebration! Family and friends perform, the dance floor opens up, and the energy is unmatched — flowing seamlessly into our reception with dinner, heartfelt toasts, and a chance to celebrate the newlyweds. Come ready to dance the night away!",
+      whatToWearTitle: "Bring on the Bling! ✨",
+      whatToWearList: [
+        "Shimmer, sequins, glamorous lehengas, and gowns.",
+        "Indo-western outfits and sharp suits.",
+        "Get ready to dance the night away in style!"
+      ],
+      outfitTiles: [
+        { img: "Assets/gownimg.png", label: "Glamorous Gown" },
+        { img: "Assets/indoimg.png", label: "Indo-Western" },
+        { img: "Assets/shimmerimg.png", label: "Shimmer/Sequins" },
+        { img: "Assets/shoeimg.png", label: "Dance Shoes" }
+      ]
+    }
   ],
   rsvpEmail: "",
   rsvpEndpoint: "https://script.google.com/macros/s/AKfycbwhTNNMNLOQgAgNovqjB4GRPj9bcrtzGP9cr2gGTDAgfO8mXypmzkrM1c7PDTux1NElIQ/exec"
@@ -1571,56 +1577,14 @@ intro.addEventListener("click", playVideoAndTransition);
   kick();
 })();
 
-/* ===== SANGEET VIDEO (autoplay + loop, no sound button) ===== */
-(function initSangeetVideo() {
-  const video = document.getElementById("sangeetVideo");
-  if (!video) return;
-
-  video.loop = true;
-  video.muted = true;
-
-  function tryPlay() {
-    const p = video.play();
-    if (p && typeof p.catch === "function") {
-      p.catch(() => { /* autoplay blocked — will retry on first interaction */ });
-    }
-  }
-
-  tryPlay();
-
-  // Retry on first user interaction if autoplay was blocked
-  const retryOnInteraction = () => { if (video.paused) tryPlay(); };
-  window.addEventListener("touchstart", retryOnInteraction, { passive: true, once: true });
-  window.addEventListener("click", retryOnInteraction, { once: true });
-  window.addEventListener("scroll", retryOnInteraction, { passive: true, once: true });
-
-  // Keep it looping even if the browser pauses it
-  video.addEventListener("pause", () => {
-    if (!document.hidden) setTimeout(() => { if (video.paused) tryPlay(); }, 120);
-  });
-
-  // Pause when tab is hidden, resume when back
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) video.pause();
-    else tryPlay();
-  });
-})();
-
 /* ===== PERSONALIZE ===== */
 const bride = WEDDING.bride;
 const groom = WEDDING.groom;
 const weddingDate = new Date(WEDDING.weddingDate);
 
-function initials(name) {
-  const words = name.trim().split(/\s+/);
-  return words.map(word => word.charAt(0)).join("").slice(0, 2);
-}
-
-const coupleInitials = initials(bride) + " & " + initials(groom);
-
 document.getElementById("brideHero").textContent = bride;
 document.getElementById("groomHero").textContent = groom;
-document.getElementById("footerNames").textContent = coupleInitials;
+document.getElementById("footerNames").textContent = "Lekha & Sathwick";
 
 const dateOptions = { day: "numeric", month: "long", year: "numeric", timeZone: "America/Chicago" };
 
@@ -1629,34 +1593,128 @@ document.getElementById("scratchWeekday").textContent =
   weddingDate.toLocaleDateString("en-US", { weekday: "long", timeZone: "America/Chicago" }) + " · A day to remember";
 document.getElementById("footerYear").textContent = weddingDate.getFullYear();
 
-/* ===== TIMELINE ===== */
-const timelineTrack = document.getElementById("timelineTrack");
-
+/* ===== VERTICAL TIMELINE (ALL EVENTS, ONE PAGE) ===== */
 function renderTimeline() {
-  WEDDING.events.forEach(event => {
-    let mapUrl = event.map;
-    if (!mapUrl || !/^https:\/\/(www\.)?(google\.[^/]+\/maps|maps\.app\.goo\.gl\/)/i.test(mapUrl)) {
-      mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.venue);
-    }
+  const container = document.getElementById("timelineTrack");
+  if (!container) return;
+  container.innerHTML = "";
 
-    const itemHTML = `
-      <div class="timeline-item">
-        <div class="timeline-time">${event.time}</div>
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="event-icon">${event.icon}</div>
-          <span class="timeline-type">${event.type}</span>
-          <h3 class="timeline-name">${event.name}</h3>
-          <p class="timeline-venue">${event.venue}</p>
-          <a class="timeline-link" href="${mapUrl}" target="_blank" rel="noopener">View Location ↗</a>
-        </div>
-      </div>
-    `;
-    timelineTrack.insertAdjacentHTML("beforeend", itemHTML);
+  // Group events by dayLabel
+  const groups = [];
+  WEDDING.events.forEach(event => {
+    let group = groups.find(g => g.label === event.dayLabel);
+    if (!group) {
+      group = { label: event.dayLabel, events: [] };
+      groups.push(group);
+    }
+    group.events.push(event);
   });
+
+  let html = '<div class="timeline-vertical">';
+
+  groups.forEach(group => {
+    const displayLabel = group.label;
+    html += `<div class="timeline-day">
+      <div class="timeline-day-label">${displayLabel}</div>`;
+
+    group.events.forEach(event => {
+      let mapUrl = event.map;
+      if (!mapUrl || !/^https:\/\/(www\.)?(google\.[^/]+\/maps|maps\.app\.goo\.gl\/)/i.test(mapUrl)) {
+        mapUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(event.venue);
+      }
+      html += `<div class="timeline-event">
+        <div class="timeline-event-time">🕐 ${event.time}</div>
+        <div class="timeline-event-name">${event.name}</div>
+        <div class="timeline-event-venue">📍 ${event.venue}</div>
+        <a class="timeline-event-link" href="${mapUrl}" target="_blank" rel="noopener">View Location ↗</a>
+      </div>`;
+    });
+
+    html += `</div>`;
+  });
+
+  html += '</div>';
+  container.innerHTML = html;
 }
 
 renderTimeline();
+
+/* ===== INDIVIDUAL EVENT SECTIONS ===== */
+function renderEventDetails() {
+  const container = document.getElementById("eventDetails");
+  if (!container) return;
+
+  WEDDING.events.forEach((event, index) => {
+    const isAlt = index % 2 === 1;
+    const nameHtml = event.name.replace(' & ', ' <span class="script">&</span> ');
+    const isVideoEvent = !!event.video;
+
+    let html = `<section class="section event-detail${isAlt ? ' event-detail--alt' : ''}" id="${event.id}"><div class="container">`;
+
+    if (isVideoEvent) {
+      // Video Layout (Header Above, Video) — used by Sangeet & Reception
+      html += `
+        <div class="event-detail-header">
+          <div class="eyebrow">${event.dayLabel}</div>
+          <h2>${nameHtml}</h2>
+          <div class="event-meta">
+            <span>🕐 ${event.time}</span>
+            <span>📍 ${event.venue}</span>
+          </div>
+        </div>
+        <div class="event-hero-media-wrap video-ratio">
+          <video src="${event.video}" class="event-hero-media" autoplay loop muted playsinline></video>
+        </div>
+      `;
+    } else {
+      // Image Layout (Header INSIDE Image, 9:16 ratio)
+      html += `
+        <div class="event-hero-media-wrap image-ratio">
+          <img src="${event.image}" alt="${event.name} Inspiration" class="event-hero-media" onerror="this.style.display='none'">
+          <div class="event-media-overlay">
+            <div class="eyebrow">${event.dayLabel}</div>
+            <h2>${nameHtml}</h2>
+            <div class="event-meta">
+              <span>🕐 ${event.time}</span>
+              <span>📍 ${event.venue}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    html += `
+        <div class="event-detail-grid">
+          <div class="event-expect">
+            <h3>What to Expect</h3>
+            <p>${event.whatToExpect}</p>
+          </div>
+          <div class="event-wear">
+            <h3>What to Wear</h3>
+            <span class="wear-vibe">${event.whatToWearTitle}</span>
+            <ul class="event-wear-list">
+              ${event.whatToWearList.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+            
+            <div class="outfit-board">
+              ${event.outfitTiles.map(t => `
+                <div class="outfit-tile">
+                  <img src="${t.img}" alt="${t.label}" class="outfit-tile-img">
+                  <span class="outfit-tile-label">${t.label}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    `;
+
+    container.insertAdjacentHTML("beforeend", html);
+  });
+}
+
+renderEventDetails();
 
 /* ===== SCRATCH CARD ===== */
 const canvas = document.getElementById("scratchCanvas");
@@ -1775,168 +1833,6 @@ setupScratch();
 window.addEventListener("resize", () => {
   if (!scratchComplete && !isScratching) setupScratch();
 });
-
-/* ===== GALLERY ===== */
-(function initGalleryCarousel() {
-  const track = document.getElementById("galleryTrack");
-  const prevButton = document.getElementById("galleryPrev");
-  const nextButton = document.getElementById("galleryNext");
-  const dotsContainer = document.getElementById("galleryDots");
-  const currentCounter = document.getElementById("galleryCurrent");
-  const totalCounter = document.getElementById("galleryTotal");
-
-  if (!track || !prevButton || !nextButton || !dotsContainer || !currentCounter || !totalCounter) return;
-
-  const slides = Array.from(track.querySelectorAll(".gallery-slide"));
-  if (!slides.length) return;
-
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-  let activeIndex = 0;
-  let scrollFrame = null;
-  let autoScrollTimer = null;
-  let resumeTimer = null;
-  let isProgrammaticScroll = false;
-  let programmaticResetTimer = null;
-
-  const AUTO_SCROLL_INTERVAL = 4000;
-  const AUTO_SCROLL_RESUME_DELAY = 8000;
-  const PROGRAMMATIC_RESET_DELAY = 700;
-
-  const formatNumber = number => String(number).padStart(2, "0");
-
-  dotsContainer.innerHTML = "";
-
-  const dots = slides.map((slide, index) => {
-    const dot = document.createElement("button");
-    dot.type = "button";
-    dot.className = "gallery-dot";
-    dot.setAttribute("aria-label", `Go to photo ${index + 1}`);
-    dot.addEventListener("click", () => { goToSlide(index); pauseAutoScroll(); });
-    dotsContainer.appendChild(dot);
-    return dot;
-  });
-
-  totalCounter.textContent = formatNumber(slides.length);
-
-  function updateGalleryUI(index) {
-    activeIndex = Math.max(0, Math.min(index, slides.length - 1));
-
-    slides.forEach((slide, i) => slide.classList.toggle("is-active", i === activeIndex));
-
-    dots.forEach((dot, i) => {
-      const isActive = i === activeIndex;
-      dot.classList.toggle("is-active", isActive);
-      if (isActive) dot.setAttribute("aria-current", "true");
-      else dot.removeAttribute("aria-current");
-    });
-
-    currentCounter.textContent = formatNumber(activeIndex + 1);
-
-    prevButton.disabled = slides.length < 2;
-    nextButton.disabled = slides.length < 2;
-  }
-
-  function getNearestIndex() {
-    const trackRect = track.getBoundingClientRect();
-    const trackCenter = trackRect.left + trackRect.width / 2;
-    let nearest = 0, minDist = Infinity;
-
-    slides.forEach((slide, i) => {
-      const rect = slide.getBoundingClientRect();
-      const center = rect.left + rect.width / 2;
-      const dist = Math.abs(center - trackCenter);
-      if (dist < minDist) { minDist = dist; nearest = i; }
-    });
-
-    return nearest;
-  }
-
-  function goToSlide(index) {
-    const targetIndex = (index + slides.length) % slides.length;
-    const targetSlide = slides[targetIndex];
-
-    const trackRect = track.getBoundingClientRect();
-    const slideRect = targetSlide.getBoundingClientRect();
-
-    const targetScrollLeft =
-      track.scrollLeft + (slideRect.left - trackRect.left) - (trackRect.width - slideRect.width) / 2;
-
-    const behavior = reducedMotion.matches ? "auto" : "smooth";
-
-    isProgrammaticScroll = true;
-    if (programmaticResetTimer) clearTimeout(programmaticResetTimer);
-    programmaticResetTimer = setTimeout(() => { isProgrammaticScroll = false; }, PROGRAMMATIC_RESET_DELAY);
-
-    track.scrollTo({ left: targetScrollLeft, behavior });
-    updateGalleryUI(targetIndex);
-  }
-
-  function startAutoScroll() {
-    stopAutoScroll();
-    if (slides.length < 2) return;
-
-    autoScrollTimer = setInterval(() => {
-      if (document.hidden) return;
-      const nextIndex = (activeIndex + 1) % slides.length;
-      goToSlide(nextIndex);
-    }, AUTO_SCROLL_INTERVAL);
-  }
-
-  function stopAutoScroll() {
-    if (autoScrollTimer) { clearInterval(autoScrollTimer); autoScrollTimer = null; }
-  }
-
-  function pauseAutoScroll() {
-    stopAutoScroll();
-    if (resumeTimer) clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(() => { startAutoScroll(); }, AUTO_SCROLL_RESUME_DELAY);
-  }
-
-  prevButton.addEventListener("click", () => { goToSlide(activeIndex - 1); pauseAutoScroll(); });
-  nextButton.addEventListener("click", () => { goToSlide(activeIndex + 1); pauseAutoScroll(); });
-
-  track.addEventListener("scroll", () => {
-    if (scrollFrame !== null) return;
-    scrollFrame = requestAnimationFrame(() => {
-      scrollFrame = null;
-      if (isProgrammaticScroll) return;
-      const nearestIndex = getNearestIndex();
-      updateGalleryUI(nearestIndex);
-    });
-  }, { passive: true });
-
-  track.addEventListener("keydown", event => {
-    if (event.key === "ArrowLeft") { event.preventDefault(); goToSlide(activeIndex - 1); pauseAutoScroll(); }
-    if (event.key === "ArrowRight") { event.preventDefault(); goToSlide(activeIndex + 1); pauseAutoScroll(); }
-  });
-
-  track.addEventListener("pointerdown", pauseAutoScroll);
-  track.addEventListener("touchstart", pauseAutoScroll, { passive: true });
-  track.addEventListener("wheel", pauseAutoScroll, { passive: true });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stopAutoScroll();
-    else startAutoScroll();
-  });
-
-  window.addEventListener("resize", () => {
-    isProgrammaticScroll = true;
-    if (programmaticResetTimer) clearTimeout(programmaticResetTimer);
-    programmaticResetTimer = setTimeout(() => { isProgrammaticScroll = false; }, 250);
-
-    const targetSlide = slides[activeIndex];
-    if (!targetSlide) return;
-
-    const trackRect = track.getBoundingClientRect();
-    const slideRect = targetSlide.getBoundingClientRect();
-
-    track.scrollLeft = track.scrollLeft + (slideRect.left - trackRect.left) - (trackRect.width - slideRect.width) / 2;
-  });
-
-  updateGalleryUI(0);
-  startAutoScroll();
-})();
 
 /* ===== GUEST COUNTER ===== */
 (function initGuestCounter() {
@@ -2116,7 +2012,7 @@ document.getElementById("addCalendar").addEventListener("click", () => {
     "Join us to celebrate our wedding! ♡",
     "",
     "Schedule:",
-    ...WEDDING.events.map(e => `• ${e.time} — ${e.name} (${e.type})`),
+    ...WEDDING.events.map(e => `• ${e.time} — ${e.name} (${e.dayLabel})`),
     "",
     "Venue:",
     venue
@@ -2158,7 +2054,7 @@ rsvpForm.addEventListener("submit", async event => {
     attendance: attendanceValue,
     guests: String(formData.get("guests") || "1"),
     events: selectedEvents.length ? selectedEvents.join(", ") : "None selected",
-      eventList: selectedEvents,
+    eventList: selectedEvents,
     eventCount: selectedEvents.length,
     message: String(formData.get("message") || "").trim(),
     couple: bride + " & " + groom
