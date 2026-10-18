@@ -114,7 +114,7 @@ img, video { display: block; max-width: 100%; }
   box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
 }
 
-/* 01 — INTRO VIDEO */
+/* 01 — INTRO (TAP TO ENTER) */
 .intro {
   position: fixed;
   inset: 0;
@@ -122,8 +122,8 @@ img, video { display: block; max-width: 100%; }
   display: grid;
   place-items: center;
   background: var(--chocolate-dark);
-  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1),
-              visibility 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+              visibility 1.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
@@ -132,20 +132,6 @@ img, video { display: block; max-width: 100%; }
   visibility: hidden;
   pointer-events: none;
 }
-
-.intro video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.4s ease;
-  z-index: 1;
-  border-radius: 8px;
-}
-
-.intro video.playing { opacity: 1; }
 
 .intro-content {
   position: relative;
@@ -294,7 +280,7 @@ img, video { display: block; max-width: 100%; }
 
 .hero-inner {
   position: absolute;
-  top: 14%;
+  top: 12%;
   left: 0;
   right: 0;
   padding: 0 22px;
@@ -321,6 +307,20 @@ img, video { display: block; max-width: 100%; }
   color: var(--chocolate-dark);
   margin: 10px 0;
   
+}
+
+/* Parent info inside hero heading */
+.hero h1 .hero-parents {
+  font-family: "Lato", sans-serif;
+  font-size: clamp(11px, 1.4vw, 14px);
+  letter-spacing: 1.2px;
+  color: var(--chocolate);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 2px 0 8px;
+  text-transform: none;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+  opacity: 0.88;
 }
 
 .hero-subtitle {
@@ -1244,12 +1244,10 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   }
 }
 
-/* ============================================================
-   RESPONSIVE (MOBILE - EXACT SAME AS BEFORE)
-   ============================================================ */
+/* RESPONSIVE */
 @media (max-width: 760px) {
   .section { padding: 80px 20px; }
-  .hero-inner { top: 12%; padding: 0 16px; }
+  .hero-inner { top: 6%; padding: 0 16px; }
   .hero-couple img { max-width: 96%; max-height: 88%; }
   .form-row { grid-template-columns: 1fr; gap: 0; }
   .scratch-card { height: 160px; }
@@ -1309,103 +1307,6 @@ body:not(.intro-active) .hero-inner .hero-subtitle {
   .event-checkbox-name { font-size: 13px; }
 }
 
-/* ============================================================
-   DESKTOP VIEW — MOBILE-LIKE LAYOUT (FORCES MOBILE STYLES)
-   ============================================================ */
-@media (min-width: 761px) {
-  body {
-    background-color: #1A0F0A; /* Dark background outside the app */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  #app-wrapper {
-    width: 100%;
-    max-width: 480px; /* Phone width */
-    background: var(--cream);
-    min-height: 100vh;
-    box-shadow: 0 0 50px rgba(0,0,0,0.8);
-    position: relative;
-    overflow-x: hidden;
-  }
-
-  .intro {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Force mobile styles inside the wrapper */
-  .section { padding: 80px 20px; }
-  .hero-inner { top: 12%; padding: 0 16px; }
-  .hero-couple img { max-width: 96%; max-height: 88%; }
-  .form-row { grid-template-columns: 1fr; gap: 0; }
-  .scratch-card { height: 160px; }
-  .countdown-grid { gap: 10px; }
-  .count-box { padding: 18px 5px; }
-  .count-box span { font-size: 8px; letter-spacing: 1px; }
-  .intro-ganesh { width: 140px; }
-  .intro-content { padding: 40px 20px; }
-  .tap-hint { font-size: 10px; padding: 0; }
-  .timeline-date-highlight { margin-bottom: 45px; }
-  .highlighted-date { padding: 18px 20px; letter-spacing: 0.5px; }
-  .guest-counter-btn { flex: 0 0 48px; font-size: 22px; }
-
-  /* RSVP mobile fixes */
-  .rsvp-form { padding: 28px 18px; max-width: 100%; }
-  .event-checkbox { gap: 12px !important; padding: 0 14px; }
-  .form-group input,
-  .form-group select,
-  .form-group textarea { font-size: 16px; }
-
-  /* Mobile Timeline Adjustments */
-  .timeline-vertical::before { left: 16px; }
-  .timeline-day { padding-left: 45px; }
-  .timeline-day-label { padding: 6px 14px; font-size: 16px; }
-  .timeline-day-label::before { left: -37px; width: 14px; height: 14px; }
-  
-  .timeline-event { padding: 20px; }
-  .timeline-event::before { left: -35px; top: 28px; width: 10px; height: 10px; }
-  .timeline-event::after { left: -25px; top: 32px; width: 20px; }
-  .timeline-event-name { font-size: 20px; }
-
-  .event-detail-grid {
-    grid-template-columns: 1fr;
-    gap: 35px;
-    max-width: 100%;
-  }
-  
-  .event-hero-media-wrap {
-    aspect-ratio: 9 / 16;
-    max-width: 100%;
-    border-radius: 12px;
-    margin-bottom: 30px;
-  }
-
-  .event-media-overlay {
-    padding: 145px 15px 45px;
-  }
-
-  .outfit-board { gap: 10px; }
-
-  .reveal { translate: 0 34px; }
-
-  /* Constrain inner containers */
-  .container { max-width: 100%; }
-  .countdown-grid { max-width: 100%; }
-  .timeline-vertical { max-width: 100%; }
-  .scratch-wrap { max-width: 100%; }
-
-  /* Adjust Music Toggle Position */
-  .music-toggle {
-    left: calc(50% + 240px - 52px - 24px);
-    right: auto;
-    bottom: max(24px, env(safe-area-inset-bottom));
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     scroll-behavior: auto !important;
@@ -1430,234 +1331,226 @@ select:focus-visible, textarea:focus-visible {
 
 <body class="intro-active">
 
-<!-- APP WRAPPER (Ensures mobile-like frame on desktop) -->
-<div id="app-wrapper">
+<section class="intro" id="intro">
+  <div class="intro-content" id="introContent">
+    <img src="Assets/ganeshimg.png" alt="Ganesha" class="intro-ganesh">
+    <div class="eyebrow">A beautiful beginning</div>
+    <h1 class="serif">Lekha &amp; Sathwick</h1>
+    <p>Two hearts · One forever</p>
+    <div class="tap-hint" id="tapHint">Tap anywhere to enter ✧</div>
+  </div>
+</section>
 
-  <section class="intro" id="intro">
-    <video id="introVideo" playsinline preload="auto">
-      <source src="Assets/introvd.mp4" type="video/mp4">
-      Your browser does not support HTML5 video.
-    </video>
+<main>
 
-    <div class="intro-content" id="introContent">
-      <img src="Assets/ganeshimg.png" alt="Ganesha" class="intro-ganesh">
-      <div class="eyebrow">A beautiful beginning</div>
-      <h1 class="serif">Lekha &amp; Sathwick</h1>
-      <p>Two hearts · One forever</p>
-      <div class="tap-hint" id="tapHint">Tap anywhere to enter ✧</div>
+  <!-- ===== 01 — OPENING PHOTO (HERO) ===== -->
+  <section class="hero" id="home">
+    <div class="hero-bg-wrap">
+      <img src="Assets/mobilebg.png" alt="" class="hero-bg" id="heroBg" aria-hidden="true">
+    </div>
+
+    <div class="hero-overlay">
+      <div class="hero-couple" id="heroCouple">
+        <img src="Assets/coupleimg.png" alt="Lekha and Sathwick">
+      </div>
+
+      <div class="hero-inner" id="heroInner">
+        <div class="eyebrow">The wedding celebration of</div>
+
+        <h1>
+          <span id="brideHero">Lekha Antham</span>
+          <span class="hero-parents">Daughter of Sridhar Antham &amp; Sunitha Antham</span>
+          <span>&amp;</span>
+          <span id="groomHero">Sathwick Reddy</span>
+          <span class="hero-parents">Son of Prakash Reddy Mummadi &amp; Swarna Kumari Kakarla</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Together with our families, we invite you<br>
+          to celebrate our wedding
+        </p>
+      </div>
     </div>
   </section>
 
-  <main>
-
-    <!-- ===== 01 — OPENING PHOTO (HERO) ===== -->
-    <section class="hero" id="home">
-      <div class="hero-bg-wrap">
-        <img src="Assets/mobilebg.png" alt="" class="hero-bg" id="heroBg" aria-hidden="true">
+  <!-- ===== 02 — DATE REVEAL (SCRATCH) ===== -->
+  <section class="section scratch-section" id="reveal">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">A little surprise</div>
+        <h2>Save the <span class="script">Date</span></h2>
+        <p>
+          Our special day is waiting to be discovered.
+          Gently scratch the card below to reveal the date.
+        </p>
       </div>
 
-      <div class="hero-overlay">
-        <div class="hero-couple" id="heroCouple">
-          <img src="Assets/coupleimg.png" alt="Lekha and Sathwick">
-        </div>
-
-        <div class="hero-inner" id="heroInner">
-          <div class="eyebrow">The wedding celebration of</div>
-
-          <h1>
-            <span id="brideHero">Lekha Antham</span>
-            <span>&amp;</span>
-            <span id="groomHero">Sathwick Reddy</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            Together with our families, we invite you<br>
-            to celebrate our wedding
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 02 — DATE REVEAL (SCRATCH) ===== -->
-    <section class="section scratch-section" id="reveal">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">A little surprise</div>
-          <h2>Save the <span class="script">Date</span></h2>
-          <p>
-            Our special day is waiting to be discovered.
-            Gently scratch the card below to reveal the date.
-          </p>
-        </div>
-
-        <div class="scratch-wrap">
-          <div class="scratch-card" id="scratchCard">
-            <div class="scratch-message">
-              <div class="eyebrow">Mark your calendar</div>
-              <div class="date" id="scratchDate">05 December 2026</div>
-              <p id="scratchWeekday">Saturday · A day to remember</p>
-              <div class="hero-ornament" style="margin: 10px 0 0; font-size: 14px;">✧ ❦ ✧</div>
-            </div>
-            <canvas id="scratchCanvas" aria-label="Scratch this card to reveal the wedding date"></canvas>
+      <div class="scratch-wrap">
+        <div class="scratch-card" id="scratchCard">
+          <div class="scratch-message">
+            <div class="eyebrow">Mark your calendar</div>
+            <div class="date" id="scratchDate">05 December 2026</div>
+            <p id="scratchWeekday">Saturday · A day to remember</p>
+            <div class="hero-ornament" style="margin: 10px 0 0; font-size: 14px;">✧ ❦ ✧</div>
           </div>
-
-          <p class="scratch-hint" id="scratchHint">✧ Touch and drag to reveal our date ✧</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 03 — ALL EVENTS TIMELINE ===== -->
-    <section class="section events" id="events">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">The celebration</div>
-          <h2>Our Wedding <span class="script">Events</span></h2>
-          <p>Join us for a beautiful celebration of love, laughter, and tradition.</p>
+          <canvas id="scratchCanvas" aria-label="Scratch this card to reveal the wedding date"></canvas>
         </div>
 
-        <div class="timeline-container">
-          <div id="timelineTrack"></div>
-        </div>
+        <p class="scratch-hint" id="scratchHint">✧ Touch and drag to reveal our date ✧</p>
       </div>
-    </section>
-
-    <!-- ===== 04 — INDIVIDUAL EVENT SECTIONS (rendered dynamically) ===== -->
-    <div id="eventDetails"></div>
-
-    <!-- ===== 05 — COUNTDOWN ===== -->
-    <section class="countdown-section" id="countdown">
-      <div class="container">
-        <div class="eyebrow">Counting every moment</div>
-        <h2 class="serif" style="font-size:clamp(42px,7vw,66px);margin-top:15px">
-          Until Our <span class="script">Forever</span>
-        </h2>
-
-        <div class="countdown-grid" aria-label="Wedding countdown">
-          <div class="count-box"><strong id="days">00</strong><span>Days</span></div>
-          <div class="count-box"><strong id="hours">00</strong><span>Hours</span></div>
-          <div class="count-box"><strong id="minutes">00</strong><span>Minutes</span></div>
-          <div class="count-box"><strong id="seconds">00</strong><span>Seconds</span></div>
-        </div>
-
-        <p class="countdown-note" id="countdownMessage">A lifetime of love begins soon...</p>
-      </div>
-    </section>
-
-    <!-- ===== 06 — CALENDAR ===== -->
-    <section class="section calendar-section" id="calendar">
-      <div class="container">
-        <div class="eyebrow">Make it a date</div>
-        <h2 class="serif" style="font-size:clamp(42px,7vw,65px); margin: 15px 0;">
-          Keep the Day <span class="script">Special</span>
-        </h2>
-        <p>Add our wedding to your calendar so you never miss a moment of our celebration.</p>
-
-        <button class="btn" id="addCalendar" type="button">♧ &nbsp; Add to Google Calendar</button>
-      </div>
-    </section>
-
-    <!-- ===== 07 — RSVP (FINAL SECTION) ===== -->
-    <section class="section rsvp" id="rsvp">
-      <div class="container">
-        <div class="section-heading">
-          <div class="eyebrow">Your presence means everything</div>
-          <h2>Kindly <span class="script">RSVP</span></h2>
-          <p>
-            Please let us know if you can join our celebration.
-            We cannot wait to celebrate this beautiful day with you.
-          </p>
-        </div>
-
-        <form class="rsvp-form" id="rsvpForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="guestName">YOUR NAME *</label>
-              <input id="guestName" name="name" type="text" placeholder="Enter your full name" autocomplete="name" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="attendance">WILL YOU ATTEND? *</label>
-              <select id="attendance" name="attendance" required>
-                <option value="">Choose an option</option>
-                <option value="Yes, joyfully attending">Yes, joyfully attending</option>
-                <option value="Sorry, cannot attend">Sorry, cannot attend</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label id="guestCountLabel">NUMBER OF GUESTS</label>
-              <div class="guest-counter" id="guestCounter" role="group" aria-labelledby="guestCountLabel">
-                <button type="button" class="guest-counter-btn" id="guestDecrease" aria-label="Decrease number of guests">−</button>
-                <span class="guest-counter-value" id="guestCountValue" aria-live="polite">1</span>
-                <button type="button" class="guest-counter-btn" id="guestIncrease" aria-label="Increase number of guests">+</button>
-              </div>
-              <input type="hidden" id="guestCount" name="guests" value="1">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label id="eventsLabel">WHICH EVENTS WILL YOU JOIN?</label>
-            <div class="event-checkboxes" id="eventCheckboxes" role="group" aria-labelledby="eventsLabel"></div>
-          </div>
-
-          <div class="form-group">
-            <label for="guestMessage">A LITTLE MESSAGE (OPTIONAL)</label>
-            <textarea id="guestMessage" name="message" placeholder="Send us your wishes..."></textarea>
-          </div>
-
-          <button class="btn" type="submit">Send Our Response &nbsp; ♡</button>
-
-          <p class="form-status" id="rsvpStatus" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="footer-monogram" id="footerNames">Lekha&amp;Sathwick</div>
-
-    <p>
-      Two souls, one heart, one beautiful forever.<br>
-      Thank you for being part of our story.
-    </p>
-
-    <div class="footer-bottom">
-      MADE WITH LOVE · <span id="footerYear">2026</span>
     </div>
-  </footer>
+  </section>
 
-  <!-- ============================================================
-       BACKGROUND AUDIO & PREMIUM TOGGLE
-       ============================================================ -->
-  <audio id="bgMusic" loop>
-    <source src="audio/music1.mpeg" type="audio/mpeg">
-  </audio>
-  <button id="musicToggle" class="music-toggle" aria-label="Toggle background music">
-    <!-- Muted Icon -->
-    <svg class="icon-muted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 18V5l12-2v13"></path>
-      <circle cx="6" cy="18" r="3"></circle>
-      <circle cx="18" cy="16" r="3"></circle>
-      <line x1="2" y1="2" x2="22" y2="22"></line>
-    </svg>
-    <!-- Playing Icon -->
-    <svg class="icon-playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M9 18V5l12-2v13"></path>
-      <circle cx="6" cy="18" r="3"></circle>
-      <circle cx="18" cy="16" r="3"></circle>
-    </svg>
-  </button>
+  <!-- ===== 03 — ALL EVENTS TIMELINE ===== -->
+  <section class="section events" id="events">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">The celebration</div>
+        <h2>Our Wedding <span class="script">Events</span></h2>
+        <p>Join us for a beautiful celebration of love, laughter, and tradition.</p>
+      </div>
 
-</div> <!-- END APP WRAPPER -->
+      <div class="timeline-container">
+        <div id="timelineTrack"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 — INDIVIDUAL EVENT SECTIONS (rendered dynamically) ===== -->
+  <div id="eventDetails"></div>
+
+  <!-- ===== 05 — COUNTDOWN ===== -->
+  <section class="countdown-section" id="countdown">
+    <div class="container">
+      <div class="eyebrow">Counting every moment</div>
+      <h2 class="serif" style="font-size:clamp(42px,7vw,66px);margin-top:15px">
+        Until Our <span class="script">Forever</span>
+      </h2>
+
+      <div class="countdown-grid" aria-label="Wedding countdown">
+        <div class="count-box"><strong id="days">00</strong><span>Days</span></div>
+        <div class="count-box"><strong id="hours">00</strong><span>Hours</span></div>
+        <div class="count-box"><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div class="count-box"><strong id="seconds">00</strong><span>Seconds</span></div>
+      </div>
+
+      <p class="countdown-note" id="countdownMessage">A lifetime of love begins soon...</p>
+    </div>
+  </section>
+
+  <!-- ===== 06 — CALENDAR ===== -->
+  <section class="section calendar-section" id="calendar">
+    <div class="container">
+      <div class="eyebrow">Make it a date</div>
+      <h2 class="serif" style="font-size:clamp(42px,7vw,65px); margin: 15px 0;">
+        Keep the Day <span class="script">Special</span>
+      </h2>
+      <p>Add our wedding to your calendar so you never miss a moment of our celebration.</p>
+
+      <button class="btn" id="addCalendar" type="button">♧ &nbsp; Add to Google Calendar</button>
+    </div>
+  </section>
+
+  <!-- ===== 07 — RSVP (FINAL SECTION) ===== -->
+  <section class="section rsvp" id="rsvp">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Your presence means everything</div>
+        <h2>Kindly <span class="script">RSVP</span></h2>
+        <p>
+          Please let us know if you can join our celebration.
+          We cannot wait to celebrate this beautiful day with you.
+        </p>
+      </div>
+
+      <form class="rsvp-form" id="rsvpForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="guestName">YOUR NAME *</label>
+            <input id="guestName" name="name" type="text" placeholder="Enter your full name" autocomplete="name" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="attendance">WILL YOU ATTEND? *</label>
+            <select id="attendance" name="attendance" required>
+              <option value="">Choose an option</option>
+              <option value="Yes, joyfully attending">Yes, joyfully attending</option>
+              <option value="Sorry, cannot attend">Sorry, cannot attend</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label id="guestCountLabel">NUMBER OF GUESTS</label>
+            <div class="guest-counter" id="guestCounter" role="group" aria-labelledby="guestCountLabel">
+              <button type="button" class="guest-counter-btn" id="guestDecrease" aria-label="Decrease number of guests">−</button>
+              <span class="guest-counter-value" id="guestCountValue" aria-live="polite">1</span>
+              <button type="button" class="guest-counter-btn" id="guestIncrease" aria-label="Increase number of guests">+</button>
+            </div>
+            <input type="hidden" id="guestCount" name="guests" value="1">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label id="eventsLabel">WHICH EVENTS WILL YOU JOIN?</label>
+          <div class="event-checkboxes" id="eventCheckboxes" role="group" aria-labelledby="eventsLabel"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="guestMessage">A LITTLE MESSAGE (OPTIONAL)</label>
+          <textarea id="guestMessage" name="message" placeholder="Send us your wishes..."></textarea>
+        </div>
+
+        <button class="btn" type="submit">Send Our Response &nbsp; ♡</button>
+
+        <p class="form-status" id="rsvpStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-monogram" id="footerNames">Lekha&amp;Sathwick</div>
+
+  <p>
+    Two souls, one heart, one beautiful forever.<br>
+    Thank you for being part of our story.
+  </p>
+
+  <div class="footer-bottom">
+    MADE WITH LOVE · <span id="footerYear">2026</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BACKGROUND AUDIO & PREMIUM TOGGLE
+     ============================================================ -->
+<audio id="bgMusic" loop>
+  <source src="audio/music1.mpeg" type="audio/mpeg">
+</audio>
+<button id="musicToggle" class="music-toggle" aria-label="Toggle background music">
+  <!-- Muted Icon -->
+  <svg class="icon-muted" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18V5l12-2v13"></path>
+    <circle cx="6" cy="18" r="3"></circle>
+    <circle cx="18" cy="16" r="3"></circle>
+    <line x1="2" y1="2" x2="22" y2="22"></line>
+  </svg>
+  <!-- Playing Icon -->
+  <svg class="icon-playing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18V5l12-2v13"></path>
+    <circle cx="6" cy="18" r="3"></circle>
+    <circle cx="18" cy="16" r="3"></circle>
+  </svg>
+</button>
 
 <script>
 const WEDDING = {
   bride: "Lekha Antham",
   groom: "Sathwick Reddy",
-  weddingDate: "2026-12-05T08:00:00-06:00",
+  weddingDate: "2026-12-05T11:30:00-06:00",
   events: [
     {
       id: "pellikoduku-pellikuthuru",
@@ -1686,7 +1579,7 @@ const WEDDING = {
       dayLabel: "Saturday, December 5, 2026",
       name: "Muhurtham",
       image: "Assets/weddingevent.png",
-      time: "8:00 AM",
+      time: "11:30 AM",
       venue: "Celebrino Event Centre, Austin, Texas",
       map: "",
       whatToExpect: "The sacred wedding ceremony where the couple ties the knot with traditional Telugu rituals. Witness the beautiful Jeelakarra Bellam moment — a cumin-jaggery paste placed on each other's heads — symbolizing their union. Nadaswaram music fills the air as blessings are showered.",
@@ -1709,7 +1602,7 @@ const WEDDING = {
       dayLabel: "Saturday, December 5, 2026",
       name: "Sangeet & Reception",
       video: "Assets/Sangeethvd.mp4",
-      time: "6:00 PM onwards",
+      time: "7:00 PM onwards",
       venue: "Celebrino Event Centre, Austin, Texas",
       map: "",
       whatToExpect: "A lively evening of music, dance, and celebration! Family and friends perform, the dance floor opens up, and the energy is unmatched — flowing seamlessly into our reception with dinner, heartfelt toasts, and a chance to celebrate the newlyweds. Come ready to dance the night away!",
@@ -1750,41 +1643,9 @@ musicToggle.addEventListener("click", (e) => {
   }
 });
 
-/* ===== INTRO VIDEO ===== */
+/* ===== INTRO (TAP TO ENTER — NO VIDEO) ===== */
 const intro = document.getElementById("intro");
-const introVideo = document.getElementById("introVideo");
-const introContent = document.getElementById("introContent");
-
 let introClosed = false;
-let isPlaying = false;
-
-function playVideoAndTransition() {
-  if (introClosed) return;
-  if (isPlaying) { closeIntro(); return; }
-
-  isPlaying = true;
-  introContent.style.display = "none";
-  introVideo.classList.add("playing");
-
-  introVideo.play().then(() => {
-    introVideo.addEventListener("timeupdate", function fadeTail() {
-      if (!introVideo.duration) return;
-      var remaining = introVideo.duration - introVideo.currentTime;
-      if (remaining <= 1.2 && remaining > 0) {
-        introVideo.style.opacity = (remaining / 1.2).toFixed(3);
-      }
-      if (remaining <= 0) {
-        introVideo.style.opacity = "0";
-        introVideo.removeEventListener("timeupdate", fadeTail);
-      }
-    });
-
-    introVideo.onended = closeIntro;
-  }).catch(error => {
-    console.warn("Video playback failed or blocked. Transitioning immediately.", error);
-    closeIntro();
-  });
-}
 
 function closeIntro() {
   if (introClosed) return;
@@ -1792,9 +1653,7 @@ function closeIntro() {
 
   intro.classList.add("hidden");
 
-  if (introVideo) introVideo.pause();
-
-  // Start music when entering the hero section
+  // Start music on the user gesture that dismissed the intro
   if (bgMusic) {
     bgMusic.play().then(() => {
       isMusicPlaying = true;
@@ -1808,16 +1667,18 @@ function closeIntro() {
     musicToggle.classList.add("visible");
   }
 
+  // Reveal the hero animations
   setTimeout(() => {
     document.body.classList.remove("intro-active");
-  }, 350);
+  }, 300);
 
+  // Fully remove the intro layer from the render tree
   setTimeout(() => {
     intro.style.display = "none";
-  }, 2400);
+  }, 1700);
 }
 
-intro.addEventListener("click", playVideoAndTransition);
+intro.addEventListener("click", closeIntro);
 
 /* ===== HERO PARALLAX ===== */
 (function initHeroParallax() {
@@ -2300,7 +2161,7 @@ function toGoogleCalDate(date) {
 
 document.getElementById("addCalendar").addEventListener("click", () => {
   const start = new Date(weddingDate);
-  const end = new Date("2026-12-05T23:30:00-06:00");
+  const end = new Date("2026-12-05T23:59:00-06:00");
 
   const eventTitle = bride + " & " + groom + " — Wedding";
   const venue = WEDDING.events.find(e => e.id === "muhurtham").venue;
