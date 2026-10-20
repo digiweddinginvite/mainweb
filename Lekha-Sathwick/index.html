@@ -175,6 +175,7 @@
           opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
           visibility 1.4s cubic-bezier(0.4, 0, 0.2, 1);
         cursor: pointer;
+        overflow: hidden;
       }
 
       .intro.hidden {
@@ -183,6 +184,37 @@
         pointer-events: none;
       }
 
+      /* Full-screen illustration background */
+      .intro-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        z-index: 0;
+        pointer-events: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-user-drag: none;
+      }
+
+      /* Soft vignette overlay for text readability */
+      .intro::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(46, 26, 17, 0.55) 0%,
+          rgba(46, 26, 17, 0.65) 50%,
+          rgba(46, 26, 17, 0.88) 100%
+        );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Card styles removed — content floats freely over the image */
       .intro-content {
         position: relative;
         z-index: 3;
@@ -194,14 +226,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background: rgba(46, 26, 17, 0.9);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-radius: 12px;
         max-width: 500px;
         width: 90%;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
       }
 
       .intro-ganesh {
@@ -214,6 +240,7 @@
       .intro-content .eyebrow {
         color: var(--gold-light);
         margin-bottom: 15px;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
       }
 
       .intro-content h1 {
@@ -224,7 +251,9 @@
         color: var(--cream);
         letter-spacing: 2px;
         line-height: 1.1;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        text-shadow:
+          2px 2px 8px rgba(0, 0, 0, 0.65),
+          0 4px 16px rgba(0, 0, 0, 0.45);
       }
 
       .intro-content p {
@@ -233,7 +262,7 @@
         text-transform: uppercase;
         margin-bottom: 35px;
         color: var(--gold-light);
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
       }
 
       .tap-hint {
@@ -246,6 +275,7 @@
         background: transparent;
         border: none;
         padding: 0;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
       }
 
       @keyframes pulse {
@@ -1700,7 +1730,14 @@
   </head>
 
   <body class="intro-active">
+    <!-- ===== 01 — INTRO (TAP TO ENTER) ===== -->
     <section class="intro" id="intro">
+      <img
+        src="Assets/introimg.png"
+        alt=""
+        class="intro-bg"
+        aria-hidden="true"
+      />
       <div class="intro-content" id="introContent">
         <img src="Assets/ganeshimg.png" alt="Ganesha" class="intro-ganesh" />
         <div class="eyebrow">A beautiful beginning</div>
@@ -1711,7 +1748,7 @@
     </section>
 
     <main>
-      <!-- ===== 01 — OPENING PHOTO (HERO) ===== -->
+      <!-- ===== 02 — OPENING PHOTO (HERO) ===== -->
       <section class="hero" id="home">
         <div class="hero-bg-wrap">
           <img
@@ -1732,14 +1769,16 @@
             <div class="eyebrow">The wedding celebration of</div>
 
             <h1>
-              <span id="brideHero">Lekha Antham</span>
+              <span id="brideHero">Antham lekha Reddy</span>
               <span class="hero-parents"
-                >Daughter of Sridhar Antham &amp; Sunitha Antham</span
+                >Daughter of Antham Sridhar Reddy &amp; Antham Sunitha
+                Reddy</span
               >
               <span>&amp;</span>
               <span id="groomHero">Sathwick Reddy</span>
               <span class="hero-parents"
-                >Son of Prakash Reddy Mummadi &amp; Swarna Kumari Mummadi</span
+                >Son of Late Prakash Reddy Mummadi &amp; Swarna Kumari
+                Mummadi</span
               >
             </h1>
 
@@ -1751,7 +1790,7 @@
         </div>
       </section>
 
-      <!-- ===== 02 — DATE REVEAL (SCRATCH) ===== -->
+      <!-- ===== 03 — DATE REVEAL (SCRATCH) ===== -->
       <section class="section scratch-section" id="reveal">
         <div class="container">
           <div class="section-heading">
@@ -1789,7 +1828,7 @@
         </div>
       </section>
 
-      <!-- ===== 03 — ALL EVENTS TIMELINE ===== -->
+      <!-- ===== 04 — ALL EVENTS TIMELINE ===== -->
       <section class="section events" id="events">
         <div class="container">
           <div class="section-heading">
@@ -1807,10 +1846,10 @@
         </div>
       </section>
 
-      <!-- ===== 04 — INDIVIDUAL EVENT SECTIONS (rendered dynamically) ===== -->
+      <!-- ===== 05 — INDIVIDUAL EVENT SECTIONS (rendered dynamically) ===== -->
       <div id="eventDetails"></div>
 
-      <!-- ===== 05 — COUNTDOWN ===== -->
+      <!-- ===== 06 — COUNTDOWN ===== -->
       <section class="countdown-section" id="countdown">
         <div class="container">
           <div class="eyebrow">Counting every moment</div>
@@ -1842,7 +1881,7 @@
         </div>
       </section>
 
-      <!-- ===== 06 — CALENDAR ===== -->
+      <!-- ===== 07 — CALENDAR ===== -->
       <section class="section calendar-section" id="calendar">
         <div class="container">
           <div class="eyebrow">Make it a date</div>
@@ -1863,7 +1902,7 @@
         </div>
       </section>
 
-      <!-- ===== 07 — RSVP (FINAL SECTION) ===== -->
+      <!-- ===== 08 — RSVP (FINAL SECTION) ===== -->
       <section class="section rsvp" id="rsvp">
         <div class="container">
           <div class="section-heading">
@@ -2052,8 +2091,7 @@
               "Men: Traditional kurtas, dhotis, or pancha.",
               "Overall vibe: Authentic Telugu heritage, rich traditional colors, jasmine flowers, and timeless elegance.",
             ],
-            // Updated to use single style image
-            styleImage: "Assets/pellikuturuevent.png",
+            styleImage: "Assets/weddingevent2.png",
           },
           {
             id: "muhurtham",
@@ -2065,11 +2103,10 @@
             map: "",
             whatToWearTitle: "Classic South Indian Elegance",
             whatToWearList: [
-              "Traditional wedding sarees, especially silk and Kanjivaram sarees.",
+              "Traditional wedding sarees, silk and Kanjivaram sarees.",
               "Classic South Indian elegance.",
             ],
-            // Updated to use single style image
-            styleImage: "Assets/weddingevent2.png",
+            styleImage: "Assets/pellikuturuevent.png",
           },
           {
             /* Sangeet & Reception merged into ONE event (video-based, no image) */
@@ -2084,7 +2121,6 @@
             whatToWearList: [
               "Shimmer, sequins, glamorous lehengas, gowns, and Indo-western outfits.",
             ],
-            // Updated to use single style image
             styleImage: "Assets/sangeetevent.png",
           },
         ],
