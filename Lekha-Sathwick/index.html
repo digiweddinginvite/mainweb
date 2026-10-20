@@ -973,6 +973,14 @@
         color: var(--muted);
       }
 
+      .event-expect p strong {
+        display: inline-block;
+        margin-bottom: 4px;
+        color: var(--chocolate-dark);
+        font-weight: 600;
+        font-style: normal;
+      }
+
       .event-wear-text {
         font:
           400 15px/1.8 "Lato",
@@ -1769,16 +1777,16 @@
             <div class="eyebrow">The wedding celebration of</div>
 
             <h1>
-              <span id="brideHero">Antham lekha Reddy</span>
+              <span id="brideHero">Antham Lekha Reddy</span>
               <span class="hero-parents"
                 >Daughter of Antham Sridhar Reddy &amp; Antham Sunitha
                 Reddy</span
               >
               <span>&amp;</span>
-              <span id="groomHero">Sathwick Reddy</span>
+              <span id="groomHero">Sathwick Reddy Mummadi</span>
               <span class="hero-parents"
-                >Son of Late Prakash Reddy Mummadi &amp; Swarna Kumari
-                Mummadi</span
+                >Son of Late Prakash Reddy Mummadi &amp; Swarna kumari
+                kakarla</span
               >
             </h1>
 
@@ -2071,8 +2079,8 @@
 
     <script>
       const WEDDING = {
-        bride: "Antham lekha Reddy",
-        groom: "Sathwick Reddy",
+        bride: "Antham Lekha Reddy",
+        groom: "Sathwick Reddy Mummadi",
         weddingDate: "2026-12-05T11:30:00+05:30",
         events: [
           {
@@ -2101,10 +2109,12 @@
             time: "11:30 AM",
             venue: "Celebrino Event Centre, Austin, Texas",
             map: "",
+            whatToExpect:
+              "<strong>🌸 Pelli – A Traditional Telugu Wedding</strong><br><br>Experience the beauty of Telugu traditions, sacred rituals, and heartfelt blessings. From Jeelakarra Bellam to Talambralu, celebrate love surrounded by vibrant silk sarees, jasmine flowers, and soulful melodies. Enjoy an authentic Telugu feast and timeless wedding traditions!",
             whatToWearTitle: "Classic South Indian Elegance",
             whatToWearList: [
               "Traditional wedding sarees, silk and Kanjivaram sarees.",
-              "Traditional silk shirt, dhoti and elegant kurta sets.",
+              "Men : Sherwani, pancha, dhotis.",
               "Classic South Indian elegance.",
             ],
             styleImage: "Assets/pellikuturuevent.png",
@@ -2118,6 +2128,8 @@
             time: "7:00 PM onwards",
             venue: "Celebrino Event Centre, Austin, Texas",
             map: "",
+            whatToExpect:
+              "<strong>✨ Sangeet & Reception – A Night of Glamour</strong><br><br>Get ready for an evening filled with music, dance, laughter, and unforgettable memories! Expect dazzling performances, glamorous outfits, and a celebration full of love and energy. Dress in your finest Indo-Western attire and dance the night away!",
             whatToWearTitle: "Bring on the Bling! ✨",
             whatToWearList: [
               "Shimmer, sequins, glamorous lehengas, gowns, and Indo-western outfits.",
