@@ -421,7 +421,7 @@
       /* Parent info inside hero heading */
       .hero h1 .hero-parents {
         font-family: "Lato", sans-serif;
-        font-size: clamp(11px, 1.4vw, 14px);
+        font-size: clamp(10px, 1.4vw, 12px);
         letter-spacing: 1.2px;
         color: var(--chocolate);
         font-weight: 400;
@@ -430,6 +430,23 @@
         text-transform: none;
         text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
         opacity: 0.88;
+      }
+
+      /* Keep groom's name on a single line on all devices */
+      .hero h1 #groomHero {
+        display: inline-block;
+        white-space: nowrap;
+        font-size: clamp(26px, 5.5vw, 58px);
+        letter-spacing: 0;
+        max-width: 100%;
+      }
+
+      /* Extra-small mobile screens */
+      @media (max-width: 380px) {
+        .hero h1 #groomHero {
+          font-size: clamp(19px, 8vw, 26px);
+          letter-spacing: -0.5px;
+        }
       }
 
       .hero-subtitle {
