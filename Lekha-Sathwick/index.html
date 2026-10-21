@@ -1589,6 +1589,32 @@
         .section {
           padding: 80px 20px;
         }
+
+        /* ---------------------------------------------------------
+           FULL-SCREEN HERO ON MOBILE
+           The hero is pinned to the full viewport height and the
+           background image fills the area with object-fit: cover.
+           --------------------------------------------------------- */
+        .hero {
+          height: 100vh; /* fallback for older browsers */
+          height: 100svh; /* small viewport — avoids toolbar jump */
+          min-height: 480px;
+        }
+
+        .hero-bg-wrap {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .hero-bg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center center;
+        }
+
         .hero-inner {
           top: 6%;
           padding: 0 16px;
