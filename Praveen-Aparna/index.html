@@ -1661,6 +1661,8 @@
             /* AUTO SCROLL TIMINGS */
             const AUTO_SCROLL_START_DELAY_MS = reduceMotion ? 0 : 2800;
             const AUTO_SCROLL_SECONDS_PER_VIEWPORT = 12;
+            const AUTO_SCROLL_RESUME_DELAY_MS = 2000;
+            const AUTO_SCROLL_USER_JUMP_THRESHOLD_PX = 20;
 
             let isAnimating = false;
 
@@ -2222,10 +2224,13 @@
 
             /* ============================================
                AUTO SCROLL — GUIDED TOUR OF THE FULL WEBSITE
-               Starts after the intro, stops on user intent.
+               Pauses when the user interacts, and resumes
+               automatically after a short idle period.
             ============================================ */
             let autoScrollFrame = null;
             let autoScrollActive = false;
+            let autoScrollPaused = false;
+            let autoScrollResumeTimer = null;
             let autoScrollLastTime = 0;
             let autoScrollPos = 0;
 
@@ -2234,22 +2239,81 @@
                 'Home', 'End', ' ', 'Spacebar'
             ];
 
-            function handleAutoScrollKeydown(event) {
-                if (AUTO_SCROLL_KEYS.indexOf(event.key) !== -1) {
-                    stopAutoScroll();
+            function clearAutoScrollResumeTimer() {
+                if (autoScrollResumeTimer !== null) {
+                    clearTimeout(autoScrollResumeTimer);
+                    autoScrollResumeTimer = null;
                 }
             }
 
-            /* Backstop — catches scrollbar drags / momentum flings */
+            function scheduleAutoScrollResume() {
+                clearAutoScrollResumeTimer();
+                autoScrollResumeTimer = window.setTimeout(() => {
+                    autoScrollResumeTimer = null;
+                    resumeAutoScroll();
+                }, AUTO_SCROLL_RESUME_DELAY_MS);
+            }
+
+            /* Called from wheel / touch / pointer / key / scroll events.
+               Puts auto-scroll into a paused state and (re)starts the
+               idle timer that will resume it. Safe to call repeatedly. */
+            function pauseAutoScroll() {
+                if (!autoScrollActive) return;
+
+                if (!autoScrollPaused) {
+                    autoScrollPaused = true;
+                    if (autoScrollFrame !== null) {
+                        cancelAnimationFrame(autoScrollFrame);
+                        autoScrollFrame = null;
+                    }
+                }
+
+                scheduleAutoScrollResume();
+            }
+
+            function resumeAutoScroll() {
+                if (!autoScrollActive || !autoScrollPaused) return;
+
+                autoScrollPaused = false;
+
+                /* Sync to wherever the user left the page */
+                autoScrollPos = scrollContainer.scrollTop;
+                autoScrollLastTime = 0;
+
+                autoScrollFrame = requestAnimationFrame(autoScrollStep);
+            }
+
+            function handleAutoScrollKeydown(event) {
+                if (AUTO_SCROLL_KEYS.indexOf(event.key) !== -1) {
+                    pauseAutoScroll();
+                }
+            }
+
+            /* Backstop — catches scrollbar drags / momentum flings.
+               While paused, treat scroll activity as "still interacting"
+               and keep deferring the resume. */
             function handleAutoScrollScroll() {
                 if (!autoScrollActive) return;
-                if (Math.abs(scrollContainer.scrollTop - autoScrollPos) > 8) {
-                    stopAutoScroll();
+
+                if (autoScrollPaused) {
+                    scheduleAutoScrollResume();
+                    return;
+                }
+
+                if (
+                    Math.abs(
+                        scrollContainer.scrollTop - autoScrollPos
+                    ) > AUTO_SCROLL_USER_JUMP_THRESHOLD_PX
+                ) {
+                    pauseAutoScroll();
                 }
             }
 
             function stopAutoScroll() {
                 autoScrollActive = false;
+                autoScrollPaused = false;
+
+                clearAutoScrollResumeTimer();
 
                 if (autoScrollFrame !== null) {
                     cancelAnimationFrame(autoScrollFrame);
@@ -2259,9 +2323,10 @@
                 autoScrollLastTime = 0;
 
                 if (scrollContainer) {
-                    scrollContainer.removeEventListener('wheel', stopAutoScroll);
-                    scrollContainer.removeEventListener('touchstart', stopAutoScroll);
-                    scrollContainer.removeEventListener('pointerdown', stopAutoScroll);
+                    scrollContainer.removeEventListener('wheel', pauseAutoScroll);
+                    scrollContainer.removeEventListener('touchstart', pauseAutoScroll);
+                    scrollContainer.removeEventListener('touchmove', pauseAutoScroll);
+                    scrollContainer.removeEventListener('pointerdown', pauseAutoScroll);
                     scrollContainer.removeEventListener('scroll', handleAutoScrollScroll);
                 }
 
@@ -2270,7 +2335,7 @@
 
             function autoScrollStep(timestamp) {
                 autoScrollFrame = null;
-                if (!autoScrollActive) return;
+                if (!autoScrollActive || autoScrollPaused) return;
 
                 if (!autoScrollLastTime) autoScrollLastTime = timestamp;
 
@@ -2307,12 +2372,14 @@
                 if (maxScroll <= 4) return;
 
                 autoScrollActive = true;
+                autoScrollPaused = false;
                 autoScrollPos = scrollContainer.scrollTop;
                 autoScrollLastTime = 0;
 
-                scrollContainer.addEventListener('wheel', stopAutoScroll, { passive: true });
-                scrollContainer.addEventListener('touchstart', stopAutoScroll, { passive: true });
-                scrollContainer.addEventListener('pointerdown', stopAutoScroll, { passive: true });
+                scrollContainer.addEventListener('wheel', pauseAutoScroll, { passive: true });
+                scrollContainer.addEventListener('touchstart', pauseAutoScroll, { passive: true });
+                scrollContainer.addEventListener('touchmove', pauseAutoScroll, { passive: true });
+                scrollContainer.addEventListener('pointerdown', pauseAutoScroll, { passive: true });
                 scrollContainer.addEventListener('scroll', handleAutoScrollScroll, { passive: true });
                 window.addEventListener('keydown', handleAutoScrollKeydown);
 
