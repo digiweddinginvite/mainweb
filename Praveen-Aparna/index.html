@@ -1545,9 +1545,7 @@
                         <div class="gallery-slide">
                             <img src="Assets/img4.png" alt="Invitation" draggable="false">
                         </div>
-                        <div class="gallery-slide">
-                            <img src="Assets/img5.png" alt="Invitation" draggable="false">
-                        </div>
+              
                     </div>
                 </div>
                 <div class="gallery-dots" id="gallery-dots" aria-label="Gallery navigation"></div>
@@ -1657,6 +1655,10 @@
             const COUPLE_ENTRANCE_DELAY_MS = reduceMotion ? 20 : 560;
             const INTRO_HIDE_MS = reduceMotion ? 60 : 950;
             const FINAL_REFRESH_MS = reduceMotion ? 90 : 2200;
+
+            /* AUTO SCROLL TIMINGS */
+            const AUTO_SCROLL_START_DELAY_MS = reduceMotion ? 0 : 2800;
+            const AUTO_SCROLL_SECONDS_PER_VIEWPORT = 12;
 
             let isAnimating = false;
 
@@ -2216,6 +2218,105 @@
             window.addEventListener('resize', requestParallax);
             window.addEventListener('orientationchange', requestParallax);
 
+            /* ============================================
+               AUTO SCROLL — GUIDED TOUR OF THE FULL WEBSITE
+               Starts after the intro, stops on user intent.
+            ============================================ */
+            let autoScrollFrame = null;
+            let autoScrollActive = false;
+            let autoScrollLastTime = 0;
+            let autoScrollPos = 0;
+
+            const AUTO_SCROLL_KEYS = [
+                'ArrowUp', 'ArrowDown', 'PageUp', 'PageDown',
+                'Home', 'End', ' ', 'Spacebar'
+            ];
+
+            function handleAutoScrollKeydown(event) {
+                if (AUTO_SCROLL_KEYS.indexOf(event.key) !== -1) {
+                    stopAutoScroll();
+                }
+            }
+
+            /* Backstop — catches scrollbar drags / momentum flings */
+            function handleAutoScrollScroll() {
+                if (!autoScrollActive) return;
+                if (Math.abs(scrollContainer.scrollTop - autoScrollPos) > 8) {
+                    stopAutoScroll();
+                }
+            }
+
+            function stopAutoScroll() {
+                autoScrollActive = false;
+
+                if (autoScrollFrame !== null) {
+                    cancelAnimationFrame(autoScrollFrame);
+                    autoScrollFrame = null;
+                }
+
+                autoScrollLastTime = 0;
+
+                if (scrollContainer) {
+                    scrollContainer.removeEventListener('wheel', stopAutoScroll);
+                    scrollContainer.removeEventListener('touchstart', stopAutoScroll);
+                    scrollContainer.removeEventListener('pointerdown', stopAutoScroll);
+                    scrollContainer.removeEventListener('scroll', handleAutoScrollScroll);
+                }
+
+                window.removeEventListener('keydown', handleAutoScrollKeydown);
+            }
+
+            function autoScrollStep(timestamp) {
+                autoScrollFrame = null;
+                if (!autoScrollActive) return;
+
+                if (!autoScrollLastTime) autoScrollLastTime = timestamp;
+
+                const delta = Math.min(
+                    Math.max((timestamp - autoScrollLastTime) / 1000, 0),
+                    0.05
+                );
+
+                autoScrollLastTime = timestamp;
+
+                const vh = scrollContainer.clientHeight || window.innerHeight || 1;
+                const maxScroll = scrollContainer.scrollHeight - scrollContainer.clientHeight;
+
+                autoScrollPos += (vh / AUTO_SCROLL_SECONDS_PER_VIEWPORT) * delta;
+
+                if (autoScrollPos >= maxScroll) {
+                    scrollContainer.scrollTop = maxScroll;
+                    stopAutoScroll();
+                    return;
+                }
+
+                scrollContainer.scrollTop = autoScrollPos;
+                autoScrollFrame = requestAnimationFrame(autoScrollStep);
+            }
+
+            function startAutoScroll() {
+                if (reduceMotion) return;
+                if (autoScrollActive) return;
+                if (!scrollContainer) return;
+
+                const maxScroll =
+                    scrollContainer.scrollHeight - scrollContainer.clientHeight;
+
+                if (maxScroll <= 4) return;
+
+                autoScrollActive = true;
+                autoScrollPos = scrollContainer.scrollTop;
+                autoScrollLastTime = 0;
+
+                scrollContainer.addEventListener('wheel', stopAutoScroll, { passive: true });
+                scrollContainer.addEventListener('touchstart', stopAutoScroll, { passive: true });
+                scrollContainer.addEventListener('pointerdown', stopAutoScroll, { passive: true });
+                scrollContainer.addEventListener('scroll', handleAutoScrollScroll, { passive: true });
+                window.addEventListener('keydown', handleAutoScrollKeydown);
+
+                autoScrollFrame = requestAnimationFrame(autoScrollStep);
+            }
+
             /* OPEN INVITATION */
             function playCoupleEntrance() {
                 heroCoupleEntry.classList.remove('enter-active');
@@ -2268,6 +2369,11 @@
                     window.setTimeout(() => {
                         requestParallax();
                     }, FINAL_REFRESH_MS);
+
+                    /* Auto scroll through the full website once the intro clears */
+                    window.setTimeout(() => {
+                        startAutoScroll();
+                    }, AUTO_SCROLL_START_DELAY_MS);
                 }, PULLBACK_MS);
             }
 
