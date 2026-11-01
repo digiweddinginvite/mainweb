@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -29,7 +30,6 @@
         dataLayer.push(arguments);
       }
       gtag("js", new Date());
-
       gtag("config", "G-56XWZ1LD3P");
     </script>
     <meta
@@ -3003,6 +3003,249 @@
           margin-bottom: 22px;
         }
       }
+
+      /* ============================================
+         CATEGORY SHORTCUT BUTTONS
+         ============================================ */
+      .category-shortcuts {
+        position: relative;
+        z-index: 5;
+        padding: 20px 0;
+        background: linear-gradient(180deg, #fff 0%, #fdfbf7 100%);
+        border-bottom: 1px solid rgba(128, 0, 32, 0.08);
+      }
+
+      .category-shortcuts-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .category-shortcut {
+        min-width: 0;
+        min-height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 13px 15px;
+        border: 1px solid rgba(128, 0, 32, 0.14);
+        border-radius: 16px;
+        background: #fff;
+        color: var(--primary-dark);
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(17, 17, 17, 0.045);
+        transition:
+          transform 0.3s var(--ease),
+          border-color 0.3s var(--ease),
+          box-shadow 0.3s var(--ease),
+          background 0.3s var(--ease);
+      }
+
+      .category-shortcut > i:first-child {
+        flex: 0 0 auto;
+        color: var(--accent);
+        font-size: 17px;
+      }
+
+      .category-shortcut span {
+        line-height: 1.35;
+      }
+
+      .category-shortcut .shortcut-arrow {
+        flex: 0 0 auto;
+        margin-left: auto;
+        color: rgba(128, 0, 32, 0.45);
+        font-size: 11px;
+        transition: transform 0.3s var(--ease);
+      }
+
+      .category-shortcut:hover {
+        transform: translateY(-3px);
+        border-color: rgba(128, 0, 32, 0.32);
+        background: linear-gradient(135deg, #fff, #fff9f5);
+        box-shadow: 0 12px 26px rgba(128, 0, 32, 0.1);
+      }
+
+      .category-shortcut:hover .shortcut-arrow {
+        transform: translateX(3px);
+        color: var(--primary);
+      }
+
+      /* ============================================
+         BIRTHDAY INVITATION SECTION
+         ============================================ */
+      #birthday {
+        scroll-margin-top: 90px;
+      }
+
+      .ceremony-grid.birthday-grid {
+        grid-template-columns: minmax(0, 430px);
+        justify-content: center;
+        max-width: 560px;
+      }
+
+      .birthday-art {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        isolation: isolate;
+        background:
+          radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.9) 0 3px, transparent 4px),
+          radial-gradient(circle at 82% 26%, rgba(255, 255, 255, 0.8) 0 4px, transparent 5px),
+          radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.75) 0 3px, transparent 4px),
+          linear-gradient(135deg, #fff1d8 0%, #ffe5e6 48%, #e9e3ff 100%);
+      }
+
+      .birthday-art::before,
+      .birthday-art::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+      }
+
+      .birthday-art::before {
+        width: 220px;
+        height: 220px;
+      }
+
+      .birthday-art::after {
+        width: 270px;
+        height: 270px;
+        border-color: rgba(255, 255, 255, 0.45);
+      }
+
+      .birthday-art-icon {
+        width: 112px;
+        height: 112px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.84);
+        border: 1px solid rgba(255, 255, 255, 0.95);
+        box-shadow:
+          0 14px 32px rgba(128, 0, 32, 0.12),
+          0 0 0 8px rgba(255, 255, 255, 0.22);
+        color: var(--primary);
+        font-size: 52px;
+      }
+
+      .birthday-art-caption {
+        color: #70404a;
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        text-align: center;
+      }
+
+      .birthday-art-sparkle {
+        position: absolute;
+        color: #b88628;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .sparkle-one {
+        top: 18%;
+        left: 21%;
+        font-size: 25px;
+      }
+
+      .sparkle-two {
+        top: 22%;
+        right: 20%;
+        font-size: 34px;
+      }
+
+      .sparkle-three {
+        bottom: 17%;
+        right: 25%;
+        font-size: 20px;
+      }
+
+      .birthday-website-badge strong {
+        color: #7a3150;
+      }
+
+      @media (max-width: 767px) {
+        .category-shortcuts {
+          padding: 13px 0;
+        }
+
+        .category-shortcuts-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 9px;
+        }
+
+        .category-shortcut {
+          min-height: 56px;
+          padding: 10px 9px;
+          gap: 7px;
+          border-radius: 13px;
+          font-size: 11px;
+        }
+
+        .category-shortcut > i:first-child {
+          font-size: 14px;
+        }
+
+        .category-shortcut .shortcut-arrow {
+          font-size: 9px;
+        }
+
+        .birthday-art-icon {
+          width: 76px;
+          height: 76px;
+          font-size: 36px;
+        }
+
+        .birthday-art-caption {
+          font-size: 14px;
+        }
+
+        .birthday-art::before {
+          width: 150px;
+          height: 150px;
+        }
+
+        .birthday-art::after {
+          width: 190px;
+          height: 190px;
+        }
+
+        .sparkle-one {
+          font-size: 18px;
+        }
+
+        .sparkle-two {
+          font-size: 24px;
+        }
+
+        .sparkle-three {
+          font-size: 15px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .category-shortcut {
+          font-size: 10px;
+          gap: 5px;
+          padding: 9px 6px;
+        }
+
+        .category-shortcut .shortcut-arrow {
+          display: none;
+        }
+      }
     </style>
 
     <!-- Structured data: helps search engines and answer engines understand the business, service, offers and FAQs. -->
@@ -3110,6 +3353,26 @@
             }
           },
           {
+            "@type": "Service",
+            "@id": "https://digiweddinginvite.in/#birthday-invitation-service",
+            "name": "Digital Birthday Invitation Website",
+            "description": "A shareable digital birthday invitation website for celebrating birthdays with family and friends.",
+            "provider": {
+              "@id": "https://digiweddinginvite.in/#organization"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "India"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "2499",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "url": "https://manikantaande24-bot.github.io/birthday1/"
+            }
+          },
+          {
             "@type": "FAQPage",
             "@id": "https://digiweddinginvite.in/#faqpage",
             "mainEntity": [
@@ -3213,7 +3476,7 @@
             <a href="#home">Home</a>
             <a href="#demo">Invitations</a>
             <a href="#gruhapravesam">Gruhapravesam</a>
-            <a href="#upanayanam">Upanayanam</a>
+            <a href="#birthday">Birthday</a>
             <a href="#features">Features</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
@@ -3392,7 +3655,36 @@
         </div>
       </div>
 
-    
+      <!-- ============================================
+     QUICK CATEGORY LINKS — immediately after Important Note
+     ============================================ -->
+      <nav class="category-shortcuts" aria-label="Browse invitation categories">
+        <div class="container">
+          <div class="category-shortcuts-grid">
+            <a class="category-shortcut" href="#demo">
+              <i class="fa-solid fa-ring" aria-hidden="true"></i>
+              <span>Wedding Invites</span>
+              <i class="fa-solid fa-arrow-right shortcut-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="category-shortcut" href="#gruhapravesam">
+              <i class="fa-solid fa-house-chimney" aria-hidden="true"></i>
+              <span>House Warming Invite</span>
+              <i class="fa-solid fa-arrow-right shortcut-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="category-shortcut" href="#birthday">
+              <i class="fa-solid fa-cake-candles" aria-hidden="true"></i>
+              <span>Birthday Invites</span>
+              <i class="fa-solid fa-arrow-right shortcut-arrow" aria-hidden="true"></i>
+            </a>
+            <a class="category-shortcut" href="#upanayanam">
+              <i class="fa-solid fa-om" aria-hidden="true"></i>
+              <span>Upanayanam Invites</span>
+              <i class="fa-solid fa-arrow-right shortcut-arrow" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+
       <!-- ============================================
      LIVE EXTERNAL DEMOS
      ============================================ -->
@@ -3416,47 +3708,7 @@
           </div>
 
           <!-- CLICKABLE PRICE GUIDE: jumps to the matching tier section -->
-          <div
-            class="template-price-guide reveal"
-            aria-label="Wedding website price guide"
-          >
-            <a
-              href="#standard-tier"
-              class="price-guide-item"
-              aria-label="View Standard website invitations from ₹1,499"
-            >
-              <span class="price-guide-label">Standard</span>
-              <strong class="js-price" data-inr="1499">₹1,499</strong>
-              <i
-                class="fa-solid fa-chevron-down price-guide-arrow"
-                aria-hidden="true"
-              ></i>
-            </a>
-            <a
-              href="#premium-tier"
-              class="price-guide-item"
-              aria-label="View Premium website invitations from ₹1,999"
-            >
-              <span class="price-guide-label">Premium</span>
-              <strong class="js-price" data-inr="1999">₹1,999</strong>
-              <i
-                class="fa-solid fa-chevron-down price-guide-arrow"
-                aria-hidden="true"
-              ></i>
-            </a>
-            <a
-              href="#luxury-tier"
-              class="price-guide-item"
-              aria-label="View Luxury website invitations from ₹2,499"
-            >
-              <span class="price-guide-label">Luxury</span>
-              <strong class="js-price" data-inr="2499">₹2,499</strong>
-              <i
-                class="fa-solid fa-chevron-down price-guide-arrow"
-                aria-hidden="true"
-              ></i>
-            </a>
-          </div>
+       
 
           <div class="template-scroll-prompt" aria-hidden="true">
             <i class="fa-solid fa-arrow-down"></i>
@@ -4232,7 +4484,76 @@
         </div>
       </section>
 
-           <!-- ============================================
+      <!-- ============================================
+     BIRTHDAY INVITATION WEBSITE
+     ============================================ -->
+      <section class="ceremony-section birthday-section" id="birthday">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Birthday Invitations</p>
+            <h2 class="section-title">Digital Birthday Invitation Website</h2>
+            <p
+              class="section-sub"
+              style="margin-left: auto; margin-right: auto"
+            >
+              Make every birthday celebration extra special with a beautiful,
+              easy-to-share digital invitation website for family and friends.
+            </p>
+          </div>
+
+          <div class="ceremony-grid birthday-grid reveal scale">
+            
+
+              <div class="demo-thumb-wrap">
+                <img
+                  src="images/birthdaytemplate.png"
+                  alt="Digital Upanayanam invitation website preview"
+                  class="demo-thumb"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+
+              <div class="demo-card-content">
+                <h3>Birthday Invitation Website</h3>
+                <p>
+                  A cheerful digital birthday invite with all the celebration
+                  details in one easy-to-share link.
+                </p>
+                <div class="template-price">
+                  <span class="offer-price js-price" data-inr="2499">₹2,499</span>
+                </div>
+                <div class="template-actions">
+                  <button
+                    class="btn btn-outline"
+                    type="button"
+                    onclick="openDemo('https://manikantaande24-bot.github.io/birthday1/')"
+                  >
+                    <i class="fa-solid fa-eye"></i> View Demo
+                  </button>
+                  <a
+                    href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Birthday%20Invitation%20Website%20for%20%E2%82%B92499."
+                    class="btn btn-primary js-buy-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fa-brands fa-whatsapp"></i> Buy Now
+                  </a>
+                </div>
+              </div>
+              <div class="demo-website-badge birthday-website-badge">
+                <i class="fa-solid fa-globe badge-icon" aria-hidden="true"></i>
+                <strong>THIS IS A BIRTHDAY WEBSITE</strong>
+                <span>Not a video invitation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================
      QUICK ANSWERS — SEARCH / AI FRIENDLY
      ============================================ -->
       <section
@@ -5088,8 +5409,6 @@
           closeDemo();
         }
       });
-
-     
 
       /* ---------- Country-based pricing ----------
    India sees the normal INR price.
