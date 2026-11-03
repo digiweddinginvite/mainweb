@@ -11,7 +11,6 @@
     window.history.scrollRestoration = "manual";
   }
 
-  // Remove an old section link such as #venue on refresh.
   if (window.location.hash) {
     window.history.replaceState(
       null,
@@ -73,6 +72,11 @@
     font-family: var(--sans);
     font-weight: 300;
     overflow-x: hidden;
+  }
+
+  /* Lock scrolling while the intro video is playing */
+  body.intro-active {
+    overflow: hidden;
   }
 
   /* ── UTILITY ── */
@@ -184,7 +188,7 @@
     letter-spacing: .3em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 3rem;          /* increased gap below tagline */
+    margin-bottom: 3rem;
     animation: fadeUp .8s .2s both;
   }
 
@@ -195,7 +199,7 @@
     font-size: clamp(2.8rem, 6.5vw, 5rem);
     color: var(--champagne);
     line-height: 1.3;
-    margin: 30px 0 55px;          /* more gap above and below the names block */
+    margin: 30px 0 55px;
   }
 
   .hero-name-block {
@@ -224,7 +228,7 @@
     font-family: var(--serif-script);
     font-size: clamp(2rem, 6vw, 4.5rem);
     color: var(--gold);
-    margin: 0.35em 0;             /* increased gap around the ampersand */
+    margin: 0.35em 0;
     animation: fadeUp .8s .5s both;
   }
 
@@ -236,7 +240,7 @@
     text-transform: uppercase;
     color: var(--champagne);
     opacity: .75;
-    margin-top: 3rem;             /* more gap above date */
+    margin-top: 3rem;
     animation: fadeUp .8s .7s both;
   }
 
@@ -246,12 +250,12 @@
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     color: var(--blush);
     opacity: .8;
-    margin-top: 1.5rem;           /* more gap above subtitle */
+    margin-top: 1.5rem;
     animation: fadeUp .8s .85s both;
   }
 
   .hero-scroll {
-    margin-top: 4.5rem;           /* more gap above scroll indicator */
+    margin-top: 4.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -990,8 +994,6 @@
     transition: border-color 0.3s;
   }
 
-  /* Styling the Select Dropdown */
-
   .rsvp-form select {
     appearance: none;
     -webkit-appearance: none;
@@ -1003,8 +1005,6 @@
     padding-right: 2.5rem;
     cursor: pointer;
   }
-
-  /* Styling the Options inside the Dropdown */
 
   .rsvp-form select option {
     background-color: var(--noir-mid);
@@ -1193,265 +1193,75 @@
     }
   }
 
-  /* 💌 ENVELOPE SCREEN */
+  /* ══════════════════════════════════════
+     🎬 INTRO VIDEO SCREEN (replaces envelope)
+  ══════════════════════════════════════ */
 
-  #envelope-screen {
+  #intro-video-screen {
     position: fixed;
-    inset: 0;
-    background: url("assets/introbg2.png") no-repeat center center;
-    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;         /* fallback for older browsers */
+    height: 100dvh;        /* fills mobile screens with dynamic toolbars */
+    z-index: 10001;
+    background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
-  }
-
-  /* Envelope Base */
-
-  .envelope {
-    position: relative;
-    width: 340px;
-    height: 230px;
-    background: linear-gradient(145deg, #f5edd6, #e9dfc4);
-    border-radius: 10px;
     overflow: hidden;
-
-    box-shadow:
-      0 30px 90px rgba(0,0,0,0.6),
-      inset 0 2px 4px rgba(255,255,255,0.6),
-      inset 0 -4px 8px rgba(0,0,0,0.15),
-      inset 2px 0 6px rgba(0,0,0,0.08),
-      inset -2px 0 6px rgba(255,255,255,0.3);
+    cursor: pointer;       /* signals the whole screen is tappable */
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
   }
 
-  /* Flap */
+  #intro-video-screen.done {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
 
-  .flap {
+  #intro-video {
     position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #e8c4b8, #d9a99a);
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    transform-origin: top;
-    transition: transform 1.8s cubic-bezier(.77,0,.18,1);
-    z-index: 3;
-
-    box-shadow:
-      0 12px 25px rgba(0,0,0,0.18),
-      inset 0 2px 6px rgba(255,255,255,0.5),
-      inset 0 -8px 12px rgba(0,0,0,0.12);
+    object-fit: cover;     /* fills every mobile screen edge-to-edge */
+    -webkit-object-fit: cover;
+    display: block;
+    background: #000;
   }
 
-  .envelope::after {
-    content: "";
+  /* "Open Invitation" button positioned at the bottom of the screen */
+
+  #start-intro {
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 55%;
-    background: linear-gradient(145deg, #e9dfc4, #d8caa5);
-    z-index: 2;
-  }
-
-  /* Letter inside */
-
-  .letter {
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    bottom: -10px;
-    height: 85%;
-    background: linear-gradient(to bottom, #faf6ef, #f3eadf);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transform: translateY(100%);
-    border-radius: 6px;
-    box-shadow: 0 -8px 20px rgba(0,0,0,0.15);
-    transition: transform 1.2s ease 1.4s;
-    z-index: 1;
-  }
-
-  .letter h2 {
-    font-family: 'Great Vibes';
-    font-size: 2.5rem;
-    color: #1A1510;
-  }
-
-  .letter p {
-    margin: 10px 0;
-    font-size: 0.9rem;
-    letter-spacing: 0.1em;
-    color: #8A7A68;
-  }
-
-  /* Button */
-
-  #openBtn {
-    margin-top: 18px;
-    padding: 12px 28px;
-    background: linear-gradient(135deg, #B8953F, #E0C27A);
-    border: none;
-    border-radius: 40px;
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 6px 20px rgba(184,149,63,0.35);
-    transition: all 0.3s ease;
-  }
-
-  #envelope-screen::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(1px);
-    z-index: 0;
-  }
-
-  /* Keep envelope above background */
-
-  .envelope {
-    position: relative;
-    z-index: 2;
-  }
-
-  #envelope-screen::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.15));
-    z-index: 1;
-  }
-
-  .envelope {
-    animation: floatIn 1.2s ease;
-  }
-
-  @keyframes floatIn {
-    from {
-      opacity: 0;
-      transform: translateY(40px) scale(0.95);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  .envelope::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    transform: translateX(-140%) rotate(18deg);
-    animation: luxurySweep 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    mix-blend-mode: screen;
-    pointer-events: none;
-  }
-
-  .envelope {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .envelope::after {
-    filter: blur(0.6px);
-  }
-
-  @keyframes premiumShine {
-    0% {
-      transform: translateX(-120%) rotate(20deg);
-      opacity: 0;
-    }
-
-    20% {
-      opacity: 1;
-    }
-
-    60% {
-      transform: translateX(120%) rotate(20deg);
-      opacity: 1;
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
-
-  .envelope::after {
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  @keyframes shine {
-    0% {
-      transform: translateX(-100%) rotate(25deg);
-    }
-
-    100% {
-      transform: translateX(100%) rotate(25deg);
-    }
-  }
-
-  /* OPEN STATE */
-
-  .envelope.open .flap {
-    transform: rotateX(180deg);
-  }
-
-  .letter {
-    transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
-  }
-
-  .envelope.open .letter {
-    transform: translateY(-10px);
-  }
-
-  #hero {
-    opacity: 0;
-    transition: opacity 1.5s ease;
-  }
-
-  body.loaded #hero {
-    opacity: 1;
-  }
-
-  .open-main-btn {
-    position: absolute;
-    bottom: 80px;
+    bottom: 8vh;              /* sits near the bottom, above safe area */
+    bottom: calc(8vh + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
+    z-index: 3;
     padding: 14px 34px;
     background: linear-gradient(135deg, #B8953F, #E0C27A);
     border: none;
     border-radius: 50px;
+    color: #1A1510;
+    font-family: var(--sans);
     font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    cursor: pointer;
     font-weight: 600;
-    z-index: 10;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
     box-shadow: 0 10px 30px rgba(184,149,63,0.4);
     transition: all 0.3s ease;
+    pointer-events: none;     /* clicks bubble up to #intro-video-screen */
+    -webkit-user-select: none;
+    user-select: none;
   }
 
-  .open-main-btn:hover {
-    transform: translateX(-50%) translateY(-4px);
-    box-shadow: 0 18px 40px rgba(184,149,63,0.6);
-  }
-
-  .open-main-btn.hide {
+  #start-intro.hide {
     opacity: 0;
-    transform: translateX(-50%) translateY(40px);
-    pointer-events: none;
-  }
-
-  #envelope-screen.fade-out {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    transform: translateX(-50%) translateY(20px);
   }
 
   /* RESET HERO TEXT BEFORE OPEN */
@@ -1504,6 +1314,15 @@
     }
   }
 
+  #hero {
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+
+  body.loaded #hero {
+    opacity: 1;
+  }
+
   /* Remove mobile tap highlight */
 
   * {
@@ -1518,8 +1337,6 @@
     background: radial-gradient(circle at center, rgba(255,255,255,0.15), transparent 70%);
     opacity: 0;
   }
-
-  /* Fog animation */
 
   body.transitioning #fog-transition {
     animation: fogReveal 2.5s ease forwards;
@@ -1638,26 +1455,67 @@
     box-shadow: 0 10px 25px rgba(184,149,63,.4);
   }
 
+  /* ══════════════════════════════════════
+     MUSIC TOGGLE BUTTON
+  ══════════════════════════════════════ */
+  .music-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(26, 21, 16, 0.85);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease, background 0.3s ease, transform 0.3s ease;
+  }
+
+  body.loaded .music-btn {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease 1s, visibility 0.5s ease 1s, background 0.3s ease, transform 0.3s ease;
+  }
+
+  .music-btn:hover {
+    background: var(--gold);
+    color: var(--noir);
+    transform: scale(1.05);
+  }
+
+  .music-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon-music {
+    animation: pulseMusic 2s infinite ease-in-out;
+  }
+
+  @keyframes pulseMusic {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+  }
+
 </style>
 </head>
 
-<body>
+<body class="intro-active">
 
-<!-- INVITATION ENVELOPE -->
-
-<div id="envelope-screen">
-  <div class="envelope">
-
-    <div class="flap"></div>
-
-    <div class="letter">
-      <h2>Venkat 💕 Akhila</h2>
-      <p>Engagement Invitation</p>
-    </div>
-
-    <button id="openBtn" class="open-main-btn">Open Invitation</button>
-
-  </div>
+<!-- 🎬 INTRO VIDEO — entire screen is tappable -->
+<div id="intro-video-screen">
+  <!-- Make sure assets/introvd.mp4 exists (or update the path/extension) -->
+  <video id="intro-video" playsinline webkit-playsinline preload="auto" src="assets/introvd.mp4"></video>
+  <button type="button" id="start-intro">Open Invitation</button>
 </div>
 
 <div id="fog-transition"></div>
@@ -1680,7 +1538,7 @@
 
       <span class="hero-ampersand">&amp;</span>
 
-      <span class="hero-name-line">Akhila</span>
+      <span class="hero-name-line">Akhila Thaliyakattil</span>
 
     </h1>
 
@@ -1751,7 +1609,7 @@
       <div class="parents">
         <strong>Thaliyakattil SivaDas</strong><br/>
         <br/>
-        <strong>Thaliyakattil Anu Radha</strong>
+        <strong>Thaliyakattil Anuradha</strong>
       </div>
 
     </div>
@@ -2075,6 +1933,25 @@
 
 </footer>
 
+<!-- BACKGROUND MUSIC & TOGGLE BUTTON -->
+<audio id="bg-music" loop>
+  <source src="audio/music1.mp3" type="audio/mpeg">
+</audio>
+
+<button id="music-btn" class="music-btn" aria-label="Toggle background music">
+  <svg class="icon-music" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18V5l12-2v13"></path>
+    <circle cx="6" cy="18" r="3"></circle>
+    <circle cx="18" cy="16" r="3"></circle>
+  </svg>
+  <svg class="icon-muted" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+    <path d="M9 18V5l12-2v13"></path>
+    <circle cx="6" cy="18" r="3"></circle>
+    <circle cx="18" cy="16" r="3"></circle>
+    <line x1="23" y1="1" x2="1" y2="23" stroke-linecap="round" stroke-linejoin="round"></line>
+  </svg>
+</button>
+
 <script>
 
   /* ── NAV SCROLL EFFECT ── */
@@ -2170,38 +2047,112 @@
   setInterval(updateCountdown, 1000);
 
 
-  /* ── ENVELOPE OPENING ── */
+  /* ══════════════════════════════════════
+     🎬 INTRO VIDEO → HERO  (tap anywhere to open)
+  ══════════════════════════════════════ */
 
-  const openBtn = document.getElementById("openBtn");
-  const envelope = document.querySelector(".envelope");
-  const screen = document.getElementById("envelope-screen");
+  const introScreen  = document.getElementById("intro-video-screen");
+  const introVideo   = document.getElementById("intro-video");
+  const startBtn     = document.getElementById("start-intro");
 
-  openBtn.addEventListener("click", () => {
+  const bgMusic      = document.getElementById("bg-music");
+  const musicBtn     = document.getElementById("music-btn");
+  const iconMusic    = musicBtn.querySelector(".icon-music");
+  const iconMuted    = musicBtn.querySelector(".icon-muted");
 
-    envelope.classList.add("open");
-    openBtn.classList.add("hide");
+  let introStarted = false;
+  let heroStarted  = false;
 
-    // Start fog transition
+  /* ── Music helpers ── */
 
-    setTimeout(() => {
-      document.body.classList.add("transitioning");
-    }, 1600);
+  function updateMusicUI(isPlaying) {
+    if (isPlaying) {
+      iconMusic.style.display = "block";
+      iconMuted.style.display = "none";
+      musicBtn.style.opacity = "1";
+    } else {
+      iconMusic.style.display = "none";
+      iconMuted.style.display = "block";
+      musicBtn.style.opacity = "0.6";
+    }
+  }
 
-    // Show hero during fog peak
+  function playBackgroundMusic() {
+    if (!bgMusic) return;
+    bgMusic.volume = 0.5;
+    const promise = bgMusic.play();
+    if (promise !== undefined) {
+      promise
+        .then(() => updateMusicUI(true))
+        .catch(() => updateMusicUI(false));
+    }
+  }
 
+  musicBtn.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      const promise = bgMusic.play();
+      if (promise !== undefined) {
+        promise.then(() => updateMusicUI(true)).catch(() => updateMusicUI(false));
+      }
+    } else {
+      bgMusic.pause();
+      updateMusicUI(false);
+    }
+  });
+
+  /* ── Reveal the hero after the video finishes ── */
+
+  function startHero() {
+
+    if (heroStarted) return;
+    heroStarted = true;
+
+    try { introVideo.pause(); } catch (e) {}
+
+    // Fade video out + run the fog transition
+    introScreen.classList.add("done");
+    document.body.classList.add("transitioning");
+
+    // Unlock scrolling
+    document.body.classList.remove("intro-active");
+
+    // Reveal hero while the video is still fading
     setTimeout(() => {
       document.body.classList.add("loaded");
-    }, 2200);
+      playBackgroundMusic();
+    }, 650);
 
-    // Fade envelope
-
+    // Fully remove the video screen
     setTimeout(() => {
-      screen.classList.add("fade-out");
-    }, 2400);
+      introScreen.style.display = "none";
+    }, 1600);
+  }
 
-    setTimeout(() => {
-      screen.style.display = "none";
-    }, 3000);
+  /* ── Video events ── */
+
+  introVideo.addEventListener("ended", startHero);
+
+  introVideo.addEventListener("error", () => {
+    if (introStarted) setTimeout(startHero, 500);
+  });
+
+  /* ── Tap anywhere on the intro screen → play video ── */
+
+  introScreen.addEventListener("click", () => {
+
+    if (introStarted) return;
+    introStarted = true;
+
+    startBtn.classList.add("hide");
+
+    const playPromise = introVideo.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked or file missing → jump straight to hero
+        setTimeout(startHero, 500);
+      });
+    }
 
   });
 
@@ -2300,8 +2251,6 @@
       successMessage.setAttribute("aria-hidden", "false");
 
       rsvpForm.reset();
-
-      // Reset Guest Counter state
 
       guestCount = 1;
       updateGuestUI();
