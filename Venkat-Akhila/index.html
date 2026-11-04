@@ -1230,6 +1230,17 @@
     -webkit-object-fit: cover;
     display: block;
     background: #000;
+    pointer-events: none;  /* let taps pass through to the screen */
+  }
+
+  /* Full-screen tap catcher — tapping ANYWHERE starts the video */
+  .intro-tap-catcher {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* "Open Invitation" button positioned at the bottom of the screen */
@@ -1254,14 +1265,36 @@
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(184,149,63,0.4);
     transition: all 0.3s ease;
-    pointer-events: none;     /* clicks bubble up to #intro-video-screen */
+    pointer-events: none;     /* clicks bubble up to the tap catcher */
     -webkit-user-select: none;
     user-select: none;
+
+    /* Keep the label on a single line on small devices */
+    white-space: nowrap;
+    max-width: calc(100vw - 32px);
+    text-align: center;
   }
 
   #start-intro.hide {
     opacity: 0;
     transform: translateX(-50%) translateY(20px);
+  }
+
+  /* Compact sizing for very narrow phones */
+  @media (max-width: 380px) {
+    #start-intro {
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      padding: 13px 26px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    #start-intro {
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      padding: 12px 20px;
+    }
   }
 
   /* RESET HERO TEXT BEFORE OPEN */
@@ -1515,6 +1548,10 @@
 <div id="intro-video-screen">
   <!-- Make sure assets/introvd.mp4 exists (or update the path/extension) -->
   <video id="intro-video" playsinline webkit-playsinline preload="auto" src="assets/introvd.mp4"></video>
+
+  <!-- Full-screen invisible tap catcher: tap ANYWHERE to start -->
+  <div class="intro-tap-catcher" aria-hidden="true"></div>
+
   <button type="button" id="start-intro">Open Invitation</button>
 </div>
 
@@ -2136,9 +2173,9 @@
     if (introStarted) setTimeout(startHero, 500);
   });
 
-  /* ── Tap anywhere on the intro screen → play video ── */
+  /* ── Tap ANYWHERE on the intro screen → play video ── */
 
-  introScreen.addEventListener("click", () => {
+  function beginIntro() {
 
     if (introStarted) return;
     introStarted = true;
@@ -2154,6 +2191,17 @@
       });
     }
 
+  }
+
+  /* Listen on the whole screen (clicks bubble up from the tap catcher
+     and from every child element, so anywhere works) */
+  introScreen.addEventListener("click", beginIntro);
+  introScreen.addEventListener("touchstart", beginIntro, { passive: true });
+
+  /* Fallback: if the video cannot start at all (missing file / unsupported),
+     allow the user to still get in by tapping again after a short delay */
+  introVideo.addEventListener("loadeddata", () => {
+    // Video is ready; nothing extra needed here.
   });
 
 
