@@ -1212,6 +1212,7 @@
     overflow: hidden;
     cursor: pointer;       /* signals the whole screen is tappable */
     -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
     transition: opacity 0.8s ease, visibility 0.8s ease;
   }
 
@@ -1231,6 +1232,21 @@
     display: block;
     background: #000;
     pointer-events: none;  /* let taps pass through to the screen */
+  }
+
+  /* ── Hide native play-button / media-control overlays ── */
+  #intro-video::-webkit-media-controls,
+  #intro-video::-webkit-media-controls-panel,
+  #intro-video::-webkit-media-controls-play-button,
+  #intro-video::-webkit-media-controls-start-playback-button,
+  #intro-video::-webkit-media-controls-overlay-play-button,
+  #intro-video::-webkit-media-controls-enclosure {
+    display: none !important;
+    -webkit-appearance: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
   }
 
   /* Full-screen tap catcher — tapping ANYWHERE starts the video */
@@ -1547,7 +1563,16 @@
 <!-- 🎬 INTRO VIDEO — entire screen is tappable -->
 <div id="intro-video-screen">
   <!-- Make sure assets/introvd.mp4 exists (or update the path/extension) -->
-  <video id="intro-video" playsinline webkit-playsinline preload="auto" src="assets/introvd.mp4"></video>
+  <video
+    id="intro-video"
+    playsinline
+    webkit-playsinline
+    x5-playsinline
+    x5-video-player-type="h5"
+    disablepictureinpicture
+    controlslist="nodownload noplaybackrate nofullscreen"
+    preload="auto"
+    src="assets/introvd.mp4"></video>
 
   <!-- Full-screen invisible tap catcher: tap ANYWHERE to start -->
   <div class="intro-tap-catcher" aria-hidden="true"></div>
@@ -2185,24 +2210,20 @@
     const playPromise = introVideo.play();
 
     if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay blocked or file missing → jump straight to hero
+      playPromise.catch((err) => {
+        // Autoplay blocked or unsupported file → jump straight to hero
+        console.warn("Intro video could not play:", err);
         setTimeout(startHero, 500);
       });
     }
 
   }
 
-  /* Listen on the whole screen (clicks bubble up from the tap catcher
-     and from every child element, so anywhere works) */
+  /* ── Correct gesture events for mobile + desktop ──
+     NOTE: 'touchstart' is NOT a valid user gesture for video.play() on
+     iOS Safari, so we use 'touchend' + 'click' instead. */
   introScreen.addEventListener("click", beginIntro);
-  introScreen.addEventListener("touchstart", beginIntro, { passive: true });
-
-  /* Fallback: if the video cannot start at all (missing file / unsupported),
-     allow the user to still get in by tapping again after a short delay */
-  introVideo.addEventListener("loadeddata", () => {
-    // Video is ready; nothing extra needed here.
-  });
+  introScreen.addEventListener("touchend", beginIntro, { passive: true });
 
 
   /* ── RSVP & GUEST COUNTER LOGIC ── */
