@@ -3823,6 +3823,284 @@ footer {
     }
 }
 
+
+/* =========================================================
+   SECTION: ADD TO CALENDAR
+========================================================= */
+
+#calendar {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 20px 100px;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(184,137,60,.11), transparent 32%),
+        radial-gradient(circle at 92% 90%, rgba(122,35,54,.07), transparent 30%),
+        linear-gradient(180deg, #FFF9F5 0%, #FBF3EC 100%);
+    isolation: isolate;
+}
+
+#calendar::before,
+#calendar::after {
+    content: "❧";
+    position: absolute;
+    color: rgba(184,137,60,.18);
+    font-size: 68px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+#calendar::before {
+    top: 24px;
+    left: 12px;
+    transform: rotate(-22deg);
+}
+
+#calendar::after {
+    right: 12px;
+    bottom: 22px;
+    transform: rotate(158deg);
+}
+
+#calendar .section-heading {
+    margin-bottom: 38px;
+}
+
+#calendar .section-heading h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 62px);
+    font-weight: 500;
+}
+
+#calendar .section-heading h2::after {
+    content: "SAVE THE DATE";
+    display: block;
+    margin: 18px auto 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: #8A5A18;
+}
+
+#calendar .gold-line { display: none; }
+
+#calendar .section-heading p {
+    max-width: 560px;
+    margin-top: 16px;
+}
+
+.calendar-card {
+    position: relative;
+    width: min(780px, 100%);
+    margin: 0 auto;
+    padding: 32px 34px;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    background: #FFFDFC;
+    border: 1px solid rgba(184,137,60,.42);
+    border-radius: 26px 8px 26px 8px;
+    box-shadow:
+        0 22px 55px rgba(53,21,31,.10),
+        inset 0 1px 0 rgba(255,255,255,.95);
+    overflow: hidden;
+}
+
+.calendar-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, #B8893C 20%, #E0B85C 50%, #B8893C 80%, transparent 100%);
+}
+
+.calendar-date-badge {
+    flex: 0 0 92px;
+    width: 92px;
+    height: 104px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(224,184,92,.75);
+    border-radius: 12px 4px 12px 4px;
+    background: linear-gradient(160deg, #35151F 0%, #4A1828 100%);
+    color: #FFF9F0;
+    box-shadow: 0 12px 26px rgba(53,21,31,.18);
+}
+
+.calendar-date-badge .cal-month {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: #E0B85C;
+}
+
+.calendar-date-badge .cal-day {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 2px 0 1px;
+}
+
+.calendar-date-badge .cal-year {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(255,249,240,.72);
+}
+
+.calendar-info {
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+}
+
+.calendar-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 500;
+    line-height: 1.1;
+    color: #35151F;
+    margin-bottom: 9px;
+}
+
+.calendar-info p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.45;
+    color: #6B4650;
+}
+
+.calendar-info p strong {
+    font-weight: 600;
+    color: #35151F;
+}
+
+.calendar-button {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 26px;
+    border: 1px solid #B8893C;
+    border-radius: 3px;
+    background: linear-gradient(145deg, #4A1828 0%, #35151F 100%);
+    color: #E0B85C;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 12px 28px rgba(53,21,31,.20);
+    transition: transform .3s ease, background .3s ease, color .3s ease, box-shadow .3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.calendar-button svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+}
+
+.calendar-button:hover {
+    transform: translateY(-3px);
+    background: linear-gradient(145deg, #8A5A18 0%, #6B3F14 100%);
+    color: #FFF9F0;
+    box-shadow: 0 16px 34px rgba(53,21,31,.28);
+}
+
+.calendar-button:focus-visible {
+    outline: 2px solid #E0B85C;
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    #calendar {
+        padding: 68px 16px 78px;
+    }
+
+    #calendar::before,
+    #calendar::after {
+        font-size: 46px;
+    }
+
+    #calendar .section-heading {
+        margin-bottom: 28px;
+    }
+
+    #calendar .section-heading h2 {
+        font-size: clamp(38px, 11vw, 52px);
+    }
+
+    #calendar .section-heading h2::after {
+        margin-top: 14px;
+        font-size: 7px;
+        letter-spacing: 3px;
+    }
+
+    .calendar-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 18px;
+        padding: 28px 20px 24px;
+        border-radius: 20px 6px 20px 6px;
+    }
+
+    .calendar-date-badge {
+        flex: 0 0 auto;
+        width: 84px;
+        height: 96px;
+    }
+
+    .calendar-date-badge .cal-day {
+        font-size: 42px;
+    }
+
+    .calendar-info {
+        text-align: center;
+    }
+
+    .calendar-info h3 {
+        font-size: clamp(26px, 7vw, 30px);
+    }
+
+    .calendar-info p {
+        font-size: 17px;
+        line-height: 1.4;
+    }
+
+    .calendar-button {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 380px) {
+    #calendar {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .calendar-card {
+        padding: 24px 15px 20px;
+    }
+
+    .calendar-info p {
+        font-size: 16px;
+    }
+}
+
 </style>
 
 </head>
@@ -4079,6 +4357,48 @@ footer {
     </div>
 </section>
 
+<!-- =====================================================
+     SECTION 5.5 - ADD TO CALENDAR
+===================================================== -->
+
+<section class="section" id="calendar">
+    <div class="section-inner">
+        <div class="section-heading reveal">
+            <div class="section-label">Save The Date</div>
+            <h2>Add To Calendar</h2>
+            <div class="gold-line"></div>
+            <p>One tap and our celebration is saved straight to your calendar.</p>
+        </div>
+
+        <div class="calendar-card reveal">
+            <div class="calendar-date-badge" aria-hidden="true">
+                <span class="cal-month">NOV</span>
+                <span class="cal-day">29</span>
+                <span class="cal-year">2026</span>
+            </div>
+
+            <div class="calendar-info">
+                <h3>Muhurtham</h3>
+                <p>
+                    <strong>Sunday, 29 November 2026</strong><br>
+                    6:00 AM – 7:30 AM<br>
+                    Valluvar - Vasuki Kalyana Mandapam
+                </p>
+            </div>
+
+            <a class="calendar-button"
+               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Jayesh%20%26%20Sangavi%20%E2%80%94%20Wedding%20Muhurtham&amp;dates=20261129T003000Z/20261129T020000Z&amp;details=Muhurtham%3A%206%3A00%20AM%20%E2%80%93%207%3A30%20AM%0AReception%3A%2028%20November%202026%2C%206%3A30%20PM%20onwards%0AVenue%3A%20Valluvar%20-%20Vasuki%20Kalyana%20Mandapam%0A%0AYour%20presence%20and%20blessings%20will%20make%20our%20celebration%20complete.%20%E2%80%94%20Jayesh%20%26%20Sangavi&amp;location=Valluvar%20-%20Vasuki%20Kalyana%20Mandapam"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Add the wedding muhurtham to Google Calendar">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path fill="currentColor" d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2zm12 8H5v10h14V10zM5 8h14V6H5v2z"/>
+                </svg>
+                Add To Calendar
+            </a>
+        </div>
+    </div>
+</section>
 
 <!-- =====================================================
      SECTION 6 - GALLERY (CAROUSEL)
