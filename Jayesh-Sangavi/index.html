@@ -3825,7 +3825,7 @@ footer {
 
 
 /* =========================================================
-   SECTION: ADD TO CALENDAR
+   SECTION: ADD TO CALENDAR  (RECEPTION + MUHURTHAM CARDS)
 ========================================================= */
 
 #calendar {
@@ -3889,14 +3889,22 @@ footer {
     margin-top: 16px;
 }
 
+.calendar-grid {
+    width: min(980px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
 .calendar-card {
     position: relative;
-    width: min(780px, 100%);
-    margin: 0 auto;
-    padding: 32px 34px;
+    padding: 30px 26px 26px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 26px;
+    text-align: center;
+    gap: 20px;
     background: #FFFDFC;
     border: 1px solid rgba(184,137,60,.42);
     border-radius: 26px 8px 26px 8px;
@@ -3904,6 +3912,15 @@ footer {
         0 22px 55px rgba(53,21,31,.10),
         inset 0 1px 0 rgba(255,255,255,.95);
     overflow: hidden;
+    transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+
+.calendar-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(184,137,60,.68);
+    box-shadow:
+        0 28px 60px rgba(53,21,31,.14),
+        inset 0 1px 0 rgba(255,255,255,.95);
 }
 
 .calendar-card::before {
@@ -3916,8 +3933,12 @@ footer {
     background: linear-gradient(90deg, transparent 0%, #B8893C 20%, #E0B85C 50%, #B8893C 80%, transparent 100%);
 }
 
+.calendar-card.reception::before {
+    background: linear-gradient(90deg, transparent 0%, #8A5A18 20%, #E0B85C 50%, #8A5A18 80%, transparent 100%);
+}
+
 .calendar-date-badge {
-    flex: 0 0 92px;
+    flex: 0 0 auto;
     width: 92px;
     height: 104px;
     display: flex;
@@ -3931,12 +3952,20 @@ footer {
     box-shadow: 0 12px 26px rgba(53,21,31,.18);
 }
 
+.calendar-card.reception .calendar-date-badge {
+    background: linear-gradient(160deg, #8A5A18 0%, #6B3F14 100%);
+}
+
 .calendar-date-badge .cal-month {
     font-family: 'Montserrat', sans-serif;
     font-size: 9px;
     font-weight: 700;
     letter-spacing: 2.5px;
     color: #E0B85C;
+}
+
+.calendar-card.reception .calendar-date-badge .cal-month {
+    color: #FFF9F0;
 }
 
 .calendar-date-badge .cal-day {
@@ -3956,9 +3985,9 @@ footer {
 }
 
 .calendar-info {
-    flex: 1 1 auto;
     min-width: 0;
-    text-align: left;
+    width: 100%;
+    text-align: center;
 }
 
 .calendar-info h3 {
@@ -3983,12 +4012,12 @@ footer {
 }
 
 .calendar-button {
-    flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 15px 26px;
+    width: 100%;
+    padding: 14px 20px;
     border: 1px solid #B8893C;
     border-radius: 3px;
     background: linear-gradient(145deg, #4A1828 0%, #35151F 100%);
@@ -4005,6 +4034,11 @@ footer {
     -webkit-tap-highlight-color: transparent;
 }
 
+.calendar-card.reception .calendar-button {
+    background: linear-gradient(145deg, #8A5A18 0%, #6B3F14 100%);
+    color: #FFF9F0;
+}
+
 .calendar-button svg {
     width: 14px;
     height: 14px;
@@ -4016,6 +4050,11 @@ footer {
     background: linear-gradient(145deg, #8A5A18 0%, #6B3F14 100%);
     color: #FFF9F0;
     box-shadow: 0 16px 34px rgba(53,21,31,.28);
+}
+
+.calendar-card.reception .calendar-button:hover {
+    background: linear-gradient(145deg, #35151F 0%, #4A1828 100%);
+    color: #E0B85C;
 }
 
 .calendar-button:focus-visible {
@@ -4047,26 +4086,26 @@ footer {
         letter-spacing: 3px;
     }
 
-    .calendar-card {
-        flex-direction: column;
-        text-align: center;
+    .calendar-grid {
+        grid-template-columns: 1fr;
         gap: 18px;
-        padding: 28px 20px 24px;
+        max-width: 460px;
+        margin: 0 auto;
+    }
+
+    .calendar-card {
+        padding: 26px 20px 22px;
+        gap: 16px;
         border-radius: 20px 6px 20px 6px;
     }
 
     .calendar-date-badge {
-        flex: 0 0 auto;
         width: 84px;
         height: 96px;
     }
 
     .calendar-date-badge .cal-day {
         font-size: 42px;
-    }
-
-    .calendar-info {
-        text-align: center;
     }
 
     .calendar-info h3 {
@@ -4079,8 +4118,7 @@ footer {
     }
 
     .calendar-button {
-        width: 100%;
-        padding: 14px 20px;
+        padding: 13px 18px;
         font-size: 9px;
         letter-spacing: 2px;
     }
@@ -4093,7 +4131,7 @@ footer {
     }
 
     .calendar-card {
-        padding: 24px 15px 20px;
+        padding: 22px 15px 18px;
     }
 
     .calendar-info p {
@@ -4358,7 +4396,7 @@ footer {
 </section>
 
 <!-- =====================================================
-     SECTION 5.5 - ADD TO CALENDAR
+     SECTION 5.5 - ADD TO CALENDAR (Reception + Muhurtham)
 ===================================================== -->
 
 <section class="section" id="calendar">
@@ -4367,35 +4405,69 @@ footer {
             <div class="section-label">Save The Date</div>
             <h2>Add To Calendar</h2>
             <div class="gold-line"></div>
-            <p>One tap and our celebration is saved straight to your calendar.</p>
+            <p>Add our reception and muhurtham to your calendar with one tap each.</p>
         </div>
 
-        <div class="calendar-card reveal">
-            <div class="calendar-date-badge" aria-hidden="true">
-                <span class="cal-month">NOV</span>
-                <span class="cal-day">29</span>
-                <span class="cal-year">2026</span>
+        <div class="calendar-grid reveal">
+
+            <!-- Reception Card -->
+            <div class="calendar-card reception">
+                <div class="calendar-date-badge" aria-hidden="true">
+                    <span class="cal-month">NOV</span>
+                    <span class="cal-day">28</span>
+                    <span class="cal-year">2026</span>
+                </div>
+
+                <div class="calendar-info">
+                    <h3>Reception</h3>
+                    <p>
+                        <strong>Saturday, 28 November 2026</strong><br>
+                        6:30 PM onwards<br>
+                        Valluvar - Vasuki Kalyana Mandapam
+                    </p>
+                </div>
+
+                <a class="calendar-button"
+                   href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Jayesh%20%26%20Sangavi%20%E2%80%94%20Wedding%20Reception&amp;dates=20261128T130000Z/20261128T160000Z&amp;details=Reception%3A%2028%20November%202026%2C%206%3A30%20PM%20onwards%0AVenue%3A%20Valluvar%20-%20Vasuki%20Kalyana%20Mandapam%0A%0AYour%20presence%20and%20blessings%20will%20make%20our%20celebration%20complete.%20%E2%80%94%20Jayesh%20%26%20Sangavi&amp;location=Valluvar%20-%20Vasuki%20Kalyana%20Mandapam"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Add the wedding reception to Google Calendar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="currentColor" d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2zm12 8H5v10h14V10zM5 8h14V6H5v2z"/>
+                    </svg>
+                    Add Reception
+                </a>
             </div>
 
-            <div class="calendar-info">
-                <h3>Muhurtham</h3>
-                <p>
-                    <strong>Sunday, 29 November 2026</strong><br>
-                    6:00 AM – 7:30 AM<br>
-                    Valluvar - Vasuki Kalyana Mandapam
-                </p>
+            <!-- Muhurtham Card -->
+            <div class="calendar-card muhurtham">
+                <div class="calendar-date-badge" aria-hidden="true">
+                    <span class="cal-month">NOV</span>
+                    <span class="cal-day">29</span>
+                    <span class="cal-year">2026</span>
+                </div>
+
+                <div class="calendar-info">
+                    <h3>Muhurtham</h3>
+                    <p>
+                        <strong>Sunday, 29 November 2026</strong><br>
+                        6:00 AM – 7:30 AM<br>
+                        Valluvar - Vasuki Kalyana Mandapam
+                    </p>
+                </div>
+
+                <a class="calendar-button"
+                   href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Jayesh%20%26%20Sangavi%20%E2%80%94%20Wedding%20Muhurtham&amp;dates=20261129T003000Z/20261129T020000Z&amp;details=Muhurtham%3A%206%3A00%20AM%20%E2%80%93%207%3A30%20AM%0AVenue%3A%20Valluvar%20-%20Vasuki%20Kalyana%20Mandapam%0A%0AYour%20presence%20and%20blessings%20will%20make%20our%20celebration%20complete.%20%E2%80%94%20Jayesh%20%26%20Sangavi&amp;location=Valluvar%20-%20Vasuki%20Kalyana%20Mandapam"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   aria-label="Add the wedding muhurtham to Google Calendar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path fill="currentColor" d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2zm12 8H5v10h14V10zM5 8h14V6H5v2z"/>
+                    </svg>
+                    Add Muhurtham
+                </a>
             </div>
 
-            <a class="calendar-button"
-               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Jayesh%20%26%20Sangavi%20%E2%80%94%20Wedding%20Muhurtham&amp;dates=20261129T003000Z/20261129T020000Z&amp;details=Muhurtham%3A%206%3A00%20AM%20%E2%80%93%207%3A30%20AM%0AReception%3A%2028%20November%202026%2C%206%3A30%20PM%20onwards%0AVenue%3A%20Valluvar%20-%20Vasuki%20Kalyana%20Mandapam%0A%0AYour%20presence%20and%20blessings%20will%20make%20our%20celebration%20complete.%20%E2%80%94%20Jayesh%20%26%20Sangavi&amp;location=Valluvar%20-%20Vasuki%20Kalyana%20Mandapam"
-               target="_blank"
-               rel="noopener noreferrer"
-               aria-label="Add the wedding muhurtham to Google Calendar">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <path fill="currentColor" d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2zm12 8H5v10h14V10zM5 8h14V6H5v2z"/>
-                </svg>
-                Add To Calendar
-            </a>
         </div>
     </div>
 </section>
