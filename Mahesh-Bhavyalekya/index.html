@@ -1159,7 +1159,6 @@
         box-shadow: 0 0 0 4px rgba(217, 130, 139, 0.16);
       }
 
-      /* Disabled state — mirrors the events block when declining */
       .rsvp-stepper.is-disabled {
         opacity: 0.42;
         pointer-events: none;
@@ -1812,8 +1811,6 @@
         </div>
 
         <div class="events-grid">
-          <!-- Sangeeth — venue updated to Arya Vysya Kalyana Mandapam Pileru -->
-        
 
           <article class="event-card reveal tilt">
             <div class="event-content">
@@ -2001,14 +1998,6 @@
               <span class="rsvp-field-label" id="rsvpEventsLabel">Events you'll attend</span>
 
               <div class="rsvp-events" id="rsvpEventsWrap" role="group" aria-labelledby="rsvpEventsLabel">
-                <label class="rsvp-event-check">
-                  <input type="checkbox" name="events" value="Sangeeth" />
-                  <span class="rsvp-event-box" aria-hidden="true"></span>
-                  <span class="rsvp-event-text">
-                    <span class="rsvp-event-name">Sangeeth</span>
-                    <span class="rsvp-event-meta">20 Nov · 7:30 PM</span>
-                  </span>
-                </label>
                 <label class="rsvp-event-check">
                   <input type="checkbox" name="events" value="Nischitartham" />
                   <span class="rsvp-event-box" aria-hidden="true"></span>
@@ -2639,10 +2628,6 @@
 
       /* =========================================================
    RSVP FORM — FRONTEND ONLY
-   =========================================================
-   No backend, no network requests. On submit the form is
-   validated locally, then hidden and replaced with a
-   thank-you message summarising the selections.
    ========================================================= */
 
       (function () {
@@ -2657,7 +2642,7 @@
         const submitBtn = document.getElementById("rsvpSubmit");
 
         if (!form || !thanks) return;
-        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxZ4ZhBwsINiwp7r9bDjAJRLsfk06qhieA0rZc0iTwjmhFBjZcCvrRu6bu4n-GemkkC5Q/exec";
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRH6TB1X3yr_-CwLO0Jfjs0LZdREe03YkPvZVX2OQpukLMXHE3TJKSoEGB0NPhiD_xyA/exec";
 
         /* ---------- GUEST STEPPER ---------- */
 
@@ -2735,7 +2720,6 @@ form.addEventListener("submit", async function (event) {
 
   const nameInput = document.getElementById("rsvpName");
 
-  // Validate guest name
   if (!nameInput || !nameInput.value.trim()) {
 
     if (nameInput) {
@@ -2749,7 +2733,6 @@ form.addEventListener("submit", async function (event) {
 
   const attending = !attendSelect || attendSelect.value === "yes";
 
-  // Get selected events
   const selectedEvents = [];
 
   if (attending) {
@@ -2766,7 +2749,6 @@ form.addEventListener("submit", async function (event) {
     }
   }
 
-  // Prepare RSVP data
   const guestCount = attending
     ? Math.max(1, parseInt(guestsInput.value, 10) || 1)
     : 0;
@@ -2790,7 +2772,6 @@ form.addEventListener("submit", async function (event) {
   };
 
 
-  // Check Apps Script URL
   if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.includes("PASTE_")) {
 
     setStatus("RSVP backend is not configured. Please contact the family.");
@@ -2799,7 +2780,6 @@ form.addEventListener("submit", async function (event) {
   }
 
 
-  // Show sending status
   if (submitBtn) {
 
     submitBtn.disabled = true;
@@ -2810,7 +2790,6 @@ form.addEventListener("submit", async function (event) {
 
   try {
 
-    // Send RSVP to Google Apps Script
     const response = await fetch(APPS_SCRIPT_URL, {
 
       method: "POST",
@@ -2832,7 +2811,6 @@ form.addEventListener("submit", async function (event) {
     }
 
 
-    // Build thank-you message
     if (thanksEvents) {
 
       if (!attending) {
@@ -2854,7 +2832,6 @@ form.addEventListener("submit", async function (event) {
 
     }
 
-    // Update confirmation text
     const thanksMessage = thanks.querySelector("p");
 
     if (thanksMessage) {
@@ -2865,7 +2842,6 @@ form.addEventListener("submit", async function (event) {
 
     }
 
-    // Show thank-you screen only after the response is received
     form.hidden = true;
 
     thanks.hidden = false;
