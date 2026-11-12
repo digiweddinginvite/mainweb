@@ -13,7 +13,7 @@
     <meta name="application-name" content="Digi Wedding Invite" />
     <meta
       name="keywords"
-      content="digital wedding invitation, wedding invitation website, online wedding invitation, wedding website invitation, digital wedding invite, wedding e invitation, WhatsApp wedding invitation, wedding website India"
+      content="digital wedding invitation, wedding invitation website, online wedding invitation, wedding website invitation, digital wedding invite, wedding e invitation, WhatsApp wedding invitation, wedding website India, dhoti half saree invitation, digital dhoti function invite"
     />
     <title>
       Digital Wedding Invitation Website in India | Digi Wedding Invite
@@ -357,7 +357,7 @@
       .nav-links {
         display: flex;
         align-items: center;
-        gap: 36px;
+        gap: 30px;
       }
       .nav-links a {
         font-size: 14.5px;
@@ -1541,7 +1541,8 @@
       /* Anchor scroll offset for the combined section */
       #gruhapravesam,
       #upanayanam,
-      #engagement {
+      #engagement,
+      #dhoti {
         scroll-margin-top: 90px;
       }
 
@@ -1647,44 +1648,53 @@
            FIX FOR SINGLE CEREMONY CARDS (Engagement & Birthday)
            ========================================================= */
         .engagement-grid .demo-card,
-        .birthday-grid .demo-card {
+        .birthday-grid .demo-card,
+        .dhoti-grid .demo-card {
           padding: 0 0 20px 0;
         }
         .engagement-grid .demo-thumb-wrap,
-        .birthday-grid .demo-thumb-wrap {
+        .birthday-grid .demo-thumb-wrap,
+        .dhoti-grid .demo-thumb-wrap {
           height: 200px;
         }
         .engagement-grid .demo-thumb,
-        .birthday-grid .demo-thumb {
+        .birthday-grid .demo-thumb,
+        .dhoti-grid .demo-thumb {
           object-position: center;
         }
         .engagement-grid .demo-card h3,
-        .birthday-grid .demo-card h3 {
+        .birthday-grid .demo-card h3,
+        .dhoti-grid .demo-card h3 {
           font-size: 15px;
           margin-bottom: 4px;
         }
         .engagement-grid .demo-card p,
-        .birthday-grid .demo-card p {
+        .birthday-grid .demo-card p,
+        .dhoti-grid .demo-card p {
           font-size: 11.5px;
           line-height: 1.45;
         }
         .engagement-grid .template-price,
-        .birthday-grid .template-price {
+        .birthday-grid .template-price,
+        .dhoti-grid .template-price {
           margin: 8px 0 12px;
         }
         .engagement-grid .template-price .offer-price,
-        .birthday-grid .template-price .offer-price {
+        .birthday-grid .template-price .offer-price,
+        .dhoti-grid .template-price .offer-price {
           font-size: 16px;
         }
         .engagement-grid .template-actions,
-        .birthday-grid .template-actions {
+        .birthday-grid .template-actions,
+        .dhoti-grid .template-actions {
           flex-direction: row;
           flex-wrap: wrap;
           gap: 8px;
           padding: 0 4px;
         }
         .engagement-grid .template-actions .btn,
-        .birthday-grid .template-actions .btn {
+        .birthday-grid .template-actions .btn,
+        .dhoti-grid .template-actions .btn {
           width: auto;
           min-width: 100px;
           flex: 1;
@@ -1692,7 +1702,8 @@
           font-size: 11.5px;
         }
         .engagement-grid .demo-website-badge,
-        .birthday-grid .demo-website-badge {
+        .birthday-grid .demo-website-badge,
+        .dhoti-grid .demo-website-badge {
           flex-direction: row;
           flex-wrap: wrap;
           gap: 5px;
@@ -1701,12 +1712,15 @@
         }
         .engagement-grid .demo-website-badge strong,
         .birthday-grid .demo-website-badge strong,
+        .dhoti-grid .demo-website-badge strong,
         .engagement-grid .demo-website-badge span,
-        .birthday-grid .demo-website-badge span {
+        .birthday-grid .demo-website-badge span,
+        .dhoti-grid .demo-website-badge span {
           font-size: 8.5px;
         }
         .engagement-grid .demo-website-badge span::before,
-        .birthday-grid .demo-website-badge span::before {
+        .birthday-grid .demo-website-badge span::before,
+        .dhoti-grid .demo-website-badge span::before {
           content: "·";
           margin-right: 4px;
         }
@@ -1735,17 +1749,20 @@
           font-size: 8px;
         }
 
-        /* Specific overrides for Engagement & Birthday on very small screens */
+        /* Specific overrides for Engagement & Birthday & Dhoti on very small screens */
         .engagement-grid .demo-thumb-wrap,
-        .birthday-grid .demo-thumb-wrap {
+        .birthday-grid .demo-thumb-wrap,
+        .dhoti-grid .demo-thumb-wrap {
           height: 160px;
         }
         .engagement-grid .template-actions,
-        .birthday-grid .template-actions {
+        .birthday-grid .template-actions,
+        .dhoti-grid .template-actions {
           flex-direction: column;
         }
         .engagement-grid .template-actions .btn,
-        .birthday-grid .template-actions .btn {
+        .birthday-grid .template-actions .btn,
+        .dhoti-grid .template-actions .btn {
           width: 100%;
           padding: 8px 6px;
         }
@@ -3178,6 +3195,15 @@
         max-width: 560px;
       }
 
+      /* ============================================
+         DHOTI & HALF SAREE SECTION
+         ============================================ */
+      .ceremony-grid.dhoti-grid {
+        grid-template-columns: minmax(0, 430px);
+        justify-content: center;
+        max-width: 560px;
+      }
+
       .birthday-art {
         position: relative;
         display: flex;
@@ -3457,7 +3483,7 @@
             },
             "offers": {
               "@type": "Offer",
-              "price": "2499",
+              "price": "1999",
               "priceCurrency": "INR",
               "availability": "https://schema.org/InStock",
               "url": "https://manikantaande24-bot.github.io/birthday1/"
@@ -3481,6 +3507,26 @@
               "priceCurrency": "INR",
               "availability": "https://schema.org/InStock",
               "url": "https://manikantaande24-bot.github.io/engagement1/"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://digiweddinginvite.in/#dhoti-half-saree-invitation-service",
+            "name": "Digital Dhoti & Half Saree Invitation Website",
+            "description": "A shareable digital Dhoti & Half Saree ceremony invitation website for celebrating this traditional South Indian milestone with family and friends.",
+            "provider": {
+              "@id": "https://digiweddinginvite.in/#organization"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "India"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "1999",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "url": "https://manikantaande24-bot.github.io/las5/"
             }
           },
           {
@@ -3588,7 +3634,7 @@
             <a href="#demo">Invitations</a>
             <a href="#engagement">Engagement</a>
             <a href="#birthday">Birthday</a>
-            <a href="#features">Features</a>
+            <a href="#dhoti">Dhoti &amp; Half Saree</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
             <a
@@ -3792,7 +3838,11 @@
               <span>Birthday Invites</span>
               <i class="fa-solid fa-arrow-right shortcut-arrow" aria-hidden="true"></i>
             </a>
-           
+            <a class="category-shortcut" href="#dhoti">
+              <i class="fa-solid fa-vest" aria-hidden="true"></i>
+              <span>Dhoti &amp; Half Saree</span>
+              <i class="fa-solid fa-arrow-right shortcut-arrow" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </nav>
@@ -4702,8 +4752,8 @@
       </p>
 
       <div class="template-price">
-        <span class="offer-price js-price" data-inr="2499">
-          ₹2,499
+        <span class="offer-price js-price" data-inr="1999">
+          ₹1,999
         </span>
       </div>
 
@@ -4718,7 +4768,7 @@
         </button>
 
         <a
-          href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Birthday%20Invitation%20Website%20for%20%E2%82%B92499."
+          href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Birthday%20Invitation%20Website%20for%20%E2%82%B91999."
           class="btn btn-primary js-buy-link"
           target="_blank"
           rel="noopener"
@@ -4738,6 +4788,75 @@
   </div>
 
 </div>
+      </section>
+
+      <!-- ============================================
+     DHOTI & HALF SAREE INVITATION WEBSITE
+     ============================================ -->
+      <section class="ceremony-section dhoti-section" id="dhoti">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Dhoti &amp; Half Saree Ceremony</p>
+            <h2 class="section-title">
+              Digital Dhoti &amp; Half Saree Invitation Website
+            </h2>
+            <p
+              class="section-sub"
+              style="margin-left: auto; margin-right: auto"
+            >
+              Celebrate this beautiful South Indian tradition with an elegant,
+              easy-to-share digital invitation website for family and friends.
+            </p>
+          </div>
+
+          <div class="ceremony-grid dhoti-grid reveal scale">
+            <div class="demo-card dhoti-card">
+              <div class="demo-thumb-wrap">
+                <img
+                  src="images/Dhoti&HalfSareetemplate.png"
+                  alt="Digital Dhoti & Half Saree invitation website preview"
+                  class="demo-thumb"
+                  width="600"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="demo-card-content">
+                <h3>Dhoti &amp; Half Saree Invitation Website</h3>
+                <p>
+                  A beautiful digital Dhoti &amp; Half Saree ceremony invite
+                  with all the celebration details in one easy-to-share link.
+                </p>
+                <div class="template-price">
+                  <span class="offer-price js-price" data-inr="1999">₹1,999</span>
+                </div>
+                <div class="template-actions">
+                  <button
+                    class="btn btn-outline"
+                    type="button"
+                    onclick="openDemo('https://manikantaande24-bot.github.io/las5/')"
+                  >
+                    <i class="fa-solid fa-eye"></i> View Demo
+                  </button>
+                  <a
+                    href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Dhoti%20%26%20Half%20Saree%20Invitation%20Website%20for%20%E2%82%B91999."
+                    class="btn btn-primary js-buy-link"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <i class="fa-brands fa-whatsapp"></i> Buy Now
+                  </a>
+                </div>
+              </div>
+              <div class="demo-website-badge">
+                <i class="fa-solid fa-globe badge-icon" aria-hidden="true"></i>
+                <strong>THIS IS A DHOTI &amp; HALF SAREE WEBSITE</strong>
+                <span>Not a video invitation</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ============================================
