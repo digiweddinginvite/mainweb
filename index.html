@@ -13,7 +13,7 @@
     <meta name="application-name" content="Digi Wedding Invite" />
     <meta
       name="keywords"
-      content="digital wedding invitation, wedding invitation website, online wedding invitation, wedding website invitation, digital wedding invite, wedding e invitation, WhatsApp wedding invitation, wedding website India, dhoti half saree invitation, digital dhoti function invite"
+      content="digital wedding invitation, wedding invitation website, online wedding invitation, wedding website invitation, digital wedding invite, wedding e invitation, WhatsApp wedding invitation, wedding website India, dhoti half saree invitation, digital dhoti function invite, birthday invitation website, girl birthday invitation"
     />
     <title>
       Digital Wedding Invitation Website in India | Digi Wedding Invite
@@ -3183,10 +3183,11 @@
         scroll-margin-top: 90px;
       }
 
+      /* Two birthday designs (boy + girl) side by side on desktop */
       .ceremony-grid.birthday-grid {
-        grid-template-columns: minmax(0, 430px);
-        justify-content: center;
-        max-width: 560px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+        max-width: 900px;
       }
 
       .ceremony-grid.engagement-grid {
@@ -3317,6 +3318,13 @@
 
         .category-shortcut .shortcut-arrow {
           font-size: 9px;
+        }
+
+        /* Birthday cards stack into a single column on phones */
+        .ceremony-grid.birthday-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+          max-width: 430px;
         }
 
         .birthday-art-icon {
@@ -3487,6 +3495,26 @@
               "priceCurrency": "INR",
               "availability": "https://schema.org/InStock",
               "url": "https://manikantaande24-bot.github.io/birthday1/"
+            }
+          },
+          {
+            "@type": "Service",
+            "@id": "https://digiweddinginvite.in/#girl-birthday-invitation-service",
+            "name": "Digital Girl Birthday Invitation Website",
+            "description": "A shareable digital girl birthday invitation website for celebrating a little girl's birthday with family and friends.",
+            "provider": {
+              "@id": "https://digiweddinginvite.in/#organization"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "India"
+            },
+            "offers": {
+              "@type": "Offer",
+              "price": "1999",
+              "priceCurrency": "INR",
+              "availability": "https://schema.org/InStock",
+              "url": "https://manikantaande24-bot.github.io/birthday2/"
             }
           },
           {
@@ -4729,6 +4757,7 @@
 
          <div class="ceremony-grid birthday-grid reveal scale">
 
+  <!-- Birthday Invitation — Design 1 -->
   <div class="demo-card birthday-card">
 
     <div class="demo-thumb-wrap">
@@ -4782,6 +4811,66 @@
     <div class="demo-website-badge birthday-website-badge">
       <i class="fa-solid fa-globe badge-icon"></i>
       <strong>THIS IS A BIRTHDAY WEBSITE</strong>
+      <span>Not a video invitation</span>
+    </div>
+
+  </div>
+
+  <!-- Birthday Invitation — Design 2 (Girl Birthday) -->
+  <div class="demo-card birthday-card girl-birthday-card">
+
+    <div class="demo-thumb-wrap">
+      <img
+        src="images/birthdaytemplate2.png"
+        alt="Digital Girl Birthday Invitation Website Preview"
+        class="demo-thumb"
+        width="600"
+        height="400"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <div class="demo-card-content">
+      <h3>Girl Birthday Invitation Website</h3>
+
+      <p>
+        A cute, colourful digital birthday invite for your
+        little girl's special day — all details in one
+        easy-to-share link.
+      </p>
+
+      <div class="template-price">
+        <span class="offer-price js-price" data-inr="1999">
+          ₹1,999
+        </span>
+      </div>
+
+      <div class="template-actions">
+        <button
+          class="btn btn-outline"
+          type="button"
+          onclick="openDemo('https://manikantaande24-bot.github.io/birthday2/')"
+        >
+          <i class="fa-solid fa-eye"></i>
+          View Demo
+        </button>
+
+        <a
+          href="https://wa.me/916300553617?text=Hi,%20I%20would%20like%20to%20buy%20the%20Girl%20Birthday%20Invitation%20Website%20for%20%E2%82%B91999."
+          class="btn btn-primary js-buy-link"
+          target="_blank"
+          rel="noopener"
+        >
+          <i class="fa-brands fa-whatsapp"></i>
+          Buy Now
+        </a>
+      </div>
+    </div>
+
+    <div class="demo-website-badge birthday-website-badge">
+      <i class="fa-solid fa-globe badge-icon"></i>
+      <strong>THIS IS A GIRL BIRTHDAY WEBSITE</strong>
       <span>Not a video invitation</span>
     </div>
 
