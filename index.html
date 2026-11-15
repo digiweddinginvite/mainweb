@@ -650,10 +650,18 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 38px 22px 20px;
       }
+      
+      /* New Header for the Phone Mockup */
+      .phone-header {
+        padding: 38px 20px 15px;
+        text-align: center;
+        flex-shrink: 0;
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(180deg, rgba(253, 251, 247, 1) 0%, rgba(253, 251, 247, 0.9) 80%, rgba(253, 251, 247, 0) 100%);
+      }
+
       .invite-ornament {
         font-size: 26px;
         color: var(--accent);
@@ -673,41 +681,77 @@
         color: var(--accent);
         margin: 2px 0;
       }
-      .invite-date {
-        margin-top: 14px;
-        font-size: 12px;
-        letter-spacing: 2px;
-        color: var(--text-soft);
-        text-transform: uppercase;
-      }
-      .invite-venue {
-        margin-top: 6px;
-        font-size: 11.5px;
-        color: var(--text-soft);
-      }
-      .invite-btn {
-        margin-top: 22px;
-        padding: 9px 20px;
-        border-radius: 100px;
-        background: var(--primary);
-        color: #fff;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-      }
-      .invite-grid {
+
+      /* New Slider Styles for the Phone Mockup */
+      .template-slider {
+        flex: 1;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        padding: 0 16px 20px;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         display: flex;
-        gap: 8px;
-        margin-top: 24px;
+        flex-direction: column;
+        gap: 12px;
+        position: relative;
+        z-index: 1;
       }
-      .invite-grid span {
-        width: 34px;
-        height: 44px;
-        border-radius: 8px;
-        background: rgba(128, 0, 32, 0.15);
+      .template-slider::-webkit-scrollbar {
+        display: none;
       }
-      .invite-grid span:nth-child(2) {
-        background: rgba(212, 175, 55, 0.2);
+      .template-slide {
+        flex-shrink: 0;
+        height: 130px;
+        border-radius: 12px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        scroll-snap-align: start;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+      .template-slide:hover {
+        transform: scale(1.02);
+        border-color: var(--primary);
+      }
+      .template-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .template-slide span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        color: #fff;
+        text-align: center;
+        font-size: 11px;
+        padding: 15px 8px 6px;
+        font-weight: 500;
+        pointer-events: none;
+      }
+      .template-slide::after {
+        content: "Click to Preview";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: rgba(128, 0, 32, 0.85);
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
+      }
+      .template-slide:hover::after {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
       }
 
       /* ============================================
@@ -1645,47 +1689,39 @@
         }
 
         /* =========================================================
-           FIX FOR SINGLE CEREMONY CARDS (Engagement & Birthday)
+           FIX FOR SINGLE CEREMONY CARDS (Engagement & Dhoti)
            ========================================================= */
         .engagement-grid .demo-card,
-        .birthday-grid .demo-card,
         .dhoti-grid .demo-card {
           padding: 0 0 20px 0;
         }
         .engagement-grid .demo-thumb-wrap,
-        .birthday-grid .demo-thumb-wrap,
         .dhoti-grid .demo-thumb-wrap {
           height: 200px;
         }
         .engagement-grid .demo-thumb,
-        .birthday-grid .demo-thumb,
         .dhoti-grid .demo-thumb {
           object-position: center;
         }
         .engagement-grid .demo-card h3,
-        .birthday-grid .demo-card h3,
         .dhoti-grid .demo-card h3 {
           font-size: 15px;
           margin-bottom: 4px;
         }
         .engagement-grid .demo-card p,
-        .birthday-grid .demo-card p,
         .dhoti-grid .demo-card p {
           font-size: 11.5px;
           line-height: 1.45;
         }
         .engagement-grid .template-price,
-        .birthday-grid .template-price,
         .dhoti-grid .template-price {
           margin: 8px 0 12px;
         }
         .engagement-grid .template-price .offer-price,
-        .birthday-grid .template-price .offer-price,
         .dhoti-grid .template-price .offer-price {
           font-size: 16px;
         }
         .engagement-grid .template-actions,
-        .birthday-grid .template-actions,
         .dhoti-grid .template-actions {
           flex-direction: row;
           flex-wrap: wrap;
@@ -1693,7 +1729,6 @@
           padding: 0 4px;
         }
         .engagement-grid .template-actions .btn,
-        .birthday-grid .template-actions .btn,
         .dhoti-grid .template-actions .btn {
           width: auto;
           min-width: 100px;
@@ -1702,7 +1737,6 @@
           font-size: 11.5px;
         }
         .engagement-grid .demo-website-badge,
-        .birthday-grid .demo-website-badge,
         .dhoti-grid .demo-website-badge {
           flex-direction: row;
           flex-wrap: wrap;
@@ -1711,18 +1745,113 @@
           white-space: normal;
         }
         .engagement-grid .demo-website-badge strong,
-        .birthday-grid .demo-website-badge strong,
         .dhoti-grid .demo-website-badge strong,
         .engagement-grid .demo-website-badge span,
-        .birthday-grid .demo-website-badge span,
         .dhoti-grid .demo-website-badge span {
           font-size: 8.5px;
         }
         .engagement-grid .demo-website-badge span::before,
-        .birthday-grid .demo-website-badge span::before,
         .dhoti-grid .demo-website-badge span::before {
           content: "·";
           margin-right: 4px;
+        }
+
+        /* =========================================================
+           BIRTHDAY CARDS — 2 x 2 STYLE GRID ON MOBILE
+           (two compact cards per row, just like the wedding cards)
+           ========================================================= */
+        .ceremony-grid.birthday-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 11px;
+          max-width: 100%;
+        }
+
+        .birthday-grid .demo-card {
+          border-radius: 16px;
+          padding: 0 0 14px 0;
+        }
+
+        .birthday-grid .demo-thumb-wrap {
+          height: 122px;
+        }
+
+        .birthday-grid .demo-thumb {
+          object-position: top;
+        }
+
+        .birthday-grid .demo-card-content {
+          padding: 12px 9px 0;
+          gap: 4px;
+        }
+
+        .birthday-grid .demo-card h3 {
+          font-size: 13px;
+          margin-bottom: 2px;
+          line-height: 1.25;
+        }
+
+        .birthday-grid .demo-card p {
+          font-size: 10px;
+          line-height: 1.45;
+        }
+
+        .birthday-grid .template-price {
+          flex-direction: column;
+          gap: 0;
+          margin: 6px 0 9px;
+        }
+
+        .birthday-grid .template-price .offer-price {
+          font-size: 15px;
+        }
+
+        .birthday-grid .template-actions {
+          flex-direction: column;
+          flex-wrap: nowrap;
+          gap: 6px;
+          padding: 0 3px;
+        }
+
+        .birthday-grid .template-actions .btn {
+          width: 100%;
+          min-width: 0;
+          flex: 0 0 auto;
+          padding: 8px 6px;
+          font-size: 10.5px;
+          gap: 5px;
+        }
+
+        .birthday-grid .demo-website-badge {
+          flex-direction: column;
+          flex-wrap: wrap;
+          gap: 2px;
+          padding: 9px 5px 0;
+          white-space: normal;
+          overflow: visible;
+        }
+
+        .birthday-grid .demo-website-badge .badge-icon {
+          font-size: 8px;
+        }
+
+        .birthday-grid .demo-website-badge strong {
+          font-size: 7.5px;
+          letter-spacing: 0.2px;
+          white-space: normal;
+          text-align: center;
+          line-height: 1.3;
+        }
+
+        .birthday-grid .demo-website-badge span {
+          font-size: 7.5px;
+          white-space: normal;
+          text-align: center;
+          line-height: 1.3;
+        }
+
+        .birthday-grid .demo-website-badge span::before {
+          content: none;
+          margin: 0;
         }
       }
 
@@ -1749,22 +1878,40 @@
           font-size: 8px;
         }
 
-        /* Specific overrides for Engagement & Birthday & Dhoti on very small screens */
+        /* Specific overrides for Engagement & Dhoti on very small screens */
         .engagement-grid .demo-thumb-wrap,
-        .birthday-grid .demo-thumb-wrap,
         .dhoti-grid .demo-thumb-wrap {
           height: 160px;
         }
         .engagement-grid .template-actions,
-        .birthday-grid .template-actions,
         .dhoti-grid .template-actions {
           flex-direction: column;
         }
         .engagement-grid .template-actions .btn,
-        .birthday-grid .template-actions .btn,
         .dhoti-grid .template-actions .btn {
           width: 100%;
           padding: 8px 6px;
+        }
+
+        /* Birthday stays two-per-row even on very small screens */
+        .ceremony-grid.birthday-grid {
+          gap: 7px;
+        }
+        .birthday-grid .demo-thumb-wrap {
+          height: 100px;
+        }
+        .birthday-grid .demo-card h3 {
+          font-size: 11.5px;
+        }
+        .birthday-grid .demo-card p {
+          font-size: 9.5px;
+        }
+        .birthday-grid .template-price .offer-price {
+          font-size: 13.5px;
+        }
+        .birthday-grid .template-actions .btn {
+          font-size: 10px;
+          padding: 7px 4px;
         }
       }
 
@@ -3320,13 +3467,6 @@
           font-size: 9px;
         }
 
-        /* Birthday cards stack into a single column on phones */
-        .ceremony-grid.birthday-grid {
-          grid-template-columns: 1fr;
-          gap: 18px;
-          max-width: 430px;
-        }
-
         .birthday-art-icon {
           width: 76px;
           height: 76px;
@@ -3796,17 +3936,91 @@
               <div class="phone-frame">
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
-                  <div class="invite-ornament">✦</div>
-                  <div class="invite-names">
-                    Ananya <span class="invite-amp">&amp;</span> Rohan
+                  <div class="phone-header">
+                    <div class="invite-ornament">✦</div>
+                    <div class="invite-names">
+                      Digi <span>Wedding</span> Invite
+                    </div>
                   </div>
-                  <div class="invite-date">14 · December · 2026</div>
-                  <div class="invite-venue">
-                    Taj Falaknuma Palace, Hyderabad
-                  </div>
-                  <div class="invite-btn">RSVP Now</div>
-                  <div class="invite-grid">
-                    <span></span><span></span><span></span>
+                  
+                  <!-- NEW TEMPLATE SLIDER INSIDE PHONE MOCKUP -->
+                  <div class="template-slider" id="heroTemplateSlider">
+                    <!-- Wedding Templates -->
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website1/">
+                      <img src="images/template1.png" alt="Invitation 1" loading="lazy">
+                      <span>Invitation 1</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website2/">
+                      <img src="images/template2.png" alt="Invitation 2" loading="lazy">
+                      <span>Invitation 2</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website3/">
+                      <img src="images/template3.png" alt="Invitation 3" loading="lazy">
+                      <span>Invitation 3</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website4/">
+                      <img src="images/template4.png" alt="Invitation 4" loading="lazy">
+                      <span>Invitation 4</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/cutewed1/">
+                      <img src="images/template5.png" alt="Invitation 5" loading="lazy">
+                      <span>Invitation 5</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website6/">
+                      <img src="images/template6.1.png" alt="Invitation 6" loading="lazy">
+                      <span>Invitation 6</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/tester19/">
+                      <img src="images/template6.png" alt="Invitation 7" loading="lazy">
+                      <span>Invitation 7</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/hinduwed2/">
+                      <img src="images/template7.png" alt="Invitation 8" loading="lazy">
+                      <span>Invitation 8</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/muslimwed/">
+                      <img src="images/template8.png" alt="Invitation 9" loading="lazy">
+                      <span>Invitation 9</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website7/">
+                      <img src="images/template10.png" alt="Invitation 10" loading="lazy">
+                      <span>Invitation 10</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/lordshiva/">
+                      <img src="images/template11.png" alt="Invitation 11" loading="lazy">
+                      <span>Invitation 11</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website12/">
+                      <img src="images/template12.png" alt="Invitation 12" loading="lazy">
+                      <span>Invitation 12</span>
+                    </div>
+                    <!-- Ceremony Templates -->
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/gruhatest3/">
+                      <img src="images/gruhapravesam1.png" alt="Gruhapravesam" loading="lazy">
+                      <span>Gruhapravesam</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/upanayanam/">
+                      <img src="images/upanayanam1.png" alt="Upanayanam" loading="lazy">
+                      <span>Upanayanam</span>
+                    </div>
+                    <!-- Birthday Templates -->
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/birthday1/">
+                      <img src="images/birthdaytemplate.png" alt="Birthday 1" loading="lazy">
+                      <span>Birthday 1</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/birthday2/">
+                      <img src="images/birthdaytemplate2.png" alt="Birthday 2" loading="lazy">
+                      <span>Birthday 2</span>
+                    </div>
+                    <!-- Dhoti & Engagement Templates -->
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/las5/">
+                      <img src="images/Dhoti&HalfSareetemplate.png" alt="Dhoti & Half Saree" loading="lazy">
+                      <span>Dhoti & Half Saree</span>
+                    </div>
+                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/engagement1/">
+                      <img src="images/template4.png" alt="Engagement" loading="lazy">
+                      <span>Engagement</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -5803,6 +6017,49 @@
         if (e.target === demoModal) {
           closeDemo();
         }
+      });
+
+      /* ---------- Hero Phone Mockup Auto-Slider ---------- */
+      document.addEventListener("DOMContentLoaded", () => {
+        const heroSlider = document.querySelector('.template-slider');
+        if (!heroSlider) return;
+
+        let isPaused = false;
+        let autoScrollInterval;
+
+        function startAutoScroll() {
+          autoScrollInterval = setInterval(() => {
+            if (!isPaused) {
+              // Check if reached bottom
+              if (heroSlider.scrollTop + heroSlider.clientHeight >= heroSlider.scrollHeight - 5) {
+                heroSlider.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                // Scroll down by one slide (height + gap)
+                const slideHeight = 142; // 130px height + 12px gap
+                heroSlider.scrollBy({ top: slideHeight, behavior: 'smooth' });
+              }
+            }
+          }, 1500); // Every 1.5 seconds (Increased speed)
+        }
+
+        heroSlider.addEventListener('mouseenter', () => isPaused = true);
+        heroSlider.addEventListener('mouseleave', () => isPaused = false);
+        
+        // For touch devices
+        heroSlider.addEventListener('touchstart', () => isPaused = true);
+        heroSlider.addEventListener('touchend', () => {
+          setTimeout(() => { isPaused = false; }, 3000);
+        });
+
+        startAutoScroll();
+
+        // Add click listeners to slides
+        document.querySelectorAll('.template-slide').forEach(slide => {
+          slide.addEventListener('click', () => {
+            const url = slide.getAttribute('data-url');
+            if (url) openDemo(url);
+          });
+        });
       });
 
       /* ---------- Country-based pricing ----------
