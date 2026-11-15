@@ -498,30 +498,46 @@
       }
       .hero-ctas {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 12px;
         margin-bottom: 28px;
       }
 
-      .hero-category-btn {
+      .main-cta-btn {
         min-width: 190px;
         padding: 14px 22px;
       }
 
-      .hero-category-btn i {
-        font-size: 15px;
+      .small-btns-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
       }
 
-      .hero-category-btn.gruhapravesam-btn,
-      .hero-category-btn.engagement-btn {
+      .small-cta-btn {
+        min-width: auto;
+        padding: 10px 16px;
+        font-size: 13px;
+        gap: 8px;
+      }
+      
+      .small-cta-btn i {
+        font-size: 13px;
+      }
+
+      .hero-category-btn.engagement-btn,
+      .hero-category-btn.birthday-btn,
+      .hero-category-btn.dhoti-btn {
         background: #fff;
         border: 1.5px solid rgba(212, 175, 55, 0.72);
         color: var(--primary-dark);
         box-shadow: 0 8px 24px rgba(212, 175, 55, 0.14);
       }
 
-      .hero-category-btn.gruhapravesam-btn:hover,
-      .hero-category-btn.engagement-btn:hover {
+      .hero-category-btn.engagement-btn:hover,
+      .hero-category-btn.birthday-btn:hover,
+      .hero-category-btn.dhoti-btn:hover {
         background: linear-gradient(135deg, #fff9ef, #f6ebdd);
         border-color: var(--accent);
         color: var(--primary);
@@ -547,16 +563,36 @@
 
       @media (max-width: 640px) {
         .hero-ctas {
-          display: grid;
-          grid-template-columns: 1fr;
+          align-items: stretch;
           gap: 10px;
           margin-bottom: 24px;
         }
 
-        .hero-category-btn {
+        .main-cta-btn {
           width: 100%;
           min-width: 0;
           padding: 14px 18px;
+        }
+        
+        .small-btns-row {
+          flex-direction: row; /* Changed to row to keep them in a single line */
+          width: 100%;
+          gap: 6px;
+          flex-wrap: nowrap; /* Prevent wrapping */
+        }
+
+        .small-cta-btn {
+          flex: 1; /* Distribute space equally */
+          width: auto;
+          padding: 10px 4px;
+          font-size: 9.5px;
+          gap: 4px;
+          white-space: nowrap;
+          justify-content: center;
+        }
+
+        .small-cta-btn i {
+          font-size: 10px;
         }
 
         .hero-order-link {
@@ -685,8 +721,8 @@
       /* New Slider Styles for the Phone Mockup */
       .template-slider {
         flex: 1;
-        overflow-y: auto;
-        scroll-snap-type: y mandatory;
+        overflow-y: hidden; /* DISABLED MANUAL SCROLL */
+        touch-action: pan-x; /* PREVENTS VERTICAL DRAG GESTURES ON MOBILE */
         padding: 0 16px 20px;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -706,7 +742,7 @@
         position: relative;
         overflow: hidden;
         cursor: pointer;
-        scroll-snap-align: start;
+        /* scroll-snap-align: start; */
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         border: 1px solid rgba(212, 175, 55, 0.4);
         transition: transform 0.3s ease, border-color 0.3s ease;
@@ -734,7 +770,7 @@
         pointer-events: none;
       }
       .template-slide::after {
-        content: "Click to Preview";
+        content: "Click to View";
         position: absolute;
         top: 50%;
         left: 50%;
@@ -1212,6 +1248,7 @@
         align-items: center;
         gap: 0;
         overflow: hidden;
+        scroll-margin-top: 100px; /* ADDED FOR SMOOTH SCROLLING */
       }
       .demo-card:hover {
         transform: translateY(-8px);
@@ -3844,15 +3881,22 @@
               hassle.
             </p>
             <div class="hero-ctas" aria-label="Choose an invitation type">
-              <a href="#demo" class="btn btn-primary hero-category-btn">
+              <a href="#demo" class="btn btn-primary hero-category-btn main-cta-btn">
                 <i class="fa-solid fa-ring"></i> Wedding Invitation Websites
               </a>
-              <a
-                href="#engagement"
-                class="btn hero-category-btn engagement-btn"
-              >
-                <i class="fa-solid fa-heart"></i> Engagement Invitations
-              </a>
+              
+              <div class="small-btns-row">
+                <a href="#engagement" class="btn hero-category-btn engagement-btn small-cta-btn">
+                  <i class="fa-solid fa-heart"></i> Engagement
+                </a>
+                <a href="#birthday" class="btn hero-category-btn birthday-btn small-cta-btn">
+                  <i class="fa-solid fa-cake-candles"></i> Birthday
+                </a>
+                <a href="#dhoti" class="btn hero-category-btn dhoti-btn small-cta-btn">
+                  <i class="fa-solid fa-vest"></i> Dhoti & Half Saree
+                </a>
+              </div>
+
               <a
                 href="https://wa.me/916300553617?text=Hi,%20I%20want%20a%20digital%20invitation."
                 class="hero-order-link"
@@ -3946,78 +3990,78 @@
                   <!-- NEW TEMPLATE SLIDER INSIDE PHONE MOCKUP -->
                   <div class="template-slider" id="heroTemplateSlider">
                     <!-- Wedding Templates -->
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website1/">
+                    <div class="template-slide" data-target="#website-1">
                       <img src="images/template1.png" alt="Invitation 1" loading="lazy">
                       <span>Invitation 1</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website2/">
+                    <div class="template-slide" data-target="#website-2">
                       <img src="images/template2.png" alt="Invitation 2" loading="lazy">
                       <span>Invitation 2</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website3/">
+                    <div class="template-slide" data-target="#website-3">
                       <img src="images/template3.png" alt="Invitation 3" loading="lazy">
                       <span>Invitation 3</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website4/">
+                    <div class="template-slide" data-target="#website-4">
                       <img src="images/template4.png" alt="Invitation 4" loading="lazy">
                       <span>Invitation 4</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/cutewed1/">
+                    <div class="template-slide" data-target="#website-5">
                       <img src="images/template5.png" alt="Invitation 5" loading="lazy">
                       <span>Invitation 5</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website6/">
+                    <div class="template-slide" data-target="#website-6">
                       <img src="images/template6.1.png" alt="Invitation 6" loading="lazy">
                       <span>Invitation 6</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/tester19/">
+                    <div class="template-slide" data-target="#website-7">
                       <img src="images/template6.png" alt="Invitation 7" loading="lazy">
                       <span>Invitation 7</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/hinduwed2/">
+                    <div class="template-slide" data-target="#website-8">
                       <img src="images/template7.png" alt="Invitation 8" loading="lazy">
                       <span>Invitation 8</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/muslimwed/">
+                    <div class="template-slide" data-target="#website-9">
                       <img src="images/template8.png" alt="Invitation 9" loading="lazy">
                       <span>Invitation 9</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website7/">
+                    <div class="template-slide" data-target="#website-10">
                       <img src="images/template10.png" alt="Invitation 10" loading="lazy">
                       <span>Invitation 10</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/lordshiva/">
+                    <div class="template-slide" data-target="#website-11">
                       <img src="images/template11.png" alt="Invitation 11" loading="lazy">
                       <span>Invitation 11</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/website12/">
+                    <div class="template-slide" data-target="#website-12">
                       <img src="images/template12.png" alt="Invitation 12" loading="lazy">
                       <span>Invitation 12</span>
                     </div>
                     <!-- Ceremony Templates -->
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/gruhatest3/">
+                    <div class="template-slide" data-target="#gruhapravesam-card">
                       <img src="images/gruhapravesam1.png" alt="Gruhapravesam" loading="lazy">
                       <span>Gruhapravesam</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/upanayanam/">
+                    <div class="template-slide" data-target="#upanayanam-card">
                       <img src="images/upanayanam1.png" alt="Upanayanam" loading="lazy">
                       <span>Upanayanam</span>
                     </div>
                     <!-- Birthday Templates -->
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/birthday1/">
+                    <div class="template-slide" data-target="#birthday-1">
                       <img src="images/birthdaytemplate.png" alt="Birthday 1" loading="lazy">
                       <span>Birthday 1</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/birthday2/">
+                    <div class="template-slide" data-target="#birthday-2">
                       <img src="images/birthdaytemplate2.png" alt="Birthday 2" loading="lazy">
                       <span>Birthday 2</span>
                     </div>
                     <!-- Dhoti & Engagement Templates -->
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/las5/">
+                    <div class="template-slide" data-target="#dhoti-card">
                       <img src="images/Dhoti&HalfSareetemplate.png" alt="Dhoti & Half Saree" loading="lazy">
                       <span>Dhoti & Half Saree</span>
                     </div>
-                    <div class="template-slide" data-url="https://manikantaande24-bot.github.io/engagement1/">
+                    <div class="template-slide" data-target="#engagement-card">
                       <img src="images/template4.png" alt="Engagement" loading="lazy">
                       <span>Engagement</span>
                     </div>
@@ -4133,7 +4177,7 @@
           </h3>
           <div class="demo-grid reveal scale">
             <!-- Invitation Website 1 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-1">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template1.png"
@@ -4182,7 +4226,7 @@
               </div>
             </div>
             <!-- Invitation Website 2 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-2">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template2.png"
@@ -4242,7 +4286,7 @@
           </h3>
           <div class="demo-grid reveal scale">
             <!-- Invitation Website 3 — MOST POPULAR -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-3">
               <div class="demo-thumb-wrap">
                 <div class="most-popular-badge">
                   <i class="fa-solid fa-star" aria-hidden="true"></i> Most
@@ -4295,7 +4339,7 @@
               </div>
             </div>
             <!-- Invitation Website 4 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-4">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template4.png"
@@ -4342,7 +4386,7 @@
               </div>
             </div>
             <!-- Invitation Website 5 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-5">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template5.png"
@@ -4391,7 +4435,7 @@
               </div>
             </div>
             <!-- Invitation Website 6 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-6">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template6.1.png"
@@ -4454,7 +4498,7 @@
           </h3>
           <div class="demo-grid reveal scale">
             <!-- Invitation Website 7 — MOST POPULAR -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-7">
               <div class="demo-thumb-wrap">
                 <div class="most-popular-badge">
                   <i class="fa-solid fa-star" aria-hidden="true"></i> Most
@@ -4508,7 +4552,7 @@
             </div>
 
             <!-- Invitation Website 8 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-8">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template7.png"
@@ -4558,7 +4602,7 @@
             </div>
 
             <!-- Invitation Website 9 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-9">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template8.png"
@@ -4608,7 +4652,7 @@
             </div>
 
             <!-- Invitation Website 10 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-10">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template10.png"
@@ -4656,7 +4700,7 @@
             </div>
 
             <!-- Invitation Website 11 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-11">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template11.png"
@@ -4707,7 +4751,7 @@
             </div>
 
             <!-- Invitation Website 12 -->
-            <div class="demo-card">
+            <div class="demo-card" id="website-12">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template12.png"
@@ -4774,7 +4818,7 @@
           </div>
 
           <div class="ceremony-grid engagement-grid reveal scale">
-            <div class="demo-card engagement-card">
+            <div class="demo-card engagement-card" id="engagement-card">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/template4.png"
@@ -4845,7 +4889,7 @@
 
           <div class="ceremony-grid reveal scale">
             <!-- Gruhapravesam card -->
-            <div class="demo-card ceremony-card gruhapravesam-card">
+            <div class="demo-card ceremony-card gruhapravesam-card" id="gruhapravesam-card">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/gruhapravesam1.png"
@@ -4898,7 +4942,7 @@
             <!-- Upanayanam card -->
             <div
               class="demo-card ceremony-card upanayanam-card"
-              id="upanayanam"
+              id="upanayanam-card"
             >
               <div class="demo-thumb-wrap">
                 <img
@@ -4972,7 +5016,7 @@
          <div class="ceremony-grid birthday-grid reveal scale">
 
   <!-- Birthday Invitation — Design 1 -->
-  <div class="demo-card birthday-card">
+  <div class="demo-card birthday-card" id="birthday-1">
 
     <div class="demo-thumb-wrap">
       <img
@@ -5031,7 +5075,7 @@
   </div>
 
   <!-- Birthday Invitation — Design 2 (Girl Birthday) -->
-  <div class="demo-card birthday-card girl-birthday-card">
+  <div class="demo-card birthday-card girl-birthday-card" id="birthday-2">
 
     <div class="demo-thumb-wrap">
       <img
@@ -5113,7 +5157,7 @@
           </div>
 
           <div class="ceremony-grid dhoti-grid reveal scale">
-            <div class="demo-card dhoti-card">
+            <div class="demo-card dhoti-card" id="dhoti-card">
               <div class="demo-thumb-wrap">
                 <img
                   src="images/Dhoti&HalfSareetemplate.png"
@@ -6053,11 +6097,16 @@
 
         startAutoScroll();
 
-        // Add click listeners to slides
+        // Add click listeners to slides to scroll to the corresponding card
         document.querySelectorAll('.template-slide').forEach(slide => {
           slide.addEventListener('click', () => {
-            const url = slide.getAttribute('data-url');
-            if (url) openDemo(url);
+            const targetId = slide.getAttribute('data-target');
+            if (targetId) {
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }
           });
         });
       });
