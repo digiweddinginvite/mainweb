@@ -1,1 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pawan & Meghana Wedding Invitation</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f8f3fc;
+    color:#2f1f2b;
+}
+
+body{
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* ============================================
+   ✅ HERO — FULL-SCREEN HERO IMAGE
+   ============================================ */
+.hero{
+    position:relative;
+    height:100vh;
+    height:100dvh;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:#f8f3fc;
+}
+
+/* ✅ THE HERO IMAGE */
+.hero-image{
+    position:absolute;
+    inset:0;
+    display:block;
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+
+    z-index:2;
+
+    opacity:0;
+    transform:scale(1.08);
+    will-change:transform, opacity;
+
+    user-select:none;
+    -webkit-user-drag:none;
+    pointer-events:none;
+}
+
+/* ✅ Reveal the hero image after the intro ends */
+.hero-show .hero-image{
+    opacity:1;
+    transform:scale(1);
+    transition:transform 2.2s cubic-bezier(0.16, 1, 0.3, 1),
+               opacity 1.3s ease-out;
+    transition-delay:0.2s;
+}
+
+
+/* FALLING LOVE SYMBOLS — HERO ONLY */
+.hero-hearts{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:3;
+    pointer-events:none;
+}
+
+.hero-heart{
+    position:absolute;
+    top:-50px;
+    color:rgba(131,11,87,0.65);
+    font-size:var(--heart-size,20px);
+    line-height:1;
+    opacity:0;
+    animation:heroHeartFall var(--heart-duration,8s) linear infinite;
+    animation-delay:var(--heart-delay,0s);
+    will-change:transform, opacity;
+    text-shadow:0 2px 8px rgba(131,11,87,0.18);
+}
+
+@keyframes heroHeartFall{
+    0%{
+        transform:translate3d(0,-60px,0) rotate(0deg) scale(0.8);
+        opacity:0;
+    }
+    10%{
+        opacity:0.75;
+    }
+    50%{
+        transform:translate3d(var(--heart-drift,30px),50vh,0) rotate(180deg) scale(1);
+        opacity:0.65;
+    }
+    90%{
+        opacity:0.45;
+    }
+    100%{
+        transform:translate3d(calc(var(--heart-drift,30px) * -0.6),110vh,0) rotate(360deg) scale(0.85);
+        opacity:0;
+    }
+}
+
+@media (max-width:768px){
+    .hero-heart{
+        font-size:var(--heart-size-mobile,16px);
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+    .hero-heart{
+        animation:none;
+        opacity:0.35;
+        top:12%;
+    }
+}
+
+
+/* SECTION */
+section{
+    padding:60px 10%;
+    text-align:center;
+}
+
+h2{
+    font-family:'Playfair Display',serif;
+    margin-bottom:30px;
+}
+
+/* EVENTS */
+.events{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    padding:20px;
+    width:200px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.map{
+    background: transparent;
+}
+
+.location{
+    flex:1;
+    text-align:left;
+}
+
+
+/* RSVP SECTION */
+.rsvp{
+    position:relative;
+    padding:80px 10%;
+    text-align:center;
+    overflow:hidden;
+}
+
+.rsvp-content{
+    position:relative;
+    z-index:2;
+    max-width:500px;
+    margin:auto;
+}
+
+.rsvp-sub{
+    color:#7d6493;
+    margin-bottom:30px;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+.rsvp-card{
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.08);
+    border:1px solid rgba(131,11,87,0.2);
+}
+
+.rsvp-card input,
+.rsvp-card select,
+.rsvp-card textarea{
+    width:100%;
+    padding:13px 15px;
+    margin-bottom:15px;
+    border:1px solid #e3d4ef;
+    border-radius:10px;
+    background:rgba(255,255,255,0.8);
+    color:#3e1a35;
+    font-family:'Poppins',sans-serif;
+    font-size:14px;
+    outline:none;
+    resize:vertical;
+}
+
+.rsvp-card textarea{
+    min-height:90px;
+    line-height:1.4;
+}
+
+.rsvp-card input:focus,
+.rsvp-card select:focus,
+.rsvp-card textarea:focus{
+    border-color:#830b57;
+    box-shadow:0 0 0 2px rgba(131,11,87,0.15);
+}
+
+.rsvp-card input::placeholder,
+.rsvp-card textarea::placeholder{
+    color:#b3a3c4;
+}
+
+.rsvp-card button{
+    margin-top:5px;
+    width:100%;
+    background:linear-gradient(135deg,#830b57,#b57edc);
+    border:none;
+    padding:13px 24px;
+    border-radius:30px;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    font-family:'Poppins',sans-serif;
+    transition:0.3s;
+}
+
+.rsvp-card button:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+.rsvp-message{
+    display:none;
+    margin-top:15px;
+    color:#9b7fb0;
+    font-size:13px;
+}
+
+/* ============================================
+   ✅ GUEST STEPPER (+/−)
+   ============================================ */
+.guest-stepper{
+    margin-bottom:15px;
+    text-align:left;
+}
+
+.guest-label{
+    display:block;
+    font-size:13px;
+    color:#7d6493;
+    margin-bottom:8px;
+    letter-spacing:1px;
+    font-weight:500;
+    transition:color 0.3s;
+}
+
+.stepper-controls{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    background:rgba(255,255,255,0.8);
+    border:1px solid #e3d4ef;
+    border-radius:10px;
+    padding:6px 8px;
+    transition:border-color 0.3s, opacity 0.3s;
+}
+
+.rsvp-card .stepper-controls .stepper-btn{
+    width:38px;
+    height:38px;
+    min-width:38px;
+    margin:0;
+    padding:0;
+    border-radius:8px;
+    background:linear-gradient(135deg,#830b57,#b57edc);
+    color:#fff;
+    font-size:20px;
+    font-weight:500;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+    flex-shrink:0;
+    font-family:'Poppins',sans-serif;
+}
+
+.rsvp-card .stepper-controls .stepper-btn:hover:not(:disabled){
+    transform:scale(1.06);
+    box-shadow:0 4px 12px rgba(131,11,87,0.4);
+}
+
+.rsvp-card .stepper-controls .stepper-btn:disabled{
+    opacity:0.35;
+    cursor:not-allowed;
+    transform:none;
+    box-shadow:none;
+}
+
+.stepper-value{
+    flex:1;
+    text-align:center;
+    font-size:20px;
+    font-family:'Playfair Display',serif;
+    color:#3e1a35;
+    user-select:none;
+    transition:color 0.3s;
+}
+
+/* ✅ Disabled state (when "No, I can't make it") */
+.guest-stepper.disabled .stepper-controls{
+    opacity:0.5;
+    pointer-events:none;
+    background:rgba(243,237,249,0.75);
+}
+
+.guest-stepper.disabled .guest-label{
+    color:#b3a3c4;
+}
+
+.guest-stepper.disabled .guest-label::after{
+    content:" — not attending";
+    font-size:11px;
+    font-weight:400;
+    letter-spacing:0;
+    color:#b3a3c4;
+}
+
+@media (max-width:768px){
+    .rsvp{
+        padding:60px 10%;
+    }
+
+    .rsvp-card{
+        padding:25px 20px;
+    }
+}
+
+/* COUNTDOWN */
+/* DESKTOP */
+.countdown{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:25px;
+    max-width:500px;
+    margin:30px auto 0;
+}
+
+/* Date/time line in countdown */
+.countdown-date{
+    color:#7d6493;
+    margin-bottom:20px;
+    font-size:14px;
+    letter-spacing:1px;
+}
+
+/* MOBILE PERFECT ALIGNMENT */
+@media (max-width:768px){
+
+    .countdown{
+        grid-template-columns: repeat(2, 1fr);
+        gap:20px;
+        max-width:260px;
+        margin: 30px auto 0;
+        justify-items: center;
+    }
+
+    .count-box{
+        width:100%;
+        max-width:100px;
+        height:90px;
+    }
+}
+
+/* PREMIUM BOX */
+.count-box{
+    position:relative;
+    width:110px;
+    height:110px;
+
+    border-radius:18px;
+
+    background: rgba(255,255,255,0.4);
+    backdrop-filter: blur(6px);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(131,11,87,0.35);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.08),
+        inset 0 0 20px rgba(255,255,255,0.4);
+
+    transition:0.3s ease;
+}
+
+.count-box:hover{
+    transform:translateY(-6px) scale(1.05);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.15),
+        0 0 20px rgba(181,126,220,0.4);
+}
+
+.count-box span{
+    font-size:34px;
+    font-family:'Playfair Display',serif;
+    color:#3e1a35;
+}
+
+.count-box p{
+    font-size:12px;
+    letter-spacing:2px;
+    color:#9b7fb0;
+    margin-top:5px;
+}
+
+.count-box::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:18px;
+
+    background: radial-gradient(
+        circle,
+        rgba(181,126,220,0.35),
+        transparent 70%
+    );
+
+    opacity:0;
+    transition:0.4s;
+}
+
+.count-box:hover::after{
+    opacity:1;
+}
+
+@media (max-width:768px){
+    .count-box{
+        width:90px;
+        height:90px;
+    }
+
+    .count-box span{
+        font-size:26px;
+    }
+}
+
+/* FOOTER */
+footer{
+    background:#2d0f24;
+    color:#fff;
+    padding:30px;
+    text-align:center;
+}
+
+
+/* ============================================
+   WEDDING EVENTS
+   ============================================ */
+.wedding-events{
+    position: relative;
+    padding:80px 10%;
+    text-align:center;
+    overflow:hidden;
+}
+
+.wedding-events::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background: url('Assets/images/desktopeventsbg.png') no-repeat center;
+    background-size: cover;
+
+    z-index:0;
+}
+
+.wedding-events::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background: rgba(255, 255, 255, 0.75);
+    z-index:1;
+}
+
+.wedding-events *{
+    position: relative;
+    z-index:2;
+}
+
+@media (max-width: 768px){
+
+    .wedding-events::before{
+        background: url('Assets/images/mobileeventsbg.png') no-repeat center;
+        background-size: cover;
+    }
+
+}
+
+.section-title{
+    font-family:'Playfair Display',serif;
+    letter-spacing:3px;
+    font-size:24px;
+    margin-bottom:50px;
+    color:#3e1a35;
+}
+
+.event-wrapper{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:25px;
+}
+
+.event-card{
+    position:relative;
+    width:200px;
+    background:#fff;
+    padding:50px 20px 30px;
+    border-radius:16px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    text-align:center;
+    transition:0.3s;
+}
+
+.event-card:hover{
+    transform:translateY(-8px);
+}
+
+.icon{
+    position:absolute;
+    top:-25px;
+    left:50%;
+    transform:translateX(-50%);
+    width:55px;
+    height:55px;
+    background:#f3edf9;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    border:2px solid #e3d4ef;
+}
+
+.icon img{
+    width:65px;
+    height:65px;
+    object-fit:contain;
+}
+
+.event-card h3{
+    font-family:'Playfair Display',serif;
+    font-size:16px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    color:#3e1a35;
+}
+
+.event-card p{
+    font-size:13px;
+    color:#6b5578;
+    margin:5px 0;
+}
+
+.event-card span{
+    font-size:12px;
+    color:#9b7fb0;
+    display:block;
+    margin-bottom:10px;
+}
+
+.event-card::after{
+    content:"";
+    position:absolute;
+    bottom:-28px;
+    left:0;
+    width:100%;
+    height:100px;
+    background:url('Assets/images/flower.png') no-repeat center bottom;
+    background-size:contain;
+}
+
+@media (max-width: 768px){
+
+    .event-wrapper{
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .event-card{
+        width: 70%;
+        margin: 0 auto;
+    }
+
+}
+
+/* INTRO SCREEN */
+.intro-screen{
+    position:fixed;
+    top:0px;
+
+    left:0;
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:flex-start;
+    padding-bottom: 180px;
+    gap:0px;
+
+    z-index:9999;
+}
+
+.intro-screen::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background: url('Assets/images/introbg.png') no-repeat center;
+    background-size: cover;
+
+    filter: blur(4px);
+    transform: scale(1.1);
+
+    z-index:0;
+}
+
+.intro-screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(230,217,242,0.3) 0%,
+        rgba(45,15,36,0.3) 70%
+    );
+
+    z-index:1;
+}
+
+.hand{
+    position: relative;
+    z-index: 2;
+}
+
+.hand{
+    width:260px;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    cursor:pointer;
+    filter: drop-shadow(0 10px 30px rgba(216,196,232,0.55));
+}
+
+.hand{
+    display:block;
+}
+
+.move-up{
+    transform:translateY(-135px) scale(1.1);
+}
+
+.move-down{
+    transform:translateY(60px) scale(1.05);
+}
+
+.intro-hide{
+    opacity:0;
+    transform: scale(1.4) translateY(-20px);
+    filter: blur(12px);
+    transition:1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events:none;
+}
+
+.hand{
+    width:380px;
+    max-width:90%;
+}
+.girl-hand{
+    margin-top: -50px;
+}
+
+.boy-hand{
+    margin-top: 15px;
+}
+
+@media (min-width: 1024px){
+    .hand{
+        width:450px;
+    }
+}
+
+@media (max-width:768px){
+    .hand{
+        width:380px;
+    }
+}
+
+.intro-screen.glow::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background: radial-gradient(
+        circle,
+        rgba(216,196,232,0.7) 0%,
+        rgba(230,217,242,0.5) 30%,
+        transparent 70%
+    );
+
+    opacity:0;
+    transition:1s ease;
+    pointer-events:none;
+}
+
+.intro-screen.glow::after{
+    opacity:1;
+}
+
+.light-sweep{
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:200%;
+    height:100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent 40%,
+        rgba(255,255,255,0.5) 50%,
+        transparent 60%
+    );
+    z-index: 5;
+    transform: skewX(-20deg);
+    opacity:0;
+    pointer-events:none;
+}
+
+.light-sweep.active{
+    animation: sweep 2.5s ease forwards;
+}
+
+@keyframes sweep{
+    0%{left:-100%; opacity:0;}
+    30%{opacity:1;}
+    100%{left:100%; opacity:0;}
+}
+
+
+/* SCROLL ANIMATION */
+.reveal {
+    opacity: 0;
+    transform: translateY(80px);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ============================================
+   ✅ VENUE — DESKTOP + MOBILE BACKGROUNDS
+   ============================================ */
+.venue{
+    position: relative;
+    padding:100px 0%;
+    min-height: 700px;
+}
+
+.venue::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:url('Assets/images/venuedesktopbg.png') no-repeat center;
+    background-size:cover;
+    z-index:0;
+    background-position: center 70%;
+}
+
+.venue::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    z-index:1;
+}
+
+/* ✅ MOBILE — comes AFTER the desktop rule so it wins the cascade */
+@media (max-width:768px){
+    .venue::before{
+        background:url('Assets/images/venuemobilebg.png') no-repeat center;
+        background-size:cover;
+        background-position:center center;
+        background-color:#f8f3fc;
+    }
+}
+
+.venue-content{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.venue-name{
+    font-family:'Playfair Display',serif;
+    font-size:28px;
+    margin-top:10px;
+    color:#3e1a35;
+}
+
+.venue-place{
+    font-size:16px;
+    color:#9b7fb0;
+    margin-bottom:25px;
+}
+
+.map-btn{
+    background:linear-gradient(135deg,#830b57,#b57edc);
+    border:none;
+    padding:12px 26px;
+    border-radius:30px;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.map-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+button{
+    background:linear-gradient(135deg,#830b57,#b57edc);
+    border:none;
+    padding:12px 24px;
+    border-radius:30px;
+    color:#fff;
+    cursor:pointer;
+}
+
+.gallery-wrapper{
+    display:flex;
+    justify-content:center;
+}
+
+/* GOLD SHIMMER EFFECT */
+.count-box{
+    position:relative;
+    overflow:hidden;
+}
+
+.count-box::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:200%;
+    height:100%;
+
+    background: linear-gradient(
+        120deg,
+        transparent 40%,
+        rgba(255,255,255,0.7) 50%,
+        transparent 60%
+    );
+
+    transform: skewX(-20deg);
+    opacity:1;
+}
+
+@media (max-width:768px){
+    .count-box{
+        animation: none;
+    }
+
+    .count-box::before{
+        animation: none;
+    }
+}
+
+.count-box::before{
+    animation: shimmerSlide 4s infinite;
+}
+
+@keyframes shimmerSlide{
+    0%{ left:-150%; }
+    100%{ left:150%; }
+}
+
+/* REMOVE BLUE CLICK OUTLINE */
+img:focus,
+img:active {
+    outline: none;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.tap-text{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+
+    color:#fff;
+    font-size:12px;
+    letter-spacing:2px;
+    opacity:0.95;
+    animation: blink 1.5s infinite;
+
+    z-index: 50;
+
+    background: rgba(0,0,0,0.4);
+    padding: 8px 20px;
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+@media (max-width: 768px){
+    .tap-text{
+        position: fixed;
+
+        bottom: max(80px, calc(env(safe-area-inset-bottom) + 60px)) !important;
+
+        left: 50%;
+        transform: translateX(-50%);
+
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+
+        color: #fff;
+        font-size: 11px;
+        letter-spacing: 2px;
+
+        padding: 7px 16px;
+
+        background: rgba(0,0,0,0.4);
+        border-radius: 999px;
+
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+
+        text-shadow: 0 2px 8px rgba(0,0,0,0.55);
+
+        white-space: nowrap;
+        pointer-events: none;
+
+        z-index: 99999;
+
+        animation: blink 1.5s infinite;
+    }
+
+    .intro-screen{
+        overflow: hidden;
+        padding-bottom: 140px;
+    }
+}
+@keyframes blink{
+    0%,100%{opacity:0.3;}
+    50%{opacity:1;}
+}
+
+.particles{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+}
+
+.particles::before{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 2px, transparent 2px);
+    background-size: 40px 40px;
+    animation: moveParticles 20s linear infinite;
+    opacity:0.3;
+}
+
+@keyframes moveParticles{
+    from{transform:translateY(0);}
+    to{transform:translateY(-200px);}
+}
+
+
+
+.intro-screen::after{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background: radial-gradient(
+        circle at center,
+        rgba(230,217,242,0.4) 0%,
+        rgba(45,15,36,0.45) 60%
+    );
+
+    z-index:1;
+}
+
+.intro-screen::before{
+    animation: shimmerBg 8s linear infinite;
+}
+
+@keyframes shimmerBg{
+    0%{ filter: blur(4px) brightness(1); }
+    50%{ filter: blur(4px) brightness(1.1); }
+    100%{ filter: blur(4px) brightness(1); }
+}
+
+@keyframes floatBokeh{
+    0%{
+        transform:translateY(0) scale(1);
+        opacity:0.3;
+    }
+    50%{
+        transform:translateY(-80px) scale(1.4);
+        opacity:0.8;
+    }
+    100%{
+        transform:translateY(0) scale(1);
+        opacity:0.3;
+    }
+}
+
+.bokeh span:nth-child(1){
+    top:10%; left:20%;
+    width:180px; height:180px;
+}
+
+.bokeh span:nth-child(2){
+    top:60%; left:10%;
+    width:260px; height:260px;
+}
+
+.bokeh span:nth-child(3){
+    top:30%; right:15%;
+    width:200px; height:200px;
+}
+
+.bokeh span:nth-child(4){
+    bottom:10%; right:20%;
+    width:300px; height:300px;
+}
+
+@keyframes pulseGlow{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.05);}
+    100%{transform:scale(1);}
+}
+
+.move-up{
+    transform:translateY(-135px) scale(1.15);
+}
+
+.move-down{
+    transform:translateY(60px) scale(1.1);
+}
+
+/* ✅ PREMIUM MUSIC TOGGLE BUTTON STYLES */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+
+    background: linear-gradient(135deg, #830b57, #b57edc);
+    border: none;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    box-shadow: 0 4px 15px rgba(131, 11, 87, 0.4);
+    transition: all 0.3s ease;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.music-toggle.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 20px rgba(131, 11, 87, 0.55);
+}
+
+.music-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    height: 26px;
+    width: 28px;
+}
+
+.music-visual span {
+    display: block;
+    width: 3px;
+    height: 10px;
+    border-radius: 999px;
+    background: #fff;
+    transform-origin: center;
+    transition: all 0.3s ease;
+}
+
+.music-visual span:nth-child(1) { height: 8px; }
+.music-visual span:nth-child(2) { height: 17px; }
+.music-visual span:nth-child(3) { height: 24px; }
+.music-visual span:nth-child(4) { height: 17px; }
+.music-visual span:nth-child(5) { height: 8px; }
+
+.music-toggle.playing .music-visual span {
+    animation: musicWave 1s ease-in-out infinite alternate;
+}
+
+.music-toggle.playing .music-visual span:nth-child(1) { animation-delay: 0.1s; }
+.music-toggle.playing .music-visual span:nth-child(2) { animation-delay: 0.3s; }
+.music-toggle.playing .music-visual span:nth-child(3) { animation-delay: 0.15s; }
+.music-toggle.playing .music-visual span:nth-child(4) { animation-delay: 0.4s; }
+.music-toggle.playing .music-visual span:nth-child(5) { animation-delay: 0.2s; }
+
+@keyframes musicWave {
+    0% { transform: scaleY(0.45); }
+    100% { transform: scaleY(1); }
+}
+
+@media (max-width: 768px) {
+    .music-visual {
+        width: 24px;
+        height: 22px;
+        gap: 2px;
+    }
+
+    .music-visual span {
+        width: 3px;
+    }
+}
+
+.music-toggle.playing svg {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+.music-toggle.playing {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(131, 11, 87, 0.55); }
+    70% { box-shadow: 0 0 0 12px rgba(131, 11, 87, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(131, 11, 87, 0); }
+}
+
+@media (max-width: 768px) {
+    .music-toggle {
+        top: 15px;
+        right: 15px;
+        width: 46px;
+        height: 46px;
+    }
+    .music-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ============================================
+   ✅ HIGHLIGHTED WEDDING EVENT CARD (plum/lavender)
+   ============================================ */
+.event-card.wedding-highlight {
+    border: 2px solid #830b57;
+    background: linear-gradient(180deg, #faf5ff 0%, #f3e9fb 100%);
+    box-shadow:
+        0 0 0 4px rgba(131,11,87,0.16),
+        0 18px 42px rgba(131,11,87,0.3);
+    transform: translateY(-8px) scale(1.04);
+    z-index: 3;
+}
+
+.event-card.wedding-highlight::before {
+    position: absolute;
+    top: -52px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #830b57, #b57edc);
+    color: #fff;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 6px 14px rgba(131,11,87,0.4);
+    white-space: nowrap;
+    z-index: 4;
+}
+
+.event-card.wedding-highlight:hover {
+    transform: translateY(-14px) scale(1.06);
+    box-shadow:
+        0 0 0 5px rgba(131,11,87,0.22),
+        0 24px 55px rgba(131,11,87,0.42);
+}
+
+@media (max-width: 768px) {
+    .event-card.wedding-highlight {
+        transform: none;
+    }
+
+    .event-card.wedding-highlight:hover {
+        transform: translateY(-6px) scale(1.02);
+    }
+}
+</style>
+</head>
+
+<body>
+
+    <!-- BACKGROUND MUSIC -->
+    <audio id="bgMusic" src="audio/music1.mpeg" loop preload="auto"></audio>
+
+    <!-- PREMIUM MUSIC TOGGLE -->
+<button id="musicToggle" class="music-toggle" aria-label="Toggle Music">
+
+    <span class="music-visual">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </span>
+
+</button>
+
+    <!-- INTRO SCREEN -->
+<div class="intro-screen" id="introScreen">
+
+    <!-- GIRL HAND (TOP) -->
+<img src="Assets/images/girl-hand.png" class="hand girl-hand" id="girlHand">
+
+<!-- BOY HAND (BOTTOM) -->
+<img src="Assets/images/boy-hand.png" class="hand boy-hand" id="boyHand">
+
+<div class="light-sweep" id="lightSweep"></div>
+
+<p class="tap-text">Tap to Enter</p>
+
+</div>
+
+<!-- ============================================
+     HERO — FULL-SCREEN HERO IMAGE
+     ============================================ -->
+<section class="hero" id="heroSection">
+
+    <!-- FALLING LOVE SYMBOLS — HERO ONLY -->
+    <div class="hero-hearts" aria-hidden="true">
+        <span class="hero-heart" style="left:4%;--heart-size:17px;--heart-size-mobile:14px;--heart-duration:7s;--heart-delay:0s;--heart-drift:24px;">❤️</span>
+        <span class="hero-heart" style="left:11%;--heart-size:24px;--heart-size-mobile:18px;--heart-duration:9s;--heart-delay:0.8s;--heart-drift:-28px;">💝</span>
+        <span class="hero-heart" style="left:19%;--heart-size:15px;--heart-size-mobile:13px;--heart-duration:8s;--heart-delay:1.6s;--heart-drift:36px;">❤️</span>
+        <span class="hero-heart" style="left:28%;--heart-size:21px;--heart-size-mobile:16px;--heart-duration:10s;--heart-delay:2.4s;--heart-drift:-32px;">💗</span>
+        <span class="hero-heart" style="left:38%;--heart-size:16px;--heart-size-mobile:13px;--heart-duration:7.5s;--heart-delay:3.2s;--heart-drift:25px;">❤️</span>
+        <span class="hero-heart" style="left:48%;--heart-size:23px;--heart-size-mobile:17px;--heart-duration:9.5s;--heart-delay:4s;--heart-drift:-35px;">💝</span>
+        <span class="hero-heart" style="left:58%;--heart-size:16px;--heart-size-mobile:13px;--heart-duration:8.5s;--heart-delay:4.8s;--heart-drift:30px;">💞</span>
+        <span class="hero-heart" style="left:68%;--heart-size:22px;--heart-size-mobile:17px;--heart-duration:10s;--heart-delay:5.6s;--heart-drift:-25px;">💖</span>
+        <span class="hero-heart" style="left:78%;--heart-size:15px;--heart-size-mobile:13px;--heart-duration:7s;--heart-delay:6.4s;--heart-drift:32px;">💞</span>
+        <span class="hero-heart" style="left:87%;--heart-size:23px;--heart-size-mobile:17px;--heart-duration:9s;--heart-delay:7.2s;--heart-drift:-30px;">💝</span>
+        <span class="hero-heart" style="left:95%;--heart-size:17px;--heart-size-mobile:14px;--heart-duration:8s;--heart-delay:8s;--heart-drift:22px;">💖</span>
+    </div>
+
+    <!-- ✅ SINGLE HERO IMAGE -->
+    <img class="hero-image"
+         src="Assets/images/heroimg.png"
+         alt="Satya Pawan Kumar & Rukmini Meghana — 5 December 2026">
+
+</section>
+
+<!-- VENUE -->
+<section class="venue reveal">
+
+    <div class="venue-content">
+        <h2 class="section-title">VENUE</h2>
+
+        <p class="venue-name">📍 Orchid The Venue</p>
+        <p class="venue-place">8232 Preston Rd Ste 120, Plano, TX 75024</p>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Orchid+The+Venue+8232+Preston+Rd+Ste+120+Plano+TX+75024" target="_blank">
+            <button class="map-btn">Open in Maps</button>
+        </a>
+    </div>
+
+</section>
+
+<!-- RSVP SECTION -->
+<section class="rsvp reveal">
+    <div class="rsvp-content">
+        <h2 class="section-title">RSVP</h2>
+        <p class="rsvp-sub">We’d love to know if you can make it — please respond below</p>
+
+        <div class="rsvp-card">
+            <form id="rsvpForm">
+                <input type="text" id="rsvpName" placeholder="Your Name" required>
+
+                <input type="tel" id="rsvpPhone" placeholder="Phone Number" pattern="[0-9+\s\-()]{7,15}" required>
+
+                <select id="rsvpAttendance" required>
+                    <option value="" disabled selected>Will you attend?</option>
+                    <option value="Yes, I will attend">Yes, I will attend</option>
+                    <option value="No, I can't make it">No, I can't make it</option>
+                </select>
+
+                <!-- ✅ GUEST STEPPER (+/−) -->
+                <div class="guest-stepper" id="guestStepper">
+                    <label class="guest-label" for="guestValue">Number of Guests</label>
+                    <div class="stepper-controls">
+                        <button type="button" class="stepper-btn" id="guestMinus" aria-label="Decrease guests">−</button>
+                        <span class="stepper-value" id="guestValue" aria-live="polite">1</span>
+                        <button type="button" class="stepper-btn" id="guestPlus" aria-label="Increase guests">+</button>
+                    </div>
+                </div>
+                <!-- Hidden input carried into the form submission -->
+                <input type="hidden" id="rsvpGuests" value="1">
+
+                <textarea id="rsvpMessageInput" placeholder="Leave a message (optional)"></textarea>
+
+                <button type="submit">Send RSVP</button>
+            </form>
+            <p class="rsvp-message" id="rsvpMessage"></p>
+        </div>
+    </div>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="reveal">
+<h2>Countdown</h2>
+<p class="countdown-date">5th December, 10:00 AM</p>
+<div class="countdown">
+
+  <div class="count-box">
+    <span id="days">00</span>
+    <p>DAYS</p>
+</div>
+
+<div class="count-box">
+    <span id="hours">00</span>
+    <p>HOURS</p>
+</div>
+
+<div class="count-box">
+    <span id="minutes">00</span>
+    <p>MIN</p>
+</div>
+
+<div class="count-box">
+    <span id="seconds">00</span>
+    <p>SEC</p>
+</div>
+</div>
+</section>
+
+<script>
+    const sweep = document.getElementById("lightSweep");
+const boyHand = document.getElementById("boyHand");
+const girlHand = document.getElementById("girlHand");
+const intro = document.getElementById("introScreen");
+
+setTimeout(()=>{
+    sweep.classList.add("active");
+}, 400);
+
+const hero = document.getElementById("heroSection");
+
+// MUSIC CONTROLS
+const bgMusic = document.getElementById("bgMusic");
+const musicToggle = document.getElementById("musicToggle");
+
+intro.addEventListener("click", () => {
+
+    boyHand.classList.add("move-up");
+
+    setTimeout(()=>{
+        girlHand.classList.add("move-down");
+    }, 200);
+
+    setTimeout(()=>{
+        intro.classList.add("glow");
+    }, 350);
+
+    setTimeout(() => {
+        intro.classList.add("intro-hide");
+    }, 1400);
+
+    setTimeout(() => {
+        hero.classList.add("hero-show");
+
+        bgMusic.volume = 0.5;
+        bgMusic.play().then(() => {
+            musicToggle.classList.add("playing");
+            musicToggle.classList.add("visible");
+        }).catch(error => {
+            console.log("Audio play failed:", error);
+            musicToggle.classList.add("visible");
+        });
+
+    }, 1600);
+
+});
+
+musicToggle.addEventListener("click", () => {
+    if (bgMusic.paused) {
+        bgMusic.play();
+        musicToggle.classList.add("playing");
+    } else {
+        bgMusic.pause();
+        musicToggle.classList.remove("playing");
+    }
+});
+
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    reveals.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop < triggerBottom) {
+            section.classList.add("active");
+        }
+    });
+}
+
+let ticking = false;
+
+function onScroll() {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            revealOnScroll();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
+window.addEventListener("scroll", onScroll);
+
+
+// ============================================
+// RSVP FORM — GOOGLE APPS SCRIPT INTEGRATION
+// ============================================
+const rsvpForm = document.getElementById("rsvpForm");
+const rsvpMessage = document.getElementById("rsvpMessage");
+
+// 🔥 REPLACE WITH YOUR DEPLOYED WEB APP URL
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxqB6gVADrVtzETqvqnl7cd1evALddZdyS8lNLowxDyypRqDxg3_Hpp8hVOQ_8K-dS0Bg/exec';
+
+if (rsvpForm) {
+    rsvpForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("rsvpName").value.trim();
+        const phone = document.getElementById("rsvpPhone").value.trim();
+        const attendance = document.getElementById("rsvpAttendance").value;
+        const guests = document.getElementById("rsvpGuests").value;
+        const message = document.getElementById("rsvpMessageInput").value.trim();
+
+        if (!name || !phone || !attendance) return;
+
+        const notAttending = attendance === "No, I can't make it";
+
+        const formData = new URLSearchParams();
+        formData.append('name', name);
+        formData.append('phone', phone);
+        formData.append('attendance', attendance);
+        formData.append('guests', notAttending ? '0' : guests);
+        formData.append('message', message);
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: formData.toString()
+        })
+        .then(() => {
+            rsvpForm.style.display = "none";
+            rsvpMessage.style.display = "block";
+            rsvpMessage.innerText = notAttending
+                ? `Thank you, ${name}! We'll miss you ❤️`
+                : `Thank you, ${name}! ${attendance}. Guests: ${guests} ❤️`;
+        })
+        .catch(error => {
+            console.error('Error!', error.message);
+            rsvpMessage.style.display = "block";
+            rsvpMessage.innerText = "Oops! Something went wrong. Please try again.";
+        });
+    });
+}
+
+/* ============================================
+   ✅ GUEST STEPPER LOGIC (+/−)
+   ============================================ */
+const guestValueEl  = document.getElementById("guestValue");
+const rsvpHidden    = document.getElementById("rsvpGuests");
+const guestMinus    = document.getElementById("guestMinus");
+const guestPlus     = document.getElementById("guestPlus");
+const guestStepper  = document.getElementById("guestStepper");
+const rsvpAttendanceEl = document.getElementById("rsvpAttendance");
+
+const MIN_GUESTS = 1;
+const MAX_GUESTS = 20;
+let guestCount = 1;
+
+function renderGuests(){
+    guestValueEl.textContent = guestCount;
+    rsvpHidden.value = guestCount;
+    guestMinus.disabled = guestCount <= MIN_GUESTS;
+    guestPlus.disabled  = guestCount >= MAX_GUESTS;
+}
+
+guestPlus.addEventListener("click", () => {
+    if (guestCount < MAX_GUESTS){
+        guestCount++;
+        renderGuests();
+    }
+});
+
+guestMinus.addEventListener("click", () => {
+    if (guestCount > MIN_GUESTS){
+        guestCount--;
+        renderGuests();
+    }
+});
+
+/* ✅ Disable stepper when guest is NOT attending */
+function syncAttendanceState(){
+    const notAttending = rsvpAttendanceEl.value === "No, I can't make it";
+    guestStepper.classList.toggle("disabled", notAttending);
+
+    if (notAttending){
+        rsvpHidden.value = 0;
+        guestValueEl.textContent = "0";
+    } else {
+        renderGuests();
+    }
+}
+
+rsvpAttendanceEl.addEventListener("change", syncAttendanceState);
+
+// Initial render
+renderGuests();
+
+
+// COUNTDOWN TIMER
+const weddingDate = new Date("December 5, 2026 10:00:00").getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const gap = weddingDate - now;
+
+    if (gap <= 0) {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+        return;
+    }
+
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+    const d = Math.floor(gap / day);
+    const h = Math.floor((gap % day) / hour);
+    const m = Math.floor((gap % hour) / minute);
+    const s = Math.floor((gap % minute) / second);
+
+    document.getElementById("days").innerText = d;
+    document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+    document.getElementById("minutes").innerText = m.toString().padStart(2, '0');
+    document.getElementById("seconds").innerText = s.toString().padStart(2, '0');
+}
+
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener("load", () => {
+    window.scrollTo(0, 0);
+});
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+</script>
+
+<!-- FOOTER -->
+<footer>
+    <p>We can't wait to celebrate with you ❤️</p>
+    <p style="margin-top:10px; font-family:'Playfair Display',serif; font-size:10px; color:#ffffff;">
+        With love
+    </p>
+    <p style="margin-top:10px; font-family:'Playfair Display',serif; font-size:18px; color:#ffffff;">
+        Kalyani &amp; Vivek Chandra
+    </p>
+</footer>
+
+</body>
+</html>
