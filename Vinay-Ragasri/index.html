@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Ragasri &amp; Vinay · Wedding</title>
+<title>Vinay &amp; Ragasri · Wedding</title>
 <meta name="description" content="Together with our families, we invite you to celebrate the wedding of Ragasri & Vinay." />
 
 <script>document.documentElement.classList.add('js');</script>
@@ -215,6 +215,64 @@ body.intro-done .intro{
   object-fit: cover;
   object-position: center;
   background: #080808;
+}
+
+/* Hero scroll-down indicator */
+.hero-scroll-hint {
+    position: absolute;
+    left: 50%;
+    bottom: calc(24px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+
+    color:#531212;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .28em;
+    text-transform: uppercase;
+
+  
+
+    pointer-events: none;
+    animation: heroHintFade 2.5s ease-in-out infinite;
+}
+
+.hero-scroll-hint .scroll-arrow {
+    width: 17px;
+    height: 17px;
+
+    border-right: 1.5px solid #531212;
+    border-bottom: 1.5px solid #531212;
+
+    transform: rotate(45deg);
+    animation: scrollArrowMove 1.5s ease-in-out infinite;
+}
+
+@keyframes scrollArrowMove {
+    0%, 100% {
+        transform: translateY(-3px) rotate(45deg);
+    }
+    50% {
+        transform: translateY(5px) rotate(45deg);
+    }
+}
+
+@keyframes heroHintFade {
+    0%, 100% { opacity: .65; }
+    50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-scroll-hint,
+    .hero-scroll-hint .scroll-arrow {
+        animation: none;
+    }
 }
 
 .music-toggle{
@@ -2171,6 +2229,11 @@ body.intro-done .music-toggle{
 
 </header>
 
+<div class="hero-scroll-hint" aria-hidden="true">
+    <span>Scroll Down</span>
+    <span class="scroll-arrow"></span>
+</div>
+
 
 <!-- ============================================================
      PARENTS
@@ -2838,7 +2901,121 @@ heroVideo.volume = 0;
     }
   }
 
-  function finish() {
+
+ 
+/* ============================================================
+   AUTO SCROLL: HERO TO FOOTER - FIXED VERSION
+   ============================================================ */
+
+var autoScrollFrame = null;
+var autoScrollActive = false;
+var previousHtmlScroll = '';
+var previousBodyScroll = '';
+
+function stopAutoScroll() {
+
+    if (!autoScrollActive) return;
+
+    autoScrollActive = false;
+
+    if (autoScrollFrame !== null) {
+        cancelAnimationFrame(autoScrollFrame);
+        autoScrollFrame = null;
+    }
+
+    // Restore original scrolling behaviour
+    document.documentElement.style.scrollBehavior =
+        previousHtmlScroll;
+
+    document.body.style.scrollBehavior =
+        previousBodyScroll;
+
+    window.removeEventListener('wheel', stopAutoScroll);
+    window.removeEventListener('touchstart', stopAutoScroll);
+    window.removeEventListener('pointerdown', stopAutoScroll);
+    window.removeEventListener('keydown', stopAutoScroll);
+}
+
+function startAutoScroll() {
+
+    if (autoScrollActive) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    // Save existing CSS settings
+    previousHtmlScroll =
+        document.documentElement.style.scrollBehavior;
+
+    previousBodyScroll =
+        document.body.style.scrollBehavior;
+
+    // Disable CSS smooth scrolling during animation
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
+
+    var startPosition = window.scrollY;
+    var startTime = null;
+
+    // Total scrolling duration: 120 seconds
+    var duration = 120000;
+
+    autoScrollActive = true;
+
+    // Stop when visitor interacts manually
+    window.addEventListener('wheel', stopAutoScroll, { passive: true });
+    window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+    window.addEventListener('pointerdown', stopAutoScroll, { passive: true });
+    window.addEventListener('keydown', stopAutoScroll);
+
+    function animateScroll(timestamp) {
+
+        if (!autoScrollActive) return;
+
+        if (startTime === null) {
+            startTime = timestamp;
+        }
+
+        var elapsed = timestamp - startTime;
+
+        var progress = Math.min(elapsed / duration, 1);
+
+        // Recalculate page height to include all sections
+        var maxScroll =
+            Math.max(
+                0,
+                document.documentElement.scrollHeight -
+                window.innerHeight
+            );
+
+        // Linear movement for consistent scrolling speed
+        var currentPosition =
+            startPosition +
+            ((maxScroll - startPosition) * progress);
+
+        // Instant frame-by-frame movement
+        window.scrollTo(0, currentPosition);
+
+        if (progress < 1) {
+
+            autoScrollFrame =
+                requestAnimationFrame(animateScroll);
+
+        } else {
+
+            window.scrollTo(0, maxScroll);
+
+            stopAutoScroll();
+        }
+    }
+
+    autoScrollFrame =
+        requestAnimationFrame(animateScroll);
+}
+
+
+ function finish() {
     if (finished) return;
     finished = true;
 
@@ -2846,19 +3023,30 @@ heroVideo.volume = 0;
     document.body.classList.remove('intro-active');
     document.body.classList.add('intro-done');
 
+    // Start hero video
     startHeroVideo();
 
-    /* Auto-start background music once the hero section is shown */
+    // Start background music
     startMusic();
 
+    // Hide intro screen
     window.setTimeout(function () {
-      intro.style.display = 'none';
 
-      try {
-        video.pause();
-      } catch (e) {}
+        intro.style.display = 'none';
+
+        try {
+            video.pause();
+        } catch (e) {}
+
     }, 1500);
-  }
+
+    // Start automatic scrolling after hero transition
+    window.setTimeout(function () {
+
+        startAutoScroll();
+
+    }, 2200);
+}
 
   video.addEventListener('ended', finish, { once: true });
   video.addEventListener('error', finish);
