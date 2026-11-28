@@ -2701,6 +2701,27 @@ body:not(.intro-locked) .scroll-indicator {
         line-height: 1 !important;
     }
 }
+
+/* iOS SAFARI - INVITATION VISIBILITY FIX */
+
+@supports (-webkit-touch-callout: none) {
+
+    .details-content.reveal,
+    .details-content.reveal.is-visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: translate(-50%, -50%) !important;
+        -webkit-transform: translate(-50%, -50%) !important;
+    }
+
+    .details-card-image,
+    .details-flowers,
+    .details-edgeflowers {
+        opacity: 1 !important;
+        filter: none !important;
+        -webkit-filter: none !important;
+    }
+}
 </style>
 </noscript>
 </head>
