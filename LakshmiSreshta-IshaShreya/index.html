@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#e8f3ed">
 
-<title>Half Saree Ceremony | Lakshmi Sreshta & Isha Shreya</title>
+<title>Half Saree Ceremony | Sreshta & Shreya</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -80,6 +80,56 @@ img {
 .section-content {
     position: relative;
     z-index: 10;
+}
+
+/* =====================================
+   PREMIUM DIVIDER (Replaces basic lines/dashes)
+===================================== */
+
+.premium-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 220px;
+    margin: 18px auto;
+}
+
+.premium-divider::before,
+.premium-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #b58d60;
+    opacity: 0.6;
+}
+
+.premium-divider span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: #b58d60;
+    transform: rotate(45deg);
+    margin: 0 12px;
+    opacity: 0.8;
+}
+
+/* Preserve original spacing for specific dividers */
+.intro-divider.premium-divider { margin: 16px auto; }
+.hero-divider.premium-divider { margin: 17px auto; }
+.venue-divider.premium-divider { margin: 20px auto; }
+.grandparents-divider.premium-divider { margin: 18px auto 22px; }
+
+/* Slightly smaller variant for the mid-couples divider */
+.grandparents-mid-divider.premium-divider { 
+    margin: 6px auto; 
+    max-width: 180px;
+}
+
+.grandparents-mid-divider.premium-divider span {
+    width: 4px;
+    height: 4px;
+    margin: 0 8px;
 }
 
 /* =====================================
@@ -271,12 +321,65 @@ body.intro-locked {
 }
 
 /* =====================================
-   2b. NAMES OF THE BOY & GIRL
+   TOP BLESSING — VINAYAKA + SUBHAMASTU + SS LOGO
+===================================== */
+
+.intro-blessing {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    width: min(92%, 480px);
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+    opacity: 1;
+    transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Fade out & slide up the blessing when intro opens */
+.intro.is-open .intro-blessing {
+    opacity: 0;
+    transform: translate(-50%, -40px) scale(0.95);
+    transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.intro-ganesh {
+    width: clamp(40px, 7vh, 72px);
+    height: auto;
+    filter: drop-shadow(0 3px 10px rgba(255, 255, 255, 0.85));
+    padding-top: 30px;
+}
+
+.intro-subhamastu {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(12px, 1.9vh, 18px);
+    font-weight: 700;
+    color: #8a5a2e;
+    letter-spacing: 3px;
+    margin: 1px 0;
+    line-height: 1.2;
+    text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9);
+}
+
+.intro-ss-logo {
+    width: clamp(46px, 8vh, 82px);
+    height: auto;
+    filter: drop-shadow(0 3px 12px rgba(255, 255, 255, 0.85));
+}
+
+/* =====================================
+   NAMES OF THE GIRLS
 ===================================== */
 
 .intro-names-layer {
     position: absolute;
-    top: 8%;
+    top: 20%;
     left: 50%;
     z-index: 3;
     width: min(90%, 620px);
@@ -317,37 +420,38 @@ body.intro-locked {
 }
 
 .intro-names-kicker {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(9px, 1.4vw, 12px);
-    letter-spacing: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(11px, 1.6vw, 15px);
+    letter-spacing: 5px;
     text-transform: uppercase;
     color: #7d6349;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     text-shadow: 0 1px 10px rgba(255, 255, 255, 0.75);
 }
 
 .intro-names-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(21px, 4.4vw, 38px);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 6.2vw, 52px);
     font-weight: 700;
-    letter-spacing: 3px;
-    line-height: 1.2;
+    letter-spacing: 2px;
+    line-height: 1.15;
     color: #6f4630;
     text-shadow: 0 2px 18px rgba(255, 255, 255, 0.85);
 }
 
 .intro-names-amp {
     display: inline-block;
-    margin: 0 10px;
+    margin: 0 12px;
     font-family: 'Playfair Display', serif;
-    font-size: 0.78em;
+    font-size: 0.72em;
     font-weight: 500;
     color: #b07a4c;
     vertical-align: middle;
 }
 
 .intro-names-line {
-    width: 54px;
+    width: 60px;
     height: 1px;
     background: #b58d60;
     margin: 12px auto 0;
@@ -420,7 +524,9 @@ body.intro-locked {
 }
 
 .intro-eyebrow {
-    font-size: clamp(10px, 1.6vw, 14px);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(11px, 1.8vw, 16px);
     letter-spacing: 5px;
     text-transform: uppercase;
     color: #7d6349;
@@ -430,10 +536,11 @@ body.intro-locked {
 
 .intro-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 5.4vw, 58px);
+    font-size: clamp(28px, 5.8vw, 62px);
     line-height: 1.15;
     font-weight: 600;
     color: #5b3b28;
+    letter-spacing: 1px;
     text-shadow: 0 2px 18px rgba(255, 255, 255, 0.65);
 }
 
@@ -447,18 +554,11 @@ body.intro-locked {
     color: #96663f;
 }
 
-.intro-divider {
-    width: 72px;
-    height: 1px;
-    background: #b58d60;
-    margin: 16px auto;
-}
-
 .intro-names {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(17px, 2.8vw, 28px);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4.4vw, 40px);
     font-weight: 600;
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
     color: #76503d;
     text-shadow: 0 1px 12px rgba(255, 255, 255, 0.7);
 }
@@ -732,24 +832,12 @@ body:not(.intro-locked) .hero-content {
     color: #76503d;
 }
 
-.hero-divider {
-    width: 75px;
-    height: 1px;
-    background: #b58d60;
-    margin: 17px auto;
-}
-
 .hero-subtitle {
     color: #80644d;
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(15px, 2vw, 21px);
     letter-spacing: 2px;
 }
-
-/* =====================================
-   SCROLL INDICATOR — FIXED FOR 3D HERO
-===================================== */
-
 
 /* =====================================
    SCROLL INDICATOR — TEXT ONLY BACKGROUND
@@ -787,8 +875,6 @@ body:not(.intro-locked) .hero-content {
     text-transform: uppercase;
 }
 
-/* Background ONLY behind text */
-
 .scroll-text {
     display: inline-block;
     padding: 9px 17px;
@@ -802,8 +888,6 @@ body:not(.intro-locked) .hero-content {
     box-shadow: 0 4px 15px rgba(87, 57, 39, 0.12);
     white-space: nowrap;
 }
-
-/* Arrow without background */
 
 .scroll-arrow {
     width: 15px;
@@ -842,8 +926,6 @@ body:not(.intro-locked) .scroll-indicator {
     opacity: 1 !important;
     visibility: visible !important;
 }
-
-
 
 /* =====================================
    SECTION 2 - INVITATION DETAILS
@@ -1087,7 +1169,7 @@ body:not(.intro-locked) .scroll-indicator {
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     padding: 0;
-    margin: 0 auto;
+    margin: 6vh auto 0;
 }
 
 .venue-eyebrow {
@@ -1101,7 +1183,7 @@ body:not(.intro-locked) .scroll-indicator {
 .venue-title {
     font-family: 'Playfair Display', serif;
     color: #714b37;
-    font-size: clamp(30px, 5vw, 46px);
+    font-size: clamp(18px, 4.2vw, 36px);
     line-height: 1.2;
     font-weight: 600;
 }
@@ -1121,7 +1203,7 @@ body:not(.intro-locked) .scroll-indicator {
 .venue-location-name {
     font-family: 'Cormorant Garamond', serif;
     color: #87563c;
-    font-size: clamp(20px, 3vw, 28px);
+    font-size: clamp(24px, 4.2vw, 36px);
     font-weight: 700;
     letter-spacing: 1px;
     line-height: 1.25;
@@ -1134,15 +1216,6 @@ body:not(.intro-locked) .scroll-indicator {
     letter-spacing: 1px;
     line-height: 1.5;
     margin-top: 6px;
-}
-
-.venue-divider {
-    width: 70px;
-    height: 1px;
-    background: #b58d60;
-    margin: 20px auto;
-    opacity: 0.9;
-    border: none;
 }
 
 .venue-map-link {
@@ -1316,7 +1389,7 @@ body:not(.intro-locked) .scroll-indicator {
         line-height: 1.4;
     }
 
-    .venue-divider {
+    .premium-divider.venue-divider {
         margin: 10px auto;
     }
 
@@ -1343,7 +1416,152 @@ body:not(.intro-locked) .scroll-indicator {
 }
 
 /* =====================================
-   SECTION 4 - COUNTDOWN
+   SECTION 4 - GRANDPARENTS
+===================================== */
+
+.grandparents-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 14vh 16px 8vh 16px;
+}
+
+.grandparents-bg {
+    z-index: 0;
+}
+
+.grandparents-boygirl {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center bottom;
+    pointer-events: none;
+}
+
+.grandparents-flowers {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+    pointer-events: none;
+}
+
+.grandparents-edgeflowers {
+    z-index: 3;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+}
+
+.grandparents-content {
+    position: relative;
+    z-index: 5;
+    width: min(92%, 560px);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.grandparents-eyebrow {
+    font-size: clamp(10px, 1.5vw, 14px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #87664e;
+    margin-bottom: 10px;
+}
+
+.grandparents-title {
+    font-family: 'Playfair Display', serif;
+    color: #714b37;
+    font-size: clamp(28px, 5vw, 42px);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.grandparents-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    color: #826249;
+    font-size: clamp(15px, 2.2vw, 21px);
+    letter-spacing: 1.5px;
+    margin-top: 8px;
+}
+
+.grandparents-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(16px, 3vh, 24px);
+}
+
+.grandparents-couple {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.grandparents-name {
+    font-family: 'Cormorant Garamond', serif;
+    color: #7e4f39;
+    font-size: clamp(20px, 4.5vw, 32px);
+    line-height: 1.4;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* ---- Grandparents — responsive ---- */
+
+@media (max-width: 768px) {
+    .grandparents-section {
+        padding: 10vh 14px 6vh 14px;
+    }
+
+    .premium-divider.grandparents-divider {
+        margin: 14px auto 16px;
+    }
+
+    .grandparents-list {
+        gap: 14px;
+    }
+
+    .grandparents-name {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .grandparents-name {
+        font-size: 18px;
+    }
+}
+
+@media (max-height: 620px) {
+    .grandparents-section {
+        padding: 8vh 14px 4vh 14px;
+    }
+
+    .premium-divider.grandparents-divider {
+        margin: 12px auto 14px;
+    }
+}
+
+/* =====================================
+   SECTION 5 - COUNTDOWN
 ===================================== */
 
 .countdown-section {
@@ -1351,8 +1569,8 @@ body:not(.intro-locked) .scroll-indicator {
     min-height: 100svh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    padding-top: 8vh;
+    align-items: center;
+    padding: 4vh 16px;
 }
 
 .countdown-bg {
@@ -1369,17 +1587,6 @@ body:not(.intro-locked) .scroll-indicator {
     object-fit: fill;
     object-position: center;
     pointer-events: none;
-}
-
-.countdown-boygirl {
-    z-index: 1;
-    position: absolute;
-    bottom: -2%;
-    left: 0;
-    width: 100%;
-    height: 72%;
-    object-fit: contain;
-    object-position: center bottom;
 }
 
 .countdown-content {
@@ -1502,18 +1709,27 @@ body:not(.intro-locked) .scroll-indicator {
     letter-spacing: 1.5px;
 }
 
-.footer {
-    position: absolute;
-    z-index: 6;
-    bottom: 15px;
-    left: 0;
+/* =====================================
+   FOOTER SECTION
+===================================== */
+
+.footer-section {
+    position: relative;
     width: 100%;
+    padding: 40px 20px 30px;
     text-align: center;
+    background: #e9f2e9;
+    z-index: 10;
+}
+
+.footer-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
-    letter-spacing: 2px;
+    font-size: clamp(15px, 2.2vw, 20px);
+    font-weight: 600;
+    letter-spacing: 2.5px;
     color: #74563e;
-    padding: 8px;
+    opacity: 0.9;
+    margin: 0;
 }
 
 .reveal {
@@ -1567,7 +1783,7 @@ body:not(.intro-locked) .scroll-indicator {
         letter-spacing: 2px;
     }
 
-    .hero-divider {
+    .premium-divider.hero-divider {
         margin: 12px auto;
     }
 
@@ -1588,7 +1804,6 @@ body:not(.intro-locked) .scroll-indicator {
         object-fit: cover;
     }
 
-    /* Scroll indicator: mobile tuning — keep translateZ for 3D stacking */
     .scroll-indicator {
         bottom: 15px;
         transform: translateX(-50%) translateY(0) translateZ(80px);
@@ -1599,13 +1814,152 @@ body:not(.intro-locked) .scroll-indicator {
         transform: translateX(-50%) translateY(26px) translateZ(80px);
     }
 
+    /* ---- Mobile intro blessing ---- */
+
+    .intro-blessing {
+        top: 1.6%;
+        gap: 2px;
+    }
+
+    .intro-ganesh {
+        width: clamp(188px, 6.2vh, 54px);
+    }
+
+    .intro-subhamastu {
+        font-size: clamp(11px, 1.7vh, 14px);
+        letter-spacing: 2.5px;
+    }
+
+    .intro-ss-logo {
+        width: clamp(152px, 7vh, 62px);
+    }
+
+    /* ---- Mobile names layer ---- */
+
+    .intro-names-layer {
+        top: 22%;
+        width: 94%;
+        padding: 0 8px;
+    }
+
+    .intro-names-kicker {
+        letter-spacing: 3px;
+        margin-bottom: 6px;
+    }
+
+    .intro-names-text {
+        font-size: clamp(28px, 8vw, 42px);
+        letter-spacing: 1.5px;
+    }
+
+    .intro-names-amp {
+        margin: 0 8px;
+    }
+
+    .intro-names-line {
+        margin-top: 10px;
+        width: 50px;
+    }
+
+/* =========================================
+   SMALL PHONE - MOVE INTRO TEXT DOWN
+   Keep Ganesh & SS logo original sizes
+========================================= */
+
+/* =========================================
+   SECTION 2 - ENHANCED INVITATION CONTENT
+========================================= */
+
+@media (max-width: 768px) {
+
+    .details-content {
+        width: 80%;
+        max-width: 380px;
+        padding: 0 5px;
+        gap: 5px;
+    }
+
+    .invite-intro {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        line-height: 1.4;
+        letter-spacing: 0.8px;
+        font-weight: 500;
+    }
+
+    .details-heading {
+        font-family: 'Playfair Display', serif;
+        font-size: 19px;
+        line-height: 1.25;
+        font-weight: 700;
+        margin: 5px 0;
+    }
+
+    .children-text {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .children-names {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 19px;
+        line-height: 1.25;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin: 3px 0 5px;
+    }
+
+    .details-date {
+        font-family: 'Playfair Display', serif;
+        font-size: 19px;
+        line-height: 1.3;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        margin: 4px 0;
+    }
+
+    .details-time {
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 2.5px;
+        margin-bottom: 6px;
+    }
+
+    .warm-regards {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 1.5px;
+        margin-top: 5px;
+    }
+
+    /* Parents names - stronger emphasis */
+    .parents-names {
+        font-family: 'Playfair Display', serif;
+        font-size: 17px;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: 0.5px;
+        margin-top: 3px;
+        color: #875039;
+    }
+}
+
+@media (max-width: 400px) and (max-height: 700px) {
+
+    .intro:not(.is-open) .intro-overlay {
+        transform: translateY(55px);
+    }
+
+}
+
+    /* ---- Mobile overlay ---- */
+
     .intro-overlay {
         width: 94%;
         padding: 0 12px;
-    }
-
-    .intro-title {
-        font-size: clamp(28px, 8.4vw, 44px);
     }
 
     .intro-eyebrow {
@@ -1613,8 +1967,17 @@ body:not(.intro-locked) .scroll-indicator {
         margin-bottom: 10px;
     }
 
-    .intro-divider {
+    .intro-title {
+        font-size: clamp(26px, 8vw, 42px);
+    }
+
+    .intro-divider.premium-divider {
         margin: 12px auto;
+    }
+
+    .intro-names {
+        font-size: clamp(22px, 6vw, 32px);
+        letter-spacing: 2px;
     }
 
     .intro-tap {
@@ -1622,25 +1985,6 @@ body:not(.intro-locked) .scroll-indicator {
         padding: 11px 24px;
         font-size: 10px;
         letter-spacing: 3px;
-    }
-
-    .intro-names-layer {
-        top: 6.5%;
-        width: 94%;
-        padding: 0 8px;
-    }
-
-    .intro-names-kicker {
-        letter-spacing: 3px;
-        margin-bottom: 8px;
-    }
-
-    .intro-names-text {
-        letter-spacing: 2px;
-    }
-
-    .intro-names-line {
-        margin-top: 10px;
     }
 
     .details-section {
@@ -1736,7 +2080,7 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .venue-title {
-        font-size: clamp(26px, 8vw, 36px);
+        font-size: clamp(18px, 6.5vw, 32px);
     }
 
     .venue-subtitle {
@@ -1749,14 +2093,14 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .venue-location-name {
-        font-size: 21px;
+        font-size: clamp(24px, 6.5vw, 32px);
     }
 
     .venue-location-address {
         font-size: 14px;
     }
 
-    .venue-divider {
+    .premium-divider.venue-divider {
         margin: 16px auto;
     }
 
@@ -1797,7 +2141,7 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .countdown-section {
-        padding-top: 7vh;
+        padding: 4vh 16px;
     }
 
     .countdown-flowers {
@@ -1805,11 +2149,6 @@ body:not(.intro-locked) .scroll-indicator {
         height: 100%;
         object-fit: fill;
         object-position: center;
-    }
-
-    .countdown-boygirl {
-        height: 82%;
-        bottom: 0;
     }
 
     .countdown-eyebrow {
@@ -1859,9 +2198,22 @@ body:not(.intro-locked) .scroll-indicator {
         margin-top: 16px;
     }
 
-    .footer {
-        bottom: 8px;
-        font-size: 11px;
+    /* FOOTER - REDUCED HEIGHT */
+
+.footer-section {
+    padding: 18px 20px 14px;
+}
+
+    .footer-text {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .footer-section {
+        padding: 14px 16px 10px;
     }
 }
 
@@ -1883,24 +2235,25 @@ body:not(.intro-locked) .scroll-indicator {
         height: 85%;
     }
 
-    .intro-title {
-        font-size: 26px;
+    .intro-blessing {
+        top: 1.2%;
     }
 
-    .intro-names {
-        font-size: 16px;
-        letter-spacing: 2px;
+    .intro-ganesh {
+        width: 156px;
     }
 
-    .intro-tap {
-        bottom: max(18px, 4vh);
-        padding: 10px 20px;
+    .intro-subhamastu {
         font-size: 10px;
         letter-spacing: 2px;
     }
 
+    .intro-ss-logo {
+        width: 120px;
+    }
+
     .intro-names-layer {
-        top: 5.5%;
+        top: 20%;
     }
 
     .intro-names-kicker {
@@ -1909,12 +2262,28 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .intro-names-text {
+        font-size: 26px;
+        letter-spacing: 1px;
+    }
+
+    .intro-names-amp {
+        margin: 0 6px;
+    }
+
+    .intro-title {
+        font-size: 24px;
+    }
+
+    .intro-names {
         font-size: 20px;
         letter-spacing: 1.5px;
     }
 
-    .intro-names-amp {
-        margin: 0 7px;
+    .intro-tap {
+        bottom: max(18px, 4vh);
+        padding: 10px 20px;
+        font-size: 10px;
+        letter-spacing: 2px;
     }
 
     .details-content {
@@ -1964,7 +2333,7 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .venue-title {
-        font-size: 26px;
+        font-size: 18px;
     }
 
     .venue-subtitle {
@@ -1972,7 +2341,7 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .venue-location-name {
-        font-size: 18px;
+        font-size: 24px;
     }
 
     .venue-location-address {
@@ -2028,11 +2397,31 @@ body:not(.intro-locked) .scroll-indicator {
     }
 
     .countdown-section {
-        padding-top: 4vh;
+        padding: 2vh 16px;
     }
 
     .timer-box {
         min-height: 62px;
+    }
+
+    .intro-blessing {
+        top: 1%;
+    }
+
+    .intro-ganesh {
+        width: 184px;
+    }
+
+    .intro-subhamastu {
+        font-size: 10px;
+    }
+
+    .intro-ss-logo {
+        width: 158px;
+    }
+
+    .intro-names-layer {
+        top: 22%;
     }
 
     .intro-title {
@@ -2046,15 +2435,15 @@ body:not(.intro-locked) .scroll-indicator {
         letter-spacing: 2px;
     }
 
-    .intro-names-layer {
-        top: 4%;
-    }
-
     .intro-names-kicker {
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
 
     .intro-names-text {
+        font-size: clamp(24px, 5vw, 32px);
+    }
+
+    .intro-names {
         font-size: clamp(18px, 3.6vw, 26px);
     }
 }
@@ -2279,7 +2668,7 @@ body:not(.intro-locked) .scroll-indicator {
         line-height: 1.3 !important;
     }
 
-    .venue-divider {
+    .premium-divider.venue-divider {
         margin: 8px auto !important;
     }
 
@@ -2347,16 +2736,34 @@ body:not(.intro-locked) .scroll-indicator {
     <img
         src="Asset/introimg.png"
         class="intro-layer intro-img"
-        alt="Srihasya and Sushruth"
+        alt="Sreshta and Shreya"
         draggable="false"
     >
 
+    <!-- Top Blessing: Vinayaka + Subhamastu + S&S Logo -->
+    <div class="intro-blessing" aria-hidden="true">
+        <img
+            src="Asset/ganeshimg.png"
+            class="intro-ganesh"
+            alt="Lord Vinayaka"
+            draggable="false"
+        >
+        <p class="intro-subhamastu">॥ शुभमस्तु ॥</p>
+        <img
+            src="Asset/SSlogo.png"
+            class="intro-ss-logo"
+            alt="Sreshta and Shreya Logo"
+            draggable="false"
+        >
+    </div>
+
+    <!-- Names Layer (revealed after opening) -->
     <div class="intro-names-layer" aria-hidden="true">
         <p class="intro-names-kicker">Presenting</p>
         <p class="intro-names-text">
-            Lakshmi Sreshta
+            Sreshta
             <span class="intro-names-amp">&amp;</span>
-            Isha Shreya
+            Shreya
         </p>
         <div class="intro-names-line"></div>
     </div>
@@ -2376,8 +2783,8 @@ body:not(.intro-locked) .scroll-indicator {
         <h1 class="intro-title">
             Half Saree Ceremony
         </h1>
-        <div class="intro-divider"></div>
-        <p class="intro-names">Lakshmi Sreshta &amp; Isha Shreya</p>
+        <div class="intro-divider premium-divider"><span></span></div>
+        <p class="intro-names">Sreshta &amp; Shreya</p>
     </div>
 
     <p class="intro-tap">Tap to Enter</p>
@@ -2416,9 +2823,9 @@ body:not(.intro-locked) .scroll-indicator {
         <h1 class="hero-title">
             Half Saree Ceremony
         </h1>
-        <div class="hero-divider"></div>
+        <div class="hero-divider premium-divider"><span></span></div>
         <p class="hero-subtitle">Celebrating Our Little Stars</p>
-        <p class="hero-names">Lakshmi Sreshta & Isha Shreya</p>
+        <p class="intro-names-text">Lakshmi Sreshta <br>&<br> Isha Shreya</p>
     </div>
 
 
@@ -2509,7 +2916,7 @@ body:not(.intro-locked) .scroll-indicator {
             </p>
         </div>
 
-        <div class="venue-divider"></div>
+        <div class="venue-divider premium-divider"><span></span></div>
 
         <a
             class="venue-map-link"
@@ -2528,7 +2935,7 @@ body:not(.intro-locked) .scroll-indicator {
             <div class="venue-lunch-item">
                 <p class="venue-lunch-label">Lunch Date</p>
                 <p class="venue-lunch-value">December 06, 2026</p>
-                <p class="venue-lunch-sub">Sunday</p>
+                <p class="venue-lunch-sub"><strong>Sunday</strong></p>
             </div>
             <div class="venue-lunch-item">
                 <p class="venue-lunch-label">Lunch Time</p>
@@ -2541,18 +2948,68 @@ body:not(.intro-locked) .scroll-indicator {
 </section>
 
 
+<!-- =====================================
+     GRANDPARENTS SECTION
+===================================== -->
+<section class="section grandparents-section" id="grandparents">
+
+    <img
+        src="Asset/mainbg.png"
+        class="scene-layer scene-bg grandparents-bg"
+        alt=""
+    >
+
+    <img
+        src="Asset/countdownboygirl.png"
+        class="scene-layer grandparents-boygirl"
+        alt="Children celebrating a special family occasion"
+    >
+
+    <img
+        src="Asset/detailsflowers.png"
+        class="scene-layer grandparents-flowers"
+        alt=""
+    >
+
+    <img
+        src="Asset/edgeflowers.png"
+        class="scene-layer grandparents-edgeflowers"
+        alt=""
+    >
+
+    <div class="grandparents-content reveal">
+        <p class="grandparents-eyebrow">With Blessings From</p>
+        <h2 class="grandparents-title">Grand Parents</h2>
+        <p class="grandparents-subtitle">Our loving elders</p>
+
+        <div class="grandparents-divider premium-divider"><span></span></div>
+
+        <div class="grandparents-list">
+
+            <div class="grandparents-couple">
+                <p class="grandparents-name">Ln. Sankar Gupta PDG</p>
+                <p class="grandparents-name">Lakshmi Sujatha</p>
+            </div>
+
+            <div class="grandparents-mid-divider premium-divider"><span></span></div>
+
+            <div class="grandparents-couple">
+                <p class="grandparents-name">Sanka Srinivas Kumar</p>
+                <p class="grandparents-name">Naga Jyothi</p>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+
 <section class="section countdown-section" id="countdown">
 
     <img
         src="Asset/mainbg.png"
         class="scene-layer scene-bg countdown-bg"
         alt=""
-    >
-
-    <img
-        src="Asset/countdownboygirl.png"
-        class="scene-layer countdown-boygirl"
-        alt="Boy and girl celebrating a special family occasion"
     >
 
     <img
@@ -2592,10 +3049,14 @@ body:not(.intro-locked) .scroll-indicator {
         </p>
     </div>
 
-    <div class="footer">
-        With Love, Lakshmi Sreshta & Isha Shreya
-    </div>
+</section>
 
+
+<!-- =====================================
+     FOOTER SECTION
+===================================== -->
+<section class="footer-section" id="footer">
+    <p class="footer-text">With Love, Sreshta &amp; Shreya</p>
 </section>
 
 
